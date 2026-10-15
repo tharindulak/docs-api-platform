@@ -1,0 +1,390 @@
+{
+  "docs": [
+    {
+      "type": "doc",
+      "id": "overview",
+      "label": "Overview"
+    },
+    {
+      "type": "doc",
+      "id": "quick-start-guide",
+      "label": "Quick Start Guide"
+    },
+    {
+      "type": "category",
+      "label": "Setup",
+      "items": [
+        {
+          "type": "doc",
+          "id": "setup/configuration",
+          "label": "Configuration & Interpolation"
+        },
+        {
+          "type": "doc",
+          "id": "setup/resource-requirement",
+          "label": "Minimum resource requirements"
+        },
+        {
+          "type": "doc",
+          "id": "setup/database-setup",
+          "label": "Setting Up the Database"
+        },
+        {
+          "type": "doc",
+          "id": "setup/artifact-templating",
+          "label": "Artifact Templating"
+        },
+        {
+          "type": "doc",
+          "id": "setup/health-checks",
+          "label": "Health Checks"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Resiliency",
+      "items": [
+        {
+          "type": "doc",
+          "id": "resiliency/timeouts",
+          "label": "Timeouts"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Policies",
+      "items": [
+        {
+          "type": "doc",
+          "id": "policies/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "policies/policy-execution-order",
+          "label": "Policy execution order"
+        },
+        {
+          "type": "doc",
+          "id": "policies/add-or-update-policies",
+          "label": "Add or Update Policies"
+        },
+        {
+          "type": "category",
+          "label": "Custom Policies",
+          "items": [
+            {
+              "type": "doc",
+              "id": "policies/custom-policies/writing-a-custom-policy",
+              "label": "Writing a Custom Policy"
+            },
+            {
+              "type": "doc",
+              "id": "policies/custom-policies/building-gateway-with-custom-policies",
+              "label": "Building Gateway with Custom Policies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Deployment",
+      "items": [
+        {
+          "type": "category",
+          "label": "Deployment Modes",
+          "items": [
+            {
+              "type": "doc",
+              "id": "deployment/deployment-modes/immutable-gateway",
+              "label": "Immutable Gateway"
+            },
+            {
+              "type": "category",
+              "label": "Kubernetes",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "deployment/deployment-modes/kubernetes/overview",
+                  "label": "Overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "deployment/deployment-modes/kubernetes/kubernetes-standalone",
+                  "label": "Standalone Mode"
+                },
+                {
+                  "type": "doc",
+                  "id": "deployment/deployment-modes/kubernetes/gateway-operator",
+                  "label": "Kubernetes Operator Mode"
+                },
+                {
+                  "type": "doc",
+                  "id": "deployment/deployment-modes/kubernetes/gateway-operator-management-crds",
+                  "label": "Management CRDs"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "High-Availability Production Deployment",
+          "items": [
+            {
+              "type": "doc",
+              "id": "deployment/high-availability-production-deployment",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/security-hardening",
+              "label": "Security Hardening"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/database-configuration",
+              "label": "Database Configuration"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/resources-and-scaling",
+              "label": "Resources & Scaling"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/deploy-and-verify",
+              "label": "Deploy & Verify"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/control-plane-connection",
+              "label": "Control Plane Connection"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Deploying APIs",
+          "items": [
+            {
+              "type": "doc",
+              "id": "deployment/deploying-apis/bottom-up-api-deployment",
+              "label": "Bottom-Up Deployment"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Observability",
+      "items": [
+        {
+          "type": "category",
+          "label": "Logging",
+          "items": [
+            {
+              "type": "doc",
+              "id": "observability/logging",
+              "label": "Centralized Logging"
+            },
+            {
+              "type": "doc",
+              "id": "observability/traffic-logging",
+              "label": "Traffic Logging"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Tracing",
+          "items": [
+            {
+              "type": "doc",
+              "id": "observability/tracing/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "observability/tracing/enabling-tracing",
+              "label": "Enabling and Disabling Tracing"
+            },
+            {
+              "type": "doc",
+              "id": "observability/tracing/viewing-traces-in-jaeger",
+              "label": "Viewing Traces in Jaeger"
+            },
+            {
+              "type": "doc",
+              "id": "observability/tracing/configuration",
+              "label": "Tracing Configuration"
+            },
+            {
+              "type": "doc",
+              "id": "observability/tracing/alternative-backends",
+              "label": "Alternative Tracing Backends"
+            },
+            {
+              "type": "doc",
+              "id": "observability/tracing/best-practices-and-troubleshooting",
+              "label": "Best Practices and Troubleshooting"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Metrics",
+          "items": [
+            {
+              "type": "doc",
+              "id": "observability/metrics/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "observability/metrics/enabling-metrics",
+              "label": "Enabling and Disabling Metrics"
+            },
+            {
+              "type": "doc",
+              "id": "observability/metrics/viewing-metrics-in-grafana",
+              "label": "Viewing Metrics in Grafana"
+            },
+            {
+              "type": "doc",
+              "id": "observability/metrics/prometheus-queries",
+              "label": "Prometheus Queries"
+            },
+            {
+              "type": "doc",
+              "id": "observability/metrics/configuration",
+              "label": "Configuration Options"
+            },
+            {
+              "type": "doc",
+              "id": "observability/metrics/alternative-backends",
+              "label": "Alternative Metrics Backends"
+            },
+            {
+              "type": "doc",
+              "id": "observability/metrics/metric-reference",
+              "label": "Metric Reference"
+            },
+            {
+              "type": "doc",
+              "id": "observability/metrics/best-practices-and-troubleshooting",
+              "label": "Best Practices and Troubleshooting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Analytics",
+      "items": [
+        {
+          "type": "doc",
+          "id": "analytics/analytics-header-filter",
+          "label": "Analytics Header Filter"
+        },
+        {
+          "type": "doc",
+          "id": "analytics/moesif-analytics",
+          "label": "Moesif Analytics"
+        },
+        {
+          "type": "doc",
+          "id": "analytics/opentelemetry-analytics",
+          "label": "OpenTelemetry Analytics"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Management API",
+      "items": [
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/authentication",
+          "label": "Authentication"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/rest-api-management",
+          "label": "Rest API Management"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/mcp-proxy-management",
+          "label": "MCP Proxy Management"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/certificate-management",
+          "label": "Certificate Management"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/llm-provider-template-management",
+          "label": "LLM Provider Template Management"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/llm-provider-management",
+          "label": "LLM Provider Management"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/llm-proxy-management",
+          "label": "LLM Proxy Management"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/secrets-management",
+          "label": "Secrets Management"
+        },
+        {
+          "type": "doc",
+          "id": "gateway-controller-management-api/schemas",
+          "label": "Schemas"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Performance",
+      "items": [
+        {
+          "type": "doc",
+          "id": "performance/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "performance/gateway-runtime-with-two-cpus",
+          "label": "Gateway runtime with two CPUs"
+        },
+        {
+          "type": "doc",
+          "id": "performance/gateway-runtime-with-four-cpus",
+          "label": "Gateway runtime with four CPUs"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "about-this-release",
+      "label": "About this release"
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "docs": [
+    {
+      "type": "doc",
+      "id": "overview",
+      "label": "Overview"
+    },
+    {
+      "type": "category",
+      "label": "LLM Proxy",
+      "items": [
+        {
+          "type": "doc",
+          "id": "llm-proxy/quick-start-guide",
+          "label": "Quick Start Guide"
+        },
+        {
+          "type": "doc",
+          "id": "llm-proxy/llm-templates",
+          "label": "LLM Provider Templates"
+        },
+        {
+          "type": "category",
+          "label": "Guardrails",
+          "items": [
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/execution-order",
+              "label": "Guardrail execution order"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/aws-bedrock-guardrail",
+              "label": "AWS Bedrock Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/azure-content-safety",
+              "label": "Azure Content Safety"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/content-length",
+              "label": "Content Length Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/json-schema",
+              "label": "JSON Schema Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/pii-masking-regex",
+              "label": "PII Masking Regex Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/regex",
+              "label": "Regex Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/semantic-prompt-guard",
+              "label": "Semantic Prompt Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/sentence-count",
+              "label": "Sentence Count Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/url",
+              "label": "URL Guardrail"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/guardrails/word-count",
+              "label": "Word Count Guardrail"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Load Balancing",
+          "items": [
+            {
+              "type": "doc",
+              "id": "llm-proxy/load-balancing/model-round-robin",
+              "label": "Model Round Robin"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/load-balancing/model-weighted-round-robin",
+              "label": "Model Weighted Round Robin"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Prompt Management",
+          "items": [
+            {
+              "type": "doc",
+              "id": "llm-proxy/prompt-management/prompt-decorator",
+              "label": "Prompt Decorator"
+            },
+            {
+              "type": "doc",
+              "id": "llm-proxy/prompt-management/prompt-template",
+              "label": "Prompt Template"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "llm-proxy/semantic-caching",
+          "label": "Semantic Caching"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "MCP Proxy",
+      "items": [
+        {
+          "type": "doc",
+          "id": "mcp-proxy/quick-start-guide",
+          "label": "Quick Start Guide"
+        },
+        {
+          "type": "category",
+          "label": "Policies",
+          "items": [
+            {
+              "type": "doc",
+              "id": "mcp-proxy/policies/mcp-acl-list",
+              "label": "MCP Access Control List"
+            },
+            {
+              "type": "doc",
+              "id": "mcp-proxy/policies/mcp-authentication",
+              "label": "MCP Authentication"
+            },
+            {
+              "type": "doc",
+              "id": "mcp-proxy/policies/mcp-authorization",
+              "label": "MCP Authorization"
+            },
+            {
+              "type": "doc",
+              "id": "mcp-proxy/policies/mcp-rewrite",
+              "label": "MCP Rewrite"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "streaming-responses",
+      "label": "Real-Time AI Streaming"
+    },
+    {
+      "type": "category",
+      "label": "Deployment",
+      "items": [
+        {
+          "type": "category",
+          "label": "Deployment Modes",
+          "items": [
+            {
+              "type": "doc",
+              "id": "deployment/deployment-modes/immutable-gateway",
+              "label": "Immutable Gateway"
+            },
+            {
+              "type": "category",
+              "label": "Kubernetes",
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "deployment/deployment-modes/kubernetes/overview",
+                  "label": "Overview"
+                },
+                {
+                  "type": "doc",
+                  "id": "deployment/deployment-modes/kubernetes/kubernetes-standalone",
+                  "label": "Standalone Mode"
+                },
+                {
+                  "type": "doc",
+                  "id": "deployment/deployment-modes/kubernetes/gateway-operator",
+                  "label": "Kubernetes Operator Mode"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Production Deployment",
+          "items": [
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/security-hardening",
+              "label": "Security Hardening"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/database-configuration",
+              "label": "Database Configuration"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/resources-and-scaling",
+              "label": "Resources & Scaling"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/ai-workload-tuning",
+              "label": "Tune for AI Traffic"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/deploy-and-verify",
+              "label": "Deploy & Verify"
+            },
+            {
+              "type": "doc",
+              "id": "deployment/production-deployment/control-plane-connection",
+              "label": "Connect to a Control Plane"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Observability",
+      "items": [
+        {
+          "type": "doc",
+          "id": "observability/logging",
+          "label": "Logging"
+        },
+        {
+          "type": "doc",
+          "id": "observability/tracing",
+          "label": "Tracing"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Analytics",
+      "items": [
+        {
+          "type": "doc",
+          "id": "analytics/moesif-analytics",
+          "label": "Moesif Analytics"
+        },
+        {
+          "type": "doc",
+          "id": "analytics/analytics-header-filter",
+          "label": "Analytics Header Filter"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Performance",
+      "items": [
+        {
+          "type": "doc",
+          "id": "performance/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "performance/ai-gateway-runtime-with-two-cpus",
+          "label": "AI Gateway runtime with two CPUs"
+        },
+        {
+          "type": "doc",
+          "id": "performance/ai-gateway-runtime-with-four-cpus",
+          "label": "AI Gateway runtime with four CPUs"
+        }
+      ]
+    }
+  ]
+}

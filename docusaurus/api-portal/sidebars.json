@@ -1,0 +1,448 @@
+{
+  "docs": [
+    {
+      "type": "doc",
+      "id": "overview",
+      "label": "Overview"
+    },
+    {
+      "type": "doc",
+      "id": "about-this-release",
+      "label": "About this Release"
+    },
+    {
+      "type": "doc",
+      "id": "concepts",
+      "label": "Concepts"
+    },
+    {
+      "type": "doc",
+      "id": "quickstart-guide",
+      "label": "Quick Start Guide"
+    },
+    {
+      "type": "doc",
+      "id": "getting-started",
+      "label": "Getting Started"
+    },
+    {
+      "type": "category",
+      "label": "Setting Up",
+      "items": [
+        {
+          "type": "doc",
+          "id": "setting-up/configuration",
+          "label": "Configuration & Interpolation"
+        },
+        {
+          "type": "doc",
+          "id": "setting-up/resource-requirement",
+          "label": "Minimum resource requirements"
+        },
+        {
+          "type": "doc",
+          "id": "setting-up/ports",
+          "label": "Ports"
+        },
+        {
+          "type": "doc",
+          "id": "setting-up/database",
+          "label": "Database"
+        },
+        {
+          "type": "category",
+          "label": "Authentication",
+          "items": [
+            {
+              "type": "doc",
+              "id": "setting-up/authentication/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "setting-up/authentication/connect-an-identity-provider",
+              "label": "Connect an Identity Provider"
+            },
+            {
+              "type": "doc",
+              "id": "setting-up/authentication/asgardeo-as-idp",
+              "label": "Set up Asgardeo"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "setting-up/artifact-types",
+          "label": "Artifact Types"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Discover APIs",
+      "items": [
+        {
+          "type": "doc",
+          "id": "discover-apis/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "discover-apis/browse-apis",
+          "label": "Browse APIs"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Discover MCP Servers",
+      "items": [
+        {
+          "type": "doc",
+          "id": "mcp-servers/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "mcp-servers/browse-mcp-servers",
+          "label": "Browse MCP Servers"
+        },
+        {
+          "type": "doc",
+          "id": "mcp-servers/connect-to-an-mcp-server",
+          "label": "Connect to an MCP Server"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "api-workflows",
+      "label": "API Workflows"
+    },
+    {
+      "type": "doc",
+      "id": "ai-agent-discovery",
+      "label": "AI Agent Discovery"
+    },
+    {
+      "type": "doc",
+      "id": "mcp-registry",
+      "label": "MCP Registry API"
+    },
+    {
+      "type": "category",
+      "label": "Applications and Credentials",
+      "items": [
+        {
+          "type": "doc",
+          "id": "consume-an-api/overview",
+          "label": "Which Credentials You Need"
+        },
+        {
+          "type": "doc",
+          "id": "consume-an-api/manage-applications",
+          "label": "Manage Applications"
+        },
+        {
+          "type": "doc",
+          "id": "consume-an-api/manage-subscriptions",
+          "label": "Manage Subscriptions"
+        },
+        {
+          "type": "doc",
+          "id": "consume-an-api/manage-api-keys",
+          "label": "Manage API Keys"
+        },
+        {
+          "type": "doc",
+          "id": "consume-an-api/oauth2",
+          "label": "Call an OAuth2-Secured API"
+        },
+        {
+          "type": "doc",
+          "id": "consume-an-api/api-key",
+          "label": "Call an API-Key-Secured API"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Admin Settings",
+      "items": [
+        {
+          "type": "category",
+          "label": "Organization",
+          "items": [
+            {
+              "type": "doc",
+              "id": "admin-settings/organization-settings",
+              "label": "Organization Settings"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/manage-views",
+              "label": "Manage Views"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/manage-labels",
+              "label": "Manage Labels"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/subscription-plans",
+              "label": "Subscription Plans"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Content",
+          "items": [
+            {
+              "type": "doc",
+              "id": "admin-settings/manage-apis",
+              "label": "Manage APIs"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/manage-mcp-servers",
+              "label": "Manage MCP Servers"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/manage-api-workflows",
+              "label": "Manage API Workflows"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/api-content",
+              "label": "API Content"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/llm-instructions",
+              "label": "LLM Instructions"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Integrations",
+          "items": [
+            {
+              "type": "doc",
+              "id": "admin-settings/key-manager-integration",
+              "label": "Key Manager Integration"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/webhook-integration",
+              "label": "Webhook Integration"
+            }
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Appearance",
+          "items": [
+            {
+              "type": "doc",
+              "id": "admin-settings/theming",
+              "label": "Theming"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/apply-a-theme",
+              "label": "Apply a Theme to a View"
+            },
+            {
+              "type": "doc",
+              "id": "admin-settings/design-mode",
+              "label": "Design Mode"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Deployment",
+      "items": [
+        {
+          "type": "doc",
+          "id": "deployment/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "deployment/security-hardening",
+          "label": "Security Hardening"
+        },
+        {
+          "type": "doc",
+          "id": "deployment/database-configuration",
+          "label": "Database Configuration"
+        },
+        {
+          "type": "doc",
+          "id": "deployment/resources-and-scaling",
+          "label": "Resources & Scaling"
+        },
+        {
+          "type": "doc",
+          "id": "deployment/deploy-and-verify",
+          "label": "Deploy & Verify"
+        },
+        {
+          "type": "doc",
+          "id": "deployment/control-plane-connection",
+          "label": "Control Plane Connection"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Tutorials",
+      "items": [
+        {
+          "type": "doc",
+          "id": "tutorials/secured-api-end-to-end",
+          "label": "Secured API End to End"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "References",
+      "items": [
+        {
+          "type": "category",
+          "label": "Management API",
+          "items": [
+            {
+              "type": "doc",
+              "id": "rest-api/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/authentication",
+              "label": "Authentication"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/organizations",
+              "label": "Organizations"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/organization-content",
+              "label": "Organization Content"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/views",
+              "label": "Views"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/labels",
+              "label": "Labels"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/subscription-plans",
+              "label": "Subscription Plans"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/key-managers",
+              "label": "Key Managers"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/apis",
+              "label": "APIs"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/api-content",
+              "label": "API Content"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/api-keys",
+              "label": "API Keys"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/mcp-servers",
+              "label": "MCP Servers"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/mcp-server-content",
+              "label": "MCP Server Content"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/mcp-server-keys",
+              "label": "MCP Server Keys"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/applications",
+              "label": "Applications"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/application-keys",
+              "label": "Application Keys"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/subscriptions",
+              "label": "Subscriptions"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/api-workflows",
+              "label": "API Workflows"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/webhook-subscribers",
+              "label": "Webhook Subscribers"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/webhook-events",
+              "label": "Webhook Events"
+            },
+            {
+              "type": "doc",
+              "id": "rest-api/schemas",
+              "label": "Schemas"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "references/webhook-event-catalog",
+          "label": "Webhook Event Catalog"
+        },
+        {
+          "type": "doc",
+          "id": "references/get-a-bearer-token-via-curl",
+          "label": "Get a Bearer Token via curl"
+        },
+        {
+          "type": "doc",
+          "id": "references/configurations",
+          "label": "Configurations"
+        }
+      ]
+    }
+  ]
+}

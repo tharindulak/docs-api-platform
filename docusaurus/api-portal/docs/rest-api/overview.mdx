@@ -1,0 +1,176 @@
+---
+title: API Portal Management API
+description: Overview of the API Portal Management API for managing organizations, APIs, MCP servers, applications, subscriptions, and API keys.
+tags:
+  - cloud
+  - api-portal
+  - rest-api
+deployment_options:
+  - Self-hosted
+custom_edit_url: https://github.com/wso2/docs-api-platform/blob/e969b7a307a024f918e1caf0b969fd6be7057229/en/docs/api-portal/1.0.0/rest-api/overview.md
+---
+
+# API Portal Management API
+
+Fine-grained API Portal REST API for managing organizations,
+API metadata and content, applications, subscriptions, application appKeyMappings, and API flows.
+
+All resources, the organization endpoints (`/api-portal/api/v0.9/organizations/{orgId}`)
+included, are served under `/api-portal/api/v0.9` — the portal mounts its whole surface,
+pages and REST API alike, beneath the `/api-portal` prefix.
+
+Every operation other than the few marked public takes a Bearer JWT access token in the
+`Authorization` header and declares the least-privilege `dp:*` scopes that authorize it.
+Where that token comes from, and how a caller comes to hold those scopes, is described
+under [Authentication](authentication.mdx).
+
+Base URLs:
+* <a href="https://localhost:9543/api-portal/api/v0.9">https://localhost:9543/api-portal/api/v0.9</a>
+* <a href="http://localhost:9543/api-portal/api/v0.9">http://localhost:9543/api-portal/api/v0.9</a>
+
+## Table of Contents
+
+### [Authentication](authentication.mdx)
+
+### [Organizations](organizations.mdx)
+
+- [Update an organization](organizations.mdx#update-an-organization)
+- [Get an organization](organizations.mdx#get-an-organization)
+
+### [Organization Content](organization-content.mdx)
+
+- [Get a theme asset](organization-content.mdx#get-a-theme-asset)
+- [Apply a theme](organization-content.mdx#apply-a-theme)
+- [Reset theme to defaults](organization-content.mdx#reset-theme-to-defaults)
+- [Download the current theme](organization-content.mdx#download-the-current-theme)
+
+### [APIs](apis.mdx)
+
+- [Create API metadata](apis.mdx#create-api-metadata)
+- [List API metadata](apis.mdx#list-api-metadata)
+- [Get API metadata](apis.mdx#get-api-metadata)
+- [Update API metadata](apis.mdx#update-api-metadata)
+- [Delete API metadata](apis.mdx#delete-api-metadata)
+
+### [API Content](api-content.mdx)
+
+- [Upload API content](api-content.mdx#upload-api-content)
+- [Replace API content](api-content.mdx#replace-api-content)
+- [Get an API content file](api-content.mdx#get-an-api-content-file)
+- [Delete API content files](api-content.mdx#delete-api-content-files)
+
+### [MCP Servers](mcp-servers.mdx)
+
+- [Create MCP server metadata](mcp-servers.mdx#create-mcp-server-metadata)
+- [List MCP server metadata](mcp-servers.mdx#list-mcp-server-metadata)
+- [Get MCP server metadata](mcp-servers.mdx#get-mcp-server-metadata)
+- [Update MCP server metadata](mcp-servers.mdx#update-mcp-server-metadata)
+- [Delete MCP server metadata](mcp-servers.mdx#delete-mcp-server-metadata)
+
+### [MCP Server Content](mcp-server-content.mdx)
+
+- [Upload MCP server content](mcp-server-content.mdx#upload-mcp-server-content)
+- [Replace MCP server content](mcp-server-content.mdx#replace-mcp-server-content)
+- [Get an MCP server content file](mcp-server-content.mdx#get-an-mcp-server-content-file)
+- [Delete MCP server content files](mcp-server-content.mdx#delete-mcp-server-content-files)
+
+### [MCP Server Keys](mcp-server-keys.mdx)
+
+- [Generate an MCP server API key](mcp-server-keys.mdx#generate-an-mcp-server-api-key)
+- [List MCP server API keys](mcp-server-keys.mdx#list-mcp-server-api-keys)
+- [Regenerate an MCP server API key](mcp-server-keys.mdx#regenerate-an-mcp-server-api-key)
+- [Revoke an MCP server API key](mcp-server-keys.mdx#revoke-an-mcp-server-api-key)
+- [Associate an MCP server API key with an application](mcp-server-keys.mdx#associate-an-mcp-server-api-key-with-an-application)
+- [Remove an MCP server API key's application association](mcp-server-keys.mdx#remove-an-mcp-server-api-keys-application-association)
+
+### [Subscription Plans](subscription-plans.mdx)
+
+- [List subscription plans](subscription-plans.mdx#list-subscription-plans)
+- [Create subscription plans](subscription-plans.mdx#create-subscription-plans)
+- [Upsert subscription plans](subscription-plans.mdx#upsert-subscription-plans)
+- [Get a subscription plan](subscription-plans.mdx#get-a-subscription-plan)
+- [Delete a subscription plan](subscription-plans.mdx#delete-a-subscription-plan)
+
+### [Labels](labels.mdx)
+
+- [Create a label](labels.mdx#create-a-label)
+- [List labels](labels.mdx#list-labels)
+- [Get a label](labels.mdx#get-a-label)
+- [Update a label](labels.mdx#update-a-label)
+- [Delete a label](labels.mdx#delete-a-label)
+
+### [Applications](applications.mdx)
+
+- [List applications for the authenticated user](applications.mdx#list-applications-for-the-authenticated-user)
+- [Create an application](applications.mdx#create-an-application)
+- [Get an application](applications.mdx#get-an-application)
+- [Update an application](applications.mdx#update-an-application)
+- [Delete an application](applications.mdx#delete-an-application)
+
+### [Subscriptions](subscriptions.mdx)
+
+- [Create a subscription](subscriptions.mdx#create-a-subscription)
+- [List subscriptions](subscriptions.mdx#list-subscriptions)
+- [Get a subscription](subscriptions.mdx#get-a-subscription)
+- [Update a subscription](subscriptions.mdx#update-a-subscription)
+- [Delete a subscription](subscriptions.mdx#delete-a-subscription)
+- [Change subscription plan](subscriptions.mdx#change-subscription-plan)
+- [Regenerate subscription token](subscriptions.mdx#regenerate-subscription-token)
+
+### [API Keys](api-keys.mdx)
+
+- [List all API keys for the current user](api-keys.mdx#list-all-api-keys-for-the-current-user)
+- [Generate an API key](api-keys.mdx#generate-an-api-key)
+- [List API keys](api-keys.mdx#list-api-keys)
+- [Regenerate an API key](api-keys.mdx#regenerate-an-api-key)
+- [Revoke an API key](api-keys.mdx#revoke-an-api-key)
+- [Associate an API key with an application](api-keys.mdx#associate-an-api-key-with-an-application)
+- [Remove an API key's application association](api-keys.mdx#remove-an-api-keys-application-association)
+- [List API keys associated with an application](api-keys.mdx#list-api-keys-associated-with-an-application)
+
+### [Views](views.mdx)
+
+- [Create a view](views.mdx#create-a-view)
+- [List views](views.mdx#list-views)
+- [Update a view](views.mdx#update-a-view)
+- [Get a view](views.mdx#get-a-view)
+- [Delete a view](views.mdx#delete-a-view)
+
+### [Application Keys](application-keys.mdx)
+
+- [Map an OAuth `client_id` to an API Portal application](application-keys.mdx#map-an-oauth-client_id-to-an-api-portal-application)
+- [Generate an OAuth access token](application-keys.mdx#generate-an-oauth-access-token)
+- [Remove an OAuth `client_id` mapping](application-keys.mdx#remove-an-oauth-client_id-mapping)
+
+### [API Workflows](api-workflows.mdx)
+
+- [Create an API workflow](api-workflows.mdx#create-an-api-workflow)
+- [List API workflows](api-workflows.mdx#list-api-workflows)
+- [Get an API workflow](api-workflows.mdx#get-an-api-workflow)
+- [Update an API workflow](api-workflows.mdx#update-an-api-workflow)
+- [Delete an API workflow](api-workflows.mdx#delete-an-api-workflow)
+- [Generate an API workflow agent prompt](api-workflows.mdx#generate-an-api-workflow-agent-prompt)
+
+### [Key Managers](key-managers.mdx)
+
+- [Create a key manager](key-managers.mdx#create-a-key-manager)
+- [List key managers](key-managers.mdx#list-key-managers)
+- [Get a key manager](key-managers.mdx#get-a-key-manager)
+- [Update a key manager](key-managers.mdx#update-a-key-manager)
+- [Delete a key manager](key-managers.mdx#delete-a-key-manager)
+
+### [Webhook Events](webhook-events.mdx)
+
+- [List webhook events](webhook-events.mdx#list-webhook-events)
+- [Get a webhook event](webhook-events.mdx#get-a-webhook-event)
+
+### [Webhook Subscribers](webhook-subscribers.mdx)
+
+- [Create a webhook subscriber](webhook-subscribers.mdx#create-a-webhook-subscriber)
+- [List webhook subscribers](webhook-subscribers.mdx#list-webhook-subscribers)
+- [Get a webhook subscriber](webhook-subscribers.mdx#get-a-webhook-subscriber)
+- [Update a webhook subscriber](webhook-subscribers.mdx#update-a-webhook-subscriber)
+- [Delete a webhook subscriber](webhook-subscribers.mdx#delete-a-webhook-subscriber)
+- [List recent deliveries for a webhook subscriber](webhook-subscribers.mdx#list-recent-deliveries-for-a-webhook-subscriber)
+
+### [Schemas](schemas.mdx)

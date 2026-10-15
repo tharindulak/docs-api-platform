@@ -1,0 +1,397 @@
+{
+  "docs": [
+    {
+      "type": "doc",
+      "id": "overview",
+      "label": "Overview"
+    },
+    {
+      "type": "doc",
+      "id": "about-this-release",
+      "label": "About this Release"
+    },
+    {
+      "type": "doc",
+      "id": "getting-started",
+      "label": "Getting Started"
+    },
+    {
+      "type": "category",
+      "label": "Setting Up",
+      "items": [
+        {
+          "type": "doc",
+          "id": "setting-up/configuration",
+          "label": "Configuration & Interpolation"
+        },
+        {
+          "type": "doc",
+          "id": "setting-up/resource-requirement",
+          "label": "Minimum resource requirements"
+        },
+        {
+          "type": "doc",
+          "id": "setting-up/ports",
+          "label": "Ports"
+        },
+        {
+          "type": "doc",
+          "id": "setting-up/database",
+          "label": "Database"
+        },
+        {
+          "type": "category",
+          "label": "Authentication",
+          "items": [
+            {
+              "type": "doc",
+              "id": "setting-up/authentication/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "setting-up/authentication/connect-an-identity-provider",
+              "label": "Connect an Identity Provider"
+            },
+            {
+              "type": "doc",
+              "id": "setting-up/authentication/asgardeo-setup",
+              "label": "Set up Asgardeo"
+            },
+            {
+              "type": "doc",
+              "id": "setting-up/authentication/entra-id-setup",
+              "label": "Set up Microsoft Entra ID"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Production Deployment",
+      "items": [
+        {
+          "type": "doc",
+          "id": "production/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "production/deploy",
+          "label": "Deploy to Production"
+        },
+        {
+          "type": "doc",
+          "id": "production/secrets-and-keys",
+          "label": "Provision Secrets and Keys"
+        },
+        {
+          "type": "doc",
+          "id": "production/tls",
+          "label": "Secure Traffic with TLS"
+        },
+        {
+          "type": "doc",
+          "id": "production/expose-the-workspace",
+          "label": "Expose AI Workspace"
+        },
+        {
+          "type": "doc",
+          "id": "production/high-availability",
+          "label": "Run in High Availability"
+        },
+        {
+          "type": "doc",
+          "id": "production/harden",
+          "label": "Harden the Deployment"
+        },
+        {
+          "type": "doc",
+          "id": "production/connect-gateways",
+          "label": "Connect AI Gateways"
+        },
+        {
+          "type": "doc",
+          "id": "production/operate",
+          "label": "Operate the Deployment"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "AI Gateways",
+      "items": [
+        {
+          "type": "doc",
+          "id": "ai-gateways/setting-up",
+          "label": "Setting Up"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "LLM Providers",
+      "items": [
+        {
+          "type": "doc",
+          "id": "llm-providers/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "llm-providers/configure-provider",
+          "label": "Configure Provider"
+        },
+        {
+          "type": "doc",
+          "id": "llm-providers/manage-provider",
+          "label": "Manage Provider"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "LLM Provider Templates",
+      "items": [
+        {
+          "type": "doc",
+          "id": "llm-provider-templates/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "llm-provider-templates/configure-template",
+          "label": "Create a Custom Template"
+        },
+        {
+          "type": "doc",
+          "id": "llm-provider-templates/manage-template",
+          "label": "Manage Templates"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "App LLM Proxies",
+      "items": [
+        {
+          "type": "doc",
+          "id": "llm-proxies/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "llm-proxies/configure-proxy",
+          "label": "Configure App LLM Proxy"
+        },
+        {
+          "type": "doc",
+          "id": "llm-proxies/manage-proxy",
+          "label": "Manage App LLM Proxy"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "MCP Proxies",
+      "items": [
+        {
+          "type": "doc",
+          "id": "mcp-proxies/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "mcp-proxies/configure-proxy",
+          "label": "Configure Proxy"
+        },
+        {
+          "type": "doc",
+          "id": "mcp-proxies/apply-policies",
+          "label": "Apply Policies"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "secrets-management",
+      "label": "Secrets Management"
+    },
+    {
+      "type": "doc",
+      "id": "sync-gateway-created-artifacts",
+      "label": "Manage gateway-deployed AI artifacts"
+    },
+    {
+      "type": "category",
+      "label": "CI/CD",
+      "items": [
+        {
+          "type": "doc",
+          "id": "ci-cd/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "ci-cd/configure-ci-cd-workflow",
+          "label": "Configure CI/CD Workflow"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Policies",
+      "items": [
+        {
+          "type": "doc",
+          "id": "policies/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "category",
+          "label": "Custom Policies",
+          "items": [
+            {
+              "type": "doc",
+              "id": "policies/writing-an-ai-policy",
+              "label": "Writing an AI Policy"
+            },
+            {
+              "type": "doc",
+              "id": "policies/build-gateway-with-ai-policies",
+              "label": "Building the Gateway with AI Policies"
+            },
+            {
+              "type": "doc",
+              "id": "policies/apply-ai-policies-to-proxies",
+              "label": "Apply AI Policies to Proxies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "id": "insights",
+      "label": "Insights"
+    },
+    {
+      "type": "doc",
+      "id": "genai-applications",
+      "label": "GenAI Applications"
+    },
+    {
+      "type": "doc",
+      "id": "configure-inbound-auth",
+      "label": "Configure Inbound Auth"
+    },
+    {
+      "type": "doc",
+      "id": "using-sdks",
+      "label": "Invoke via SDKs"
+    },
+    {
+      "type": "doc",
+      "id": "troubleshooting",
+      "label": "Troubleshooting"
+    },
+    {
+      "type": "category",
+      "label": "References",
+      "items": [
+        {
+          "type": "category",
+          "label": "Platform API",
+          "items": [
+            {
+              "type": "doc",
+              "id": "platform-api/overview",
+              "label": "Overview"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/authentication",
+              "label": "Authentication"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/projects",
+              "label": "Projects"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/gateways",
+              "label": "Gateways"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/gateway-tokens",
+              "label": "Gateway Tokens"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/gateway-policies",
+              "label": "Gateway Policies"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/llm-provider-templates",
+              "label": "LLM Provider Templates"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/llm-providers",
+              "label": "LLM Providers"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/llm-provider-deployments",
+              "label": "LLM Provider Deployments"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/llm-proxies",
+              "label": "LLM Proxies"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/llm-proxy-deployments",
+              "label": "LLM Proxy Deployments"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/mcp-proxies",
+              "label": "MCP Proxies"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/mcp-proxy-deployments",
+              "label": "MCP Proxy Deployments"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/applications",
+              "label": "Applications"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/api-keys",
+              "label": "API Keys"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/secrets",
+              "label": "Secrets"
+            },
+            {
+              "type": "doc",
+              "id": "platform-api/schemas",
+              "label": "Schemas"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

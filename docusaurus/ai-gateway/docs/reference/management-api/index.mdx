@@ -1,0 +1,101 @@
+---
+title: AI Gateway Controller Management API
+description: Overview of the AI Gateway Controller REST API for managing LLM providers, LLM proxies, MCP proxies, certificates, and secrets.
+tags:
+  - ai-gateway
+  - management-api
+deployment_options:
+  - Self-hosted
+custom_edit_url: https://github.com/wso2/docs-api-platform/blob/e969b7a307a024f918e1caf0b969fd6be7057229/en/docs/ai-gateway/2026.09.24/reference/management-api/index.md
+---
+
+# Gateway Controller Management API v1.0.0
+
+REST API for managing API configurations in the WSO2 API Platform Gateway.
+
+Base URLs:
+* <a href="http://localhost:9090/api/management/v1">http://localhost:9090/api/management/v1</a>
+* <a href="http://gateway-controller:9090/api/management/v1">http://gateway-controller:9090/api/management/v1</a>
+
+## Table of Contents
+
+### [Authentication](../../setup-and-deployment/secure-the-management-api.mdx)
+
+- [Overview](../../setup-and-deployment/secure-the-management-api.mdx#overview)
+- [How It Works](../../setup-and-deployment/secure-the-management-api.mdx#how-it-works)
+- [Configuration](../../setup-and-deployment/secure-the-management-api.mdx#configuration)
+- [Role Mapping Semantics](../../setup-and-deployment/secure-the-management-api.mdx#role-mapping-semantics)
+- [Troubleshooting (What you’ll observe)](../../setup-and-deployment/secure-the-management-api.mdx#troubleshooting-what-youll-observe)
+- [Testing](../../setup-and-deployment/secure-the-management-api.mdx#testing)
+
+### [MCP Proxy Management](mcp-proxy-management.mdx)
+
+- [Create a new MCPProxy](mcp-proxy-management.mdx#create-a-new-mcpproxy)
+- [List all MCPProxies](mcp-proxy-management.mdx#list-all-mcpproxies)
+- [Get MCPProxy by id](mcp-proxy-management.mdx#get-mcpproxy-by-id)
+- [Update an existing MCPProxy](mcp-proxy-management.mdx#update-an-existing-mcpproxy)
+- [Delete a MCPProxy](mcp-proxy-management.mdx#delete-a-mcpproxy)
+
+### [Certificate Management](certificate-management.mdx)
+
+- [List all custom certificates](certificate-management.mdx#list-all-custom-certificates)
+- [Upload a new certificate](certificate-management.mdx#upload-a-new-certificate)
+- [Delete a certificate](certificate-management.mdx#delete-a-certificate)
+- [Manually reload certificates](certificate-management.mdx#manually-reload-certificates)
+
+### [LLM Provider Template Management](llm-provider-template-management.mdx)
+
+- [Create a new LLM provider template](llm-provider-template-management.mdx#create-a-new-llm-provider-template)
+- [List all LLM provider templates](llm-provider-template-management.mdx#list-all-llm-provider-templates)
+- [Get LLM provider template by id](llm-provider-template-management.mdx#get-llm-provider-template-by-id)
+- [Update an existing LLM provider template](llm-provider-template-management.mdx#update-an-existing-llm-provider-template)
+- [Delete an LLM provider template](llm-provider-template-management.mdx#delete-an-llm-provider-template)
+
+### [LLM Provider Management](llm-provider-management.mdx)
+
+- [Create a new LLM provider](llm-provider-management.mdx#create-a-new-llm-provider)
+- [List all LLM providers](llm-provider-management.mdx#list-all-llm-providers)
+- [Get LLM provider by identifier](llm-provider-management.mdx#get-llm-provider-by-identifier)
+- [Update an existing LLM provider](llm-provider-management.mdx#update-an-existing-llm-provider)
+- [Delete an LLM provider](llm-provider-management.mdx#delete-an-llm-provider)
+- [Create a new API key for an LLM provider](llm-provider-management.mdx#create-a-new-api-key-for-an-llm-provider)
+- [Get the list of API keys for an LLM provider](llm-provider-management.mdx#get-the-list-of-api-keys-for-an-llm-provider)
+- [Regenerate API key for an LLM provider](llm-provider-management.mdx#regenerate-api-key-for-an-llm-provider)
+- [Update an API key for an LLM provider](llm-provider-management.mdx#update-an-api-key-for-an-llm-provider)
+- [Revoke an API key for an LLM provider](llm-provider-management.mdx#revoke-an-api-key-for-an-llm-provider)
+
+### [LLM Proxy Management](llm-proxy-management.mdx)
+
+- [Create a new LLM proxy](llm-proxy-management.mdx#create-a-new-llm-proxy)
+- [List all LLM proxies](llm-proxy-management.mdx#list-all-llm-proxies)
+- [Get LLM proxy by unique identifier](llm-proxy-management.mdx#get-llm-proxy-by-unique-identifier)
+- [Update an existing LLM proxy](llm-proxy-management.mdx#update-an-existing-llm-proxy)
+- [Delete an LLM proxy](llm-proxy-management.mdx#delete-an-llm-proxy)
+- [Create a new API key for an LLM proxy](llm-proxy-management.mdx#create-a-new-api-key-for-an-llm-proxy)
+- [Get the list of API keys for an LLM proxy](llm-proxy-management.mdx#get-the-list-of-api-keys-for-an-llm-proxy)
+- [Regenerate API key for an LLM proxy](llm-proxy-management.mdx#regenerate-api-key-for-an-llm-proxy)
+- [Update an API key for an LLM proxy](llm-proxy-management.mdx#update-an-api-key-for-an-llm-proxy)
+- [Revoke an API key for an LLM proxy](llm-proxy-management.mdx#revoke-an-api-key-for-an-llm-proxy)
+
+### [Agent Management](agent-management.mdx)
+
+- [Create a new Agent](agent-management.mdx#create-a-new-agent)
+- [List all Agents](agent-management.mdx#list-all-agents)
+- [Get Agent by id](agent-management.mdx#get-agent-by-id)
+- [Update an existing Agent](agent-management.mdx#update-an-existing-agent)
+- [Delete an Agent](agent-management.mdx#delete-an-agent)
+- [Create a new API key for an Agent](agent-management.mdx#create-a-new-api-key-for-an-agent)
+- [Get the list of API keys for an Agent](agent-management.mdx#get-the-list-of-api-keys-for-an-agent)
+- [Regenerate API key for an Agent](agent-management.mdx#regenerate-api-key-for-an-agent)
+- [Update an API key for an Agent](agent-management.mdx#update-an-api-key-for-an-agent)
+- [Revoke an API key for an Agent](agent-management.mdx#revoke-an-api-key-for-an-agent)
+
+### [Secrets Management](secrets-management.mdx)
+
+- [List all secrets](secrets-management.mdx#list-all-secrets)
+- [Create a new secret](secrets-management.mdx#create-a-new-secret)
+- [Retrieve a secret](secrets-management.mdx#retrieve-a-secret)
+- [Update a secret](secrets-management.mdx#update-a-secret)
+- [Delete a secret](secrets-management.mdx#delete-a-secret)
+
+### [Schemas](schemas.mdx)
