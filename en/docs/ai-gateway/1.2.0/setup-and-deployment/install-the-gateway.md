@@ -30,7 +30,7 @@ Select the context you're installing in, then follow the steps in that tab.
 
     **Prerequisites:** a Docker-compatible container runtime with the Compose plugin, such as [Docker Desktop](https://docs.docker.com/desktop/), [Podman](https://podman.io/docs/installation), [Rancher Desktop](https://rancherdesktop.io/), [Colima](https://github.com/abiosoft/colima), or [Docker Engine](https://docs.docker.com/engine/install/) with the [Compose plugin](https://docs.docker.com/compose/install/linux/).
 
-    **Step 1: Download the distribution**
+    ### Step 1: Download the distribution
 
     ```bash
     # Download distribution.
@@ -52,7 +52,7 @@ Select the context you're installing in, then follow the steps in that tab.
     Set-Location wso2apip-ai-gateway-1.2.0
     ```
 
-    **Step 2: Run the one-time setup**
+    ### Step 2: Run the one-time setup
 
     The setup script provisions the Advanced Encryption Standard (AES)-256 at-rest encryption key, the router HTTPS listener certificate, `api-platform.env`, and the gateway-controller admin credentials. It prints the admin password once — copy it.
 
@@ -66,7 +66,7 @@ Select the context you're installing in, then follow the steps in that tab.
     pwsh -ExecutionPolicy Bypass -File .\scripts\setup.ps1
     ```
 
-    **Step 3: Export the admin credentials**
+    ### Step 3: Export the admin credentials
 
     Management API calls authenticate with these credentials. The username defaults to `admin`; use the password the setup script just printed.
 
@@ -82,7 +82,7 @@ Select the context you're installing in, then follow the steps in that tab.
     $env:ADMIN_PASSWORD='<the password setup.ps1 printed>'
     ```
 
-    **Step 4: Start the gateway and verify it answers**
+    ### Step 4: Start the gateway and verify it answers
 
     ```bash
     # Start the complete stack
@@ -102,7 +102,7 @@ Select the context you're installing in, then follow the steps in that tab.
 
     **Prerequisites:** cURL, unzip, and a Docker-compatible container runtime with the Compose plugin on the host.
 
-    **Step 1: Download the distribution**
+    ### Step 1: Download the distribution
 
     ```bash
     # Download distribution.
@@ -124,7 +124,7 @@ Select the context you're installing in, then follow the steps in that tab.
     Set-Location wso2apip-ai-gateway-1.2.0
     ```
 
-    **Step 2: Run the one-time setup**
+    ### Step 2: Run the one-time setup
 
     The setup script provisions the Advanced Encryption Standard (AES)-256 at-rest encryption key, the router HTTPS listener certificate, `api-platform.env`, and the gateway-controller admin credentials. It prints the admin password once — copy it.
 
@@ -138,7 +138,7 @@ Select the context you're installing in, then follow the steps in that tab.
     pwsh -ExecutionPolicy Bypass -File .\scripts\setup.ps1
     ```
 
-    **Step 3: Export the admin credentials**
+    ### Step 3: Export the admin credentials
 
     Management API calls authenticate with these credentials. The username defaults to `admin`; use the password the setup script just printed.
 
@@ -154,7 +154,7 @@ Select the context you're installing in, then follow the steps in that tab.
     $env:ADMIN_PASSWORD='<the password setup.ps1 printed>'
     ```
 
-    **Step 4: Start the gateway and verify it answers**
+    ### Step 4: Start the gateway and verify it answers
 
     ```bash
     # Start the complete stack
@@ -177,7 +177,7 @@ Select the context you're installing in, then follow the steps in that tab.
 
     **Prerequisites:** cURL and unzip. The distribution ships a Compose file, and the setup script generates the environment file it reads.
 
-    **Step 1: Download the distribution**
+    ### Step 1: Download the distribution
 
     ```bash
     # Download distribution.
@@ -199,7 +199,7 @@ Select the context you're installing in, then follow the steps in that tab.
     Set-Location wso2apip-ai-gateway-1.2.0
     ```
 
-    **Step 2: Run the one-time setup**
+    ### Step 2: Run the one-time setup
 
     The setup script provisions the Advanced Encryption Standard (AES)-256 at-rest encryption key, the router HTTPS listener certificate, `api-platform.env`, and the gateway-controller admin credentials. It prints the admin password once — copy it.
 
@@ -213,7 +213,7 @@ Select the context you're installing in, then follow the steps in that tab.
     pwsh -ExecutionPolicy Bypass -File .\scripts\setup.ps1
     ```
 
-    **Step 3: Export the admin credentials**
+    ### Step 3: Export the admin credentials
 
     Management API calls authenticate with these credentials. The username defaults to `admin`; use the password the setup script just printed.
 
@@ -229,7 +229,7 @@ Select the context you're installing in, then follow the steps in that tab.
     $env:ADMIN_PASSWORD='<the password setup.ps1 printed>'
     ```
 
-    **Step 4: Start the gateway and verify it answers**
+    ### Step 4: Start the gateway and verify it answers
 
     ```bash
     # Start the complete stack

@@ -21,7 +21,7 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
 
 === "macOS / Linux"
 
-    **Step 1: Extract the binary**
+    ### Step 1: Extract the binary
 
     After downloading the zip file for your platform, extract it:
 
@@ -31,14 +31,14 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
 
     Extracting the archive creates a folder of the same name that contains the `ap` binary.
 
-    **Step 2: Move the binary to a bin directory**
+    ### Step 2: Move the binary to a bin directory
 
     ```bash
     mkdir -p ~/bin
     mv ap-<os>-<arch>-v0.9.1/ap ~/bin/
     ```
 
-    **Step 3: Add to PATH**
+    ### Step 3: Add to PATH
 
     Add the following line to your `~/.zshrc` or `~/.bashrc`:
 
@@ -46,13 +46,13 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
     export PATH="$HOME/bin:$PATH"
     ```
 
-    **Step 4: Reload your shell**
+    ### Step 4: Reload your shell
 
     ```bash
     source ~/.zshrc   # or source ~/.bashrc
     ```
 
-    **Step 5: Verify the installation**
+    ### Step 5: Verify the installation
 
     ```bash
     ap version
@@ -60,7 +60,7 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
 
 === "Windows"
 
-    **Step 1: Extract the binary**
+    ### Step 1: Extract the binary
 
     After downloading the zip file, right-click it and select **Extract All**, or run in PowerShell:
 
@@ -70,14 +70,14 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
 
     Extracting the archive creates a folder of the same name that contains `ap.exe`.
 
-    **Step 2: Move the binary to a bin directory**
+    ### Step 2: Move the binary to a bin directory
 
     ```powershell
     New-Item -ItemType Directory -Force -Path "$HOME\bin"
     Move-Item ap-windows-<arch>-v0.9.1\ap.exe "$HOME\bin\ap.exe"
     ```
 
-    **Step 3: Add to PATH**
+    ### Step 3: Add to PATH
 
     Run the following in PowerShell to permanently add `~/bin` to your user PATH:
 
@@ -85,11 +85,11 @@ The `ap` CLI tool is used to build a custom gateway image with your own policies
     [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$HOME\bin", "User")
     ```
 
-    **Step 4: Reload your shell**
+    ### Step 4: Reload your shell
 
     Close and reopen PowerShell for the PATH change to take effect.
 
-    **Step 5: Verify the installation**
+    ### Step 5: Verify the installation
 
     ```powershell
     ap version

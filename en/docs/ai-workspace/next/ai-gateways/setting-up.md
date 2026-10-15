@@ -96,7 +96,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     - unzip installed
     - Docker installed and running
 
-    **Step 1: Download the gateway**
+    #### Step 1: Download the gateway
 
     Run this command in your terminal to download the gateway:
 
@@ -105,7 +105,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-    **Step 2: Set up the gateway**
+    #### Step 2: Set up the gateway
 
     Run the one-time setup script. It provisions the AES-256 at-rest encryption key, the router HTTPS listener certificate, the gateway-controller admin credentials, and `api-platform.env` — all required before the first start (the gateway has no demo mode and fails closed if a required key, certificate, or credential is missing). The admin password is printed once — copy it:
 
@@ -120,7 +120,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1
     ```
 
-    **Step 3: Configure the gateway**
+    #### Step 3: Configure the gateway
 
     Append the control plane host and your registration token to `api-platform.env`:
 
@@ -133,7 +133,7 @@ The Get Started section provides setup instructions for multiple deployment opti
 
     Replace both placeholders with the values the Get Started section shows: the control plane address, as `host:port` with no scheme, and this gateway's registration token.
 
-    **Step 4: Start the gateway**
+    #### Step 4: Start the gateway
 
     Start the gateway. `api-platform.env` is loaded automatically via the Compose `env_file:` directive:
 
@@ -159,7 +159,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     docker compose version
     ```
 
-    **Step 1: Download the gateway**
+    #### Step 1: Download the gateway
 
     Run this command in your terminal to download the gateway:
 
@@ -168,7 +168,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     unzip wso2apip-ai-gateway-1.2.0.zip
     ```
 
-    **Step 2: Set up the gateway**
+    #### Step 2: Set up the gateway
 
     Run the one-time setup script. It provisions the AES-256 at-rest encryption key, the router HTTPS listener certificate, the gateway-controller admin credentials, and `api-platform.env` — all required before the first start (the gateway has no demo mode and fails closed if a required key, certificate, or credential is missing). The admin password is printed once — copy it:
 
@@ -183,7 +183,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1
     ```
 
-    **Step 3: Configure the gateway**
+    #### Step 3: Configure the gateway
 
     Append the control plane host and your registration token to `api-platform.env`:
 
@@ -196,7 +196,7 @@ The Get Started section provides setup instructions for multiple deployment opti
 
     Replace both placeholders with the values the Get Started section shows: the control plane address, as `host:port` with no scheme, and this gateway's registration token. The token is single-use — if you need to reconfigure, click **Reconfigure** to generate a new token (this revokes the old token and disconnects the gateway).
 
-    **Step 4: Start the gateway**
+    #### Step 4: Start the gateway
 
     Start the gateway. `api-platform.env` is loaded automatically via the Compose `env_file:` directive:
 
@@ -210,7 +210,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     - cURL installed
     - unzip installed
 
-    **Step 1: Download the gateway**
+    #### Step 1: Download the gateway
 
     Run this command in your terminal to download the gateway:
 
@@ -219,7 +219,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     unzip wso2apip-ai-gateway-1.2.0-rc2.zip
     ```
 
-    **Step 2: Set up the gateway**
+    #### Step 2: Set up the gateway
 
     Run the one-time setup script. It provisions the AES-256 at-rest encryption key, the router HTTPS listener certificate, the gateway-controller admin credentials, and `api-platform.env` — all required before the first start (the gateway has no demo mode and fails closed if a required key, certificate, or credential is missing). The admin password is printed once — copy it:
 
@@ -234,7 +234,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     powershell -ExecutionPolicy Bypass -File .\scripts\setup.ps1
     ```
 
-    **Step 3: Configure the gateway**
+    #### Step 3: Configure the gateway
 
     Append the control plane host and your registration token to `api-platform.env`:
 
@@ -247,7 +247,7 @@ The Get Started section provides setup instructions for multiple deployment opti
 
     Replace both placeholders with the values the Get Started section shows: the control plane address, as `host:port` with no scheme, and this gateway's registration token. The token is single-use — if you need to reconfigure, click **Reconfigure** to generate a new token (this revokes the old token and disconnects the gateway).
 
-    **Step 4: Start the gateway**
+    #### Step 4: Start the gateway
 
     Start the gateway. `api-platform.env` is loaded automatically via the Compose `env_file:` directive:
 

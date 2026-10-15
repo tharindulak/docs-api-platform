@@ -295,7 +295,7 @@ spec:
 
 ### Deployment Steps
 
-**Step 1: Create API YAML**
+#### Step 1: Create API YAML
 
 Save the API definition as `petstore-api.yaml`:
 
@@ -334,7 +334,7 @@ spec:
       path: /
 ```
 
-**Step 2: Deploy to Gateway**
+#### Step 2: Deploy to Gateway
 
 !!! note
     The examples below use a `BASE64_CREDENTIALS` environment variable for the Basic auth header. Set it from the admin credentials `scripts/setup.sh` provisioned — the username defaults to `admin`; use the password it printed:
@@ -367,7 +367,7 @@ curl -X POST http://localhost:9090/api/management/v1/rest-apis \
 !!! note
     Check the gateway controller logs to confirm control plane sync status. Look for `"Bottom-up sync: starting"` and `"Bottom-up sync: API synced successfully"` entries. If sync fails, the log will show the error detail and the gateway will retry automatically.
 
-**Step 3: Test API on Gateway**
+#### Step 3: Test API on Gateway
 
 ```bash
 # Get API key
@@ -381,7 +381,7 @@ curl http://localhost:8080/petstore/pet/123 \
   -H "X-API-Key: <api-key-from-step-above>"
 ```
 
-**Step 4: Verify in On-Prem APIM (Optional)**
+#### Step 4: Verify in On-Prem APIM (Optional)
 
 Once sync completes, API is available in APIM:
 

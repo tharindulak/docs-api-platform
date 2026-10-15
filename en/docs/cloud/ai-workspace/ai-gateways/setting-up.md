@@ -87,7 +87,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     - unzip installed
     - Docker installed and running
 
-    **Step 1: Download the Gateway**
+    #### Step 1: Download the Gateway
 
     Run this command in your terminal to download the gateway:
 
@@ -96,7 +96,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     unzip wso2apip-ai-gateway-1.0.0.zip
     ```
 
-    **Step 2: Configure the Gateway**
+    #### Step 2: Configure the Gateway
 
     Run this command to create the environment configuration file with the required environment variables:
 
@@ -110,7 +110,7 @@ The Get Started section provides setup instructions for multiple deployment opti
 
     Replace `<your-gateway-token>` with the token from the Get Started section.
 
-    **Step 3: Start the Gateway**
+    #### Step 3: Start the Gateway
 
     1. Navigate to the gateway folder:
 
@@ -142,7 +142,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     docker compose version
     ```
 
-    **Step 1: Download the Gateway**
+    #### Step 1: Download the Gateway
 
     Run this command in your terminal to download the gateway:
 
@@ -151,11 +151,11 @@ The Get Started section provides setup instructions for multiple deployment opti
     unzip wso2apip-ai-gateway-1.1.0.zip
     ```
 
-    **Step 2: Configure the Gateway**
+    #### Step 2: Configure the Gateway
 
     The registration token is single-use. If you need to reconfigure the gateway, click **Reconfigure** to generate a new token — this will revoke the old token and disconnect the gateway from the control plane.
 
-    **Step 3: Start the Gateway**
+    #### Step 3: Start the Gateway
 
     1. Navigate to the gateway folder:
 
@@ -175,7 +175,7 @@ The Get Started section provides setup instructions for multiple deployment opti
     - cURL installed
     - unzip installed
 
-    **Step 1: Download the Gateway**
+    #### Step 1: Download the Gateway
 
     Run this command in your terminal to download the gateway:
 
@@ -184,11 +184,11 @@ The Get Started section provides setup instructions for multiple deployment opti
     unzip wso2apip-ai-gateway-1.1.0.zip
     ```
 
-    **Step 2: Configure the Gateway**
+    #### Step 2: Configure the Gateway
 
     The registration token is single-use. If you need to reconfigure the gateway, click **Reconfigure** to generate a new token — this will revoke the old token and disconnect the gateway from the control plane.
 
-    **Step 3: Start the Gateway**
+    #### Step 3: Start the Gateway
 
     1. Navigate to the gateway folder:
 

@@ -155,7 +155,7 @@ gateway:
 
 If you have a WSO2 Subscription, images are pulled from the WSO2 private registry (`registry.wso2.com`) instead of the public GHCR registry. A single Helm field activates this mode end-to-end.
 
-**Step 1 — Create the image pull secret**
+#### Step 1 — Create the image pull secret
 
 Create a `docker-registry` Secret in the namespace where the chart will be installed (replace `<namespace>`, `<wso2-email>`, and `<wso2-password-or-token>` with your values):
 
@@ -170,7 +170,7 @@ kubectl create secret docker-registry wso2-subscription-creds \
 !!! note
     Credentials are intentionally kept out of Helm release state. The chart only stores the **name** of the Secret.
 
-**Step 2 — Set `wso2.subscription.imagePullSecret` in `values.yaml`**
+#### Step 2 — Set `wso2.subscription.imagePullSecret` in `values.yaml`
 
 ```yaml
 wso2:

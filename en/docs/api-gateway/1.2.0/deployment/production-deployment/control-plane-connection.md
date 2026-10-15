@@ -67,7 +67,7 @@ The WSO2 API Platform gateway supports two fundamentally different deployment ap
     !!! note
         Bottom-up sync is only supported with APIM 4.7.x. Cloud control plane does not support this flow.
 
-    **Step 1: Create a secret for the registration token**
+    ## Step 1: Create a secret for the registration token
 
     The registration token is generated when you register the gateway with your control plane. Refer to the [WSO2 APIM control plane setup guide](https://apim.docs.wso2.com/en/latest/api-gateway/platform-gateway/getting-started/) to obtain it.
 
@@ -77,7 +77,7 @@ The WSO2 API Platform gateway supports two fundamentally different deployment ap
       --from-literal=token='your-registration-token'
     ```
 
-    **Step 2: Generate OAuth2 client credentials**
+    ## Step 2: Generate OAuth2 client credentials
 
     Register a DCR client against your APIM instance to obtain the client ID and secret:
 
@@ -97,7 +97,7 @@ The WSO2 API Platform gateway supports two fundamentally different deployment ap
 
     The response contains `clientId` and `clientSecret`. Use these in the next step.
 
-    **Step 3: Store the OAuth2 credentials in a Kubernetes secret**
+    ## Step 3: Store the OAuth2 credentials in a Kubernetes secret
 
     Never place OAuth2 credentials directly in Helm values. Create a secret and inject it via `extraEnvFrom` instead.
 
@@ -121,7 +121,7 @@ The WSO2 API Platform gateway supports two fundamentally different deployment ap
     kubectl apply -f apim-oauth-secret.yaml
     ```
 
-    **Step 4: Configure the chart**
+    ## Step 4: Configure the chart
 
     Reference both secrets and configure the control plane connection alongside the bottom-up sync settings:
 
