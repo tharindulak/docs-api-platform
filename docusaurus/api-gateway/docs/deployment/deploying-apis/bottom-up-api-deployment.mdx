@@ -81,9 +81,9 @@ In bottom-up deployment, **REST APIs deployed directly to the gateway are automa
 - Network connectivity between gateway controller and APIM
 - APIM OAuth2 credentials (client ID/secret or username/password)
 
----
-
 </Prerequisites>
+
+---
 
 ## Configuration
 
@@ -401,9 +401,9 @@ curl -X GET https://192.168.0.102:9443/api/am/publisher/v4/apis \
   -H "Authorization: Bearer <apim-token>" | jq '.list[] | select(.name=="PetStore API")'
 ```
 
----
-
 </Steps>
+
+---
 
 ## API Updates
 
