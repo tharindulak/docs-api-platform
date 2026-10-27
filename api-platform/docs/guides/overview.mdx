@@ -1,0 +1,181 @@
+---
+title: Guides overview
+description: 'Step-by-step guides for WSO2 API Platform, grouped by goal: govern LLM traffic, expose and govern MCP servers, manage and govern APIs, monetize, and more.'
+type: concept
+layout: overview
+sidebar_label: Overview
+sidebar_position: 19
+---
+
+Guides are end-to-end walkthroughs built around real scenarios. Each guide takes you from an empty project to a working, governed API, AI, or MCP setup on WSO2 API Platform.
+
+Each guide gives you:
+
+- The prerequisites and, where it helps, the architecture of what you will build
+- Step-by-step instructions with the expected result after each step
+- A way to verify that everything works end to end
+- A runnable companion sample, where available
+
+Use guides to see how components such as AI Gateway, AI Workspace, Developer Portal, and MCP Hub work together. For details on a single feature, see the product documentation for [Cloud](../get-started/what-is-api-platform-cloud.mdx), [API Manager](../concepts/api-manager.mdx), [AI Gateway](https://wso2.com/api-platform/docs/ai-gateway/1.1.0/overview/), or [API Portal](https://wso2.com/api-platform/docs/api-portal/1.0.0/overview/).
+
+## Explore what you can build
+
+The guides below are grouped by use case. Whether you want to secure and manage your APIs, control LLM usage and cost, monitor AI traffic, turn your APIs into MCP tools, give AI agents access to your APIs as MCP tools, or monetize your usage, browse the guides for your use case and try them out on your own from start to finish.
+
+### Govern LLM Traffic
+
+---
+
+Route, secure, and control cost for requests to LLM providers.
+
+- [Set up a governed multi-model LLM proxy with cost controls and failover](./ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.mdx)
+
+    Spread traffic across models with per-team token budgets, PII masking, and caching.
+
+- [Enforce token-based rate limiting on an LLM proxy](./ai-and-mcp/enforce-token-based-rate-limiting-on-an-llm-proxy.mdx)
+
+    Put a token quota on an LLM proxy to protect your provider budget.
+
+- [Block prompt injection and unsafe requests with LLM proxy guardrails](./ai-and-mcp/block-prompt-injection-and-unsafe-requests-with-llm-proxy-guardrails.mdx)
+
+    Chain guardrails to reject unsafe prompts before they reach your model.
+
+- [Enforce a consistent AI persona with the prompt decorator policy](./ai-and-mcp/using-prompt-decorator-policy.mdx)
+
+    Give every client the same on-brand AI persona without code changes.
+
+- [Observe LLM traffic on the AI Gateway](./ai-and-mcp/observe-llm-traffic.mdx)
+
+    Track requests, latency, tokens, cost, and guardrail activity for LLM proxies.
+
+### Expose and Govern MCP Servers
+
+---
+
+Turn APIs into MCP tools, publish them, and control access.
+
+- [Convert a REST API into an MCP tool for Claude Desktop](./expose-and-govern-mcp-servers/convert-rest-api-to-mcp-server.mdx)
+
+    Expose a REST API as a governed MCP server and use it in Claude Desktop.
+
+- [Expose a multi-step API workflow as an MCP tool](./expose-and-govern-mcp-servers/expose-a-multi-step-api-workflow-as-an-mcp-tool.mdx)
+
+    Combine several API calls into one Arazzo workflow and expose it as an MCP tool.
+
+- [Build an AI agent that uses aggregated MCP tools from multiple APIs](./expose-and-govern-mcp-servers/build-ai-agent-with-multiple-mcp-servers.mdx)
+
+    Connect an AI agent to several governed MCP servers through AI Gateway.
+
+- [Publish MCP servers to a governed catalog](./expose-and-govern-mcp-servers/publish-mcp-servers-to-a-governed-catalog.mdx)
+
+    Publish MCP servers to API Portal and MCP Hub for governed discovery.
+
+- [Reduce MCP tool poisoning risk with the MCP Access Control policy](./expose-and-govern-mcp-servers/block-mcp-tool-poisoning-with-the-mcp-access-control-policy.mdx)
+
+    Use the MCP Access Control policy to reduce exposure to tool poisoning.
+
+- [Observe MCP traffic on the AI Gateway](./expose-and-govern-mcp-servers/observe-mcp-traffic.mdx)
+
+    Track tool calls, agent sessions, latency, and errors for MCP proxies.
+
+### Discover APIs and MCP Servers
+
+---
+
+Find APIs and MCP servers in the Developer Portal and MCP Hub, and make your first call.
+
+- [Go from zero to a working API call using the Developer Portal](./discover-apis-and-mcp-servers/api-discovery-and-tryout.mdx)
+
+    Find an API, try it with an API key, and subscribe to a rate-limited plan.
+
+- [Find and connect to an enterprise MCP server from the MCP Hub](./discover-apis-and-mcp-servers/find-and-connect-to-an-enterprise-mcp-server-from-the-mcp-hub.mdx)
+
+    Find an MCP server in the MCP Hub and connect Claude Desktop to it.
+
+### Configure AI Coding Assistants with AI Gateway
+
+---
+
+Route Claude Code, Gemini CLI, Codex, and GitHub Copilot traffic through AI Gateway.
+
+- [Configure Claude Code with AI Gateway](./ai-coding-assistants/claude-code/claude-code-configuration-with-ai-gateway.mdx)
+
+    Route Claude Code requests through AI Gateway with an App LLM Proxy.
+
+- [Configure Claude Code with AI Gateway using a Claude subscription](./ai-coding-assistants/claude-code/claude-code-subscription-configuration-with-ai-gateway.mdx)
+
+    Route Claude Team or Enterprise traffic through AI Gateway with enterprise identity.
+
+- [Configure Google Gemini CLI with AI Gateway](./ai-coding-assistants/gemini-cli-configuration-with-ai-gateway.mdx)
+
+    Route Gemini CLI requests through AI Gateway with an App LLM Proxy.
+
+- [Configure OpenAI Codex CLI with AI Gateway](./ai-coding-assistants/codex-configuration-with-ai-gateway.mdx)
+
+    Route Codex CLI requests through AI Gateway with an App LLM Proxy.
+
+- [Configure GitHub Copilot with AI Gateway](./ai-coding-assistants/github-copilot-configuration-with-ai-gateway.mdx)
+
+    Route GitHub Copilot CLI and Copilot Chat in VS Code requests through AI Gateway with an App LLM Proxy.
+
+### Monetize APIs and MCP Tools
+
+---
+
+Charge for API calls and MCP tool usage with usage-based plans.
+
+- [Monetize a REST API with Stripe](./monetize-apis-and-mcp-tools/api-monetization.mdx)
+
+    Charge for a REST API with a pay-as-you-go plan billed through Stripe.
+
+- [Monetize MCP tools with the self-hosted AI Gateway](./monetize-apis-and-mcp-tools/mcp-tool-monetization.mdx)
+
+    Bill AI agents per MCP tool call using AI Gateway, Moesif, and Stripe.
+
+### Manage and Govern APIs
+
+---
+
+Publish your APIs as managed API proxies, and control who calls them with authentication, rate limits, and audit logs.
+
+- [Build an AI app with Claude Code that calls governed APIs](./manage-and-govern-apis/build-ai-app-with-claude-code.mdx)
+
+    Give Claude Code governed, rate-limited access to your backend APIs.
+
+### Connect Third-Party Gateways
+
+---
+
+Connect gateways such as AWS API Gateway, discover their APIs, and govern them from one control plane.
+
+- [Discover APIs from AWS API Gateway](./gateway-federation/discover-apis-from-aws-api-gateway.mdx)
+
+    Discover APIs on AWS API Gateway and govern them from one control plane.
+
+### Expose Real-Time APIs
+
+---
+
+Put an API proxy in front of WebSocket backends and push live updates to every client.
+
+- [Build a WebSocket-based real-time notification system](./websocket/build-a-websocket-notification-system.mdx)
+
+    Stream real-time notifications to clients through a WebSocket API proxy.
+
+## More resources
+
+### Try the samples
+
+---
+
+Clone runnable sample apps for these guides from GitHub.
+
+[View samples &rarr;](https://github.com/wso2/api-platform/tree/main/samples)
+
+### Need help?
+
+---
+
+New to WSO2 API Platform? Start with a quick start guide, or ask the community for help.
+
+[Get started &rarr;](../get-started/index.mdx)

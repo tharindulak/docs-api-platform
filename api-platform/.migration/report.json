@@ -1,0 +1,245 @@
+{
+  "summary": {
+    "source": "wso2/docs-api-platform@6e2ec90794700ff4cf4c559b634649e3c9bfddbb",
+    "edition": "cloud",
+    "legacyBase": "https://wso2.com/api-platform/docs/",
+    "navPages": 201,
+    "sourceFiles": 1073,
+    "stats": {
+      "pages": 212,
+      "partials": 0,
+      "apiPages": 0,
+      "placeholders": 6,
+      "images": 424,
+      "attachments": 8,
+      "missingImages": 0,
+      "links": 969,
+      "externalLinks": 406,
+      "legacyHostLinks": 22,
+      "otherVersionLinks": 47,
+      "crossProductLinks": 6,
+      "linksViaRedirect": 15,
+      "droppedLinks": 7,
+      "droppedAnchors": 1,
+      "placeholdersWrapped": 6,
+      "admonitions": 321,
+      "details": 1,
+      "tabSets": 23,
+      "codeBlocks": 524,
+      "indentedCode": 0,
+      "htmlBlocks": 23,
+      "explicitIds": 63,
+      "basePathInCode": 0,
+      "basePathInText": 0,
+      "unknownElements": 5,
+      "unknownLanguages": [
+        "ballerina"
+      ],
+      "generatedDescriptions": 20,
+      "sidebarLabels": 164,
+      "relativeFallback": 428,
+      "unlisted": 11,
+      "placeholders_": 0,
+      "sharedPages": 0,
+      "cloudOnlyPages": 0,
+      "selfHostedOnlyPages": 0,
+      "markedPages": 0,
+      "markers": 0,
+      "flatMerged": 0,
+      "editionCheckFailures": 0,
+      "imageVariants": 0,
+      "linkVariants": 0,
+      "includesExpanded": 0,
+      "includeFrontMatter": 0,
+      "flaggedOffPages": 0,
+      "specsFixed": 0,
+      "titlesVarying": 0,
+      "legacySiteLinks": 38,
+      "keptDescriptions": 192,
+      "otherDocSpaceLinks": 19,
+      "mdInHtmlBlocks": 12,
+      "decorativeSvgsDropped": 10,
+      "overviewPages": 2,
+      "cloudParts": 1,
+      "exportSingleFolders": 0,
+      "legacyRedirectsExternal": 0,
+      "legacyRedirectsUnresolved": 0,
+      "legacyRedirects": 379,
+      "legacyRedirectsSource": 166,
+      "acceptedByOverrides": 6
+    },
+    "issues": {
+      "nav": 1,
+      "not-in-nav": 11,
+      "html": 7,
+      "code-language": 1
+    },
+    "compileFailures": 0,
+    "overrides": {
+      "file": "api-platform.overrides.yaml",
+      "patches": 2,
+      "patchesApplied": 2,
+      "accepted": 6
+    }
+  },
+  "items": [
+    {
+      "kind": "nav",
+      "file": null,
+      "message": "external nav link \"Documentation\" → https://apim.docs.wso2.com/en/latest/ dropped (folder sidebars hold pages only)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/administer/inviting-members.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "html",
+      "file": "cloud/administer/settings/configure-a-custom-domain-for-your-organization.md",
+      "message": "<details> block never closes; converted up to the next blank line"
+    },
+    {
+      "kind": "html",
+      "file": "cloud/administer/settings/configure-a-custom-domain-for-your-organization.md",
+      "message": "unknown element <leaf> inside raw HTML kept as the text `<leaf>`"
+    },
+    {
+      "kind": "html",
+      "file": "cloud/administer/settings/configure-a-custom-domain-for-your-organization.md",
+      "message": "unknown element <intermediate> inside raw HTML kept as the text `<intermediate>`"
+    },
+    {
+      "kind": "html",
+      "file": "cloud/administer/settings/configure-a-custom-domain-for-your-organization.md",
+      "message": "unknown element <root> inside raw HTML kept as the text `<root>`"
+    },
+    {
+      "kind": "html",
+      "file": "cloud/administer/settings/configure-a-custom-domain-for-your-organization.md",
+      "message": "unknown element <root_or_bundle_cert> inside raw HTML kept as the text `<root_or_bundle_cert>`"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-workspace/insights.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-workspace/policies/other-policies/basic-rate-limit.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/api-platform-gateway/analytics.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/api-platform-gateway/cloud-gateway.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/api-platform-gateway/overview.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/api-platform-gateway/troubleshooting.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/bijira-concepts/deployment-tracks.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/develop-api-proxy/authentication-and-authorization/pass-end-user-attributes-to-upstream-services.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "html",
+      "file": "cloud/introduction/quick-start-guide-mcp.md",
+      "message": "unbalanced inline </iframe> removed"
+    },
+    {
+      "kind": "html",
+      "file": "cloud/introduction/quick-start-guide.md",
+      "message": "unbalanced inline </iframe> removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "get-started.md",
+      "message": "link to analytics-and-monetization/overview.md has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "analytics-and-monetization/overview.md"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "guides/ai-and-mcp/set-up-a-governed-multi-model-llm-proxy-with-cost-controls-and-failover.md",
+      "message": "link to `#step-9-generate-an-api-key` has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "`#step-9-generate-an-api-key`"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "guides/monetization/api-monetization.md",
+      "message": "link to ../../cloud/api-monetization/getting-started.md has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "../../cloud/api-monetization/getting-started.md"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "guides/monetization/mcp-tool-monetization.md",
+      "message": "link to ../../analytics-and-monetization/overview.md has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "../../analytics-and-monetization/overview.md"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "index.md",
+      "message": "link to analytics-and-monetization/overview.md has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "analytics-and-monetization/overview.md"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "cloud/ai-workspace/llm-proxies/manage-proxy.md",
+      "message": "anchor #get-started does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#get-started",
+        "anchor": "get-started",
+        "target": "docs/guides/ai-workspace/llm-proxies/manage-proxy.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "code-language",
+      "file": null,
+      "message": "code language \"ballerina\" is not highlighted by the Platform's Prism set"
+    }
+  ]
+}
