@@ -2,7 +2,7 @@
 title: MCP governance
 description: 'Control what an AI agent can reach through an MCP proxy: authenticate callers, authorize per tool, restrict and rename the tool list, and rate limit calls.'
 type: concept
-sidebar_position: 9
+sidebar_position: 8
 ---
 
 An MCP server hands an agent a list of tools and lets it call them. Exposed as it comes, every caller sees every tool, tool names leak whatever the backend happens to call them, and one agent's traffic is indistinguishable from another's. Governing an MCP proxy decides who connects, which tools they see, what those tools are called, and how often they can be invoked.

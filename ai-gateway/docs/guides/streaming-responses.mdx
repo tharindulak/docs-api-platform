@@ -2,7 +2,7 @@
 title: Stream responses
 description: Stream responses chunk by chunk through LLM providers, LLM proxies, and MCP proxies, and how policies, analytics, and token usage behave.
 type: concept
-sidebar_position: 13
+sidebar_position: 11
 ---
 
 The AI Gateway forwards a streamed response to the client chunk by chunk, as each chunk arrives from the upstream service. The gateway doesn't hold the response until the upstream finishes generating it, so the first token reaches your application at about the same time it leaves the provider. Chat interfaces and agent loops keep their token-by-token behavior when they run through the gateway.

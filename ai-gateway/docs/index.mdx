@@ -1,12 +1,12 @@
 ---
 title: API Platform AI Gateway Overview
-description: 'Manage and secure AI traffic with API Platform AI Gateway: LLM providers, LLM proxies, MCP proxies, A2A agents, and guardrails for AI traffic.'
+description: 'Manage and secure AI traffic with API Platform AI Gateway: LLM providers, LLM proxies, MCP proxies, and guardrails for LLM APIs and MCP servers.'
 type: concept
 sidebar_label: Overview
 sidebar_position: 0
 ---
 
-A gateway for managing and securing AI traffic, including Large Language Model (LLM) APIs, Model Context Protocol (MCP) servers, and Agent2Agent (A2A) agents.
+A gateway for managing and securing AI traffic, including Large Language Model (LLM) APIs and Model Context Protocol (MCP) servers.
 
 ## Why use the AI Gateway
 
@@ -15,7 +15,6 @@ Run the AI Gateway when AI traffic needs the controls you already apply to your 
 - Apply guardrails that validate, filter, or transform content before it reaches a model or a client. See [Guardrails](./guides/guardrails/index.mdx).
 - Serve one OpenAI-compatible endpoint that routes requests to multiple LLM providers. See [Multi-provider routing](./guides/routing/multi-provider-routing.mdx).
 - Expose MCP servers through a central gateway, and apply authentication and access control to MCP traffic. See [MCP proxy](./guides/gateway-artifacts/mcp-proxy.mdx).
-- Give an A2A agent one governed address, serve its Agent Card from the gateway, and apply policies to individual A2A operations. See [Agent governance](./guides/agent-governance/index.mdx).
 - Collect logs, traces, and analytics for the traffic the gateway handles. See [Gateway logs](./guides/logging-and-tracing/gateway-logs.mdx).
 - Run the gateway on its own, or register it with AI Workspace to govern the gateways across your organization. See [Connect to AI Workspace](./deploy-and-operate/production-deployment/control-plane-connection.mdx).
 
@@ -27,5 +26,3 @@ Two roles share the gateway. A platform administrator configures LLM providers, 
 
 - To install the gateway and route a first request through it, see [Quick Start Guide](./get-started/quick-start-guide.mdx).
 - To learn which artifacts a request passes through, see [How it works](./concepts/how-it-works.mdx).
-- To expose an MCP server through the gateway, see [MCP proxy](./guides/gateway-artifacts/mcp-proxy.mdx).
-- To put an A2A agent behind the gateway, see [Agent governance](./guides/agent-governance/index.mdx).

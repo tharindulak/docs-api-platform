@@ -2,7 +2,7 @@
 title: Token based rate limiting
 description: Cap LLM consumption through the AI Gateway by the tokens a model processed, so one application cannot exhaust a shared model quota.
 type: concept
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 A single application can exhaust a shared model quota in minutes, and the request count tells you nothing about how much of that quota it used. One request can carry a sentence or a whole document, so a cap of 1,000 requests an hour holds two very different workloads to the same number.
