@@ -1,0 +1,163 @@
+kind: docusaurus
+route: api-platform/api-gateway
+deployment_options:
+  - Self-hosted
+docs: docusaurus/api-gateway/docs
+current_site: https://wso2.com/bijira/docs/
+redirects:
+  file: docusaurus/api-gateway/redirects.json
+  version: current
+section:
+  id: api-platform-api-gateway
+  label: API Gateway
+  version: 1.2.0
+  release_tag: gateway/v
+nav:
+  - page: docusaurus/api-gateway/docs/overview.mdx
+    label: Overview
+  - page: docusaurus/api-gateway/docs/quick-start-guide.mdx
+    label: Quick Start Guide
+  - category: Setup
+    items:
+      - page: docusaurus/api-gateway/docs/setup/configuration.mdx
+        label: Configuration & Interpolation
+      - page: docusaurus/api-gateway/docs/setup/resource-requirement.mdx
+        label: Minimum resource requirements
+      - page: docusaurus/api-gateway/docs/setup/database-setup.mdx
+        label: Setting Up the Database
+      - page: docusaurus/api-gateway/docs/setup/artifact-templating.mdx
+        label: Artifact Templating
+      - page: docusaurus/api-gateway/docs/setup/health-checks.mdx
+        label: Health Checks
+  - category: Resiliency
+    items:
+      - page: docusaurus/api-gateway/docs/resiliency/timeouts.mdx
+        label: Timeouts
+  - category: Policies
+    items:
+      - page: docusaurus/api-gateway/docs/policies/overview.mdx
+        label: Overview
+      - page: docusaurus/api-gateway/docs/policies/policy-execution-order.mdx
+        label: Policy execution order
+      - page: docusaurus/api-gateway/docs/policies/add-or-update-policies.mdx
+        label: Add or Update Policies
+      - category: Custom Policies
+        items:
+          - page: docusaurus/api-gateway/docs/policies/custom-policies/writing-a-custom-policy.mdx
+            label: Writing a Custom Policy
+          - page: docusaurus/api-gateway/docs/policies/custom-policies/building-gateway-with-custom-policies.mdx
+            label: Building Gateway with Custom Policies
+  - category: Deployment
+    items:
+      - category: Deployment Modes
+        items:
+          - page: docusaurus/api-gateway/docs/deployment/deployment-modes/immutable-gateway.mdx
+            label: Immutable Gateway
+          - category: Kubernetes
+            items:
+              - page: docusaurus/api-gateway/docs/deployment/deployment-modes/kubernetes/overview.mdx
+                label: Overview
+              - page: docusaurus/api-gateway/docs/deployment/deployment-modes/kubernetes/kubernetes-standalone.mdx
+                label: Standalone Mode
+              - page: docusaurus/api-gateway/docs/deployment/deployment-modes/kubernetes/gateway-operator.mdx
+                label: Kubernetes Operator Mode
+              - page: docusaurus/api-gateway/docs/deployment/deployment-modes/kubernetes/gateway-operator-management-crds.mdx
+                label: Management CRDs
+      - category: High-Availability Production Deployment
+        items:
+          - page: docusaurus/api-gateway/docs/deployment/high-availability-production-deployment.mdx
+            label: Overview
+          - page: docusaurus/api-gateway/docs/deployment/production-deployment/security-hardening.mdx
+            label: Security Hardening
+          - page: docusaurus/api-gateway/docs/deployment/production-deployment/database-configuration.mdx
+            label: Database Configuration
+          - page: docusaurus/api-gateway/docs/deployment/production-deployment/resources-and-scaling.mdx
+            label: Resources & Scaling
+          - page: docusaurus/api-gateway/docs/deployment/production-deployment/deploy-and-verify.mdx
+            label: Deploy & Verify
+          - page: docusaurus/api-gateway/docs/deployment/production-deployment/control-plane-connection.mdx
+            label: Control Plane Connection
+      - category: Deploying APIs
+        items:
+          - page: docusaurus/api-gateway/docs/deployment/deploying-apis/bottom-up-api-deployment.mdx
+            label: Bottom-Up Deployment
+  - category: Observability
+    items:
+      - category: Logging
+        items:
+          - page: docusaurus/api-gateway/docs/observability/logging.mdx
+            label: Centralized Logging
+          - page: docusaurus/api-gateway/docs/observability/traffic-logging.mdx
+            label: Traffic Logging
+      - category: Tracing
+        items:
+          - page: docusaurus/api-gateway/docs/observability/tracing/overview.mdx
+            label: Overview
+          - page: docusaurus/api-gateway/docs/observability/tracing/enabling-tracing.mdx
+            label: Enabling and Disabling Tracing
+          - page: docusaurus/api-gateway/docs/observability/tracing/viewing-traces-in-jaeger.mdx
+            label: Viewing Traces in Jaeger
+          - page: docusaurus/api-gateway/docs/observability/tracing/configuration.mdx
+            label: Tracing Configuration
+          - page: docusaurus/api-gateway/docs/observability/tracing/alternative-backends.mdx
+            label: Alternative Tracing Backends
+          - page: docusaurus/api-gateway/docs/observability/tracing/best-practices-and-troubleshooting.mdx
+            label: Best Practices and Troubleshooting
+      - category: Metrics
+        items:
+          - page: docusaurus/api-gateway/docs/observability/metrics/overview.mdx
+            label: Overview
+          - page: docusaurus/api-gateway/docs/observability/metrics/enabling-metrics.mdx
+            label: Enabling and Disabling Metrics
+          - page: docusaurus/api-gateway/docs/observability/metrics/viewing-metrics-in-grafana.mdx
+            label: Viewing Metrics in Grafana
+          - page: docusaurus/api-gateway/docs/observability/metrics/prometheus-queries.mdx
+            label: Prometheus Queries
+          - page: docusaurus/api-gateway/docs/observability/metrics/configuration.mdx
+            label: Configuration Options
+          - page: docusaurus/api-gateway/docs/observability/metrics/alternative-backends.mdx
+            label: Alternative Metrics Backends
+          - page: docusaurus/api-gateway/docs/observability/metrics/metric-reference.mdx
+            label: Metric Reference
+          - page: docusaurus/api-gateway/docs/observability/metrics/best-practices-and-troubleshooting.mdx
+            label: Best Practices and Troubleshooting
+  - category: Analytics
+    items:
+      - page: docusaurus/api-gateway/docs/analytics/analytics-header-filter.mdx
+        label: Analytics Header Filter
+      - page: docusaurus/api-gateway/docs/analytics/moesif-analytics.mdx
+        label: Moesif Analytics
+      - page: docusaurus/api-gateway/docs/analytics/opentelemetry-analytics.mdx
+        label: OpenTelemetry Analytics
+  - category: Management API
+    items:
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/overview.mdx
+        label: Overview
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/authentication.mdx
+        label: Authentication
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/rest-api-management.mdx
+        label: Rest API Management
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/mcp-proxy-management.mdx
+        label: MCP Proxy Management
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/certificate-management.mdx
+        label: Certificate Management
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/llm-provider-template-management.mdx
+        label: LLM Provider Template Management
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/llm-provider-management.mdx
+        label: LLM Provider Management
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/llm-proxy-management.mdx
+        label: LLM Proxy Management
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/secrets-management.mdx
+        label: Secrets Management
+      - page: docusaurus/api-gateway/docs/gateway-controller-management-api/schemas.mdx
+        label: Schemas
+  - category: Performance
+    items:
+      - page: docusaurus/api-gateway/docs/performance/overview.mdx
+        label: Overview
+      - page: docusaurus/api-gateway/docs/performance/gateway-runtime-with-two-cpus.mdx
+        label: Gateway runtime with two CPUs
+      - page: docusaurus/api-gateway/docs/performance/gateway-runtime-with-four-cpus.mdx
+        label: Gateway runtime with four CPUs
+  - page: docusaurus/api-gateway/docs/about-this-release.mdx
+    label: About this release

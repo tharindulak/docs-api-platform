@@ -1,0 +1,9 @@
+name: docs bundle
+on:
+  push: { branches: ['release/**'] }
+  pull_request: { branches: ['release/**'] }
+permissions: {}
+jobs:
+  bundle:
+    uses: tharindulak/wso2-docs-site/.github/workflows/docs-bundle.yml@feat/docs-bundle-workflow
+    permissions: { contents: write, id-token: write, attestations: write }
