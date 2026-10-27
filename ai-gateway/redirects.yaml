@@ -588,12 +588,6 @@ legacy:
     to: guides/mcp/policies/mcp-rewrite
   - from: https://wso2.com/api-platform/docs/ai-gateway/observability/
     to: guides/observability
-  - from: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/ai-tools/claude-code-configuration-with-ai-gateway/
-    to: https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/claude-code-configuration-with-ai-gateway/
-  - from: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/ai-tools/gemini-cli-configuration-with-ai-gateway/
-    to: https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway/
-  - from: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/ai-tools/codex-configuration-with-ai-gateway/
-    to: https://wso2.com/api-platform/docs/guides/ai-and-mcp/ai-coding-assistants/codex-configuration-with-ai-gateway/
   - from: https://wso2.com/api-platform/docs/next/ai-workspace/policies/guardrails/semantic-prompt-guard/
     to: guides/llm/guardrails/semantic-prompt-guard
   - from: https://wso2.com/api-platform/docs/next/ai-workspace/policies/guardrails/regex-pii-masking/

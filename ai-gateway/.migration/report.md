@@ -29,10 +29,10 @@ Converted from wso2/docs-api-platform@6e2ec90794700ff4cf4c559b634649e3c9bfddbb. 
 | Placeholders wrapped in backticks | 3 |
 | Generated descriptions to review | 5 |
 | sidebar_label set | 39 |
-| Legacy redirect entries written | 312 |
+| Legacy redirect entries written | 309 |
 | Legacy MkDocs redirects (source) | 200 |
 | Legacy redirects with no target page (sent to an ancestor or home) | 0 |
-| Legacy redirects to other sites | 41 |
+| Legacy redirects to other sites | 38 |
 | MDX compile failures | 0 |
 | Override patches applied (override list) | 1 of 1 |
 | Legacy-broken links and anchors accepted (override list) | 5 |
