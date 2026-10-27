@@ -1,0 +1,849 @@
+{
+  "schema": 1,
+  "environment": "staging",
+  "generatedAt": "2026-10-27T14:52:48.313Z",
+  "schemaVersion": 1,
+  "families": [
+    "Agent Platform",
+    "API Platform",
+    "Integration Platform",
+    "Identity Platform",
+    "Engineering Platform",
+    "Solutions",
+    "Other"
+  ],
+  "docSpaces": {
+    "api-platform": {
+      "displayName": "API Platform Cloud",
+      "family": "API Platform",
+      "model": "cloud-only",
+      "status": "live",
+      "latest": "cloud",
+      "editions": [
+        {
+          "id": "cloud",
+          "status": "live",
+          "parts": [
+            "ai-gateway"
+          ]
+        }
+      ],
+      "formerNames": [
+        "Bijira"
+      ],
+      "editionNames": {
+        "cloud": "API Platform Cloud"
+      },
+      "repo": "wso2/docs-api-platform",
+      "editLinks": false,
+      "issues": {
+        "repo": "wso2/docs-api-platform"
+      },
+      "listed": true,
+      "home": "api-platform",
+      "sections": [
+        "api-platform"
+      ],
+      "owners": {
+        "team": "api-platform-docs"
+      },
+      "deployments": {}
+    },
+    "api-manager": {
+      "displayName": "API Manager",
+      "family": "API Platform",
+      "model": "versions-only",
+      "status": "live",
+      "latest": "4.7.0",
+      "editions": [
+        {
+          "id": "4.7.0",
+          "status": "live"
+        },
+        {
+          "id": "4.6.0",
+          "status": "live"
+        },
+        {
+          "id": "4.5.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/4.5.0/"
+        },
+        {
+          "id": "4.4.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/4.4.0/"
+        },
+        {
+          "id": "4.3.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/4.3.0/"
+        },
+        {
+          "id": "4.2.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/4.2.0/"
+        },
+        {
+          "id": "4.1.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/4.1.0/"
+        },
+        {
+          "id": "4.0.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/4.0.0/"
+        },
+        {
+          "id": "3.2.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/3.2.0/"
+        },
+        {
+          "id": "3.1.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/3.1.0/"
+        },
+        {
+          "id": "3.0.0",
+          "status": "legacy",
+          "legacyUrl": "https://apim.docs.wso2.com/en/3.0.0/"
+        },
+        {
+          "id": "2.6.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM260/overview"
+        },
+        {
+          "id": "2.5.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM250/overview"
+        },
+        {
+          "id": "2.2.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM220/overview"
+        },
+        {
+          "id": "2.1.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM210/overview"
+        },
+        {
+          "id": "2.0.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM200/overview"
+        },
+        {
+          "id": "1.10.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM1100/overview"
+        },
+        {
+          "id": "1.9.1",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM191/overview"
+        },
+        {
+          "id": "1.9.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2docs.atlassian.net/wiki/spaces/AM190/overview"
+        }
+      ],
+      "editionNames": {
+        "selfHosted": "API Manager {version}"
+      },
+      "repo": "wso2/docs-api-platform",
+      "editLinks": false,
+      "issues": {
+        "repo": "wso2/docs-apim"
+      },
+      "listed": true,
+      "home": "api-platform",
+      "sections": [
+        "api-platform"
+      ],
+      "owners": {
+        "team": "api-platform-docs"
+      },
+      "deployments": {}
+    },
+    "ai-gateway": {
+      "displayName": "AI Gateway",
+      "family": "API Platform",
+      "model": "versions-only",
+      "status": "live",
+      "latest": "1.2.0",
+      "editions": [
+        {
+          "id": "1.2.0",
+          "status": "live"
+        },
+        {
+          "id": "2026.09.24",
+          "status": "live"
+        },
+        {
+          "id": "1.1.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2.com/api-platform/docs/ai-gateway/1.1.0/"
+        },
+        {
+          "id": "1.0.0",
+          "status": "legacy",
+          "legacyUrl": "https://wso2.com/api-platform/docs/ai-gateway/1.0.0/"
+        }
+      ],
+      "editionNames": {
+        "selfHosted": "AI Gateway {version}"
+      },
+      "repo": "wso2/docs-api-platform",
+      "editLinks": false,
+      "issues": {
+        "repo": "wso2/docs-api-platform"
+      },
+      "listed": true,
+      "home": "api-platform",
+      "sections": [
+        "api-platform"
+      ],
+      "cloud": {
+        "in": "api-platform"
+      },
+      "owners": {
+        "team": "api-platform-docs"
+      },
+      "deployments": {},
+      "cloudPartPending": true
+    },
+    "identity-platform": {
+      "displayName": "Identity Platform Cloud",
+      "family": "Identity Platform",
+      "model": "cloud-only",
+      "status": "live",
+      "latest": "cloud",
+      "editions": [
+        {
+          "id": "cloud",
+          "status": "live",
+          "parts": [
+            "identity-server"
+          ]
+        }
+      ],
+      "formerNames": [
+        "Asgardeo"
+      ],
+      "editionNames": {
+        "cloud": "Identity Platform Cloud"
+      },
+      "repo": "wso2/docs-identity-platform",
+      "editLinks": false,
+      "issues": {
+        "repo": "wso2/docs-is"
+      },
+      "listed": true,
+      "home": "identity-platform",
+      "sections": [
+        "identity-platform"
+      ],
+      "owners": {
+        "team": "identity-platform-docs"
+      },
+      "deployments": {}
+    },
+    "identity-server": {
+      "displayName": "Identity Server",
+      "family": "Identity Platform",
+      "model": "versions-only",
+      "status": "live",
+      "latest": "7.3.0",
+      "editions": [
+        {
+          "id": "7.3.0",
+          "status": "live"
+        },
+        {
+          "id": "7.2.0",
+          "status": "live"
+        },
+        {
+          "id": "7.1.0",
+          "status": "legacy",
+          "legacyUrl": "https://is.docs.wso2.com/en/7.1.0/"
+        },
+        {
+          "id": "7.0.0",
+          "status": "legacy",
+          "legacyUrl": "https://is.docs.wso2.com/en/7.0.0/"
+        },
+        {
+          "id": "6.1.0",
+          "status": "legacy",
+          "legacyUrl": "https://is.docs.wso2.com/en/6.1.0/"
+        },
+        {
+          "id": "6.0.0",
+          "status": "legacy",
+          "legacyUrl": "https://is.docs.wso2.com/en/6.0.0/"
+        }
+      ],
+      "editionNames": {
+        "selfHosted": "Identity Server {version}"
+      },
+      "repo": "wso2/docs-identity-platform",
+      "editLinks": false,
+      "issues": {
+        "repo": "wso2/docs-is"
+      },
+      "listed": true,
+      "home": "identity-platform",
+      "sections": [
+        "identity-platform"
+      ],
+      "cloud": {
+        "in": "identity-platform"
+      },
+      "owners": {
+        "team": "identity-platform-docs"
+      },
+      "deployments": {},
+      "cloudPartPending": true
+    },
+    "sandbox": {
+      "displayName": "Docs Sandbox",
+      "family": null,
+      "model": "cloud-plus-versions",
+      "status": "live",
+      "latest": "1.0.0",
+      "editions": [
+        {
+          "id": "cloud",
+          "status": "live"
+        },
+        {
+          "id": "1.0.0",
+          "status": "live"
+        }
+      ],
+      "repo": "wso2/docs-sandbox",
+      "listed": false,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-standards"
+      },
+      "deployments": {}
+    },
+    "contribute": {
+      "displayName": "Contribute",
+      "family": null,
+      "model": "unversioned",
+      "status": "live",
+      "latest": null,
+      "editions": [],
+      "repo": "wso2/docs-platform",
+      "issues": {
+        "repo": "wso2/docs-platform"
+      },
+      "listed": false,
+      "indexed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-standards"
+      },
+      "deployments": {}
+    },
+    "agent-platform": {
+      "displayName": "Agent Platform Cloud",
+      "family": "Agent Platform",
+      "model": "cloud-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/agent-platform/docs/cloud/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "agent-manager": {
+      "displayName": "Agent Manager",
+      "family": "Agent Platform",
+      "model": "versions-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/agent-platform/docs/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "api-gateway": {
+      "displayName": "API Gateway",
+      "family": "API Platform",
+      "model": "versions-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/api-platform/docs/api-gateway/1.2.0/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "api-portal": {
+      "displayName": "API Portal & MCP Hub",
+      "family": "API Platform",
+      "model": "versions-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/api-platform/docs/api-portal/1.0.0/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "ai-workspace": {
+      "displayName": "AI Workspace",
+      "family": "API Platform",
+      "model": "versions-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/api-platform/docs/ai-workspace/1.0.0/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "integration-platform": {
+      "displayName": "Integration Platform Cloud",
+      "family": "Integration Platform",
+      "model": "cloud-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "formerNames": [
+        "Devant"
+      ],
+      "legacyUrl": "https://wso2.com/integration-platform/docs/saas/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "integrator": {
+      "displayName": "Integrator",
+      "family": "Integration Platform",
+      "model": "versions-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/integration-platform/docs/integrator/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "integration-control-plane": {
+      "displayName": "Integration Control Plane",
+      "family": "Integration Platform",
+      "model": "versions-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/integration-platform/docs/integrator/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "connectors": {
+      "displayName": "Connectors",
+      "family": "Integration Platform",
+      "model": "unversioned",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://wso2.com/integration-platform/docs/connectors/catalog",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "micro-integrator": {
+      "displayName": "Micro Integrator",
+      "family": "Integration Platform",
+      "model": "links-out",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://mi.docs.wso2.com/en/latest/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "streaming-integrator": {
+      "displayName": "Streaming Integrator",
+      "family": "Integration Platform",
+      "model": "links-out",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://si.docs.wso2.com/latest/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "ballerina-integrator": {
+      "displayName": "Ballerina Integrator",
+      "family": "Integration Platform",
+      "model": "links-out",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://bi.docs.wso2.com/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "enterprise-integrator": {
+      "displayName": "Enterprise Integrator",
+      "family": "Integration Platform",
+      "model": "links-out",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://ei.docs.wso2.com/en/latest/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "ballerina": {
+      "displayName": "Ballerina",
+      "family": "Integration Platform",
+      "model": "links-out",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://ballerina.io/learn/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "engineering-platform": {
+      "displayName": "Engineering Platform Cloud",
+      "family": "Engineering Platform",
+      "model": "cloud-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "formerNames": [
+        "Choreo"
+      ],
+      "legacyUrl": "https://wso2.com/engineering-platform/developer-platform/docs/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "openchoreo": {
+      "displayName": "OpenChoreo",
+      "family": "Engineering Platform",
+      "model": "links-out",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://openchoreo.dev/docs/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "healthcare": {
+      "displayName": "Accelerator for Healthcare",
+      "family": "Solutions",
+      "model": "unversioned",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://healthcare.docs.wso2.com/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "financial-services": {
+      "displayName": "Accelerator for Financial Services",
+      "family": "Solutions",
+      "model": "versions-only",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://ob.docs.wso2.com/en/latest/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "updates": {
+      "displayName": "Updates",
+      "family": "Other",
+      "model": "unversioned",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://updates.docs.wso2.com/en/latest/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    },
+    "platform-security": {
+      "displayName": "Platform Security",
+      "family": "Other",
+      "model": "unversioned",
+      "status": "legacy",
+      "latest": null,
+      "editions": [],
+      "legacyUrl": "https://security.docs.wso2.com/en/latest/",
+      "listed": true,
+      "home": null,
+      "sections": [],
+      "owners": {
+        "team": "docs-platform"
+      },
+      "deployments": {}
+    }
+  },
+  "sections": {
+    "api-platform": {
+      "title": "API Platform Documentation",
+      "in": "api-platform",
+      "family": "API Platform",
+      "menu": [],
+      "products": [],
+      "owners": {
+        "team": "api-platform-docs"
+      },
+      "pending": [
+        {
+          "at": 0,
+          "docSpace": "api-platform",
+          "versionIn": "header"
+        },
+        {
+          "at": 1,
+          "docSpace": "api-manager",
+          "versionIn": "menu"
+        },
+        {
+          "at": 2,
+          "docSpace": "ai-gateway",
+          "versionIn": "menu"
+        },
+        {
+          "at": 0,
+          "product": {
+            "label": "API Manager",
+            "opens": {
+              "docSpace": "api-manager"
+            }
+          }
+        },
+        {
+          "at": 1,
+          "product": {
+            "label": "AI Gateway",
+            "opens": {
+              "docSpace": "ai-gateway"
+            }
+          }
+        },
+        {
+          "at": 2,
+          "product": {
+            "label": "Monetization",
+            "opens": {
+              "docSpace": "api-platform",
+              "page": "guides/monetization/"
+            }
+          }
+        }
+      ]
+    },
+    "identity-platform": {
+      "title": "Identity Platform Documentation",
+      "in": "identity-platform",
+      "family": "Identity Platform",
+      "menu": [],
+      "products": [],
+      "owners": {
+        "team": "identity-platform-docs"
+      },
+      "pending": [
+        {
+          "at": 0,
+          "docSpace": "identity-platform",
+          "versionIn": "header"
+        },
+        {
+          "at": 1,
+          "docSpace": "identity-server",
+          "versionIn": "menu"
+        },
+        {
+          "at": 0,
+          "product": {
+            "label": "Identity Server",
+            "opens": {
+              "docSpace": "identity-server"
+            }
+          }
+        },
+        {
+          "at": 1,
+          "product": {
+            "label": "Security Token Service",
+            "opens": {
+              "docSpace": "identity-platform"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "productsMenu": [
+    {
+      "id": "agent-platform",
+      "name": "Agent Platform",
+      "kind": "family",
+      "description": "Build, run and govern AI agents and the tools they call.",
+      "sections": [],
+      "entries": []
+    },
+    {
+      "id": "api-platform",
+      "name": "API Platform",
+      "kind": "family",
+      "description": "Design, secure and manage APIs, AI traffic and MCP servers, in Cloud or on your own infrastructure.",
+      "sections": [
+        "api-platform"
+      ],
+      "entries": []
+    },
+    {
+      "id": "integration-platform",
+      "name": "Integration Platform",
+      "kind": "family",
+      "description": "Connect applications, data and services, with low-code tools and connectors.",
+      "sections": [],
+      "entries": []
+    },
+    {
+      "id": "identity-platform",
+      "name": "Identity Platform",
+      "kind": "family",
+      "description": "Sign-in, access control and identity management for customers, workforce and AI agents.",
+      "sections": [
+        "identity-platform"
+      ],
+      "entries": []
+    },
+    {
+      "id": "engineering-platform",
+      "name": "Engineering Platform",
+      "kind": "family",
+      "description": "An internal developer platform for building, deploying and running cloud-native applications.",
+      "sections": [],
+      "entries": []
+    },
+    {
+      "id": "solutions",
+      "name": "Solutions",
+      "kind": "group",
+      "description": "Industry accelerators that bring WSO2 products together for healthcare and financial services.",
+      "sections": [],
+      "entries": []
+    },
+    {
+      "id": "other",
+      "name": "Other",
+      "kind": "group",
+      "description": "Product updates, security advisories and support across WSO2 products.",
+      "sections": [],
+      "entries": []
+    }
+  ],
+  "environments": [
+    "staging",
+    "production"
+  ],
+  "landing": null
+}
