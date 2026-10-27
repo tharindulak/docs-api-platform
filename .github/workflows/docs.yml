@@ -1,5 +1,5 @@
 # Docs: the one workflow file a Content repo carries, copied from
-# wso2/docs-platform templates/content-repo/. Content stays content-only:
+# tharindulak/docs-platform templates/content-repo/. Content stays content-only:
 # builds run centrally in the Platform (Platform build and deploy pipeline).
 #
 # Path-filtered. The repo holds one directory per Doc space (Repo structure
@@ -10,7 +10,8 @@
 #                       <doc space>/release/<version> branch: that Doc space,
 #                       and the PR fails if it changes any other directory):
 #                       `wso2-docs check` plus the preview build of its Edition
-#                       (no secrets); on a PR to main, the compose check too:
+#                       and a dry run of its Docs bundle (no secrets); on a PR
+#                       to main, the compose check too:
 #                       the repo's Doc space manifests composed with the
 #                       published manifest.json, each error shown on its file
 #                       with its owners. "preview / checks" sums them up;
@@ -20,22 +21,23 @@
 #   push to main     -> each Cloud release the change makes (a touched Doc
 #                       space with a Cloud Edition, or a touched Cloud part's
 #                       platform): the next [<doc space>/]cloud-<YYYY.MM.DD>.<n>
-#                       tag, then release
+#                       tag, then its Docs bundle
 #   "Release docs"   -> the next <doc space>/<version>-docs.<n> tag on
-#                       <doc space>/release/<version>, then release
-#   a pushed tag     -> release
+#                       <doc space>/release/<version>, then its Docs bundle
+#   a pushed tag     -> its Docs bundle
 #   a created release branch ([<doc space>/]release/<version>: a Branch cut)
 #                    -> the bot's pull request on main that removes the
 #                       Edition markers the new version covers, with the
 #                       branch cut report (the Platform's branch-cut.yml)
-# A release is a workflow_dispatch of the Platform's release.yml at the pinned
-# Platform major (PLATFORM_REF). PENDING INFRA: the GitHub App that may
-# dispatch it (DOCS_PLATFORM_APP_ID variable, DOCS_PLATFORM_APP_KEY secret),
-# and, while the repos are private, the read-only DOCS_PLATFORM_READ_TOKEN
-# secret for checking out the Platform (the Platform's own clones of Content
-# repos use its CONTENT_READ_TOKEN secret). The release itself composes the
-# Deployment manifest from every Content repo's main line first, so a merged
-# docspace.yaml change reaches the manifest with its release.
+# A Docs release carries a Docs bundle (Releases and deployments, Docs
+# bundles): the Platform's reusable docs-bundle.yml, at the pinned Platform
+# major, checks the tagged commit, packs its Doc space directory, attests the
+# zip and publishes it as the tag's GitHub Release (never latest, never a
+# prerelease). The Platform's intake picks the bundle up from there; nothing
+# here holds a Platform credential. Turn on immutable releases for this repo.
+# PENDING INFRA: while the repos are private, the read-only
+# DOCS_PLATFORM_READ_TOKEN secret for checking out the Platform. The
+# branch-cut job still takes the GitHub App key (DOCS_PLATFORM_APP_KEY).
 name: Docs
 
 on:
@@ -60,7 +62,7 @@ permissions:
   contents: read
 
 env:
-  # The Platform major this repo pins: v1 is a tag in wso2/docs-platform that
+  # The Platform major this repo pins: v1 is a tag in tharindulak/docs-platform that
   # each 1.x.y Platform release moves forward (never a branch). The `@v1` and
   # `platform-ref: v1` below name the same tag (`uses:` can't read env); a new
   # major changes all of them in one pull request.
@@ -81,10 +83,10 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
-          repository: wso2/docs-platform
+          repository: tharindulak/docs-platform
           ref: ${{ env.PLATFORM_REF }}
           path: platform
-          # PENDING INFRA: while wso2/docs-platform is private, a read-only
+          # PENDING INFRA: while tharindulak/docs-platform is private, a read-only
           # token as the DOCS_PLATFORM_READ_TOKEN secret (public: none needed).
           token: ${{ secrets.DOCS_PLATFORM_READ_TOKEN || github.token }}
           persist-credentials: false
@@ -122,7 +124,7 @@ jobs:
       fail-fast: false
       matrix:
         space: ${{ fromJSON(needs.plan.outputs.spaces) }}
-    uses: wso2/docs-platform/.github/workflows/pr-preview.yml@v1
+    uses: tharindulak/docs-platform/.github/workflows/pr-preview.yml@v1
     with:
       platform-ref: v1
       doc-space: ${{ matrix.space.dir }}
@@ -144,7 +146,7 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
-          repository: wso2/docs-platform
+          repository: tharindulak/docs-platform
           ref: ${{ env.PLATFORM_REF }}
           path: platform
           token: ${{ secrets.DOCS_PLATFORM_READ_TOKEN || github.token }}
@@ -189,62 +191,68 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: wso2/docs-platform/.github/workflows/pr-review.yml@v1
+    uses: tharindulak/docs-platform/.github/workflows/pr-review.yml@v1
     with:
       platform-ref: v1
     secrets: inherit
 
-  # Tags made here start no workflow (the workflow token), so each one is
-  # released right after it is made.
-  release:
+  # The next tag of each release this event makes. Tags made here start no
+  # workflow (the workflow token), so `release` bundles each one right after.
+  tag:
     needs: plan
     if: github.event_name != 'pull_request' && needs.plan.outputs.releases != '[]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        release: ${{ fromJSON(needs.plan.outputs.releases) }}
     concurrency:
-      group: docs-tag-${{ matrix.release.slug }}
+      group: docs-tag-${{ github.repository }}
       cancel-in-progress: false
+    outputs:
+      tags: ${{ steps.tag.outputs.tags }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ matrix.release.ref }}
           fetch-depth: 0
       - id: tag
-        name: Create the next Docs release tag
+        name: Create the next Docs release tags
         env:
-          TAG_PREFIX: ${{ matrix.release.tagPrefix }}
-          VERSION: ${{ matrix.release.version }}
+          RELEASES: ${{ needs.plan.outputs.releases }}
         run: |
-          if [ -n "$VERSION" ]; then
-            prefix="$TAG_PREFIX$VERSION-docs."
-          else
-            prefix="${TAG_PREFIX}cloud-$(date -u +%Y.%m.%d)."
-          fi
-          n=$(git tag --list "${prefix}*" | sed "s|^${prefix//./\\.}||" | sort -n | tail -1)
-          tag="${prefix}$(( ${n:-0} + 1 ))"
-          git tag "$tag"
-          git push origin "$tag"
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
-      - id: app
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.DOCS_PLATFORM_APP_ID }}
-          private-key: ${{ secrets.DOCS_PLATFORM_APP_KEY }}
-          owner: wso2
-          repositories: docs-platform
-      - name: Ask the Platform to release this tag
-        env:
-          GH_TOKEN: ${{ steps.app.outputs.token }}
-          TAG: ${{ steps.tag.outputs.tag }}
-        run: |
-          gh workflow run release.yml --repo wso2/docs-platform --ref "$PLATFORM_REF" -f repo="$GITHUB_REPOSITORY" -f tag="$TAG"
-          echo "Dispatched Release docs for $TAG: https://github.com/wso2/docs-platform/actions/workflows/release.yml" >> "$GITHUB_STEP_SUMMARY"
+          tags=()
+          while read -r release; do
+            TAG_PREFIX=$(jq -r .tagPrefix <<<"$release")
+            VERSION=$(jq -r .version <<<"$release")
+            REF=$(jq -r .ref <<<"$release")
+            if [ -n "$VERSION" ]; then
+              prefix="$TAG_PREFIX$VERSION-docs."
+            else
+              prefix="${TAG_PREFIX}cloud-$(date -u +%Y.%m.%d)."
+            fi
+            n=$(git tag --list "${prefix}*" | sed "s|^${prefix//./\\.}||" | sort -n | tail -1)
+            tag="${prefix}$(( ${n:-0} + 1 ))"
+            git tag "$tag" "origin/$REF"
+            git push origin "$tag"
+            tags+=("$tag")
+          done < <(jq -c '.[]' <<<"$RELEASES")
+          echo "tags=$(jq -cn '$ARGS.positional' --args "${tags[@]}")" >> "$GITHUB_OUTPUT"
+
+  # Each new tag's Docs bundle, from the Platform's reusable workflow.
+  release:
+    needs: tag
+    if: needs.tag.outputs.tags != '' && needs.tag.outputs.tags != '[]'
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    strategy:
+      fail-fast: false
+      matrix:
+        tag: ${{ fromJSON(needs.tag.outputs.tags) }}
+    uses: tharindulak/docs-platform/.github/workflows/docs-bundle.yml@v1
+    with:
+      tag: ${{ matrix.tag }}
+    secrets:
+      DOCS_PLATFORM_READ_TOKEN: ${{ secrets.DOCS_PLATFORM_READ_TOKEN }}
 
   # After a Branch cut: the release branch stays a plain copy of main, and
   # a pull request on main removes the markers the new version covers.
@@ -252,7 +260,7 @@ jobs:
     if: github.event_name == 'create' && github.ref_type == 'branch' && (startsWith(github.ref_name, 'release/') || contains(github.ref_name, '/release/'))
     permissions:
       contents: read
-    uses: wso2/docs-platform/.github/workflows/branch-cut.yml@v1
+    uses: tharindulak/docs-platform/.github/workflows/branch-cut.yml@v1
     with:
       branch: ${{ github.ref_name }}
       platform-ref: v1
@@ -260,22 +268,15 @@ jobs:
       DOCS_PLATFORM_APP_KEY: ${{ secrets.DOCS_PLATFORM_APP_KEY }}
       DOCS_PLATFORM_READ_TOKEN: ${{ secrets.DOCS_PLATFORM_READ_TOKEN }}
 
-  # A tag pushed by hand.
+  # A tag pushed by hand: its Docs bundle.
   release-tag:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-    runs-on: ubuntu-latest
-    steps:
-      - id: app
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.DOCS_PLATFORM_APP_ID }}
-          private-key: ${{ secrets.DOCS_PLATFORM_APP_KEY }}
-          owner: wso2
-          repositories: docs-platform
-      - name: Ask the Platform to release this tag
-        env:
-          GH_TOKEN: ${{ steps.app.outputs.token }}
-          TAG: ${{ github.ref_name }}
-        run: |
-          gh workflow run release.yml --repo wso2/docs-platform --ref "$PLATFORM_REF" -f repo="$GITHUB_REPOSITORY" -f tag="$TAG"
-          echo "Dispatched Release docs for $TAG: https://github.com/wso2/docs-platform/actions/workflows/release.yml" >> "$GITHUB_STEP_SUMMARY"
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    uses: tharindulak/docs-platform/.github/workflows/docs-bundle.yml@v1
+    with:
+      tag: ${{ github.ref_name }}
+    secrets:
+      DOCS_PLATFORM_READ_TOKEN: ${{ secrets.DOCS_PLATFORM_READ_TOKEN }}
