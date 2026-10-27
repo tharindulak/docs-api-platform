@@ -1,0 +1,24 @@
+---
+title: Minimum resource requirements
+description: Baseline CPU and memory requirements for AI Gateway setup and production planning.
+type: reference
+sidebar_position: 3
+---
+
+Use these values as the minimum baseline when you plan AI Gateway capacity.
+
+## Minimum baseline for Kubernetes
+
+The production deployment guide provides these baseline requests and limits.
+
+| Component | CPU request | Memory request | CPU limit | Memory limit |
+|---|---:|---:|---:|---:|
+| Gateway Controller | `500m` | `1Gi` | `1000m` | `2Gi` |
+| Gateway Runtime | `2000m` | `2Gi` | `4000m` | `2Gi` |
+
+For high availability, keep two replicas of each component.
+
+## Related
+
+- [Resources and scaling](./production-deployment/resources-and-scaling.mdx)
+- [AI Gateway runtime with two CPUs](./sizing-and-performance/ai-gateway-runtime-with-two-cpus.mdx)

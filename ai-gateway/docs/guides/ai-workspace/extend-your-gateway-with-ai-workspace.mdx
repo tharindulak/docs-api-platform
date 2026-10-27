@@ -1,0 +1,30 @@
+---
+title: Extend your gateway with AI Workspace
+description: 'What connecting AI Gateway to AI Workspace adds: one console, central deployment, artifact sync, shared policies, and traffic insights.'
+type: concept
+sidebar_position: 1
+---
+
+:::note[Requires AI Workspace]
+Everything on this page needs a running AI Workspace deployment. The gateway serves traffic without one.
+:::
+
+The gateway serves traffic on its own. Connecting it to [AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/next/overview/), the control plane for AI traffic across your organization, adds central management across every gateway you run.
+
+## What connecting the gateway adds
+
+- **One console across gateways.** AI Workspace manages [LLM providers](https://wso2.com/api-platform/docs/ai-workspace/next/llm-providers/overview/), App LLM proxies, MCP proxies, and the credentials behind them for every gateway you connect.
+- **Central configuration.** Configure an artifact in the console, then [deploy it to one gateway or several](https://wso2.com/api-platform/docs/ai-workspace/next/llm-proxies/configure-proxy/).
+- **Artifacts in both directions.** Artifacts you create through the gateway management API [sync upward automatically](https://wso2.com/api-platform/docs/ai-workspace/next/sync-gateway-created-artifacts/) and appear in the console as copies the gateway owns.
+- **Policies in one place.** Attach [guardrails, rate limits, and traffic controls](https://wso2.com/api-platform/docs/ai-workspace/next/policies/overview/) to providers and proxies from the console.
+- **Traffic insights.** Review [token usage, latency, cost, and guardrail events](https://wso2.com/api-platform/docs/ai-workspace/next/insights/) across your applications and consumers.
+
+Connecting a gateway doesn't make it depend on the control plane. If AI Workspace is unreachable, the gateway carries on and the sync catches up once the connection is restored.
+
+## Try it locally
+
+You don't need a hosted deployment to decide whether this suits you. [Get started with AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/next/getting-started/) runs the control plane on your own machine, then walks you through creating a gateway and configuring a provider.
+
+## Connect your gateway
+
+Four pages document the connection, each one suited to a different runtime and starting point. For the one that matches yours, see [Connect the gateway to AI Workspace](./connect-the-gateway.mdx).

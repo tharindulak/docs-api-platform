@@ -1,0 +1,163 @@
+{
+  "summary": {
+    "source": "wso2/docs-api-platform@6e2ec90794700ff4cf4c559b634649e3c9bfddbb",
+    "edition": "cloud",
+    "legacyBase": "https://wso2.com/api-platform/docs/",
+    "navPages": 107,
+    "sourceFiles": 1073,
+    "stats": {
+      "pages": 112,
+      "partials": 0,
+      "apiPages": 0,
+      "placeholders": 3,
+      "images": 15,
+      "attachments": 0,
+      "missingImages": 0,
+      "links": 1251,
+      "externalLinks": 456,
+      "legacyHostLinks": 3,
+      "otherVersionLinks": 100,
+      "crossProductLinks": 2,
+      "linksViaRedirect": 6,
+      "droppedLinks": 6,
+      "droppedAnchors": 0,
+      "placeholdersWrapped": 3,
+      "admonitions": 76,
+      "details": 5,
+      "tabSets": 23,
+      "codeBlocks": 737,
+      "indentedCode": 0,
+      "htmlBlocks": 154,
+      "explicitIds": 173,
+      "basePathInCode": 0,
+      "basePathInText": 0,
+      "unknownElements": 0,
+      "unknownLanguages": [
+        "promql"
+      ],
+      "generatedDescriptions": 5,
+      "sidebarLabels": 39,
+      "relativeFallback": 12,
+      "unlisted": 5,
+      "placeholders_": 0,
+      "sharedPages": 0,
+      "cloudOnlyPages": 26,
+      "selfHostedOnlyPages": 0,
+      "markedPages": 0,
+      "markers": 0,
+      "flatMerged": 0,
+      "editionCheckFailures": 0,
+      "imageVariants": 0,
+      "linkVariants": 0,
+      "includesExpanded": 0,
+      "includeFrontMatter": 0,
+      "flaggedOffPages": 0,
+      "specsFixed": 0,
+      "titlesVarying": 0,
+      "keptDescriptions": 107,
+      "legacySiteLinks": 71,
+      "exportSingleFolders": 0,
+      "legacyRedirectsExternal": 41,
+      "legacyRedirectsUnresolved": 0,
+      "legacyRedirects": 312,
+      "legacyRedirectsSource": 200,
+      "acceptedByOverrides": 5
+    },
+    "issues": {
+      "not-in-nav": 5,
+      "code-language": 1
+    },
+    "compileFailures": 0,
+    "overrides": {
+      "file": "ai-gateway.overrides.yaml",
+      "patches": 1,
+      "patchesApplied": 1,
+      "accepted": 5
+    },
+    "cloudDiff": {
+      "source": "wso2/docs-api-platform@6e2ec90794700ff4cf4c559b634649e3c9bfddbb",
+      "matched": 7,
+      "identical": 0,
+      "differ": 7,
+      "cloudOnly": 26,
+      "possibleCounterparts": 2
+    }
+  },
+  "items": [
+    {
+      "kind": "broken-link",
+      "file": "ai-gateway/next/README.md",
+      "message": "link to llm/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "llm/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "ai-gateway/next/README.md",
+      "message": "link to mcp/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "mcp/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "ai-gateway/next/README.md",
+      "message": "link to observability/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "observability/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "ai-gateway/next/README.md",
+      "message": "link to gateway-controller-management-api/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "gateway-controller-management-api/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "ai-gateway/next/README.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "broken-link",
+      "file": "ai-gateway/next/setup-and-deployment/configuration.md",
+      "message": "link to ./artifact-templating.md has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "./artifact-templating.md"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-gateway/gateway-controller-api.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-gateway/llm/index.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-gateway/mcp/index.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-gateway/observability/index.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "code-language",
+      "file": null,
+      "message": "code language \"promql\" is not highlighted by the Platform's Prism set"
+    }
+  ]
+}

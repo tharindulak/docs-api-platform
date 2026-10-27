@@ -1,0 +1,140 @@
+{
+  "summary": {
+    "source": "wso2/docs-api-platform@6e2ec90794700ff4cf4c559b634649e3c9bfddbb",
+    "matched": 7,
+    "identical": 0,
+    "differ": 7,
+    "cloudOnly": 26,
+    "possibleCounterparts": 2
+  },
+  "pages": [
+    {
+      "cloud": "cloud/ai-gateway/analytics/analytics-header-filter.md",
+      "seed": "ai-gateway/next/analytics/analytics-header-filter.md",
+      "how": "same path",
+      "page": "guides/analytics/analytics-header-filter",
+      "cloudUrl": "https://wso2.com/api-platform/docs/cloud/ai-gateway/analytics/analytics-header-filter/",
+      "seedUrl": "https://wso2.com/api-platform/docs/ai-gateway/next/analytics/analytics-header-filter/",
+      "identical": false,
+      "f1": 0.965,
+      "added": 3,
+      "removed": 5
+    },
+    {
+      "cloud": "cloud/ai-gateway/analytics/index.md",
+      "seed": "ai-gateway/next/analytics/index.md",
+      "how": "same path",
+      "page": "guides/analytics/index",
+      "cloudUrl": "https://wso2.com/api-platform/docs/cloud/ai-gateway/analytics/",
+      "seedUrl": "https://wso2.com/api-platform/docs/ai-gateway/next/analytics/",
+      "identical": false,
+      "f1": 0.284,
+      "added": 4,
+      "removed": 13
+    },
+    {
+      "cloud": "cloud/ai-gateway/analytics/moesif-analytics.md",
+      "seed": "ai-gateway/next/analytics/moesif-analytics.md",
+      "how": "same path",
+      "page": "guides/analytics/moesif-analytics",
+      "cloudUrl": "https://wso2.com/api-platform/docs/cloud/ai-gateway/analytics/moesif-analytics/",
+      "seedUrl": "https://wso2.com/api-platform/docs/ai-gateway/next/analytics/moesif-analytics/",
+      "identical": false,
+      "f1": 0.721,
+      "added": 44,
+      "removed": 81
+    },
+    {
+      "cloud": "cloud/ai-gateway/overview.md",
+      "seed": "ai-gateway/next/overview.md",
+      "how": "same path",
+      "page": "index",
+      "cloudUrl": "https://wso2.com/api-platform/docs/cloud/ai-gateway/overview/",
+      "seedUrl": "https://wso2.com/api-platform/docs/ai-gateway/next/overview/",
+      "identical": false,
+      "f1": 0.441,
+      "added": 96,
+      "removed": 17
+    },
+    {
+      "cloud": "cloud/ai-gateway/llm/llm-templates.md",
+      "seed": "ai-gateway/next/reference/llm-templates.md",
+      "how": "same file name",
+      "page": "reference/llm-templates",
+      "cloudUrl": "https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/llm-templates/",
+      "seedUrl": "https://wso2.com/api-platform/docs/ai-gateway/next/reference/llm-templates/",
+      "identical": false,
+      "f1": 0.817,
+      "added": 48,
+      "removed": 114
+    },
+    {
+      "cloud": "cloud/ai-gateway/llm/semantic-caching.md",
+      "seed": "ai-gateway/next/semantic-caching.md",
+      "how": "same file name",
+      "page": "guides/semantic-caching",
+      "cloudUrl": "https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/semantic-caching/",
+      "seedUrl": "https://wso2.com/api-platform/docs/ai-gateway/next/semantic-caching/",
+      "identical": false,
+      "f1": 0.188,
+      "added": 282,
+      "removed": 16
+    },
+    {
+      "cloud": "cloud/ai-gateway/observability/tracing.md",
+      "seed": "ai-gateway/next/logging-and-tracing/tracing.md",
+      "how": "same file name",
+      "page": "guides/logging-and-tracing/tracing",
+      "cloudUrl": "https://wso2.com/api-platform/docs/cloud/ai-gateway/observability/tracing/",
+      "seedUrl": "https://wso2.com/api-platform/docs/ai-gateway/next/logging-and-tracing/tracing/",
+      "identical": false,
+      "f1": 0.999,
+      "added": 4,
+      "removed": 3
+    }
+  ],
+  "cloudOnly": [
+    "cloud/ai-gateway/gateway-controller-api.md",
+    "cloud/ai-gateway/llm/guardrails/aws-bedrock-guardrail.md",
+    "cloud/ai-gateway/llm/guardrails/azure-content-safety.md",
+    "cloud/ai-gateway/llm/guardrails/content-length.md",
+    "cloud/ai-gateway/llm/guardrails/json-schema.md",
+    "cloud/ai-gateway/llm/guardrails/pii-masking-regex.md",
+    "cloud/ai-gateway/llm/guardrails/regex.md",
+    "cloud/ai-gateway/llm/guardrails/semantic-prompt-guard.md",
+    "cloud/ai-gateway/llm/guardrails/semantic-tool-filtering.md",
+    "cloud/ai-gateway/llm/guardrails/sentence-count.md",
+    "cloud/ai-gateway/llm/guardrails/url.md",
+    "cloud/ai-gateway/llm/guardrails/word-count.md",
+    "cloud/ai-gateway/llm/index.md",
+    "cloud/ai-gateway/llm/load-balancing/model-round-robin.md",
+    "cloud/ai-gateway/llm/load-balancing/model-weighted-round-robin.md",
+    "cloud/ai-gateway/llm/prompt-management/prompt-decorator.md",
+    "cloud/ai-gateway/llm/prompt-management/prompt-template.md",
+    "cloud/ai-gateway/llm/quick-start-guide.md",
+    "cloud/ai-gateway/mcp/index.md",
+    "cloud/ai-gateway/mcp/policies/mcp-acl-list.md",
+    "cloud/ai-gateway/mcp/policies/mcp-authentication.md",
+    "cloud/ai-gateway/mcp/policies/mcp-authorization.md",
+    "cloud/ai-gateway/mcp/policies/mcp-rewrite.md",
+    "cloud/ai-gateway/mcp/quick-start-guide.md",
+    "cloud/ai-gateway/observability/index.md",
+    "cloud/ai-gateway/observability/logging.md"
+  ],
+  "possibleCounterparts": [
+    {
+      "cloud": "cloud/ai-gateway/llm/quick-start-guide.md",
+      "candidates": [
+        "ai-gateway/next/agent-governance/quick-start-guide.md",
+        "ai-gateway/next/quick-start-guide.md"
+      ]
+    },
+    {
+      "cloud": "cloud/ai-gateway/mcp/quick-start-guide.md",
+      "candidates": [
+        "ai-gateway/next/agent-governance/quick-start-guide.md",
+        "ai-gateway/next/quick-start-guide.md"
+      ]
+    }
+  ]
+}
