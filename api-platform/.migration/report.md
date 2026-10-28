@@ -4,32 +4,32 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 
 | Measure | Count |
 |---|---|
-| Pages written | 223 |
-| Pages in the legacy nav | 212 |
-| Unlisted pages (not in the legacy nav) | 11 |
+| Pages written | 207 |
+| Pages in the legacy nav | 200 |
+| Unlisted pages (not in the legacy nav) | 7 |
 | API reference pages | 0 |
 | Placeholder pages | 0 |
 | Partials | 0 |
-| Images copied | 429 |
+| Images copied | 392 |
 | Other files copied | 8 |
 | Missing images removed | 0 |
-| Links | 1294 |
+| Links | 1217 |
 | Links fixed through a legacy redirect | 15 |
 | Broken links removed (text kept) | 7 |
 | Broken anchors removed | 2 |
-| Links to other legacy versions (kept) | 68 |
+| Links to other legacy versions (kept) | 67 |
 | Links to other WSO2 docs (kept as legacy URLs) | 6 |
-| Admonitions | 332 |
+| Admonitions | 312 |
 | Collapsibles | 1 |
-| Tab sets | 23 |
-| Code blocks | 525 |
+| Tab sets | 21 |
+| Code blocks | 418 |
 | Indented code blocks fenced | 0 |
 | Raw HTML blocks converted | 27 |
-| Explicit heading ids kept for old anchors | 63 |
+| Explicit heading ids kept for old anchors | 56 |
 | Placeholders wrapped in backticks | 6 |
-| Generated descriptions to review | 20 |
-| sidebar_label set | 176 |
-| Legacy redirect entries written | 390 |
+| Generated descriptions to review | 16 |
+| sidebar_label set | 165 |
+| Legacy redirect entries written | 360 |
 | Legacy MkDocs redirects (source) | 166 |
 | Legacy redirects with no target page (sent to an ancestor or home) | 0 |
 | Legacy redirects to other sites | 0 |
@@ -41,7 +41,7 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 
 | Kind | Count |
 |---|---|
-| not-in-nav | 11 |
+| not-in-nav | 7 |
 | html | 7 |
 | nav | 1 |
 | broken-anchor | 1 |
@@ -58,10 +58,6 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 - `cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/ai-workspace/policies/other-policies/basic-rate-limit.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/api-platform-gateway/analytics.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/api-platform-gateway/cloud-gateway.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/api-platform-gateway/overview.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/api-platform-gateway/troubleshooting.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/bijira-concepts/deployment-tracks.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/develop-api-proxy/authentication-and-authorization/pass-end-user-attributes-to-upstream-services.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 

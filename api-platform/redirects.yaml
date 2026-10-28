@@ -98,38 +98,6 @@ legacy:
     to: guides/ai-workspace/quickstart
   - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks/
     to: guides/ai-workspace/using-sdks
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/analytics/
-    to: guides/api-gateway/api-platform-gateway/analytics
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/apply-custom-policies-to-apis/
-    to: guides/api-gateway/api-platform-gateway/custom-policies/apply-custom-policies-to-apis
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/architecture/
-    to: guides/api-gateway/api-platform-gateway/architecture
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/build-gateway-with-custom-policies/
-    to: guides/api-gateway/api-platform-gateway/custom-policies/build-gateway-with-custom-policies
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/cloud-gateway/
-    to: guides/api-gateway/api-platform-gateway/cloud-gateway
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started/
-    to: guides/api-gateway/api-platform-gateway/getting-started
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/high-availability/
-    to: guides/api-gateway/api-platform-gateway/high-availability
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/manage-policies/
-    to: guides/api-gateway/api-platform-gateway/manage-policies
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/overview/
-    to: guides/api-gateway/api-platform-gateway/overview
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/lifecycle-management/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/lifecycle-management
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/overview/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/overview
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/subscription-based-apis/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/subscription-based-apis
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/publish-apis/subscription-less-apis/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/subscription-less-apis
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/setting-up/
-    to: guides/api-gateway/api-platform-gateway/setting-up
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/troubleshooting/
-    to: guides/api-gateway/api-platform-gateway/troubleshooting
-  - from: https://wso2.com/api-platform/docs/cloud/api-platform-gateway/writing-a-custom-policy/
-    to: guides/api-gateway/api-platform-gateway/custom-policies/writing-a-custom-policy
   - from: https://wso2.com/api-platform/docs/cloud/bijira-concepts/data-planes/
     to: concepts/data-planes
   - from: https://wso2.com/api-platform/docs/cloud/bijira-concepts/deployment-tracks/
@@ -279,9 +247,9 @@ legacy:
   - from: https://wso2.com/api-platform/docs/cloud/event-gateway/troubleshooting/
     to: guides/event-gateway/troubleshooting
   - from: https://wso2.com/api-platform/docs/cloud/federation/api-discovery-aws/
-    to: guides/api-gateway/federation/api-discovery-aws
+    to: guides/third-party-gateways/api-discovery-aws
   - from: https://wso2.com/api-platform/docs/cloud/federation/overview/
-    to: guides/api-gateway/federation/overview
+    to: guides/third-party-gateways/overview
   - from: https://wso2.com/api-platform/docs/cloud/governance/govern-api-proxy/
     to: guides/api-governance/govern-api-proxy
   - from: https://wso2.com/api-platform/docs/cloud/governance/overview/
@@ -550,34 +518,6 @@ legacy:
     to: guides/monetization/consume-monetized-apis/subscribe-to-paid-plan
   - from: https://wso2.com/api-platform/docs/api-monetization/view-billing-and-usage/
     to: guides/monetization/consume-monetized-apis/view-billing-and-usage
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/analytics/
-    to: guides/api-gateway/api-platform-gateway/analytics
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/apply-custom-policies-to-apis/
-    to: guides/api-gateway/api-platform-gateway/custom-policies/apply-custom-policies-to-apis
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/build-gateway-with-custom-policies/
-    to: guides/api-gateway/api-platform-gateway/custom-policies/build-gateway-with-custom-policies
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/cloud-gateway/
-    to: guides/api-gateway/api-platform-gateway/cloud-gateway
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/getting-started/
-    to: guides/api-gateway/api-platform-gateway/getting-started
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/manage-policies/
-    to: guides/api-gateway/api-platform-gateway/manage-policies
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/overview/
-    to: guides/api-gateway/api-platform-gateway/overview
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/setting-up/
-    to: guides/api-gateway/api-platform-gateway/setting-up
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/troubleshooting/
-    to: guides/api-gateway/api-platform-gateway/troubleshooting
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/writing-a-custom-policy/
-    to: guides/api-gateway/api-platform-gateway/custom-policies/writing-a-custom-policy
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/publish-apis/lifecycle-management/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/lifecycle-management
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/publish-apis/overview/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/overview
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/publish-apis/subscription-based-apis/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/subscription-based-apis
-  - from: https://wso2.com/api-platform/docs/api-platform-gateway/publish-apis/subscription-less-apis/
-    to: guides/api-gateway/api-platform-gateway/publish-apis/subscription-less-apis
   - from: https://wso2.com/api-platform/docs/bijira-concepts/data-planes/
     to: concepts/data-planes
   - from: https://wso2.com/api-platform/docs/bijira-concepts/deployment-tracks/
@@ -719,9 +659,9 @@ legacy:
   - from: https://wso2.com/api-platform/docs/event-gateway/publish-apis/subscription-less-apis/
     to: guides/event-gateway/publish-apis/subscription-less-apis
   - from: https://wso2.com/api-platform/docs/federation/api-discovery-aws/
-    to: guides/api-gateway/federation/api-discovery-aws
+    to: guides/third-party-gateways/api-discovery-aws
   - from: https://wso2.com/api-platform/docs/federation/overview/
-    to: guides/api-gateway/federation/overview
+    to: guides/third-party-gateways/overview
   - from: https://wso2.com/api-platform/docs/governance/govern-api-proxy/
     to: guides/api-governance/govern-api-proxy
   - from: https://wso2.com/api-platform/docs/governance/overview/

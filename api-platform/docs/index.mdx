@@ -54,7 +54,7 @@ The next question is: **who runs the infrastructure?**
 
     * **What is included:** Cloud control plane (AI Workspace, Developer Portal, Moesif) managed by WSO2, plus self-hosted gateways (API Gateway, AI Gateway) in your environment. You can also federate third-party gateways (AWS, Azure, Kong, Envoy) under the same control plane.
 
-    * [Set up hybrid deployment](./guides/api-gateway/api-platform-gateway/getting-started.mdx)
+    * [Set up hybrid deployment](docs:api-gateway/cloud/guides/self-hosted-gateway/getting-started/)
 
 * **Option C: Self-managed (API Manager)**
 
@@ -144,9 +144,9 @@ The following is a complete view of all components and where to find their docum
 ### Gateway components
 | Component | What it does | Docs |
 | :--- | :--- | :--- |
-| **API Gateway** | High-performance, Go-based gateway for API traffic. Handles authentication, rate limiting, transformations, and custom policies. | <ul><li>[Standalone docs](https://wso2.com/api-platform/docs/api-gateway/1.1.0/overview/)</li><li>[Cloud-integrated docs](./guides/api-gateway/api-platform-gateway/getting-started.mdx)</li></ul> |
+| **API Gateway** | High-performance, Go-based gateway for API traffic. Handles authentication, rate limiting, transformations, and custom policies. | <ul><li>[Standalone docs](https://wso2.com/api-platform/docs/api-gateway/1.1.0/overview/)</li><li>[Cloud-integrated docs](docs:api-gateway/cloud/guides/self-hosted-gateway/getting-started/)</li></ul> |
 | **AI Gateway** | Route, secure, and govern outbound LLM traffic. Includes guardrails (PII masking, prompt injection, content safety), multi-provider load balancing, failover, semantic caching, and cost governance (via LLM proxies).<br /><br />Govern inbound MCP traffic from AI agents. Generate MCP tools from REST APIs, aggregate tools, and enforce access control and authorization (via MCP proxies). | <ul><li>[Standalone docs](https://wso2.com/api-platform/docs/ai-gateway/1.1.0/overview/)</li><li>[Cloud-integrated docs](docs:ai-gateway/cloud/)</li></ul> |
-| **Third-Party Gateways** | Federate existing gateways (AWS, Azure, Kong, and Envoy) into the WSO2 platform without replacing them. Discover and catalog APIs running on these gateways alongside your WSO2 managed APIs in a single developer portal. Gain unified observability across all gateway environments, and for supported gateways, publish and deploy API configurations directly from the control plane.|<ul><li>[Federation docs](./guides/api-gateway/federation/overview.mdx)</li></ul> |
+| **Third-Party Gateways** | Federate existing gateways (AWS, Azure, Kong, and Envoy) into the WSO2 platform without replacing them. Discover and catalog APIs running on these gateways alongside your WSO2 managed APIs in a single developer portal. Gain unified observability across all gateway environments, and for supported gateways, publish and deploy API configurations directly from the control plane.|<ul><li>[Federation docs](./guides/third-party-gateways/overview.mdx)</li></ul> |
 | **Policy Hub** | API policies and AI guardrails are distributed through the Policy Hub, an open source repository powered by [github.com/wso2/gateway-controllers](https://github.com/wso2/gateway-controllers). The Policy Hub is integrated into Cloud, API Manager (4.7 and above), and the standalone gateways. When a new policy or guardrail is released, it becomes instantly available to all users. |<ul><li>[Policy Hub docs](./guides/policy-hub.mdx)</li></ul> |
 
 ## Choose your path
@@ -154,7 +154,7 @@ The following is a complete view of all components and where to find their docum
 | I want to... | Start here |
 | :--- | :--- |
 | Get up and running fast with a managed cloud platform | [Cloud](./get-started/what-is-api-platform-cloud.mdx) |
-| Use a cloud control plane but keep API traffic in my infrastructure | [Hybrid setup](./guides/api-gateway/api-platform-gateway/getting-started.mdx) |
+| Use a cloud control plane but keep API traffic in my infrastructure | [Hybrid setup](docs:api-gateway/cloud/guides/self-hosted-gateway/getting-started/) |
 | Run everything on my own infrastructure with a UI | [API Manager](./concepts/api-manager.mdx) |
 | Run a lightweight API gateway with no UI | [API Gateway](https://wso2.com/api-platform/docs/api-gateway/1.1.0/overview/) |
 | Govern LLM traffic (rate limits, guardrails, cost control) | [AI Gateway LLM Proxy](https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/quick-start-guide/) |
@@ -189,3 +189,10 @@ Govern LLM, MCP and agent traffic: guardrails, routing, rate limits and observab
 
 - [AI Gateway Cloud](docs:ai-gateway/cloud/)
 - [AI Gateway Self-hosted (newest release)](docs:ai-gateway/latest/)
+
+### API Gateway
+
+Run a self-hosted gateway for your APIs, connected to the Cloud: policies, deployment and observability.
+
+- [API Gateway Cloud](docs:api-gateway/cloud/)
+- [API Gateway Self-hosted (newest release)](docs:api-gateway/latest/)
