@@ -11,12 +11,13 @@ import TabItem from '@theme/TabItem';
 
 OpenShift is a Kubernetes distribution with stricter security defaults. The core deployment approach — Helm charts, the same patterns (P0–P5) — is identical to standard Kubernetes. The key difference is that OpenShift ignores the UID defined in the Docker image and injects a random UID at runtime, which requires additional file permission configuration in the image and specific security context settings in the Helm values.
 
-For routing, OpenShift supports `Route` objects (native to OpenShift), Envoy Gateway (the recommended API Gateway), and standard Kubernetes `Ingress` (deprecated). The default OpenShift values file uses Routes.
+For routing, WSO2 API Manager 4.6.0 uses standard Kubernetes Ingress. An **NGINX Ingress Controller** must be installed on your OpenShift cluster before deploying.
 
 :::warning[OpenShift deployment requires the following before deploying:]
 1. **A custom Docker image** — with GID 0 group-write permissions and the JDBC driver for your database. Standard WSO2 images will fail to start on OpenShift.
 2. **An external database** — required for distributed deployments (P1–P5). The All-in-One pattern (P0) can use the embedded H2 database for evaluation purposes.
 3. **Database schema initialised** — if using an external database, run the WSO2 schema scripts against both databases before the pods start.
+4. **NGINX Ingress Controller** — must be installed on the OpenShift cluster before the Helm chart is deployed.
 :::
 
 ---
@@ -47,17 +48,17 @@ For routing, OpenShift supports `Route` objects (native to OpenShift), Envoy Gat
 1. Authenticate with the OpenShift CLI:
 
     <Tabs groupId="tabs">
-    <TabItem value="token-recommended" label="Token (Recommended)">
-
-    ```bash
-    oc login <API_SERVER_URL> --token=<TOKEN>
-    ```
-
-    </TabItem>
     <TabItem value="username-password" label="Username / Password">
 
     ```bash
     oc login <API_SERVER_URL> -u <USERNAME> -p <PASSWORD>
+    ```
+
+    </TabItem>
+    <TabItem value="token" label="Token">
+
+    ```bash
+    oc login <API_SERVER_URL> --token=<TOKEN>
     ```
 
     </TabItem>
@@ -86,13 +87,39 @@ Creating an OpenShift project automatically creates the corresponding Kubernetes
 
 ### Step 3 — Add the WSO2 Helm Repository {#step-3}
 
-1. Add the WSO2 Helm repository and update it:
+```bash
+helm repo add wso2 https://helm.wso2.com && helm repo update
+```
 
-    ```bash
-    helm repo add wso2 https://helm.wso2.com && helm repo update
-    ```
+### Step 4 — Install NGINX Ingress Controller {#step-4}
 
-### Step 4 — Build an OpenShift-Compatible Docker Image {#step-4}
+WSO2 API Manager 4.6.0 uses Kubernetes Ingress for external access. Install the NGINX Ingress Controller on your OpenShift cluster:
+
+```bash
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx \
+  --create-namespace \
+  --set controller.service.type=LoadBalancer \
+  --set controller.admissionWebhooks.enabled=false
+```
+
+OpenShift's default Security Context Constraints (SCCs) block the NGINX controller pod from starting. Grant the `privileged` SCC to its service account and restart the deployment:
+
+```bash
+oc adm policy add-scc-to-user privileged system:serviceaccount:ingress-nginx:ingress-nginx
+kubectl rollout restart deployment ingress-nginx-controller -n ingress-nginx
+```
+
+Wait for the controller pod to be ready:
+
+```bash
+kubectl get pods -n ingress-nginx -w
+```
+
+Make sure the deployment is up and running and the pods are ready before proceeding.
+
+### Step 5 — Build an OpenShift-Compatible Docker Image {#step-5}
 
 Standard WSO2 images run as a fixed UID (`wso2carbon`, UID 802). OpenShift injects a random UID at runtime, so any directories the server writes to must have **group-write permissions with root group (GID 0) ownership**.
 
@@ -106,7 +133,7 @@ OpenShift assigns a random UID to the container process but always uses GID 0 (r
     <TabItem value="evaluation-h2-database" label="Evaluation (H2 database)">
 
     ```docker
-    FROM wso2/wso2am:4.7.0
+    FROM wso2/wso2am:4.6.0
 
     # Grant root group write access for OpenShift arbitrary UID support
     USER root
@@ -120,7 +147,7 @@ OpenShift assigns a random UID to the container process but always uses GID 0 (r
     WSO2 images do not include a JDBC driver. Add the driver for your database:
 
     ```docker
-    FROM wso2/wso2am:4.7.0
+    FROM wso2/wso2am:4.6.0
 
     # Grant root group write access for OpenShift arbitrary UID support
     USER root
@@ -146,7 +173,7 @@ OpenShift assigns a random UID to the container process but always uses GID 0 (r
     :::note[Matching your cluster architecture]
     The `--platform` flag must match the architecture of your cluster nodes:
 
-    - **Managed clusters (AKS, ROSA, ARO)** — use `linux/amd64` by default
+    - **Managed clusters (AKS, ROSA, ARO)** — use `linux/amd64`
     - **ARM based VMs** — use `linux/arm64`
 
     Using the wrong platform will cause `ErrImagePull` when the pod starts. You can check a node's architecture with `kubectl get nodes -o wide`
@@ -159,11 +186,11 @@ OpenShift assigns a random UID to the container process but always uses GID 0 (r
       --format='{{index .RepoDigests 0}}'
     ```
 
-### Step 5 — Set Up the Database {#step-5}
+### Step 6 — Set Up the Database {#step-6}
 
 The All-in-One pattern uses an embedded H2 database by default, which is suitable for evaluation. For production deployments, set up an external database before the pods start.
 
-If you are using H2, skip this step and proceed to [Step 6](#step-6).
+If you are using H2, skip this step and proceed to [Step 7](#step-7).
 
 For production, follow the [Setting Up Databases](../../setup/set-up-api-manager/setting-up-databases/overview.mdx) guide to:
 
@@ -171,7 +198,7 @@ For production, follow the [Setting Up Databases](../../setup/set-up-api-manager
 2. Obtain the schema scripts for your database type
 3. Run the scripts to initialise both databases
 
-### Step 6 — Create the Keystore Secret {#step-6}
+### Step 7 — Create the Keystore Secret {#step-7}
 
 The Helm chart mounts a Kubernetes secret named `apim-keystore-secret` as a volume into the pods. The pods will not start if this secret does not exist.
 
@@ -203,18 +230,18 @@ The Helm chart mounts a Kubernetes secret named `apim-keystore-secret` as a volu
 - The commands above use the default WSO2 keystores which are suitable for evaluation only. For production-level keystore setup, refer to [Configuring Keystores in WSO2 API Manager](../../setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx).
 :::
 
-### Step 7 — Deploy the All-in-One {#step-7}
+### Step 8 — Deploy the All-in-One {#step-8}
 
 1. Download the OpenShift default values file:
 
     ```bash
-    curl -L https://raw.githubusercontent.com/wso2/helm-apim/4.7.x/all-in-one/default_openshift_values.yaml \
+    curl -L https://raw.githubusercontent.com/wso2/helm-apim/4.6.x/all-in-one/default_openshift_values.yaml \
       -o values.yaml
     ```
 
 2. Open `values.yaml` and update the following sections:
 
-    **Custom image** — point to the OpenShift-compatible image you built in Step 4:
+    **Custom image** — point to the OpenShift-compatible image you built in Step 5:
 
     ```yaml
     wso2:
@@ -226,7 +253,34 @@ The Helm chart mounts a Kubernetes secret named `apim-keystore-secret` as a volu
           digest: "sha256:..."
     ```
 
-    **Database connection:**
+    **Enable OpenShift mode:**
+
+    ```yaml
+    kubernetes:
+      openshift:
+        enabled: true
+    ```
+
+    :::note
+    The `default_openshift_values.yaml` has `openshift.enabled: false` — make sure to set this to `true`.
+    :::
+
+    **Ingress hostnames** — update to match your cluster's DNS:
+
+    ```yaml
+    kubernetes:
+      ingress:
+        management:
+          hostname: "am.example.com"
+        gateway:
+          hostname: "gw.example.com"
+        websocket:
+          hostname: "websocket.example.com"
+        websub:
+          hostname: "websub.example.com"
+    ```
+
+    **Database connection** (skip if using H2):
 
     ```yaml
     wso2:
@@ -243,39 +297,15 @@ The Helm chart mounts a Kubernetes secret named `apim-keystore-secret` as a volu
               password: "<DB_PASSWORD>"
     ```
 
-    **Route hostnames** — update the hostnames to match your cluster's DNS:
-
-    :::note[Prefer Ingress over Routes?]
-    The `default_openshift_values.yaml` includes both a `kubernetes.route` block and a `kubernetes.ingress` block. Routes are enabled by default and ingress is disabled. If you have an NGINX Ingress Controller installed on your OpenShift cluster and prefer to use Ingress, set `kubernetes.route.management.enabled`, `kubernetes.route.gateway.enabled`, etc. to `false`, and set the corresponding `kubernetes.ingress.*` entries to `true`.
-    :::
-
-    ```yaml
-    kubernetes:
-      route:
-        management:
-          hostname: "am.example.com"
-        gateway:
-          hostname: "gw.example.com"
-        websocket:
-          hostname: "websocket.example.com"
-        websub:
-          hostname: "websub.example.com"
-    ```
-
 3. Deploy:
 
     ```bash
     helm install apim wso2/wso2am-all-in-one \
-      --version 4.7.0-1 \
+      --version 4.6.0-1 \
       --namespace apim \
       --dependency-update \
-      -f values.yaml \
-      --set wso2.apim.configurations.encryption.key=$(openssl rand -hex 32)
+      -f values.yaml
     ```
-
-    :::warning[Encryption key is mandatory]
-    WSO2 API Manager 4.7.0 requires a 256-bit encryption key to be set before the first startup. The command above generates one automatically using `openssl`. If you are deploying to a shared or production environment, generate the key separately and store it securely — you will need the same key if you redeploy or scale the deployment. For more information, see [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key).
-    :::
 
 4. Wait for the pod to be ready:
 
@@ -285,68 +315,119 @@ The Helm chart mounts a Kubernetes secret named `apim-keystore-secret` as a volu
 
     The pod should show `1/1 Running` before proceeding.
 
-### Step 8 — Verify Routes {#step-8}
+### Step 9 — Verify Ingress {#step-9}
 
-The Helm chart creates OpenShift `Route` objects automatically. Verify they were created:
-
-```bash
-oc get routes -n apim
-```
-
-You should see routes for `management`, `gateway`, `websocket`, and `websub` with the hostnames you configured.
-
-### Step 9 — Configure DNS {#step-9}
-
-You need to point your route hostnames to the correct address depending on your environment.
-
-<Tabs groupId="tabs">
-<TabItem value="openshift-local-crc" label="OpenShift Local (CRC)">
-
-The CRC VM is always reachable at `127.0.0.1` from your local machine. Add the route hostnames to your `/etc/hosts` file:
+The Helm chart creates Kubernetes `Ingress` objects automatically. Verify they were created:
 
 ```bash
-sudo sh -c 'echo "127.0.0.1 am.wso2.com gw.wso2.com websocket.wso2.com websub.wso2.com" >> /etc/hosts'
+kubectl get ing -n apim
 ```
 
-</TabItem>
-<TabItem value="managed-cluster-rosa-aro" label="Managed cluster (ROSA / ARO)">
+You should see ingress entries for management, gateway, websocket, and websub with the hostnames you configured.
 
-1. Get the router's external IP:
+### Step 10 — Configure DNS {#step-10}
+
+You need to point your ingress hostnames to the NGINX Ingress Controller's external address.
+
+1. Get the NGINX controller's external IP:
 
     ```bash
-    oc get svc router-default -n openshift-ingress
+    kubectl get svc -n ingress-nginx ingress-nginx-controller
     ```
 
     Note the `EXTERNAL-IP` value from the output.
 
-2. For quick testing, add the external address to your `/etc/hosts` file:
+2. Map the hostnames to that IP:
+
+    <Tabs groupId="tabs">
+    <TabItem value="openshift-local-crc" label="OpenShift Local (CRC)">
+
+    CRC does not provision a load balancer, so `EXTERNAL-IP` will show `<pending>`. The NGINX NodePorts (`30400` for HTTPS) are not forwarded from the Mac to the CRC VM, so the browser cannot reach them directly.
+
+    The recommended workaround is to create OpenShift Routes manually. CRC's built-in HAProxy router handles port 443 traffic natively, so Routes work on standard ports without any extra configuration:
+
+    ```bash
+    oc create route passthrough apim-management \
+      --service=apim-wso2am-all-in-one-am-service \
+      --port=9443 \
+      --hostname=am.wso2.com \
+      -n apim
+
+    oc create route passthrough apim-gateway \
+      --service=apim-wso2am-all-in-one-am-service \
+      --port=8243 \
+      --hostname=gw.wso2.com \
+      -n apim
+
+    oc create route passthrough apim-websocket \
+      --service=apim-wso2am-all-in-one-am-service \
+      --port=8099 \
+      --hostname=websocket.wso2.com \
+      -n apim
+
+    oc create route passthrough apim-websub \
+      --service=apim-wso2am-all-in-one-am-service \
+      --port=8021 \
+      --hostname=websub.wso2.com \
+      -n apim
+    ```
+
+    Then add the hostnames to your `/etc/hosts`:
+
+    ```bash
+    sudo sh -c 'echo "127.0.0.1 am.wso2.com gw.wso2.com websocket.wso2.com websub.wso2.com" >> /etc/hosts'
+    ```
+
+    </TabItem>
+    <TabItem value="managed-cluster-rosa-aro" label="Managed cluster (ROSA / ARO)">
+
+    For quick testing, add the external address to your `/etc/hosts` file:
 
     ```text
     <EXTERNAL-IP> am.wso2.com gw.wso2.com websocket.wso2.com websub.wso2.com
     ```
 
-For a production setup, create DNS records in your DNS provider mapping the hostnames to the external IP instead of using `/etc/hosts`.
+    For a production setup, create DNS records in your DNS provider mapping the hostnames to the external IP instead of using `/etc/hosts`.
 
-</TabItem>
-</Tabs>
+    </TabItem>
+    </Tabs>
 
 :::note
-These are the default hostnames. If you customised the hostnames in your `values.yaml`, use those values here instead (`kubernetes.route.management.hostname`, `kubernetes.route.gateway.hostname`, etc.).
+These are the default hostnames. If you customised the hostnames in your `values.yaml`, use those values here instead.
 :::
 
-### Step 10 — Access the Portals {#step-10}
+### Step 11 — Access the Portals {#step-11}
 
 Once DNS is configured, open the following URLs in your browser:
 
+<Tabs groupId="tabs">
+<TabItem value="openshift-local-crc" label="OpenShift Local (CRC)">
+
+If you created Routes manually in Step 10, access the portals on the standard port via the CRC HAProxy router:
+
 | Portal | URL |
 | ------ | --- |
-| Publisher | `https://<kubernetes.route.management.hostname>/publisher` |
-| Developer Portal | `https://<kubernetes.route.management.hostname>/devportal` |
-| Admin Portal | `https://<kubernetes.route.management.hostname>/admin` |
-| Carbon Console | `https://<kubernetes.route.management.hostname>/carbon` |
-| Gateway | `https://<kubernetes.route.gateway.hostname>` |
+| Publisher | `https://am.wso2.com/publisher` |
+| Developer Portal | `https://am.wso2.com/devportal` |
+| Admin Portal | `https://am.wso2.com/admin` |
+| Carbon Console | `https://am.wso2.com/carbon` |
+| Gateway | `https://gw.wso2.com` |
+
+</TabItem>
+<TabItem value="managed-cluster-rosa-aro" label="Managed cluster (ROSA / ARO)">
+
+| Portal | URL |
+| ------ | --- |
+| Publisher | `https://<kubernetes.ingress.management.hostname>/publisher` |
+| Developer Portal | `https://<kubernetes.ingress.management.hostname>/devportal` |
+| Admin Portal | `https://<kubernetes.ingress.management.hostname>/admin` |
+| Carbon Console | `https://<kubernetes.ingress.management.hostname>/carbon` |
+| Gateway | `https://<kubernetes.ingress.gateway.hostname>` |
 
 Replace the hostname placeholders with the actual values from your `values.yaml`. With default values, the management hostname is `am.wso2.com` and the gateway hostname is `gw.wso2.com`.
+
+</TabItem>
+</Tabs>
 
 Default credentials: **admin / admin**
 
@@ -360,8 +441,6 @@ Every component deployed on OpenShift requires the following block in its values
 
 ```yaml
 kubernetes:
-  openshift:
-    enabled: true
   securityContext:
     # Allow OpenShift to assign arbitrary UIDs
     runAsUser: null
@@ -381,7 +460,6 @@ kubernetes:
 
 | Setting | Why it's needed |
 |---|---|
-| `openshift.enabled: true` | Enables OpenShift-specific filesystem adjustments during deployment |
 | `runAsUser: null` | Lets OpenShift assign its random UID instead of the image's fixed UID |
 | `enableAppArmor: false` | AppArmor is not supported on OpenShift |
 | `seLinux.enabled: false` | Leave off unless your cluster has SELinux policies configured for WSO2 |
@@ -401,83 +479,9 @@ For distributed patterns, follow the corresponding Kubernetes pattern guide and 
 
 **For each component in your chosen pattern:**
 
-1. **Build an OpenShift-compatible image** — apply the same `USER root` / `chgrp` / `chmod` / `USER wso2carbon` pattern from [Step 4](#step-4) to each component's base image (`wso2/wso2am-acp:4.7.0`, `wso2/wso2am-tm:4.7.0`, `wso2/wso2am-universal-gw:4.7.0`). TM and Gateway do not need the JDBC driver.
+1. **Build an OpenShift-compatible image** — apply the same `USER root` / `chgrp` / `chmod` / `USER wso2carbon` pattern from [Step 5](#step-5) to each component's base image (`wso2/wso2am-acp:4.6.0`, `wso2/wso2am-tm:4.6.0`, `wso2/wso2am-universal-gw:4.6.0`). TM and Gateway do not need the JDBC driver.
 2. **Add the security context block** from [Section 1](#section-1) to each component's values file.
-3. **Use the same encryption key across all components** — generate it once and pass it to every `helm install` command:
-
-    ```bash
-    export APIM_ENCRYPTION_KEY=$(openssl rand -hex 32)
-    ```
-
-**Example — Pattern 3 (ACP + TM + Gateway):**
-
-Create a values file for each component. For the ACP (`values-acp.yaml`):
-
-```yaml
-kubernetes:
-  openshift:
-    enabled: true
-  securityContext:
-    runAsUser: null
-    seLinux:
-      enabled: false
-      level: ""
-    seccompProfile:
-      type: RuntimeDefault
-      localhostProfile: ""
-  enableAppArmor: false
-  configMaps:
-    scripts:
-      defaultMode: "0457"
-
-wso2:
-  deployment:
-    image:
-      registry: "<YOUR_REGISTRY>"
-      repository: "<YOUR_ACP_IMAGE>"
-      tag: "<YOUR_TAG>"
-      digest: "sha256:..."
-  apim:
-    configurations:
-      databases:
-        apim_db:
-          url: "<JDBC_URL_FOR_APIM_DB>"
-          username: "<DB_USERNAME>"
-          password: "<DB_PASSWORD>"
-        shared_db:
-          url: "<JDBC_URL_FOR_SHARED_DB>"
-          username: "<DB_USERNAME>"
-          password: "<DB_PASSWORD>"
-```
-
-Create equivalent `values-tm.yaml` and `values-gw.yaml` with the security context block and the custom image reference — TM and GW do not require database configuration.
-
-Deploy in order:
-
-```bash
-export APIM_ENCRYPTION_KEY=$(openssl rand -hex 32)
-
-helm install apim-acp wso2/wso2am-acp \
-  --version 4.7.0-1 \
-  --namespace apim --create-namespace \
-  --dependency-update \
-  -f values-acp.yaml \
-  --set wso2.apim.configurations.encryption.key=$APIM_ENCRYPTION_KEY
-
-helm install apim-tm wso2/wso2am-tm \
-  --version 4.7.0-1 \
-  --namespace apim \
-  --dependency-update \
-  -f values-tm.yaml \
-  --set wso2.apim.configurations.encryption.key=$APIM_ENCRYPTION_KEY
-
-helm install apim-gw wso2/wso2am-universal-gw \
-  --version 4.7.0-1 \
-  --namespace apim \
-  --dependency-update \
-  -f values-gw.yaml \
-  --set wso2.apim.configurations.encryption.key=$APIM_ENCRYPTION_KEY
-```
+3. **Set `kubernetes.openshift.enabled: true`** in each component's values file.
 
 ---
 
@@ -489,7 +493,7 @@ helm install apim-gw wso2/wso2am-universal-gw \
 
 **Cause:** The container process cannot write to a directory because the image was not prepared with GID 0 group ownership.
 
-**Fix:** Ensure your Dockerfile includes the `chgrp -R 0` and `chmod -R g=u` steps from [Step 4](#step-4). Check the pod logs and the applied security context:
+**Fix:** Ensure your Dockerfile includes the `chgrp -R 0` and `chmod -R g=u` steps from [Step 5](#step-5). Check the pod logs and the applied security context:
 
 ```bash
 oc logs <pod-name> -n apim
@@ -511,6 +515,26 @@ oc create secret docker-registry registry-credentials \
 
 oc secrets link default registry-credentials --for=pull -n apim
 ```
+
+### Ingress not reachable
+
+**Symptom:** Hostnames don't resolve or the browser cannot connect.
+
+**Fix:**
+
+1. Confirm the NGINX Ingress Controller has an external IP:
+
+    ```bash
+    kubectl get svc -n ingress-nginx ingress-nginx-controller
+    ```
+
+    If `EXTERNAL-IP` is `<pending>`, the load balancer hasn't been provisioned yet. On CRC this may stay pending — use `127.0.0.1` instead.
+
+2. Confirm the Ingress objects were created:
+
+    ```bash
+    kubectl get ing -n apim
+    ```
 
 ### Volume mount errors
 

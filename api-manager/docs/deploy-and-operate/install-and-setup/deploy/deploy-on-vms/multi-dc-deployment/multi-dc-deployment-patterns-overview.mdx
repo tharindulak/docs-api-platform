@@ -97,7 +97,7 @@ WSO2 API Manager has been tested for DB replication only with MSSQL, Oracle and 
 
 1. **Distributed Setups:**
 Multiple distributed setups of WSO2 API Manager are established in different data centers or geographical locations.
-Each setup includes Classic Gateway instances, Publisher/Store components, Key Manager instances and any other relevant components.
+Each setup includes Universal Gateway instances, Publisher/Store components, Key Manager instances and any other relevant components.
 
 :::note
 Please note that both regions can be configured as all-in-one setups as well. It is considered as a fully distributed setup in order to aid the understanding of the communication among the components.
@@ -141,7 +141,7 @@ Sub regions are configured to handle incoming traffic exclusively. These regions
 
 3. **Horizontal Scalability:**
 This documentation provides information on configuring a single main region with a single sub region. However, the deployment can be horizontally scaled as needed by adding multiple sub regions. This approach ensures flexibility and responsiveness to changes in traffic patterns and loads.
-Please note the recommendations mentioned [here](../../../../../guides/api-gateway/classic-gateway-universal/scaling-the-gateway.mdx) when scaling the Gateways.
+Please note the recommendations mentioned [here](../../../../../guides/api-gateway/universal-gateway/scaling-the-gateway.mdx) when scaling the Gateways.
 
 Please refer to the [documentation](./configuring-multi-dc-deployment-pattern-2.mdx) for detailed information on configuring pattern 2.
 

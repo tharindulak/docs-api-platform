@@ -11,7 +11,7 @@ When you expose an API, you create a proxy to your actual backend service. While
 This limit acts as a protective cap on the total number of requests your API forwards to the backend within a given time period, ensuring your backend services remain stable even as API usage grows.
 
 :::note
-By default, backend throughput limits are enforced locally on each Gateway node. For clustered deployments where you need consistent enforcement across all nodes, you can configure distributed counters using Redis. See [Configuring Distributed Throttling](../../../api-gateway/classic-gateway-universal/rate-limiting/configuring-rate-limiting-api-gateway-cluster.mdx) for details.
+By default, backend throughput limits are enforced locally on each Gateway node. For clustered deployments where you need consistent enforcement across all nodes, you can configure distributed counters using Redis. See [Configuring Distributed Throttling](../../../api-gateway/universal-gateway/rate-limiting/configuring-rate-limiting-api-gateway-cluster.mdx) for details.
 :::
 
 ## Setting Backend Throughput Limits

@@ -1,6 +1,6 @@
 ---
 title: Semantic Caching
-description: The Semantic Cache is a custom policy for the WSO2 API Manager Classic Gateway that provides intelligent, meaning-based caching for AI requests.  # generated from the first paragraph; a writer should improve it
+description: The Semantic Cache is a custom policy for the WSO2 API Manager Universal Gateway that provides intelligent, meaning-based caching for AI requests.  # generated from the first paragraph; a writer should improve it
 type: how-to
 sidebar_label: Semantic caching
 sidebar_position: 8
@@ -9,7 +9,7 @@ sidebar_position: 8
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Semantic Cache is a custom policy for the WSO2 API Manager Classic Gateway that provides intelligent, meaning-based caching for AI requests. Unlike traditional caches that rely on exact matches, the Semantic Cache uses vector embeddings to identify and serve responses for semantically similar queries. This reduces latency, lowers costs associated with calling backend AI models, and improves overall API performance.
+The Semantic Cache is a custom policy for the WSO2 API Manager Universal Gateway that provides intelligent, meaning-based caching for AI requests. Unlike traditional caches that rely on exact matches, the Semantic Cache uses vector embeddings to identify and serve responses for semantically similar queries. This reduces latency, lowers costs associated with calling backend AI models, and improves overall API performance.
 
 ## Features
 
@@ -127,6 +127,10 @@ cluster_mode_enabled = true
 
 </TabItem>
 </Tabs>
+
+:::note[Important]
+AWS ElastiCache is supported only from WSO2 API Manager 4.6.0 U2 update level (`wso2am-4.6.0.40`) onwards.
+:::
 
 You can optionally specify a `ttl` property to control the time-to-live for cached entries. If not set, the default TTL is 3600 seconds.
 

@@ -1300,17 +1300,14 @@ components:
             Comma separated rule severities that make this policy fail. Violations of other severities are still
             reported but do not affect the policy adherence status.
 
-            Allowed severities are `ERROR`, `WARN` and `INFO`, matched case-insensitively. Any other value is
-            rejected with 400 and error code 990004. An accepted value is stored normalised: surrounding
-            whitespace is dropped, case is folded to upper case and repeats are removed, so it may read back in a
-            different form from the one sent.
+            Three states are meaningful. Null means per policy severity filtering is not enabled on this
+            deployment, and clients should not offer it. An empty string means it is enabled but nothing has been
+            configured for this policy, so every severity affects compliance. A value lists the severities that do.
 
-            An empty string means this policy has not narrowed its severities, so every severity affects
-            compliance. A value lists the severities that do. Omitting the field on an update preserves whatever
-            is stored; sending it empty clears the selection.
-
-            The field is null when `apim.governance.per_policy_severity_filtering_enabled` has been explicitly
-            disabled, which clients should treat as a signal not to offer the control at all.
+            Allowed severities are `ERROR`, `WARN` and `INFO`. Any other value is rejected with 400 and error code
+            990004, and an accepted value is stored normalised to upper case with repeats removed, so it may read
+            back in a different form from the one sent. A selection sent to a deployment which has not enabled the
+            feature is also rejected with 400 and error code 990004, rather than being accepted and dropped.
           example: "ERROR,WARN"
       required:
         - name
@@ -1605,12 +1602,7 @@ components:
           example: "API Security Ruleset"
         status:
           type: string
-          nullable: true
-          description: |
-            Status of the ruleset validation. Null when per-policy severity filtering is enabled and the ruleset
-            is governed by more than one policy, since the same ruleset can validly pass under one policy and fail
-            under another - there is no single verdict to report here. See
-            [Severities that Affect Compliance]({{base_path}}/administer/governance/governance-concept/#severities-that-affect-compliance).
+          description: Status of the ruleset validation.
           enum:
             - PASSED
             - FAILED

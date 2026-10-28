@@ -20,7 +20,7 @@ Refer to the instructions below to do the configurations.
 You need to write a custom Gateway Agent bundle as explained below.
 
 :::tip
-The following is an out-of-the-box agent that you can use as references.
+The following is a out-of-the-box agent that you can use as references.
 
   - [AWS GW Agent](https://github.com/wso2-extensions/apim-gw-agents/tree/main/aws)
 :::
@@ -45,7 +45,7 @@ The following is an out-of-the-box agent that you can use as references.
     | --- | --- |
     | **getImplementation** | Provides the fully qualified class name of the implementation that corresponds to the \`GatewayDeployer\` interface. |
     | **getConnectionConfigurations** | Provides the list of configurations that need to appear in the Admin Portal in order to connect with the Management API of the third party Gateway. |
-    | **getGatewayFeatureCatalog** | Provides the list of portal features supported by the third party gateway. Portal UIs will be rendered based on the availability of features. Please refer \[Classic Gateway Feature Catalog\](https://github.com/wso2/carbon-apimgt/blob/v9.31.86/components/apimgt/org.wso2.carbon.apimgt.impl/src/main/resources/gatewayFeatureCatalog/synapse-gateway-feature-catalog.json) to see how to do this configuration. |
+    | **getGatewayFeatureCatalog** | Provides the list of portal features supported by the third party gateway. Portal UIs will be rendered based on the availability of features. Please refer \[Universal Gateway Feature Catalog\](https://github.com/wso2/carbon-apimgt/blob/v9.31.86/components/apimgt/org.wso2.carbon.apimgt.impl/src/main/resources/gatewayFeatureCatalog/synapse-gateway-feature-catalog.json) to see how to do this configuration. |
     | **getType** | Type of gateway agent. For example, AWS. |
     | **getDefaultHostnameTemplate** | Provides the base URL of the Gateway instance |
 

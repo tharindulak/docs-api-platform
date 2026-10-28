@@ -50,10 +50,6 @@ You can restrict access to the web portals of the API-M runtime by binding them 
 
     This will add a `RemoteAddrValve` Tomcat valve in the `<API-M_HOME>/repository/conf/tomcat/context.xml` file and it will apply to each web application hosted on the Carbon server. Therefore, all outside requests to any web application will be blocked.
 
-    :::note
-    When you enable access control for all web applications, only the IP addresses specified in the `allow` parameter will have access. All other IP addresses will be blocked. Make sure to include all IP addresses that require access to the web applications in the whitelist.
-    :::
-
 -   You can also restrict access to particular servlets in a web application by adding the following configuration to the `<API-M_HOME>/repository/conf/deployment.toml` file:
 
     ```toml

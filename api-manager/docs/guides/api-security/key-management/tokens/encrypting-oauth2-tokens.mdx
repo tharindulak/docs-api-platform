@@ -6,12 +6,10 @@ sidebar_label: Encrypting OAuth2 tokens
 sidebar_position: 5
 ---
 
-WSO2 API Manager provides the capability to encrypt OAuth2 tokens (OAuth2 access tokens, refresh tokens, consumer secrets, authorization codes, or any other OAuth2 key) using a symmetric encryption key. The result is encoded in Base64 and stored in the database.
+WSO2 API Manager provides the capability to encrypt OAuth2 tokens (OAuth2 access tokens, refresh tokens, consumer secrets, authorization codes, or any other OAuth2 key) using the primary keystore. The result is encoded in Base64 and stored in the database.
 
 :::info
 **Symmetric Encryption** is a form of encryption where the same key is used to encrypt and decrypt the message along with a mathematical algorithm. As long as both sender and recipient know the secret key, they can encrypt and decrypt all messages that use this key.
-
-For comprehensive information about symmetric encryption in WSO2 API Manager, see [Symmetric Encryption](../../../../deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx) and [Working with Encrypted Passwords](../../../../deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/logins-and-passwords/secure-passwords/working-with-encrypted-passwords.mdx).
 :::
 
 :::warning
@@ -31,6 +29,15 @@ Follow the steps below to enable OAuth2 token encryption
     [apim.oauth_config]
     enable_token_encryption = true
     ```
+
+    :::note
+    By default, WSO2 API Manager uses `RSA/ECB/OAEPwithSHA1andMGF1Padding` algorithm for token encryption. If you want to change the algorithm, please add following configuration to deployment.toml, specifying the preferred algorithm.
+
+    ```toml
+    [system.parameter]
+    "org.wso2.CipherTransformation" = "<Algorithm>"
+    ```
+    :::
 
 3.  [Start the server](../../../../deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx#starting-the-api-m-server). 
 

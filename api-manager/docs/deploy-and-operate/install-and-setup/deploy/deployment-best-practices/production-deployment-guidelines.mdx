@@ -110,7 +110,7 @@ Given below is a checklist that will guide you to set up your production environ
       <td>HTTP header size</td>
       <td>
 
-        The default value of `maxHttpHeaderSize` on both the HTTP and HTTPS connectors in `<API-M_HOME>/repository/conf/tomcat/catalina-server.xml` is set to **32 KB (32768 bytes)**.
+        Starting from U2 update level 35, the default value of `maxHttpHeaderSize` on both the HTTP and HTTPS connectors in `<API-M_HOME>/repository/conf/tomcat/catalina-server.xml` is **32 KB (32768 bytes)**, increased from the previous default of 8 KB (8192 bytes).
 
         This value **must not be set to less than 32 KB (32768 bytes)**, specifically on the **API Control Plane (ACP) node** in a distributed deployment (or on the single node in an all-in-one deployment), if **Multi-Option Authentication** is used for portal (Publisher, DevPortal, Admin) logins in federated authentication flows.
 
@@ -145,16 +145,6 @@ Given below is a checklist that will guide you to set up your production environ
     <tr>
       <td>Data backup and archiving</td>
       <td>Implement a [backup and recovery strategy](./backup-recovery.mdx) for your system.</td>
-    </tr>
-    <tr>
-      <td>Encryption Key</td>
-      <td>
-
-        Generate a symmetric encryption key and add it to the `deployment.toml` file. See [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key) for instructions.
-
-        **Note:** In distributed or high-availability deployments, **all API-M instances must use the same symmetric encryption key**. Ensure the identical key value is added to the `deployment.toml` of every node in the cluster to maintain the ability to decrypt registry resources across instances.
-
-      </td>
     </tr>
   </tbody>
 </table>

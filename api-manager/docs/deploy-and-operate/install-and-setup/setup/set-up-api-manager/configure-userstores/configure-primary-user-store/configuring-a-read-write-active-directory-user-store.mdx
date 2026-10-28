@@ -148,7 +148,7 @@ When working with Active Directory;
 
     Although using the user store manager does not depend on this property, you must consider enabling this if there are any performance issues in your production environment. Enabling this property affects the performance when the user logs in. This depends on the users, roles and permission stats.
 
--   If you are using `ldaps` (secured LDAP) to connect to the Active Directory as shown in the example below, you need to import the certificate of Active Directory to the `client-truststore.jks` of the WSO2 product. For information on how to add certificates to the truststore and how keystores are configured and used in a system, see [Creating New Keystores](../../security/configuring-keystores/keystore-basics/creating-new-keystores.mdx).
+-   If you are using `ldaps` (secured LDAP) to connect to the Active Directory as shown in the example below, you need to import the certificate of Active Directory to the `client-truststore.jks` of the WSO2 product. For information on how to add certificates to the truststore and how keystores are configured and used in a system, see Using Asymmetric Encryption .
 
     ```toml
     ConnectionURL="ldaps://10.100.1.100:636"
@@ -198,7 +198,7 @@ ObjectGUID is a binary attribute. Add the following user store property to the `
             MembershipAttribute="member"
             ```
 
-    To read roles based on a backlink attribute, use the following code snippet instead of the above:
+    To read roles based on a backlink attribute, use the following code snipet instead of the above:
         ```text
         ReadGroups="false"
         GroupSearchBase="ou=system"

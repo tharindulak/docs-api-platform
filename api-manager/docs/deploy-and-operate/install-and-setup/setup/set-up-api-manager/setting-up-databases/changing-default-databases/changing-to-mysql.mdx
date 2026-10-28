@@ -59,19 +59,29 @@ WSO2 recommends that you use Failover configuration over Load Balanced configur
 
 1.  In the MySQL command prompt, create the database using a **case-sensitive collation**.
 
-    :::warning[Case-Sensitive Collation Requirement]
-    WSO2 API Manager **requires** a case-sensitive database collation. The default collation in MySQL 8.0+ is `utf8mb4_0900_ai_ci`, which is **case insensitive** and **must not** be used. Using a case-insensitive collation can lead to data integrity issues.
-    :::
-
-    For **fresh setups**, it is mandatory to use a **case-sensitive collation** such as `utf8mb4_bin` or `latin1_bin`:
-
     ```sql
-    CREATE DATABASE <DATABASE_NAME> CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+    CREATE DATABASE <DATABASE_NAME> CHARACTER SET latin1 COLLATE latin1_bin;
     ```
 
-    :::tip[UTF-8 Support]
-    WSO2 API Manager supports UTF-8 with MySQL. If you require full Unicode support (e.g., for multilingual API names, descriptions, or user data), use the `utf8mb4` character set with a case-sensitive collation such as `utf8mb4_bin` as shown above.
+    :::warning
+    When creating the database related to apim_db with MySQL 8.0, add **character set latin1** to avoid the MySQL Linux ERROR 1071 (42000).
+    ```sql
+    CREATE DATABASE <APIM_DATABASE_NAME> CHARACTER SET latin1 COLLATE latin1_bin;
+    ```
     :::
+
+    :::info[Character Set in MySQL]
+    - For users of Microsoft Windows, when creating the database in MySQL, it is important to specify the character set as latin1. Failure to do this may result in an error (error code: 1709) when starting your cluster. This error occurs in certain versions of MySQL (5.6.x) and is related to the UTF-8 encoding. MySQL originally used the latin1 character set by default, which stored characters in a 2-byte sequence. However, in recent versions, MySQL defaults to UTF-8 to be friendlier to international users. Hence, you must use latin1 as the character set as indicated below in the database creation commands to avoid this problem. Note that this may result in issues with non-latin characters (like Hebrew, Japanese, etc.). The following is how your database creation command should look.
+      ```bash
+      CREATE DATABASE <DATABASE_NAME> CHARACTER SET latin1 COLLATE latin1_bin;
+      ```
+    :::
+
+    :::warning[Case-Sensitive Collation Requirement]
+    WSO2 API Manager **requires** a case-sensitive database collation. The default collation in MySQL is **case insensitive** and **must not** be used. Using a case-insensitive collation can lead to data integrity issues.
+    :::
+
+    For **fresh setups**, it is mandatory to use a **case-sensitive collation** such as `latin1_bin`.
 
 1.  Provide authorization to the user that you use to access the databases. 
 
@@ -252,9 +262,9 @@ CREATE TABLE IF NOT EXISTS UM_ORG_ROLE_USER (
 CREATE TABLE IF NOT EXISTS IDN_OAUTH2_TOKEN_BINDING (
         IDN_OAUTH2_TOKEN_BINDING_ID INTEGER NOT NULL AUTO_INCREMENT,
         TOKEN_ID VARCHAR (255),
-        TOKEN_BINDING_TYPE VARCHAR (32) CHARACTER SET latin1 COLLATE latin1_bin,
+        TOKEN_BINDING_TYPE VARCHAR (32),
         TOKEN_BINDING_REF VARCHAR (32),
-        TOKEN_BINDING_VALUE VARCHAR (1024) CHARACTER SET latin1 COLLATE latin1_bin,
+        TOKEN_BINDING_VALUE VARCHAR (1024),
         TENANT_ID INTEGER DEFAULT -1,
         UNIQUE (TOKEN_ID,TOKEN_BINDING_TYPE,TOKEN_BINDING_VALUE),
         FOREIGN KEY (TOKEN_ID) REFERENCES IDN_OAUTH2_ACCESS_TOKEN(TOKEN_ID) ON DELETE CASCADE,

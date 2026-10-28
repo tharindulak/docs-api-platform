@@ -6,6 +6,9 @@ sidebar_label: Overview
 sidebar_position: 1
 ---
 
+:::info[New in 4.6.0 — Moesif-powered WSO2 Analytics replaces Choreo Analytics for enhanced insights and observability.]
+:::
+
 API Manager analytics provides insights into API usage, performance, and other key metrics to help API publishers and consumers make informed decisions. The analytics dashboard provides a comprehensive view of the API traffic, user engagement, and other relevant data. This section provides an overview of the analytics features available in WSO2 API Manager and guidance on how to use them effectively.
 
 ## Architecture
@@ -20,7 +23,7 @@ Analytics architecture consists of the following components
 
 ### Inbound Analytics
 
-As the above diagram shows, Inbound Analytics consists of analytics data that are collected between the user and API Proxy. This includes `apiContext`, `proxyResponseCode`, `proxyResponseCode`, `apiType` etc.
+As the above diagram shows, Inbound Analytics consists of analytics data that are collected between the user and API Proxy. This includes `apiContext`, `proxyResponseCode`, `apiType` etc.
 
 ### Outbound Analytics
 
@@ -32,7 +35,7 @@ AI Analytics shows the Outbound analytics data that are specific to AI APIs. Thi
 
 WSO2 API Manager supports multiple platforms to monitor and analyze API traffic. This includes:
 
-- [**WSO2 Moesif Analytics**](./moesif-analytics/moesif-integration-guide.mdx) - Default analytics platform integrated with WSO2 API Manager. A Powerful platform to monitor and analyze API traffic.
+- [**WSO2 Moesif Analytics**](./moesif-integration-guide.mdx) - Default analytics platform integrated with WSO2 API Manager. A Powerful platform to monitor and analyze API traffic.
 - [**ELK Based Analytics**](./other-analytics-solutions/elk-installation-guide.mdx) - Native support for Elasticsearch, Logstash, and Kibana (ELK) stack to monitor and analyze API traffic.
 - [**OpenSearch Based Analytics**](./other-analytics-solutions/opensearch-installation-guide.mdx) - Native support for OpenSearch to monitor and analyze API traffic.
 - [**DataDog Based Analytics**](./other-analytics-solutions/datadog-installation-guide.mdx) - Integration with DataDog to monitor and analyze API traffic.

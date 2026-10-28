@@ -63,7 +63,7 @@ Given below are the security guidelines for the API-M runtime.
         - Use an SHA256 certificate.
         - Make sure that WSO2 default certificates do not exist in any of the keystores in your production environment. For example, be sure to delete the default public certificate in the default trust store that is shipped with the product.
 
-        For more information on recommendations for using keystores in WSO2 products, see [Recommendations for setting up keystores](../../setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx#recommendations-for-setting-up-keystores).<br /> For information on how to create and configure your own keys and keystores, see [Creating New Keystores](../../setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx).
+        For more information on recommendations for using keystores in WSO2 products, see [About Asymmetric Cryptography](../../setup/set-up-api-manager/security/configuring-keystores/keystore-basics/about-asymetric-cryptography.mdx).<br /> For information on how to create and configure your own keys and keystores, see [Creating New Keystores](../../setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx).
 
       </td>
     </tr>
@@ -227,7 +227,7 @@ Given below are the security guidelines for the API-M runtime.
       </td>
       <td>
 
-        WSO2 API Manager application code follows secure coding practices and receives regular security updates. Content Security Policy (CSP) provides an additional layer of protection by restricting how the application is framed or embedded in the browser.
+        WSO2 API Manager application code is developed adhering to security guidelines, and known vulnerabilities within the package have been identified and patched. In addition, Content Security Policy (CSP) can provide an extra layer of protection by restricting how the application is framed or embedded in the browser.
 
         It is recommended to configure the following CSP header at the Load Balancer (LB) level to secure framing behavior and reduce clickjacking risk:
 
@@ -396,7 +396,7 @@ Given below are the security guidelines for the API-M runtime.
       </td>
       <td>
 
-        The recommended JDK version is JDK 21 or 25. For more information, see [Tested Operating Systems and JDKs](../../../../reference/product-compatibility.mdx#tested-operating-systems).
+        The recommended JDK version is JDK 8 or 11. For more information, see [Tested Operating Systems and JDKs](../../../../reference/product-compatibility.mdx#tested-operating-systems).
 
         You do not need to set the Heap and Permgen values for the JVM from JDK 1.8 onwards as the `MaxPermSize` value has been removed from Hotspot JVM.
 
@@ -537,15 +537,45 @@ Given below are the security guidelines for the API-M runtime.
 
       </td>
     </tr>
-    <tr id="encryption-key">
+    <tr>
       <td>
 
-        Add the symmetric encryption key
+        Mediator Access Control
 
       </td>
       <td>
 
-        You should generate a symmetric encryption key for internal encryption and add it to the `deployment.toml` file. See [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key) for instructions.
+        API/Operation policies are designed to extend and customize API gateway behavior. They use Synapse mediators to support use cases such as message transformation, routing control, backend interaction handling, and organization-specific policy enforcement. These capabilities allow users to adapt gateway behavior based on deployment requirements. For more information, see the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/).
+
+        To provide better control over mediator usage, a mediator access control configuration has been introduced. This configuration allows administrators to allow or block mediators based on deployment requirements.
+
+        Add the following configuration to the `<APIM_HOME>/repository/conf/deployment.toml` file.
+
+        <br /> <br /> **Allow list Configuration:** <br />
+
+        ```text
+        [synapse_properties]
+        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
+        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
+        ```
+
+        <br /> **Block list Configuration:** <br />
+
+        ```text
+        [synapse_properties]
+        'synapse.mediators.access.control.mode' = “BLOCK_LIST”
+        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
+        ```
+
+        <br /> **Recommended Configuration:** <br /> The following configuration is the recommended configuration for allowing only the simple mediators, along with the mediators that are used by default in API Manager for common use cases.
+
+        ```text
+        [synapse_properties]
+        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
+        'synapse.mediators.access.control.list' = “aggregate,builder,cache,call,class,clone,drop,enrich,filter,foreach,header,in,iterate,log,loopback,makefault,opa,out,payloadfactory,property,propertygroup,respond,rewrite,scatter-gather,script,send,sequence,switch,throwerror,variable”
+        ```
+
+        <br /> If you use any other mediators, or if you want to enable mediators that are not included in the recommended allow list, review the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/) to understand their capabilities and use cases before adding them to the configuration.
 
       </td>
     </tr>
@@ -567,48 +597,6 @@ Given below are the security guidelines for the API-M runtime.
         ```
 
         In a production environment, it is strongly recommended to set this value according to your file size requirements and security policies to mitigate potential security risks. You do not need to set this value by default; configure it only if you encounter a SnakeYAML codepoint limit issue.
-
-      </td>
-    </tr>
-    <tr>
-      <td>
-
-        Mediator Access Control
-
-      </td>
-      <td>
-
-        API/Operation Policies are designed to extend and customize API gateway behavior. They use synapse mediators to support use cases such as message transformation, routing control, backend interaction handling, and organization-specific policy enforcement. These capabilities allow users to adapt gateway behavior based on deployment requirements. For more information, see the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/).
-
-        To provide better control over mediator usage, a mediator access control configuration has been introduced. This configuration allows administrators to allow or block mediators based on deployment requirements.
-
-        Add the following configuration to the `<APIM_HOME>/repository/conf/deployment.toml` file.
-
-        <br /> <br /> **Allowlist Configuration:** <br />
-
-        ```text
-        [synapse_properties]
-        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
-        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
-        ```
-
-        <br /> **Blocklist Configuration:** <br />
-
-        ```text
-        [synapse_properties]
-        'synapse.mediators.access.control.mode' = “BLOCK_LIST”
-        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
-        ```
-
-        <br /> **Recommended Configuration:** <br /> The following configuration is the default recommended configuration for allowing only the simple mediators, along with the mediators that are used by default in API Manager for common use cases.
-
-        ```text
-        [synapse_properties]
-        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
-        'synapse.mediators.access.control.list' = “aggregate,builder,cache,call,class,clone,drop,enrich,filter,foreach,header,in,iterate,log,loopback,makefault,opa,out,payloadfactory,property,propertygroup,respond,rewrite,scatter-gather,script,send,sequence,switch,throwerror,variable”
-        ```
-
-        <br /> If you use any other mediators, or if you want to enable mediators that are not included in the recommended allowlist, review the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/) to understand their capabilities and use cases before adding them to the configuration.
 
       </td>
     </tr>
@@ -844,7 +832,7 @@ This section provides a list of security guidelines for configuring the network
 
         **Note:**
 
-        It is recommended to use an allowlisting approach when allowing access to resources in your product from the DMZ level.
+        It is recommended to use an allow listing approach when allowing access to resources in your product from the DMZ level.
 
         For the API-M Developer Portal, exposing the following paths would be sufficient:
 

@@ -63,47 +63,53 @@ minikube start --cpus=4 --memory=7500 --kubernetes-version=v1.30.3
 helm repo add wso2 https://helm.wso2.com && helm repo update
 ```
 
-## Step 2 — Install Envoy Gateway {#step-2-install-envoy-gateway}
+## Step 2 — Install the NGINX Ingress Controller {#step-2-install-the-nginx-ingress-controller}
+
+<Tabs groupId="tabs">
+<TabItem value="local-cluster-minikube-rancher-desktop" label="Local cluster (Minikube / Rancher Desktop)">
 
 ```bash
-helm install envoy-gateway oci://docker.io/envoyproxy/gateway-helm \
-  --version v1.7.0 -n envoy-gateway-system \
-  --set config.envoyGateway.extensionApis.enableBackend=true \
-  --set envoyGateway.gateway.experimentalFeatures.enabled=true \
-  --create-namespace
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
 ```
 
-Create the `apim` namespace and apply the sample Gateway manifest:
+</TabItem>
+<TabItem value="managed-cluster-aks-gke" label="Managed cluster (AKS / GKE)">
 
 ```bash
-kubectl create namespace apim
-kubectl apply \
-  -f https://raw.githubusercontent.com/wso2/helm-apim/4.7.x/resources/assets/sample-gateway.yaml \
-  -n apim
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace \
+  --set controller.service.externalTrafficPolicy=Local
 ```
 
-:::warning
-The `apim` namespace must exist before applying the Gateway manifest. Run `kubectl create namespace apim` first — applying the manifest without the namespace will fail.
+:::note
+`externalTrafficPolicy=Local` is required on managed Kubernetes services. Without it, the cloud load balancer health probes fail and traffic never reaches the ingress controller.
 :::
+
+</TabItem>
+</Tabs>
+
+Wait until the NGINX pod is running:
+
+```bash
+kubectl get pods -n ingress-nginx
+```
 
 ## Step 3 — Deploy WSO2 API Manager {#step-3-deploy-wso2-api-manager}
 
 ```bash
 helm install apim wso2/wso2am-all-in-one \
-  --version 4.7.0-1 \
-  --namespace apim --create-namespace \
-  -f https://raw.githubusercontent.com/wso2/helm-apim/4.7.x/resources/am-pattern-0-all-in-one/default_values.yaml \
-  --set wso2.apim.configurations.encryption.key=$(openssl rand -hex 32)
+  --version 4.6.0-1 \
+  --namespace wso2 --create-namespace \
+  -f https://raw.githubusercontent.com/wso2/helm-apim/4.6.x/docs/am-pattern-0-all-in-one/default_values.yaml
 ```
-
-:::warning[Encryption key is mandatory]
-WSO2 API Manager 4.7.0 requires a 256-bit encryption key before first startup. The command above generates one automatically. For production or shared environments, generate the key separately and store it securely — you will need the same key if you redeploy.
-:::
 
 Wait for the pod to be ready:
 
 ```bash
-kubectl get pods -n apim -w
+kubectl get pods -n wso2 -w
 ```
 
 The pod should show `1/1 Running` before proceeding.
@@ -119,12 +125,6 @@ Run in a **separate terminal** and keep it running:
 minikube tunnel
 ```
 
-Get the external IP assigned to the gateway:
-
-```bash
-kubectl get gateway -n apim
-```
-
 Then add to your `/etc/hosts`:
 
 ```text
@@ -134,10 +134,10 @@ Then add to your `/etc/hosts`:
 </TabItem>
 <TabItem value="rancher-desktop" label="Rancher Desktop">
 
-Get the external IP assigned to the gateway:
+Get the external IP:
 
 ```bash
-kubectl get gateway -n apim
+kubectl get ing -n wso2
 ```
 
 Add to your `/etc/hosts`, replacing `<EXTERNAL-IP>`:
@@ -149,10 +149,10 @@ Add to your `/etc/hosts`, replacing `<EXTERNAL-IP>`:
 </TabItem>
 <TabItem value="managed-cluster-aks-gke" label="Managed cluster (AKS / GKE)">
 
-Get the external IP assigned to the gateway:
+Get the external IP assigned to the ingress:
 
 ```bash
-kubectl get gateway -n apim
+kubectl get ing -n wso2
 ```
 
 For quick testing, add the `ADDRESS` value to your `/etc/hosts`:

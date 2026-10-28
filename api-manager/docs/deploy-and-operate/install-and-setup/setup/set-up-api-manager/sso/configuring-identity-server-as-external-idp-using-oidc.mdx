@@ -180,7 +180,7 @@ Import the Keymanager certificate to the WSO2 API Manager `client-truststore.jks
 
         The following image shows the sample values for OAuth2/OpenIDConnect Configurations:
 
-        ![sp](../../../../../../assets/img/setup-and-install/identity-provider-configuration-for-sso.png)
+        ![sp](../../../../../../assets/img/setup-and-install/identity-provider-configuration-for-sso-is7.png)
 
     2.  Enable Just-in-Time Provisioning to provision the users in API Manager:
 
@@ -193,7 +193,7 @@ Import the Keymanager certificate to the WSO2 API Manager `client-truststore.jks
         | devportal | Internal/Subscriber |
         | publisher | Internal/publisher |
 
-        ![](../../../../../../assets/img/setup-and-install/role-mapping-for-sso.png)
+        ![](../../../../../../assets/img/setup-and-install/role-mapping-for-sso-is7.png)
 
         :::tip
         Instead of using the default internal roles, you can also create new roles in API Manager and map it to the provisioned users. 
@@ -224,7 +224,7 @@ Import the Keymanager certificate to the WSO2 API Manager `client-truststore.jks
 
 Now you will be able to login to Publisher and Devportal using the users in WSO2 Identity Server.
 
-:::note[For secondary user stores]
+:::note
 If your Identity Provider has multiple secondary user stores (such as LDAP) and you want to include the user domain in the subject identifier (`LDAP_DOMAIN/username`), you must also connect the same user stores to the API Manager in read-only mode. This is required when the secondary user stores contain users with the same name and you cannot provision those users to the API Manager primary user store.
 :::
 

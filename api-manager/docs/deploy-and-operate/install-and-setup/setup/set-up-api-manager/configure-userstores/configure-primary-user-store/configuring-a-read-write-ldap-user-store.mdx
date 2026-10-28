@@ -41,7 +41,7 @@ Following are the minimum userstore properties that are needed to be provided to
 
         Connection URL to the user store server.
 
-        Sample values:<br /> ldap://10.100.1.100:389<br /> ldaps://10.100.1.102:639<br /> <br /> If you are connecting over ldaps (secured LDAP)<br /> Need to import the certificate of userstore to the client-truststore.jks of the WSO2 product. For information on how to add certificates to the truststore and how keystores are configured and used in a system, see<br /> [Creating New Keystores](../../security/configuring-keystores/keystore-basics/creating-new-keystores.mdx)<br /> <br /> If LDAP connection pooling is used, see enable connection pooling for LDAPS connections.<br /> performance tuning ldaps pooling)
+        Sample values:<br /> ldap://10.100.1.100:389<br /> ldaps://10.100.1.102:639<br /> <br /> If you are connecting over ldaps (secured LDAP)<br /> Need to import the certificate of userstore to the client-truststore.jks of the WSO2 product. For information on how to add certificates to the truststore and how keystores are configured and used in a system, see Using Asymmetric Encryption.<br /> Using asymmetric encryption<br /> <br /> If LDAP connection pooling is used, see enable connection pooling for LDAPS connections.<br /> performance tuning ldaps pooling)
 
       </td>
     </tr>
@@ -495,7 +495,7 @@ Following are some key points to consider  :
             MembershipAttribute = "member"
             ```
 
-        To read roles based on a backlink attribute, use the following code snippet instead of the above:
+        To read roles based on a backlink attribute, use the following code snipet instead of the above:
 
         ```text
         ReadGroups = "false"

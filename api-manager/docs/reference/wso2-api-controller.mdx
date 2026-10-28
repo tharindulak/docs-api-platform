@@ -6,7 +6,7 @@ sidebar_label: API controller (APICTL)
 sidebar_position: 3
 ---
 
-The **WSO2 API Controller (apictl)** is the command-line tool of WSO2 API Manager. This allows you to move APIs, API Products, and Applications across API-M environments and to perform CI/CD operations. It can also be used to perform these same tasks on a Kubernetes deployment.
+The **WSO2 API Controller (apictl)** is the command-line tool of WSO2 API Manager. This allows you to move APIs, API Products, and Applications across API-M environments and to perform CI/CD operations. It can also be used to perform these same tasks on a Kubernetes deployment. Furthermore, it can be used with the Micro Integrator (WSO2 MI) for monitoring integration artifacts and performing management/administrative tasks from the command line.
 
 ## Get Started
 
@@ -22,7 +22,7 @@ Follow the steps given below to get started:
 
 3. **Add environments**
 
-    Execute the following command to add API-M environments:
+    Execute the following command to add API-M or Micro Integrator servers:
 
     ```bash
     apictl add env <environment-name>
@@ -105,7 +105,7 @@ apictl init
 
 ### apictl add
 
-Add a new API-M environment and its related endpoints to the configuration file of apictl. This will connect apictl with the added environment.
+Add a new environment (API-M or MI) and its related endpoints to the configuration file of apictl. This will connect apictl with the added environments.
 
 -   Usage
 
@@ -162,6 +162,10 @@ Add a new API-M environment and its related endpoints to the configuration file 
         <tr>
           <th>`--token`</th>
           <td>If the `--apim` flag is not used, use this flag to specify the API-M Token url.</td>
+        </tr>
+        <tr>
+          <th>`--mi`</th>
+          <td>Use this flag to add a Micro Integrator environment.</td>
         </tr>
         <tr>
           <th>`--environment`</th>
@@ -583,7 +587,7 @@ Set configuration parameters. You can use one of the following flags.
       <tbody>
         <tr>
           <th>`--http-request-timeout`</th>
-          <td>Specify the request timeout in milliseconds.</td>
+          <td>Specify the request timout in milliseconds.</td>
         </tr>
         <tr>
           <th>`--tls-renegotiation-mode`</th>
@@ -819,9 +823,113 @@ Undeploy an API/API Product/MCP Server revision that is available in the specifi
       </tbody>
     </table>
 
+### apictl mi
+
+Use this command to manage Micro Integrator artifacts. You can get, add, update, delete, activate, and deactivate integration artifacts and logs.
+
+-   Usage
+
+    ```bash
+    apictl mi [subcommand] [option] [argument] [global-flag]
+    ```
+
+-   Subcommands
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`login`</th>
+          <td>Login to a Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`logout`</th>
+          <td>Logout from a Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`get`</th>
+          <td>Get information about artifacts deployed in a Micro Integrator instance.</td>
+        </tr>
+        <tr>
+          <th>`add`</th>
+          <td>Add new users or loggers to a Micro Integrator instance.</td>
+        </tr>
+        <tr>
+          <th>`delete`</th>
+          <td>Delete users from a Micro Integrator instance.</td>
+        </tr>
+        <tr>
+          <th>`update`</th>
+          <td>Update log level of Loggers in a Micro Integrator instance.</td>
+        </tr>
+        <tr>
+          <th>`activate`</th>
+          <td>Activate artifacts deployed in a Micro Integrator instance.</td>
+        </tr>
+        <tr>
+          <th>`deactivate`</th>
+          <td>Deactivate artifacts deployed in a Micro Integrator instance.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Options
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`apis`</th>
+          <td>Get details of APIs deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`connectors`</th>
+          <td>Get details of integration connectors deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`data-services`</th>
+          <td>Get details of data services deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`mi get endpoints`</th>
+          <td>Get details of endpoints deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`inbound-endpoints`</th>
+          <td>Get details of inbound endpoints deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`local-entries`</th>
+          <td>Get details of local entries deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`message-processors`</th>
+          <td>Use this option with the `get` or `activate` subcommands to get details or to activate the status.</td>
+        </tr>
+        <tr>
+          <th>`message-stores`</th>
+          <td>Get details of message stores deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`proxy-services`</th>
+          <td>Get details of proxy services deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`tasks`</th>
+          <td>Get details of scheduled tasks deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`templates`</th>
+          <td>Get details of templates deployed in the Micro Integrator.</td>
+        </tr>
+        <tr>
+          <th>`log-levels`</th>
+          <td>Use this option with the `mi get`, `mi add`, or `mi update` commands to manage loggers in the Micro Integrator environment.</td>
+        </tr>
+      </tbody>
+    </table>
+
 ### apictl secret
 
-Encrypt secrets for use with WSO2 API Manager using symmetric or asymmetric encryption.
+Encrypt secrets to be used in the Micro Integrator.
 
 -   Usage
 
@@ -835,11 +943,11 @@ Encrypt secrets for use with WSO2 API Manager using symmetric or asymmetric encr
       <tbody>
         <tr>
           <th>`init`</th>
-          <td>Initializes the keystore used for asymmetric encryption or the encryption key used for symmetric encryption. Use the optional \`symmetric\` argument to explicitly select symmetric mode.</td>
+          <td>Initializes the keystore used for encryption.</td>
         </tr>
         <tr>
           <th>`create`</th>
-          <td>Encrypts secrets using the initialized encryption key, or the initialized keystore. Use the optional \`symmetric\` argument to explicitly select symmetric mode.</td>
+          <td>Encrypt the secrets.</td>
         </tr>
       </tbody>
     </table>

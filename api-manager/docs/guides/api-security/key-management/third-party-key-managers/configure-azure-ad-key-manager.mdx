@@ -3,7 +3,7 @@ title: Configure a Azure AD as a Key Manager
 description: WSO2 API Manager supports multiple Key Managers.  # generated from the first paragraph; a writer should improve it
 type: how-to
 sidebar_label: Configure the Azure AD as a Key Manager
-sidebar_position: 10
+sidebar_position: 9
 ---
 
 WSO2 API Manager supports multiple Key Managers. As a result, WSO2 API Manager is prepacked with an inbuilt resident Key Manager and with the use of connectors it is capable of supporting any authorization server as a Key Manager.
@@ -106,15 +106,23 @@ Start the API Manager server and log-in to the Admin portal to configure Azure A
   | Microsoft Graph API Endpoint Version | Select the checkbox for \`v1.0\` | Mandatory |
   | Client ID | Paste the `Application (client) ID` | Mandatory |
   | Client Secret | Paste the client secret value that is generated | Mandatory |
-  | Initial Delay (in ms) for Application Polling | Provide an initial time to wait before starting polling for Azure Application creation. Default value is 500 ms | Optional |
-  | Maximum Waiting Time (in ms) for Application Polling | Provide the maximum time to wait for Azure Application creation. Default value is 5000 ms | Optional |
 
     :::note[Handling Azure Application Synchronization Delays]
-    Due to eventual consistency in Azure, there can be delays when creating Applications and Service Principals.
+    This capability is supported only from the U2 levels listed below in APIM products
+
+    - wso2am-4.6.0 - U2 level 19
+    - wso2am-acp-4.6.0 - U2 level 20
+    - wso2am-universal-gw-4.6.0 - U2 level 19
+
+    <br />Due to eventual consistency in Azure, there can be delays when creating Applications and Service Principals.
     To mitigate issues caused by these synchronization delays, polling is performed for all Azure creation-related interactions.
-    The polling behavior is configurable via the Initial Delay and Maximum Waiting Time values in the `Connector Configuration` section.
-    You may adjust these values based on your deployment needs and expected Azure response times.
-    <br />Backoff strategy: The delay between polling attempts is doubled after each retry, up to the given maximum delay.
+    The polling behavior can be configured using the Initial Delay and Maximum Waiting Time parameters, which are available in the Connector Configuration section. 
+    These fields are described in the table below.
+    <br /><br />Backoff strategy: The delay between polling attempts is doubled after each retry, up to the given maximum delay.
+    | Configuration | Instruction | Default Value |
+    | --- | --- | --- |
+    | Initial Delay (in ms) for Application Polling | Provide an initial time to wait before starting polling for Azure Application creation | 500 ms |
+    | Maximum Waiting Time (in ms) for Application Polling | Provide the maximum time to wait for Azure Application creation | 5000 ms |
     :::
 
   7. Set the **Permissions**:
