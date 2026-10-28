@@ -19,6 +19,8 @@ For more information about OpenShift container security and file permissions, se
 
 Make sure you have the following before you deploy:
 
+- **Gateway chart 1.2.4 or later:** earlier charts have no OpenShift values or management API Route, and ignore those settings without an error.
+- **Gateway images at update level 1.2.0.19 or later:** these images make their writable directories usable by the root group, which OpenShift needs. The public `1.2.0` images, which the chart uses by default, can't create the gateway runtime's sockets under the default `restricted-v2` SCC. You set the images in [Step 6](#step-6). Update levels are available with a WSO2 subscription.
 - **An at-rest encryption key Secret:** the chart refuses to install without it. You create it in [Step 5](#step-5).
 - **cert-manager, or your own TLS Secret:** the chart uses it for the gateway's HTTPS listener certificate.
 - **A StorageClass:** the gateway controller stores its state in a PersistentVolumeClaim (PVC). Either the cluster has a default StorageClass, or you set one explicitly.
@@ -112,9 +114,9 @@ You can use the [cert-manager Operator for Red Hat OpenShift](https://docs.opens
 
 ### Step 4: Review the gateway runtime image {#step-4}
 
-The chart's default gateway runtime image runs on OpenShift as is, so you don't need to build an image. Images that the gateway builder creates with custom policies start from the released image and inherit the same permissions. Set such an image in `gateway.gatewayRuntime.image` in [Step 6](#step-6), as you would on Kubernetes.
+The gateway runtime images from update level 1.2.0.19 run on OpenShift as is, so you don't need to build an image. The chart's default image tags point to the public `1.2.0` release, which doesn't have these permissions, so set the update-level images in [Step 6](#step-6). Images that the gateway builder creates with custom policies inherit the permissions of their base image, so build them on the update-level runtime image, as described in [Overriding the Base Images](../../../../guides/policies/custom-policies/building-gateway-with-custom-policies.mdx#overriding-the-base-images). Set such an image in `gateway.gatewayRuntime.image` in [Step 6](#step-6), as you would on Kubernetes.
 
-The gateway runtime runs three processes in one container: the Router (Envoy), the Policy Engine, and the Python Executor. They talk to each other over Unix domain sockets in `/var/run/api-platform`. The image makes that directory writable by the root group, so the processes can create the sockets with whichever UID OpenShift runs them as.
+The gateway runtime runs three processes in one container: the Router (Envoy), the Policy Engine, and the Python Executor. They talk to each other over Unix domain sockets in `/var/run/api-platform`. From update level 1.2.0.19, the image makes that directory writable by the root group, so the processes can create the sockets with whichever UID OpenShift runs them as.
 
 :::note[Building a gateway runtime image another way]
 If you build a gateway runtime image another way, such as from a different base image, make `/var/run/api-platform` writable by the root group. Add these lines to the `Dockerfile` after any step that creates or changes the directory, and apply the same pattern to any other directory that the image writes to outside a mounted volume:
@@ -173,8 +175,29 @@ The gateway controller encrypts sensitive data at rest with an AES-256 key. The 
 1. Update your `values.yaml` file with the following sections. To start from the chart's defaults, export them first:
 
     ```bash
-    helm show values oci://ghcr.io/wso2/api-platform/helm-charts/gateway --version <CHART_VERSION> > values.yaml
+    helm show values oci://ghcr.io/wso2/api-platform/helm-charts/gateway --version 1.2.4 > values.yaml
     ```
+
+    **Gateway images:** set the update-level images from [Step 4](#step-4).
+
+    :::note[Use update level 1.2.0.19 or later]
+    With a WSO2 subscription, create the registry pull Secret as described in [WSO2 Subscription Users](../../high-availability-production-deployment/high-availability-production-deployment.mdx#wso2-subscription-users), and set it in `wso2.subscription.imagePullSecret`. The chart then pulls from `registry.wso2.com/wso2-api-platform/`, but it keeps the default `1.2.0` tags, so set the update-level tags too:
+
+    ```yaml
+    wso2:
+      subscription:
+        imagePullSecret: wso2-subscription-creds
+    gateway:
+      controller:
+        image:
+          tag: "1.2.0.19"
+      gatewayRuntime:
+        image:
+          tag: "1.2.0.19"
+    ```
+
+    Use the latest update level available to you. If you build your own gateway runtime image, set `gateway.gatewayRuntime.image.repository` and `tag` to it instead.
+    :::
 
     **Encryption key:** reference the Secret from [Step 5](#step-5):
 
@@ -237,7 +260,7 @@ The gateway controller encrypts sensitive data at rest with an AES-256 key. The 
 
     ```bash
     helm install gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
-      --version <CHART_VERSION> \
+      --version 1.2.4 \
       --namespace <PROJECT-NAME> \
       -f values.yaml
     ```
@@ -347,6 +370,37 @@ To reach the sandbox environment of an API, or to serve APIs on their own hostna
     ```
 
     The response is the upstream's echo of the request, with `"url": "https://httpbin.org/anything/info"`.
+
+## Upgrade and uninstall
+
+Upgrade with the same values file you installed with:
+
+```bash
+helm upgrade gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
+  --version 1.2.4 \
+  --namespace <PROJECT-NAME> \
+  -f values.yaml
+```
+
+Pass your values file on every upgrade. Don't upgrade from gateway chart 1.2.3 or earlier with `--reuse-values`: Helm then keeps that version's defaults, which have no `openshift` values, and the upgrade fails with `nil pointer evaluating interface {}.routes` without changing the release. To carry the previous release's values forward instead, use `--reset-then-reuse-values` (Helm 3.14 or later).
+
+To remove the gateway, run the following command:
+
+```bash
+helm uninstall gateway --namespace <PROJECT-NAME>
+```
+
+`helm uninstall` also deletes the `gateway-controller-data` PVC, which holds the gateway controller's database. To keep it, add the following to `values.yaml` and run the upgrade command above before you uninstall:
+
+```yaml
+gateway:
+  controller:
+    persistence:
+      annotations:
+        helm.sh/resource-policy: keep
+```
+
+The encryption key Secret from [Step 5](#step-5) isn't part of the release, so it stays. Keep it as long as you keep the PVC, because the stored data is encrypted with it.
 
 ## Advanced configuration
 
@@ -656,18 +710,25 @@ gateway:
 [ent] ... ERROR: Python Executor exited before creating socket
 ```
 
-**Cause:** The gateway runtime can't create its Unix domain sockets in `/var/run/api-platform`. The image makes this directory writable, so this happens when the root filesystem is read-only and no writable volume is mounted at that path.
+**Cause:** The gateway runtime can't create its Unix domain sockets in `/var/run/api-platform`. This happens when the gateway runtime image is the public `1.2.0` release, which doesn't make this directory writable by the root group. It also happens when the root filesystem is read-only and no writable volume is mounted at that path.
 
 **Fix:**
 
-1. Check whether the root filesystem is read-only and which volumes are mounted:
+1. Check which image the gateway runtime uses. If the tag is `1.2.0`, set an update-level image as described in [Step 6](#step-6):
+
+    ```bash
+    oc get deployment gateway-gateway-runtime -n <PROJECT-NAME> \
+      -o jsonpath='{.spec.template.spec.containers[0].image}{"\n"}'
+    ```
+
+2. Check whether the root filesystem is read-only and which volumes are mounted:
 
     ```bash
     oc get deployment gateway-gateway-runtime -n <PROJECT-NAME> \
       -o jsonpath='{.spec.template.spec.containers[0].securityContext.readOnlyRootFilesystem}{"\n"}{.spec.template.spec.containers[0].volumeMounts}{"\n"}'
     ```
 
-2. Mount a writable `emptyDir` volume at `/var/run/api-platform`, as described in [Read-only root filesystem](#read-only-root-filesystem), or turn off the read-only root filesystem.
+3. Mount a writable `emptyDir` volume at `/var/run/api-platform`, as described in [Read-only root filesystem](#read-only-root-filesystem), or turn off the read-only root filesystem.
 
 ### Pods aren't created: "unable to validate against any security context constraint" {#scc-rejected}
 

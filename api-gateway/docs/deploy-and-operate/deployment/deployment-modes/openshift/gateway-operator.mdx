@@ -26,6 +26,8 @@ For more information about OpenShift container security and file permissions, se
 
 Install the operator with the following settings and resources:
 
+- **Operator chart 0.11.3 or later:** earlier operator charts have no OpenShift settings and install gateway chart 1.2.3, which has no OpenShift support. Operator chart 0.11.3 installs gateway chart 1.2.4.
+- **Gateway images at update level 1.2.0.19 or later:** the gateway chart's default images are the public `1.2.0` release, whose gateway runtime can't create its sockets under the default `restricted-v2` SCC. You set the update-level images in [Step 5](#step-5). Update levels are available with a WSO2 subscription.
 - **OpenShift support on:** set `openshift.enabled: auto` or `true`.
 - **Operator UID for your SCC:** under the default `restricted-v2` SCC, set `securityContext.runAsUser: null`, because `restricted-v2` rejects the default UID `10001`. Under SCCs that allow it, keep `10001`. See [Operator security context](#operator-security-context).
 - **Gateway API CRDs left to OpenShift:** on OpenShift 4.19 and later, set `gatewayApi.installStandardCRDs: false`.
@@ -114,7 +116,7 @@ You can use the [cert-manager Operator for Red Hat OpenShift](https://docs.opens
 
 ### Step 4: Install the Gateway Operator {#step-4}
 
-1. Add the following settings to your operator values file, `operator-values.yaml`. To start from the chart's defaults, export them first with `helm show values oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator --version <CHART_VERSION> > operator-values.yaml`.
+1. Add the following settings to your operator values file, `operator-values.yaml`. To start from the chart's defaults, export them first with `helm show values oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator --version 0.11.3 > operator-values.yaml`.
 
     ```yaml
     # Namespaces the operator watches. Leave empty to watch all namespaces.
@@ -140,7 +142,7 @@ You can use the [cert-manager Operator for Red Hat OpenShift](https://docs.opens
 
     ```bash
     helm install gateway-operator oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator \
-      --version <CHART_VERSION> \
+      --version 0.11.3 \
       --namespace <PROJECT-NAME> \
       -f operator-values.yaml
     ```
@@ -152,6 +154,12 @@ You can use the [cert-manager Operator for Red Hat OpenShift](https://docs.opens
     ```
 
     The pod must show `1/1 Running` before you continue.
+
+:::note[Upgrading from operator chart 0.11.2 or earlier]
+- Apply the CRDs that ship with chart 0.11.3 before you upgrade, as shown in [Troubleshooting](#troubleshooting). Helm doesn't upgrade CRDs.
+- Upgrade with your values file (`-f operator-values.yaml`), not `--reuse-values`. `--reuse-values` keeps the previous chart's defaults, including gateway chart 1.2.3 and the earlier security context.
+- Existing gateways stay on gateway chart 1.2.3 after the upgrade, because the operator redeploys a gateway only when its configuration changes. To move a gateway to chart 1.2.4, change a value in its ConfigMap, for example by adding the update-level images from [Step 5](#step-5).
+:::
 
 The `openshift.enabled` setting accepts the values in the following table:
 
@@ -221,7 +229,28 @@ This guide puts the gateway settings in a ConfigMap. To apply a setting to every
               type: ClusterIP
     ```
 
-    The gateway runtime image comes from the gateway chart version in the operator's `gateway.helm.chartVersion`, and runs on OpenShift as is. To use a custom gateway runtime image, set `gateway.gatewayRuntime.image` in the ConfigMap. An image that you build with the gateway builder works as is. For an image that you build another way, see the note in [Review the gateway runtime image](./openshift-standalone.mdx#step-4).
+    The operator's default gateway values, and gateway chart 1.2.4, use the public `1.2.0` images, so set the update-level images in the ConfigMap, as the following note shows.
+
+    :::note[Use update level 1.2.0.19 or later]
+    Create the registry pull Secret in the gateway's project, as described in [WSO2 Subscription Users](../../high-availability-production-deployment/high-availability-production-deployment.mdx#wso2-subscription-users). Then add the following to `values.yaml` in the ConfigMap. Setting `wso2.subscription.imagePullSecret` makes the chart pull from `registry.wso2.com/wso2-api-platform/`, but it keeps the default `1.2.0` tags, so set the update-level tags too:
+
+    ```yaml
+    wso2:
+      subscription:
+        imagePullSecret: wso2-subscription-creds
+    gateway:
+      controller:
+        image:
+          tag: "1.2.0.19"
+      gatewayRuntime:
+        image:
+          tag: "1.2.0.19"
+    ```
+
+    Use the latest update level available to you. To apply the images to every gateway, put the same values in the operator chart's `gateway.values` instead.
+    :::
+
+    To use a custom gateway runtime image, set `gateway.gatewayRuntime.image` in the ConfigMap. Build it on the update-level runtime image so that it inherits the same permissions. See [Review the gateway runtime image](./openshift-standalone.mdx#step-4).
 
 3. Apply the ConfigMap:
 
@@ -496,7 +525,7 @@ This section covers issues specific to the operator. The gateways that the opera
 
 ```bash
 helm upgrade gateway-operator oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator \
-  --version <CHART_VERSION> \
+  --version 0.11.3 \
   --namespace <PROJECT-NAME> \
   -f operator-values.yaml
 ```
@@ -534,7 +563,7 @@ failed to get restmapping: no matches for kind "APIGateway" in version "gateway.
 **Fix:** Apply the CRDs that ship with the chart before you upgrade the operator:
 
 ```bash
-helm pull oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator --version <CHART_VERSION> --untar
+helm pull oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator --version 0.11.3 --untar
 oc apply --server-side -f gateway-operator/crds/
 ```
 
@@ -545,8 +574,10 @@ If OpenShift can't update a CRD because a stored version was removed, and no res
 **Symptom:** The `APIGateway`'s `Programmed` condition is `False` with the reason `DeploymentFailed`. Its message contains an error such as the following. The verb is `create` instead of `get` when the Route doesn't exist yet.
 
 ```text
-routes.route.openshift.io "<APIGATEWAY-NAME>-gw-management-api" is forbidden: User "system:serviceaccount:<PROJECT-NAME>:controller-manager" cannot get resource "routes" in API group "route.openshift.io"
+routes.route.openshift.io "openshift-gateway-gw-management-api" is forbidden: User "system:serviceaccount:<PROJECT-NAME>:controller-manager" cannot get resource "routes" in API group "route.openshift.io"
 ```
+
+The Route is named after the gateway's Helm release, `<APIGATEWAY-NAME>-gw`. When the `APIGateway` name contains `gateway`, as `openshift-gateway` in this guide does, the name is the release name followed by `-management-api`. For other names, the gateway chart adds `-gateway` first, for example `prod-gw-gateway-management-api` for an `APIGateway` named `prod`.
 
 **Cause:** The gateway values turn on the management API Route, through `openshift.enabled: true` and `openshift.routes.managementApi.enabled: true` in `gateway.values` or in a gateway's ConfigMap. However, you installed the operator without OpenShift support, so the operator isn't allowed to manage Routes.
 
@@ -556,7 +587,7 @@ routes.route.openshift.io "<APIGATEWAY-NAME>-gw-management-api" is forbidden: Us
 
     ```bash
     helm upgrade gateway-operator oci://ghcr.io/wso2/api-platform/helm-charts/gateway-operator \
-      --version <CHART_VERSION> \
+      --version 0.11.3 \
       --namespace <PROJECT-NAME> \
       -f operator-values.yaml
     ```
