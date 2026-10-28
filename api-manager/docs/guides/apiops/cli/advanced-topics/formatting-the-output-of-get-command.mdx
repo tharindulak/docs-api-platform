@@ -1,0 +1,88 @@
+---
+title: Format the Outputs of Get Commands
+description: Output of get envs, get apis, get api-products and get apps can be formatted with Go Templates.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Format the outputs of get commands
+sidebar_position: 6
+---
+
+## Formatting get Command Outputs
+
+Output of `get envs`, `get apis`, `get api-products` and `get apps` can be formatted with Go Templates. 
+
+#### Available formatting options
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Usage</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>table</td>
+      <td>This is the default format and the output is displayed as a table</td>
+      <td>
+
+        \`\`\` --format "table \{\{.Name\}\}\\t\{\{.Id\}\}" \`\`\`
+
+      </td>
+    </tr>
+    <tr>
+      <td>json</td>
+      <td>Output is formatted as JSON</td>
+      <td>
+
+        \`\`\` --format "\{\{ json . \}\}" \`\`\`
+
+      </td>
+    </tr>
+    <tr>
+      <td>jsonArray</td>
+      <td>Outputs a human-readable JSON Array with indented by 2 spaces</td>
+      <td>
+
+        \`\`\` --format "jsonArray" \`\`\`
+
+      </td>
+    </tr>
+    <tr>
+      <td>jsonPretty</td>
+      <td>Outputs a human-readable JSON with indented by 2 spaces</td>
+      <td>
+
+        \`\`\` --format "table \{\{ jsonPretty . \}\}" \`\`\`
+
+      </td>
+    </tr>
+    <tr>
+      <td>upper</td>
+      <td>Convert string to uppercase</td>
+      <td>
+
+        \`\`\` --format "\{\{upper .Name\}\}\\t\{\{upper .Context\}\}" \`\`\`
+
+      </td>
+    </tr>
+    <tr>
+      <td>lower</td>
+      <td>Convert string to lowercase</td>
+      <td>
+
+        \`\`\` --format "\{\{lower .Name\}\}\\t\{\{lower .Context\}\}" \`\`\`
+
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>Convert the first letter to uppercase of a string</td>
+      <td>
+
+        \`\`\` --format "\{\{title .Name\}\}\\t\{\{title .Context\}\}" \`\`\`
+
+      </td>
+    </tr>
+  </tbody>
+</table>

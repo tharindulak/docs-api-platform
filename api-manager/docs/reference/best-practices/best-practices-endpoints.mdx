@@ -1,0 +1,126 @@
+---
+title: Best practices for working with endpoints
+description: The diagram below illustrates the typical message flow when a proxy service is involved in a client-server communication.  # generated from the first paragraph; a writer should improve it
+type: reference
+sidebar_position: 2
+---
+
+- Do not use anonymous endpoints. Always use [named endpoints](https://mi.docs.wso2.com/en/latest/reference/synapse-properties/endpoint-properties/). As anynymous endpoints have auto-generated names in the synapse
+  configuration, it is difficult to identify which endpoint is causing
+  the error in case of an error.
+
+- Configure timeout settings appropriately. Timeout configurations are
+  required before you go into production with the system.
+
+  The diagram below illustrates the typical message flow when a proxy
+  service is involved in a client-server communication. The two
+  connectores, `Client to Proxy connection` and
+  `Proxy to Backend connection`  are two
+  separate connections that do not depend on each other. Even if one
+  connections times out, the other is unaffected.  
+
+[<img src={require("../../../assets/img/reference/typical-message-flow.png").default} width="500" />](../../../assets/img/reference/typical-message-flow.png) 
+
+  Here are the important timeout parameters you should configure
+  before going into production:
+
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+        <th>Configuration File</th>
+        <th>Default Value</th>
+        <th>Recommended Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`[transport.http] socket_timeout = 180000 `</td>
+        <td>The socket timeout of the Passthrough http/https transport sender and listener. You can find the passthru-http.properties file in the `<EI_HOME>/conf` directory.</td>
+        <td>`deployment.toml`</td>
+        <td>180000</td>
+        <td>180000</td>
+      </tr>
+      <tr>
+        <td>Endpoint timeout</td>
+        <td>
+
+          The timeout parameter that you should configure at the endpoint level. You can configure timeout values as required for specific endpoints.
+
+          Here's a sample endpoint configuration that is configured with timeout parameters. Here, `<duration>` is the timeout value, and `<responseAction>` is the action to be taken on timeout. In this example, it is invoking the `FaultSequence` .
+
+          <Anchor id="cb1" />
+
+          ```text
+          <endpoint>
+          <address uri="http://localhost:8281/services/SimpleStockQuoteService">
+          <timeout>
+          <duration>120000</duration>
+          <responseAction>fault</responseAction>
+          </timeout>
+          </address>
+          </endpoint>
+          ```
+
+          Follow the formula `Socket Timeout > max(Global endpoint timeout, Timeout of individual endpoints)` , and make sure that you set the `http.socket.timeout` to a value higher than all other endpoint timeout values.
+
+        </td>
+        <td>Endpoint configuration files</td>
+        <td>synapse.global_timeout_interval</td>
+        <td>Depends on the use case, Typically 120000</td>
+      </tr>
+      <tr>
+        <td>`[mediation] synapse.global_timeout_interval = "120000" `</td>
+        <td>
+
+          Global timeout value for endpoints. Can be overwritten by individual endpoint timeout values.
+
+          Synapse, which is the underlying mediation engine of WSO2 Micro Integrator, is a complete asynchronous messaging engine that does not block its worker threads on network I/O. Instead, it registers a call-back for a particular request and returns the threads without waiting for a response. When a response is available, the registered call-back is used to correlate it with the relevant request so that further processing can be done.<br /> If the backend server does not respond, it is required to clear the registered call-backs after a particular *duration* to prevent possible memory leaks. This *duration* is set via a timer task called `TimeoutHandler` . The `synapse.global_timeout_interval` parameter represents the *duration* that a call-back should be kept in the call-back store.
+
+          If you have configured a timeout value at the endpoint level, the global timeout value is not taken into consideration for that endpoint. For all the other endpoints that do not have a timeout value configured, the global value is considered as the timeout value.
+
+          You can configure the `synapse.global_timeout_interval` parameter in the `<MI_HOME>/conf/deployment.toml` file. The default value is 120 seconds. If you want to support endpoint timeout values that are greater than 120 seconds, set the `synapse.global_timeout_interval` to a value more than 120 seconds. However, the need to set such large timeout values for endpoints is extremely unlikely.
+
+        </td>
+        <td>`deployment.toml`</td>
+        <td>120000</td>
+        <td>120000</td>
+      </tr>
+      <tr>
+        <td>`[synapse_properties] synapse.timeout_handler_interval = "15000" `</td>
+        <td>Duration between two `TimeoutHandler` executions.The `TimeoutHandler ` is executed every 15 seconds by default. Therefore, the time that call-backs get cleared can deviate up to 15 seconds from the configured value.<br /> You can configure the `TimeoutHandler` execution interval by specifying a required value for `synapse.timeout_handler_interval` in the `<MI_HOME>/conf/deployment.toml` file.</td>
+        <td>`deployment.toml`</td>
+        <td>15000</td>
+        <td>15000</td>
+      </tr>
+    </tbody>
+  </table>
+
+- Set the socket timeout value and individual endpoint timeout values
+  appropriately. Use this formula to set timeout values:
+
+    `Socket Timeout > max(Global endpoint timeout Timeout of individual endpoints)`
+
+- Be sure to set proper values to advanced configuration parameters,
+  although they are optional.  
+  The happy path should work with the default values, but you might
+  encounter issues in production when the system does not follow the
+  happy path. For example, if you use the default configurations and
+  as an error occurs in your sequence, the endpoint gets suspended
+  immediately and subsequent messages to that endpoint get rejected
+  without being sent to the backend service. This might not be the
+  expected behaviour in every use case. Therefore, it is important to
+  perform [endpoint error handling](https://mi.docs.wso2.com/en/latest/reference/synapse-properties/endpoint-properties/#endpoint-error-handling-properties)
+  based on the use case.
+
+- Use the [HTTP endpoint](https://mi.docs.wso2.com/en/latest/install-and-setup/setup/transport-configurations/configuring-transports/)
+  for RESTful service invocations. The HTTP endpoint is especially
+  designed to make RESTful service integration easy. For example, it
+  supports `url-templates` , which is an option
+  to set the http method.
+
+- For RESTful service integration, use either [REST APIs](https://mi.docs.wso2.com/en/latest/reference/synapse-properties/rest-api-properties/)
+  or HTTP endpoints. You can use REST APIs to expose an integration
+  solution as a RESTful service, and use HTTP endpoints to logically
+  represent a RESTful backend service.

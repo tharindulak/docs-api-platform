@@ -1,0 +1,119 @@
+---
+title: Create an AI API
+description: AI APIs enable seamless integration of AI services into applications through the WSO2 API Manager.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: AI APIs
+sidebar_position: 5
+---
+
+AI APIs enable seamless integration of AI services into applications through the WSO2 API Manager. By using the AI API feature, users can select specific AI vendors that best suit their needs. WSO2 API Manager provides built-in support for leading AI vendors like **OpenAI**, **Azure OpenAI**, and **Mistral**, while also allowing configuration of custom AI vendors to create AI APIs.
+
+This guide will get you started with AI API creation using WSO2 API Manager. Thus created AI API will be deployed into the AI Gateway. Refer to [AI Gateway](../../../ai-gateway/ai-gateway-overview.mdx) to get a deeper understanding on API Manager's AI Gateway capabilities.
+
+Follow the instructions below to create an AI API using the basic flow:
+
+### Step 1: Create an AI API
+
+1. Login to the Publisher Portal (`https://<hostname>:9443/publisher`).
+
+2. Create an **AI API** by clicking on **Create AI API**.
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/select-ai-api.png").default} alt="Select AI API" style={{width: "90%"}} />
+
+3. Select the desired provider and version. Then, click Next.
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/select-service-provider.png").default} alt="Select AI Service Provider and Version" style={{width: "90%"}} />
+
+    :::tip
+    The built-in AI service providers and versions will appear on relevant dropdowns. In addition to the default vendors, you can add custom AI vendors by following the [custom AI vendor integration](../../../ai-gateway/llm-gateway/ai-vendor-management/custom-ai-vendors/overview.mdx) documentation.
+    :::
+
+    :::note
+    The **AzureOpenAI** provider has two versions. Select the version based on the Azure OpenAI API you want to use:
+
+    - `1.0.0`: Chat Completions API (`/chat/completions`)
+    - `2.0.0`: Responses API (`/responses`)
+
+    For more information, see [Azure OpenAI supported versions](../../../ai-gateway/llm-gateway/ai-vendor-management/azure-openai.mdx#supported-versions).
+    :::
+
+4. Fill in the AI API details and click **Create**.
+
+    <table>
+      <colgroup>
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <tbody>
+        <tr>
+          <th colSpan="2">Field</th>
+          <th>Sample value</th>
+        </tr>
+        <tr>
+          <td colSpan="2">Name</td>
+          <td>OpenAIAPI</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Context</td>
+          <td>
+
+            `openaiapi`
+
+            The API context is used by the Gateway to identify the API. Therefore, the API context must be unique. This context is the API's root context when invoking the API through the Gateway.
+
+            You can define the API's version as a parameter of its context by adding the `{version}` into the context. For example, `{version}/openaiapi`. The API Manager assigns the actual version of the API to the `{version}` parameter internally. For example, `https://localhost:8243/2.3.0/openaiapi`. Note that the version appears before the context, allowing you to group your APIs based on the versions.
+
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="2">Version</td>
+          <td>2.3.0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/create-openai-api.png").default} alt="Create OpenAI API" style={{width: "90%"}} />
+
+    The overview page of the newly created API appears.
+
+### Step 2: Obtain API Key from AI Service Vendor
+
+1. Login to OpenAI and go to [OpenAI Dashboard.](https://platform.openai.com/api-keys)
+2. Navigate to **API keys** section from the left menu. Then, click on **Create new secret key**. Provide a name for the key and click on **Create secret key**.
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/openai-api-key-generation.png").default} alt="Get OpenAI API Key" style={{width: "90%"}} />
+
+### Step 3: Configure Sandbox and Production Endpoint
+
+1. Navigate to **API Configurations** --> **Endpoints**.
+2. Notice the **API Key Required** warning against the `Default Production Endpoint` and `Default Sandbox Endpoint`. Click on **Edit** icon and fill in the API Key value which you obtained from Step 1 above and click on **Update** to save the changes.
+
+    :::note
+        API Manager supports the following AI service providers by default. The authorization approach of each is mentioned below: 
+    - **Anthropic**: `x-api-key` header
+    - **AWSBedrock**: Requires both an AWS Access Key and AWS Secret Key for authentication.
+    - **AzureAIFoundry**: `api-key` header
+    - **AzureOpenAI**: `api-key` header
+    - **Gemini**: `X-goog-api-key` header
+    - **MistralAI**: `Authorization` header
+    - **OpenAI**: `Authorization` header
+
+    Note that we prepend "Bearer " to the header value that you provide when it comes to MistralAI and OpenAI since they are expecting an Authorization header.
+    :::
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/ai-api-configure-backend-security.png").default} alt="API Key Configuration" style={{width: "90%"}} />
+
+Now, you have successfully created an AI API. Next, [deploy the API](../../deploy-and-publish/deploy-api/deploy-api/deploy-an-api.mdx), [test the API](./create-rest-api/test-a-rest-api.mdx), and finally [publish the API](../../deploy-and-publish/publish-on-dev-portal/publish-an-api.mdx).
+
+## See Also
+
+Learn more on the concepts that you need to know when creating a REST API:
+
+-   [API Security](../../../api-security/runtime/api-authentication/secure-apis-using-oauth2-tokens.mdx)
+-   [Rate Limiting for AI APIs](../../../ai-gateway/llm-gateway/rate-limiting.mdx)
+-   [Multi-Model Routing](../../../ai-gateway/llm-gateway/multi-model-routing/overview.mdx)
+-   [Life Cycle Management](../lifecycle-management/api-lifecycle.mdx)
+-   [API Visibility](../advanced-topics/control-api-visibility-and-subscription-availability-in-developer-portal.mdx)
+-   [API Documentation](../api-documentation/add-api-documentation.mdx)
+-   [Custom Properties](../adding-custom-properties-to-apis.mdx)

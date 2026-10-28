@@ -1,0 +1,181 @@
+---
+title: Quick Start Guide
+description: New to WSO2 API Manager?  # generated from the first paragraph; a writer should improve it
+type: quick-start
+sidebar_label: Quick start guide
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+New to WSO2 API Manager? No worries; we'll guide you through the basics!
+
+In this step-by-step guide, you’ll learn how to create, publish, and invoke an API using the Publisher Portal and Developer Portal.
+
+### Before you begin...
+
+Choose a deployment option to start the WSO2 API Manager All-in-one package. The All-in-one package contains all core components in a single JVM for simplified deployment.
+
+<Tabs groupId="tabs">
+<TabItem value="run-on-vm" label="Run on VM">
+
+Here's how you can download and run WSO2 API Manager All-in-one package locally on a VM:
+
+1. Install [Java SE Development Kit (JDK)](https://adoptium.net/temurin/releases/?arch=any&version=21) version **21** and set the `JAVA_HOME` environment variable.
+
+    :::tip
+    For more information on setting the `JAVA_HOME` environment variable for different operating systems, see [Setup and Install](../deploy-and-operate/install-and-setup/install/installing-the-product/installing-api-m-runtime.mdx#setting-up-java_home)
+    :::
+
+2. Download WSO2 API-Manager All-in-one package.
+- [Open Source Distribution](https://github.com/wso2/product-apim/releases/tag/v4.7.0)
+- [WSO2 Official Distribution](https://wso2.com/api-manager/#)
+
+3. Extract the downloaded zip file.
+
+4. Navigate to the `<API-M_HOME>/bin` folder from your command line.
+
+5. To start WSO2 API Manager, execute the relevant command:
+
+    <Tabs groupId="tabs">
+    <TabItem value="on-macos-linux" label="On MacOS/Linux">
+
+    ```bash
+    sh api-manager.sh
+    ```
+
+    </TabItem>
+    <TabItem value="on-windows" label="On Windows">
+
+    ```bash
+    api-manager.bat --run
+    ```
+
+    </TabItem>
+    </Tabs>
+
+</TabItem>
+<TabItem value="run-on-kubernetes" label="Run on Kubernetes">
+
+To use Kubernetes (K8s) and Helm resources for container-based deployments of WSO2 API Manager (API-M), follow the steps in [Deploying API-M on Kubernetes using Helm Resources.](../deploy-and-operate/install-and-setup/deploy/kubernetes-deployment/kubernetes/all-in-one-deployment/am-pattern-0-all-in-one.mdx)
+
+</TabItem>
+</Tabs>
+
+### What you'll build
+
+In this sample scenario, you'll implement the full lifecycle of an API using WSO2 API Manager.
+
+[<img src={require("../../assets/img/get_started/apim-qsg-diagram.png").default} width="60%" />](../../assets/img/get_started/apim-qsg-diagram.png)
+
+Here are the steps that we are going to follow:
+
+- [Step 1: Create, Deploy and Publish an API](#step-1-create-deploy-and-publish-an-api)
+- [Step 2: Subscribe to the API](#step-2-subscribe-to-the-api)
+- [Step 3: Invoke the API](#step-3-invoke-the-api)
+
+Let's get started...
+
+### Step 1: Create, Deploy and Publish an API
+
+Follow the instructions below to create, deploy and publish an API via the Publisher Portal of WSO2 API-M.
+
+1. Navigate to the Publisher Portal.
+
+     [https://localhost:9443/publisher](https://localhost:9443/publisher)
+
+2. Sign in with **`admin/admin`** as the credentials.
+
+     ![Publisher portal home page](../../assets/img/get_started/api-publisher-home.png)
+
+3. Next, let's create a **REST API** in the API Manager to proxy an existing REST service by selecting **REST API** from the home screen and then click **Start From Scratch**.
+
+    ![Design a new REST API](../../assets/img/get_started/design-new-rest-api.png)
+
+4. Fill the following API details in the relevant fields.
+
+    <table>
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <td>RandomUUID</td>
+        </tr>
+        <tr>
+          <th>Context</th>
+          <td>`/uuid`</td>
+        </tr>
+        <tr>
+          <th>Version</th>
+          <td>1.0.0</td>
+        </tr>
+        <tr>
+          <th>Endpoint</th>
+          <td>`https://dev-tools.wso2.com/gs/helpers/v1.0/uuid`</td>
+        </tr>
+      </tbody>
+    </table>
+
+5. Click **Create & Publish**.
+
+    <img src={require("../../assets/img/get_started/api-create.png").default} alt="Create an API" style={{width: "100%"}} />
+
+    This will publish your first API on the Developer Portal as well as deploy it on the gateway. You now have an OAuth 2.0 secured REST API that is ready to be consumed.
+
+<Anchor id="subscribe" />
+
+### Step 2: Subscribe to the API
+
+Follow the instructions below to subscribe to the API via the Developer Portal of WSO2 API-M.
+
+1. Navigate to the Developer Portal.
+
+     [https://localhost:9443/devportal](https://localhost:9443/devportal)
+
+     The published `RandomUUID` API is listed in the Developer Portal as shown below.
+
+     ![Developer Portal home page](../../assets/img/get_started/dev-portal-landing-page.png)
+
+2. Click **Sign-In** and enter **`admin/admin`** as your credentials to sign in to the Developer Portal.
+
+3. Once you click on the RandomUUID API, you will be redirected to  the API overview page. Then, go ahead and click on the **TRY OUT** button.
+
+     ![API try out](../../assets/img/get_started/try-out.png)
+
+     And with that, we have subscribed to the API using the `DefaultApplication`.
+
+<Anchor id="invoke" />
+
+### Step 3: Invoke the API
+
+Follow the instructions below to invoke the created API.
+
+1. Click on **Try Out** &rarr; **API Console** from the left menu. Then, click on **GET TEST KEY** to generate an access token.
+
+    :::note
+       If this is the first time you are using the API console from your browser, open a new tab and navigate to the [https://localhost:8243/](https://localhost:8243/) URL.
+
+       This will prompt your browser to accept the certificate used by the gateway. This is required because by default the gateway uses a self-signed certificate that is not trusted by web browsers.
+
+       When running in production, since a trusted certificate is used, you won't have to do this step.
+
+    ![Test API](../../assets/img/get_started/test-api.png)
+
+    This will prompt you for the customer secret created at the startup to generate the access token.
+
+    ![Test API](../../assets/img/get_started/enter-customer-secret.png)
+    :::
+
+2. Click on the `GET` resource of the API to expand the resource and Click **Try It Out**.
+
+     ![GET resource](../../assets/img/get_started/expanded-get-resource.png)
+
+3. Click **Execute**.
+
+     ![GET resource](../../assets/img/get_started/try-api.png)
+
+     You should see the `{"uuid": "<random-generated-uuid>"}` response from the API.
+
+     ![Successful response](../../assets/img/get_started/try-it-success.png)
+
+__Congratulations!__ With that, you've created, deployed, and published your first API. Next, you subscribed to it and put it to the test. Your journey with WSO2 API Manager has officially begun!

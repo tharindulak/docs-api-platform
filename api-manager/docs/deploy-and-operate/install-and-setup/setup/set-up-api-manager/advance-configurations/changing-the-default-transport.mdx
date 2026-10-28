@@ -1,0 +1,99 @@
+---
+title: Changing the Default Transport
+description: APIs are made up of Apache Synapse configurations that WSO2 API Manager accesses through a transport protocol.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Change the default transport
+sidebar_position: 1
+---
+
+APIs are made up of Apache Synapse configurations that WSO2 API Manager accesses through a transport protocol. The default API Manager transport is the PassThrough transport, but you can configure a different default transport in your `deployment.toml` file.
+
+:::info
+WSO2 API Manager does not use the HTTP/S servlet transport protocol configurations that are in the `axis2.xml` file. Instead, WSO2 API Manager's Management Console uses the Tomcat-level servlet transport protocols that are available in the `<API-M_HOME>/repository/conf/tomcat/catalina-server.xml` file.
+:::
+
+The following topics provide more information on these transports:
+
+-   [HTTP PassThrough Transport](#http-passthrough-transport)
+-   [Transport Receiver Parameters](#transport-receiver-parameters)
+-   [Transport Sender Parameters](#transport-sender-parameters)
+-   [Connection Throttling](#connection-throttling)
+
+### HTTP PassThrough Transport
+
+HTTP PassThrough Transport is the default, non-blocking HTTP transport implementation based on HTTP Core NIO and is specially designed for streaming messages. It is similar to the old message relay transport, but it does not take the content type into consideration and simply streams all the messages that it receives. It also has a simpler and cleaner model for forwarding messages back and forth. The two classes that implement the receiver and sender APIs are `org.apache.synapse.transport.passthru.PassThroughHttpListener` and `org.apache.synapse.transport.passthru.PassThroughHttpSender`, respectively. The PassThrough Transport does not require the binary relay builder and expanding formatter.
+
+:::note[Graceful shutdown behavior of the PassThrough transport]
+By default, when an API Manager Gateway node begins a graceful shutdown, it continues to be treated as available for some time before actually shutting down. This is because the graceful shutdown timeout of the PassThrough transport is governed by the `socket timeout` value, and the node remains available until this period elapses. To shorten this window, reduce the socket_timeout value under `[transport.http]` in the `<API-M_HOME>/repository/conf/deployment.toml` file to a lower value instead of the default of 180000ms. Note that this value should still be set high enough to comfortably accommodate the response time of any in-flight requests, so real traffic will not be cut off prematurely.
+:::
+
+### Transport Receiver Parameters
+
+| Parameter Name | Description | Required | Possible Values | Default Value |
+| --- | --- | --- | --- | --- |
+| port | The port on which this transport receiver should listen for incoming messages. | No | A positive integer less than 65535 | 8280 |
+| non-blocking | Setting this parameter to true is vital for reliable messaging and a number of other scenarios to work properly. | Yes | ` true ` or ` false ` *<br />* | ` true ` |
+| bind-address | The address of the interface to which the transport listener should bind. | No | A host name or an IP address | 127.0.0.1 |
+| WSDLEPRPrefix | A URL prefix which will be added to all service EPRs and EPRs in WSDLs etc. | No | A URL of the form \<protocol\>://\<hostname\>:\<port\>/ |  |
+| httpGetProcessor | An extension point used to execute a special interceptor for HTTP GET requests. | Yes | An extension point | ` org.wso2.carbon.mediation.transport.handlers .PassThroughNHttpGetProcessor ` |
+| priorityConfigFile | The location of the file containing the configuration for priority based dispatching. | No | A file location |  |
+
+### Transport Sender Parameters
+
+| Parameter Name | Description | Required | Possible Values | Default Value |
+| --- | --- | --- | --- | --- |
+| non-blocking | Setting this parameter to true is vital for reliable messaging and a number of other scenarios to work properly. | Yes | ` true ` or ` false ` | ` true ` |
+| warnOnHTTP500 | Logs warnings for HTTP 500 responses only for the specified content-types. For example, ` <parameter name="warnOnHTTP500 locked="false">x-application/hessian\|none</parameter> ` would log warnings for HTTP 500 responses of content-type 'x-application/hessian' or messages missing a content-type. | No | A list of content types separated by "\|" |  |
+| http.proxyHost | If the outgoing messages should be sent through an HTTP proxy server, use this parameter to specify the target proxy. | No | A host name or an IP address |  |
+| http.proxyPort | The port through which the target proxy accepts HTTP traffic. | No | A positive integer less than 65535 |  |
+| http.nonProxyHosts | The list of hosts to which the HTTP traffic should be sent directly without going through the proxy. | No | A list of host names or IP addresses separated by '\|' |  |
+
+### Connection Throttling
+
+Using the HTTP PassThrough transport protocol, you can enable connection throttling to restrict the number of simultaneous open connections. To enable connection throttling, edit the `<APIM_HOME>/repository/conf/deployment.toml` and add the following configuration under `passthough_http` configurations.
+    ```java
+        [passthru_http]
+        max_open_connections = 2
+    ```
+
+This will restrict simultaneous open incoming connections to 2. To disable throttling, delete the `max_open_connections` setting or set it to -1.
+
+:::info
+Connection throttling is never exact. For example, setting this property to 2 will result in roughly two simultaneous open connections at any given time.
+:::
+
+:::note[Configuring `passthru_http` Connection Parameters]
+You can configure connection parameters for the `passthru_http` transport sender. These parameters control the behavior of connections in the connection pool:
+
+1. **`transport.sender.connection.idle.time`**: Maximum time (in milliseconds) a connection can be idle in the pool.
+
+2. **`transport.sender.connection.maximum.lifespan`**: Maximum lifespan (in milliseconds) of a connection in the pool.
+
+3. **`transport.sender.connection.grace.time`**: Time (in milliseconds) to avoid using a connection when it's being closed.
+:::
+
+:::note[The following configurations should be added to the deployment.toml file in order to apply the changes]
+HTTP Transport Receiver Parameters
+```text
+[transport.passthru_http.listener.parameters]
+port=7003
+```
+
+HTTP Transport Sender Parameters
+```text
+[transport.passthru_http.sender.parameters]
+non-blocking=false
+```
+
+HTTPS Transport Receiver Parameters
+```text
+[transport.passthru_https.listener.parameters]
+port=7003
+```
+
+HTTPS Transport Sender Parameters
+```text
+[transport.passthru_https.sender.parameters]
+non-blocking=false
+```
+:::
