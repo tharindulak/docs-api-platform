@@ -1,6 +1,6 @@
 # AI Gateway: Cloud pages against the main line
 
-The main line is seeded from the newest Self-hosted line; pages found only in the Cloud sub-section are added and marked Cloud only (Platform-by-platform walkthrough, rule 4). A Cloud page with the same name as a main-line page is **not** added: the main line keeps its own text, and the Cloud page's legacy URL maps to it. This report lists those pairs so the team can decide each one by PR. Converted from `wso2/docs-api-platform@6e2ec90794700ff4cf4c559b634649e3c9bfddbb`.
+The main line is seeded from the newest Self-hosted line; pages found only in the Cloud sub-section are added and marked Cloud only (Platform-by-platform walkthrough, rule 4). A Cloud page with the same name as a main-line page is **not** added: the main line keeps its own text, and the Cloud page's legacy URL maps to it. This report lists those pairs so the team can decide each one by PR. Converted from `wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b`.
 
 - Pairs: 7 (0 identical, **7 differ**)
 - Cloud-only pages added: 26
