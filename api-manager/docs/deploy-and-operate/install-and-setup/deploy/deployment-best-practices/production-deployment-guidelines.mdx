@@ -1,0 +1,160 @@
+---
+title: Production Deployment Checklist
+description: Given below is a checklist that will guide you to set up your production environment for WSO2 API-M.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Deployment checklist
+sidebar_position: 1
+---
+
+Given below is a checklist that will guide you to set up your production environment for WSO2 API-M.
+
+<table>
+  <thead>
+    <tr>
+      <th>Guideline</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Security hardening</td>
+      <td>
+
+        Guidelines for hardening the security of a WSO2 deployment in a production environment can be discussed under three high-level categories:
+
+        - Product-level security
+        - OS-level security
+        - Network-level security<br /> <br />
+
+        **Related links**
+
+        [Security Guidelines for a Production Deployment](./security-guidelines-for-production-deployment.mdx)
+
+      </td>
+    </tr>
+    <tr>
+      <td>Hostname</td>
+      <td>
+
+        By default, WSO2 products identify the hostname of the current machine through the Java API. However, it is recommended to configure the hostname by setting the `hostname` parameter in the `deployment.toml` file.
+
+        <Anchor id="cb1" />
+
+        ```text
+        [server]hostname="localhost"
+        ```
+
+        **Related links**
+
+        [Changing the hostname](./changing-the-hostname.mdx)
+
+      </td>
+    </tr>
+    <tr>
+      <td>Registry and governance</td>
+      <td>
+
+        The API-M runtime uses a database registry for persistent storage of configurations. It is recommended to switch to a database like Oracle, MySQL, or MSSQL.
+
+        Note that the default setup does not include database backup procedures. The production setup should obviously need to have regular database backup procedures configured.
+
+        - [Database registry](../../setup/set-up-api-manager/setting-up-databases/overview.mdx) for the API-M runtime.
+
+      </td>
+    </tr>
+    <tr>
+      <td>Performance Tuning</td>
+      <td>
+
+        Most of the performance tuning recommendations are common to all WSO2 products. However, each WSO2 product may have additional guidelines for optimizing the performance of product-specific features.
+
+        - Performance Tuning - WSO2 API-M runtime
+        - Performance tuning - WSO2 Micro Integrator
+
+      </td>
+    </tr>
+    <tr>
+      <td>Firewalls</td>
+      <td>
+
+        The following ports must be accessed when operating within a firewall:
+
+        **API-M Ports**
+
+        - 9443 - Used by the management console and services that use the servlet transport.
+        - 9763 - Used by the services that use servlet transport.
+        - 9999 - Used for JMX monitoring.
+        - 8280 - Default HTTP port used by ESB for proxy services.
+        - 8243 - Default HTTPS port used by ESB for proxy services.
+
+        **Micro Integrator Ports**
+
+        - 8290 - Default HTTP port used by the Micro Integrator for proxy services and APIs.
+        - 8253 - Default HTTPS port used by the Micro Integrator for proxy services and APIs.
+        - 9164 - Default HTTPS port used by the Micro Integrator Management APIs.
+
+      </td>
+    </tr>
+    <tr>
+      <td>Proxy servers</td>
+      <td>
+
+        If the runtime is hosted behind a proxy such as ApacheHTTPD, you can configure the runtime to use the proxy server. See the following topics for instructions:
+
+        - Configuring a [proxy server for the API-M runtime](../../setup/set-up-api-manager/setting-up-proxy-server-and-the-load-balancer/configuring-the-proxy-server-and-the-load-balancer.mdx).
+        - Configuring a [proxy server for the Micro Integrator runtime](https://mi.docs.wso2.com/en/latest/install-and-setup/setup/configuring-proxy-servers/).
+
+      </td>
+    </tr>
+    <tr>
+      <td>HTTP header size</td>
+      <td>
+
+        The default value of `maxHttpHeaderSize` on both the HTTP and HTTPS connectors in `<API-M_HOME>/repository/conf/tomcat/catalina-server.xml` is set to **32 KB (32768 bytes)**.
+
+        This value **must not be set to less than 32 KB (32768 bytes)**, specifically on the **API Control Plane (ACP) node** in a distributed deployment (or on the single node in an all-in-one deployment), if **Multi-Option Authentication** is used for portal (Publisher, DevPortal, Admin) logins in federated authentication flows.
+
+        If set lower, the `/commonauth` redirect from the external Identity Provider carries the full OAuth scope list in the request URI, and the combined size of the request line and headers exceeds the buffer. Tomcat then rejects the request with a `400 Bad Request` or `414 Request-URI Too Long` error, breaking the federated login flow.
+
+        If you need to override the value via `deployment.toml`, keep it at or above the default:
+
+        <Anchor id="cb2" />
+
+        ```text
+        [transport.http.properties]
+        maxHttpHeaderSize = 32768
+
+        [transport.https.properties]
+        maxHttpHeaderSize = 32768
+        ```
+
+        If a reverse proxy, load balancer, ingress controller, or CDN is deployed in front of API-M, ensure its header and URL size limits are also aligned to at least 32 KB — otherwise the request will be rejected at the front tier before it reaches API-M.
+
+      </td>
+    </tr>
+    <tr>
+      <td>High availability</td>
+      <td>
+
+        Configure your deployment with high availability. Refer the [recommended deployment patterns](../../../../get-started/deployment-options/deployment-patterns.mdx) and select an option that fits your requirements.
+
+        In the cloud native deployment, high availability should be achieved via the container orchestration system (Kubernetes).
+
+      </td>
+    </tr>
+    <tr>
+      <td>Data backup and archiving</td>
+      <td>Implement a [backup and recovery strategy](./backup-recovery.mdx) for your system.</td>
+    </tr>
+    <tr>
+      <td>Encryption Key</td>
+      <td>
+
+        Generate a symmetric encryption key and add it to the `deployment.toml` file. See [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key) for instructions.
+
+        **Note:** In distributed or high-availability deployments, **all API-M instances must use the same symmetric encryption key**. Ensure the identical key value is added to the `deployment.toml` of every node in the cluster to maintain the ability to decrypt registry resources across instances.
+
+      </td>
+    </tr>
+  </tbody>
+</table>

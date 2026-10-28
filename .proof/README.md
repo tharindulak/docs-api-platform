@@ -1,0 +1,1 @@
+A stand-in for the published `manifest.json` that `wso2-docs check`, preview and bundle compose this repo's Doc space manifests into, until docs-platform's staging publishes one. Composed from the Platform's fixture manifests. The repo variable `DOCS_PUBLISHED_MANIFEST` points at it. Proof only.

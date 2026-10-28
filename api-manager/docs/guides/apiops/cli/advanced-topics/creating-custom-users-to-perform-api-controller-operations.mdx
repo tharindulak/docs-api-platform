@@ -1,0 +1,53 @@
+---
+title: Creating Custom Users to Perform apictl Operations
+description: To perform tasks using the WSO2 API Controller (apictl), a particular user must have required scopes.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Create custom users to perform apictl operations
+sidebar_position: 1
+---
+
+To perform tasks using the **WSO2 API Controller (apictl)**, a particular user must have required scopes. From WSO2 API Manager (WSO2 API-M) 3.2.0 onwards, a new role named `Internal/devops` has been introduced who has the ability to perform all the apictl related operations. You just need to create a new user (Refer [Adding a new User](../../../../deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-users.mdx#adding-a-new-user) to learn about adding new users), assign the role `Internal/devops` and use that user to perform the apictl operations.
+
+## Minimal permissions and scopes required to perform apictl operations
+
+Further, you can create your own custom user with a custom role to perform specific set of apictl operations. Refer the below table to learn about the required scopes that are needed for each of the apictl operation.
+
+:::info
+**Steps to create a custom user with a custom role for your need** 
+
+- As shown in [Create user roles](../../../../deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx) section, you can create your own custom user role by assigning scopes that are required to perform a particular set of apictl operations by referring the table below.
+- Then, create a user as explained in [Adding a new User](../../../../deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-users.mdx#adding-a-new-user), by assigning the custom role that you created in the above step, to that user.
+- Now you can login to apictl (using `apictl login <env-name>` command) and perform the particular set of operations as per your need.
+:::
+
+:::note
+- The `get api-logging` command can be executed only with a user who has super admin permissions.
+:::
+
+| Operation | Minimal Scopes |
+| --- | --- |
+| add env | - |
+| remove env | - |
+| get envs | - |
+| login | - |
+| logout | - |
+| get apis | apim:api_import_export |
+| get api-revisions | apim:api_import_export |
+| delete api | apim:api_import_export |
+| change-status api | apim:api_import_export |
+| import api | apim:api_import_export |
+| export api | apim:api_import_export |
+| export-apis | apim:api_import_export |
+| get api-products | apim:api_product_import_export |
+| get api-product-revision | apim:api_product_import_export |
+| delete api-product | apim:api_product_import_export |
+| change-status api-product | apim:api_product_import_export |
+| import api-product | apim:api_product_import_export |
+| export api-product | apim:api_product_import_export,<br />apim:api_import_export |
+| import api policy | apim:policies_import_export |
+| export api policy | apim:policies_import_export |
+| get apps | apim:app_import_export |
+| delete app | apim:app_import_export |
+| import app | apim:app_import_export |
+| export app | apim:app_import_export |
+| get keys | apim:app_manage, <br />apim:sub_manage, <br />apim:api_product_import_export <br /><br />or<br />apim:app_manage, <br />apim:sub_manage, <br />apim:api_import_export <br /><br />or<br />apim:app_manage, <br />apim:sub_manage, <br />apim:api_view |

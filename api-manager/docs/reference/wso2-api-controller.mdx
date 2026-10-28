@@ -1,0 +1,845 @@
+---
+title: WSO2 API Controller (APICTL)
+description: The WSO2 API Controller (apictl) is the command-line tool of WSO2 API Manager.  # generated from the first paragraph; a writer should improve it
+type: reference
+sidebar_label: API controller (APICTL)
+sidebar_position: 3
+---
+
+The **WSO2 API Controller (apictl)** is the command-line tool of WSO2 API Manager. This allows you to move APIs, API Products, and Applications across API-M environments and to perform CI/CD operations. It can also be used to perform these same tasks on a Kubernetes deployment.
+
+## Get Started
+
+Follow the steps given below to get started:
+
+1.  Go to the [**WSO2 API Manager** website](https://wso2.com/api-manager/) -> **Download** -> **Tooling**, and download the **API Controller**.
+
+2.  Extract the downloaded distribution and initialize apictl by executing the following command from your terminal.
+
+    ```bash
+    apictl init
+    ```
+
+3. **Add environments**
+
+    Execute the following command to add API-M environments:
+
+    ```bash
+    apictl add env <environment-name>
+    ```
+
+    Find out more about the `apictl add env` option in the [APICTL Reference](#apictl-add).
+
+3. **Log in**
+
+    Execute the following command to log in to the required server environment. You are prompted to enter the username and password.
+
+    ```bash
+    apictl login <environment-name>
+    ```
+
+    Alternatively, you can pass the user name and password in a single command:
+
+    :::note
+    If you are on **Windows**, you must always log in with the following command.
+    :::
+
+    ```bash
+    apictl login <environment-name> -u <username> -p <password>
+    ```
+
+    To logout from apictl, use the following command:
+
+    ```bash
+    apictl logout <environment-name>
+    ```
+
+Once you are logged in, you can use the available options and commands.
+
+## APICTL Reference
+
+You can execute the following command to see the available sub commands:
+
+```bash
+apictl
+```
+
+Listed below are all the apictl commands available.
+
+### apictl global flags
+
+The following global flags can be used with all the `apictl` options and subcommands. 
+
+<table>
+  <tbody>
+    <tr>
+      <th>`-h`, `--help`</th>
+      <td>Get help for apictl commands and options.</td>
+    </tr>
+    <tr>
+      <th>`-k`, `--insecure`</th>
+      <td>Allow connections to SSL endpoints without certifications.</td>
+    </tr>
+    <tr>
+      <th>`--verbose`</th>
+      <td>Enable verbose mode.</td>
+    </tr>
+  </tbody>
+</table>
+
+### apictl version
+
+Use the `version` option to get the version of the running apictl tool.
+
+```bash
+apictl version
+```
+
+### apictl init
+
+Use `init` to initialize the CLI tool.
+
+```bash
+apictl init
+```
+
+### apictl add
+
+Add a new API-M environment and its related endpoints to the configuration file of apictl. This will connect apictl with the added environment.
+
+-   Usage
+
+    ```bash
+    apictl add [option] [argument] [flag]
+    ```
+
+-   Option
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`env`</th>
+          <td>Specifies that a new environment is being added.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Argument
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`environment name`</th>
+          <td>Enter the name of given to the environment.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`--apim`</th>
+          <td>Use this flag to add an API-M environment.</td>
+        </tr>
+        <tr>
+          <th>`--registration`</th>
+          <td>If the `--apim` flag is not used, use this flag to specify the API-M server url.</td>
+        </tr>
+        <tr>
+          <th>`--publisher`</th>
+          <td>If the `--apim` flag is not used, use this flag to specify the API-M Publisher url.</td>
+        </tr>
+        <tr>
+          <th>`--devportal`</th>
+          <td>If the `--apim` flag is not used, use this flag to specify the API-M Developer Portal url.</td>
+        </tr>
+        <tr>
+          <th>`--admin`</th>
+          <td>If the `--apim` flag is not used, use this flag to specify the API-M Admin Portal url.</td>
+        </tr>
+        <tr>
+          <th>`--token`</th>
+          <td>If the `--apim` flag is not used, use this flag to specify the API-M Token url.</td>
+        </tr>
+        <tr>
+          <th>`--environment`</th>
+          <td>This flag is mandatory when passing an environment.</td>
+        </tr>
+        <tr>
+          <th>`-e`</th>
+          <td>This flag is mandatory when passing an environment.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl login
+
+Log in to an API Manager environment using credentials.
+
+-   Usage
+
+    ```bash
+    apictl login [argument] [global-flags]
+    ```
+
+-   Arguments
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`environment`</th>
+          <td>Specify the name of the environment to which you want to log in.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-u`, `--username string`</th>
+          <td>Username to login.</td>
+        </tr>
+        <tr>
+          <th>`-p`, `---password string`</th>
+          <td>The login password.</td>
+        </tr>
+        <tr>
+          <th>`--password-stdin `</th>
+          <td>Get the login password from stdin.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl logout
+
+Log out from an API Manager environment.
+
+-   Usage
+
+    ```bash
+    apictl logout [argument] [global-flags]
+    ```
+
+-   Arguments
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`environment`</th>
+          <td>Log in to the API-M runtime instance.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl get
+
+Displays a list containing all the APIs, all the API Products, all the MCP Servers, applications of a specific user, all the environments or log levels of APIs or MCP Servers.
+
+-   Usage
+
+    ```bash
+    apictl get [option] [argument] [flag] [argument] 
+    ```
+
+-   Options
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`envs`</th>
+          <td>Display the list of environments.</td>
+        </tr>
+        <tr>
+          <th>`apis`</th>
+          <td>Display a list of APIs in an environment.</td>
+        </tr>
+        <tr>
+          <th>`api-products`</th>
+          <td>Display a list of API Products in an environment.</td>
+        </tr>
+        <tr>
+          <th>`mcp-servers`</th>
+          <td>Display a list of MCP Servers in an environment.</td>
+        </tr>
+        <tr>
+          <th>`apps`</th>
+          <td>Display a list of Applications in an environment specific to an owner.</td>
+        </tr>
+        <tr>
+          <th>`api-revisions`</th>
+          <td>Display a list of Revisions for the API.</td>
+        </tr>
+        <tr>
+          <th>`mcp-server-revisions`</th>
+          <td>Display a list of Revisions for the MCP Server.</td>
+        </tr>
+        <tr>
+          <th>`keys`</th>
+          <td>Generate access token to invoke the API or API product.</td>
+        </tr>
+        <tr>
+          <th>`api-logging`</th>
+          <td>Display log level of the API or APIs.</td>
+        </tr>
+        <tr>
+          <th>`mcp-server-logging`</th>
+          <td>Display log level of the MCP Server or MCP Servers.</td>
+        </tr>
+        <tr>
+          <th>`correlation-logging`</th>
+          <td>Display a list of correlation logging components available.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Argument
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`environment name`</th>
+          <td>Enter the name of given to the environment.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-e`</th>
+          <td>Use this flag to specify from which environment to get the APIs, API products, or APPs.</td>
+        </tr>
+        <tr>
+          <th>`--environment`</th>
+          <td>Use this flag to specify from which environment to get the APIs, API products, or APPs.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl import
+
+Import an API, API product, MCP Server, or application to a specific environment.
+
+-   Usage
+
+    ```bash
+    apictl import [option] [argument] [flag] [argument] 
+    ```
+
+-   Subcommands
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`api`</th>
+          <td>Specify an API to import.</td>
+        </tr>
+        <tr>
+          <th>`api-product`</th>
+          <td>Specify an API product to import.</td>
+        </tr>
+        <tr>
+          <th>`mcp-server`</th>
+          <td>Specify an MCP Server to import.</td>
+        </tr>
+        <tr>
+          <th>`app`</th>
+          <td>Specify an application to import.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-f`</th>
+          <td>Use this flag to specify file path of the API, API product, or App.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl export
+
+Export APIs, API Products, MCP Servers, and Applications of a specific user in the specified environment.
+
+-   Usage
+
+    ```bash
+    apictl export [option] [argument] [flag] [argument] 
+    ```
+
+-   Options
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`api`</th>
+          <td>Specifies the API to export.</td>
+        </tr>
+        <tr>
+          <th>`apis`</th>
+          <td>Specifies the APIs to export.</td>
+        </tr>
+        <tr>
+          <th>`api-product`</th>
+          <td>Specify an API product to export.</td>
+        </tr>
+        <tr>
+          <th>`mcp-server`</th>
+          <td>Specify an MCP Server to export.</td>
+        </tr>
+        <tr>
+          <th>`app`</th>
+          <td>Specify an application to export.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-n`</th>
+          <td>Name of the API, API product, or APP to export.</td>
+        </tr>
+        <tr>
+          <th>`-v`</th>
+          <td>The version of the API you are exporting.</td>
+        </tr>
+        <tr>
+          <th>`-r`</th>
+          <td>The user role that is assigned.</td>
+        </tr>
+        <tr>
+          <th>`-e`</th>
+          <td>The environment from which the APIs, API product, or App is being exported.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl delete
+
+Delete APIs, API Products, MCP Servers, and Applications of a specific user in the specified environment.
+
+-   Usage
+
+    ```bash
+    apictl delete [option] [argument] [flag] [argument] 
+    ```
+
+-   Options
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`api`</th>
+          <td>Specifies the API to delete.</td>
+        </tr>
+        <tr>
+          <th>`api-product`</th>
+          <td>Specify an API product to delete.</td>
+        </tr>
+        <tr>
+          <th>`mcp-server`</th>
+          <td>Specify an MCP Server to delete.</td>
+        </tr>
+        <tr>
+          <th>`app`</th>
+          <td>Specify an application to delete.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-n`</th>
+          <td>Name of the API, API product, or APP to delete.</td>
+        </tr>
+        <tr>
+          <th>`-v`</th>
+          <td>The version of the API you are deleting.</td>
+        </tr>
+        <tr>
+          <th>`-r`</th>
+          <td>The user role that is assigned.</td>
+        </tr>
+        <tr>
+          <th>`-e`</th>
+          <td>The environment from which the APIs, API product, or App is being deleted.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl change-status
+
+Change the lifecycle status of an API, API Product, or MCP Server in an environment
+
+-   Usage
+
+    ```bash
+    apictl change-status [option] [argument] [flag] [argument] 
+    ```
+
+-   Options
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`api`</th>
+          <td>Specifies the API for which you want to change the status.</td>
+        </tr>
+        <tr>
+          <th>`mcp-server`</th>
+          <td>Specifies the MCP Server for which you want to change the status.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-a`</th>
+          <td>The new status that should apply to the API.</td>
+        </tr>
+        <tr>
+          <th>`-n`</th>
+          <td>The name of the API for which the new status should apply.</td>
+        </tr>
+        <tr>
+          <th>`-v`</th>
+          <td>The version of the API you are deleting.</td>
+        </tr>
+        <tr>
+          <th>`-r`</th>
+          <td>The user role that is assigned.</td>
+        </tr>
+        <tr>
+          <th>`-e`</th>
+          <td>The environment from which the APIs, API product, or App is being deleted.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl bundle
+
+Archive API, Application, or API Product projects to a zip format. The bundle name will have the project name and version.
+
+-   Usage
+
+    ```bash
+    apictl bundle [flag] [argument] 
+    ```
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-s`</th>
+          <td>The source of the API, or API project directory that should be bundled and archived.</td>
+        </tr>
+        <tr>
+          <th>`--source`</th>
+          <td>The source of the API, or API product directory that should be bundled and archived.</td>
+        </tr>
+        <tr>
+          <th>`--d`</th>
+          <td>The destination where the bundled ZIP file of the API/API product director is saved.</td>
+        </tr>
+        <tr>
+          <th>`--destination`</th>
+          <td>The destination where the bundled ZIP file of the API/API product director is saved.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl set
+
+Set configuration parameters. You can use one of the following flags.
+
+-   Usage
+
+    ```bash
+    apictl set [flag] [argument] 
+    ```
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`--http-request-timeout`</th>
+          <td>Specify the request timeout in milliseconds.</td>
+        </tr>
+        <tr>
+          <th>`--tls-renegotiation-mode`</th>
+          <td>Specify the regeneration mode: never, once, or freely.</td>
+        </tr>
+        <tr>
+          <th>`--export-directory`</th>
+          <td>The directory path where APIs should be saved. The directory path must be an existing folder.</td>
+        </tr>
+        <tr>
+          <th>`--vcs-deletion-enabled`</th>
+          <td>Enable/Disable project deletion via vcs.</td>
+        </tr>
+        <tr>
+          <th>`--vcs-config-path`</th>
+          <td>The directory path to the custom vcs configuration file.</td>
+        </tr>
+        <tr>
+          <th>`--vcs-deployment-repo-path`</th>
+          <td>The directory path to the deployment repo for vcs.</td>
+        </tr>
+        <tr>
+          <th>`--vcs-source-repo-path`</th>
+          <td>The directory path to the source repo for vcs.</td>
+        </tr>
+      </tbody>
+    </table>
+
+Use `api-logging` option to set the log level of the API. 
+
+```bash
+apictl set api-logging [flag] [argument]
+```
+
+Use `mcp-server-logging` option to set the log level of the MCP Server. 
+
+```bash
+apictl set mcp-server-logging [flag] [argument]
+```
+
+Use `correlation-logging` option to set the correlation configs for a correlation logging component.
+
+```bash
+apictl set correlation-logging [flag] [argument]
+```
+
+### apictl k8s
+
+Managing APIs in a Kubernetes API-M environment.
+
+-   Usage
+
+    ```bash
+    apictl k8s [subcommand] [option] [argument] [flag] [argument] 
+    ```
+
+-   Subcommands
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`add api`</th>
+          <td>Add an API to the kubernetes cluster.</td>
+        </tr>
+        <tr>
+          <th>`update api`</th>
+          <td>Update an API to the kubernetes cluster</td>
+        </tr>
+        <tr>
+          <th>`delete api`</th>
+          <td>Delete resources related to kubernetes.</td>
+        </tr>
+        <tr>
+          <th>`gen`</th>
+          <td>Generate deployment directory for K8S operator.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-n`</th>
+          <td>The name of the API that should be added or updated in the K8s environment.</td>
+        </tr>
+        <tr>
+          <th>`-f`</th>
+          <td>THe file path to the Swagger resource.</td>
+        </tr>
+        <tr>
+          <th>`--namespace=[value]`</th>
+          <td>The namespace associated with the API that should be added or updated in the K8s environment.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl aws
+
+AWS API Gateway related commands such as init. Be sure to install and configure the AWS CLI before executing the aws init command. See the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) for more information.
+
+-   Usage
+
+    ```bash
+    apictl aws [subcommand] [flag] [argument] 
+    ```
+
+-   Subcommands
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`init`</th>
+          <td>Initialize an API project for an AWS API.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-n`</th>
+          <td>The name of the API project that should be initialized.</td>
+        </tr>
+        <tr>
+          <th>`-s`</th>
+          <td>The stage of the environment.</td>
+        </tr>
+        <tr>
+          <th>`--stage`</th>
+          <td>The stage of the environment.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl vcs
+
+Checks status and deploys projects to the specified environment. To 
+use this command, 'git' must be installed in the system.'
+
+-   Usage
+
+    ```bash
+    apictl vcs [subcommand] [flag] [argument] 
+    ```
+
+-   Subcommands
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`init`</th>
+          <td>Initializes a GIT repository with API Controller.</td>
+        </tr>
+        <tr>
+          <th>`deploy`</th>
+          <td>Deploys projects to the specified environment.</td>
+        </tr>
+        <tr>
+          <th>`status`</th>
+          <td>Shows the list of projects that are ready to deploy.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-e`</th>
+          <td>The environment to which a project should be deployed.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl undeploy
+
+Undeploy an API/API Product/MCP Server revision that is available in the specified environment from the specified gateway.
+
+-   Usage
+
+    ```bash
+    apictl undeploy [option] [argument] [flag] [argument] 
+    ```
+
+-   Options
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`api`</th>
+          <td>Specifies the API to be undeployed.</td>
+        </tr>
+        <tr>
+          <th>`mcp-server`</th>
+          <td>Specifies the MCP Server to be undeployed.</td>
+        </tr>
+      </tbody>
+    </table>
+
+-   Flags
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`-n`</th>
+          <td>Name of the API, API product, or APP to undeploy.</td>
+        </tr>
+        <tr>
+          <th>`-v`</th>
+          <td>The version of the API you are undeploying.</td>
+        </tr>
+        <tr>
+          <th>`-r`</th>
+          <td>The user role that is assigned.</td>
+        </tr>
+        <tr>
+          <th>`-rev`</th>
+          <td>....</td>
+        </tr>
+        <tr>
+          <th>`-g`</th>
+          <td>The APIs matching the listed labels are undeployed.</td>
+        </tr>
+        <tr>
+          <th>`-e`</th>
+          <td>The environment from which the API is being undeployed.</td>
+        </tr>
+      </tbody>
+    </table>
+
+### apictl secret
+
+Encrypt secrets for use with WSO2 API Manager using symmetric or asymmetric encryption.
+
+-   Usage
+
+    ```bash
+    apictl secret [subcommand] [argument]
+    ```
+
+-   Subcommands
+
+    <table>
+      <tbody>
+        <tr>
+          <th>`init`</th>
+          <td>Initializes the keystore used for asymmetric encryption or the encryption key used for symmetric encryption. Use the optional \`symmetric\` argument to explicitly select symmetric mode.</td>
+        </tr>
+        <tr>
+          <th>`create`</th>
+          <td>Encrypts secrets using the initialized encryption key, or the initialized keystore. Use the optional \`symmetric\` argument to explicitly select symmetric mode.</td>
+        </tr>
+      </tbody>
+    </table>

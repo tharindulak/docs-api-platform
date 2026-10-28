@@ -1,0 +1,2274 @@
+{
+  "summary": {
+    "source": "wso2/docs-apim@ba0a7cf93a2d7fa1551a2cbc319d4fddfe61fbc8",
+    "edition": "next",
+    "legacyBase": null,
+    "navPages": 548,
+    "sourceFiles": 596,
+    "stats": {
+      "pages": 577,
+      "partials": 17,
+      "apiPages": 7,
+      "placeholders": 53,
+      "images": 1483,
+      "attachments": 27,
+      "missingImages": 25,
+      "links": 3263,
+      "externalLinks": 862,
+      "legacyHostLinks": 2,
+      "otherVersionLinks": 52,
+      "crossProductLinks": 114,
+      "linksViaRedirect": 411,
+      "droppedLinks": 38,
+      "droppedAnchors": 98,
+      "placeholdersWrapped": 53,
+      "admonitions": 1708,
+      "details": 68,
+      "tabSets": 342,
+      "codeBlocks": 3183,
+      "indentedCode": 6,
+      "htmlBlocks": 471,
+      "explicitIds": 631,
+      "basePathInCode": 1,
+      "basePathInText": 3,
+      "unknownElements": 63,
+      "unknownLanguages": [],
+      "generatedDescriptions": 577,
+      "sidebarLabels": 507,
+      "relativeFallback": 18,
+      "unlisted": 29,
+      "placeholders_": 1,
+      "sharedPages": 0,
+      "cloudOnlyPages": 0,
+      "selfHostedOnlyPages": 0,
+      "markedPages": 0,
+      "markers": 0,
+      "flatMerged": 0,
+      "editionCheckFailures": 0,
+      "imageVariants": 0,
+      "linkVariants": 0,
+      "includesExpanded": 0,
+      "includeFrontMatter": 0,
+      "flaggedOffPages": 0,
+      "specsFixed": 1,
+      "titlesVarying": 0,
+      "variants": 0,
+      "adjacentAlternatives": 0,
+      "cloudCounterparts": 0,
+      "ambiguousCounterparts": 0,
+      "overviewPages": 1,
+      "exportSingleFolders": 0,
+      "legacyRedirects": 0,
+      "legacyRedirectsSource": 722,
+      "acceptedByOverrides": 135
+    },
+    "issues": {
+      "nav": 2,
+      "not-in-nav": 29,
+      "html": 40,
+      "missing-image": 25,
+      "indented-code": 6,
+      "code": 1,
+      "placeholder-link": 5,
+      "placeholder": 1,
+      "api-spec": 1,
+      "include": 1
+    },
+    "compileFailures": 0,
+    "overrides": {
+      "file": "api-manager.overrides.yaml",
+      "patches": 41,
+      "patchesApplied": 41,
+      "accepted": 129
+    }
+  },
+  "items": [
+    {
+      "kind": "nav",
+      "file": null,
+      "message": "nav section \"API Developer Portal > View API Documentation\" has no pages; dropped"
+    },
+    {
+      "kind": "nav",
+      "file": "api-gateway/platform-gateway-capability.md",
+      "message": "nav entry \"Overview\" points to a missing file"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "administer/governance/quick-start-guide.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "administer/logging-and-monitoring/logging/managing-log-growth.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "administer/logging-and-monitoring/logging/masking-sensitive-information-in-logs.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "administer/logging-and-monitoring/monitoring/monitoring-tcp-based-messages.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "broken-link",
+      "file": "administer/managing-users-and-roles/managing-permissions.md",
+      "message": "link to ``https://localhost:9443/carbon`` has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "``https://localhost:9443/carbon``"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "administer/managing-users-and-roles/managing-user-roles.md",
+      "message": "link to `https://localhost:9443/admin` has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "`https://localhost:9443/admin`"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "administer/managing-users-and-roles/managing-user-stores/working-with-properties-of-user-stores.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "html",
+      "file": "administer/rate-limiting/manage-advanced-policies.md",
+      "message": "unknown element <http:> inside raw HTML kept as the text `<http:>`"
+    },
+    {
+      "kind": "missing-image",
+      "file": "ai-gateway/multi-model-routing/intelligent-model-routing.md",
+      "message": "image {{base_path}}/assets/img/learn/ai-gateway/attach-model-intelligent-model-routing.png does not exist in the source; removed (alt: \"Attach Intelligent Model Routing Policy\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "ai-gateway/multi-model-routing/semantic-model-routing.md",
+      "message": "image {{base_path}}/assets/img/learn/ai-gateway/attach-model-semantic-model-routing.png does not exist in the source; removed (alt: \"Attach Semantic Model Routing Policy\")"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/api-gateways-with-dedicated-backends.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/custom-synapse-artifacts.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/gateway-policies.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/maintain-seperate-gateways-per-tenants.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/maintaining-separate-production-and-sandbox-gateways.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/message-tracing.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/mutual-ssl-between-api-gateway-and-backend.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/overview-of-the-api-gateway.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/response-caching.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/deploy-and-publish/deploy-on-gateway/api-gateway/scaling-the-gateway.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-design-manage/design/advanced-topics/block-subscription-to-an-api.md",
+      "message": "link to {{base_path}}/api-design-manage/design/rate-limiting/access-control/#denying-requests has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/api-design-manage/design/rate-limiting/access-control/#denying-requests"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-design-manage/design/advanced-topics/enable-publisher-access-control-in-api-publisher-portal.md",
+      "message": "link to {{base_path}}/reference/product-apis/restful-apis/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/reference/product-apis/restful-apis/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/api-policies/create-policy.md",
+      "message": "unbalanced inline </pre> removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-design-manage/design/create-api/create-a-graphql-api.md",
+      "message": "link to {{base_path}}/api-design-manage/design/rate-limiting/graphql-api/overview-query-limits-for-graphql/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/api-design-manage/design/rate-limiting/graphql-api/overview-query-limits-for-graphql/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-design-manage/design/create-api/create-an-api-using-a-service.md",
+      "message": "link to {{base_path}}/api-design-manage/design/rate-limiting/introducing-throttling-use-cases/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/api-design-manage/design/rate-limiting/introducing-throttling-use-cases/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-design-manage/design/create-api/create-an-api-using-a-service.md",
+      "message": "link to {{base_path}}/api-design-manage/design/rate-limiting/rate-limiting-for-streaming-apis/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/api-design-manage/design/rate-limiting/rate-limiting-for-streaming-apis/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:choice\\> inside raw HTML kept as the text `<xs:choice\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:annotation\\> inside raw HTML kept as the text `<xs:annotation\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:attribute\\> inside raw HTML kept as the text `<xs:attribute\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:restriction\\> inside raw HTML kept as the text `<xs:restriction\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:complextype\\> inside raw HTML kept as the text `<xs:complextype\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:complexcontent\\> inside raw HTML kept as the text `<xs:complexcontent\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:simplecontent\\> inside raw HTML kept as the text `<xs:simplecontent\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:all\\> inside raw HTML kept as the text `<xs:all\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:group\\> inside raw HTML kept as the text `<xs:group\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:attributegroup\\> inside raw HTML kept as the text `<xs:attributegroup\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:any\\> inside raw HTML kept as the text `<xs:any\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:anyattribute\\> inside raw HTML kept as the text `<xs:anyattribute\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:enumaration\\> inside raw HTML kept as the text `<xs:enumaration\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:alternative\\> inside raw HTML kept as the text `<xs:alternative\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:assert\\> inside raw HTML kept as the text `<xs:assert\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:key\\> inside raw HTML kept as the text `<xs:key\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:keyref\\> inside raw HTML kept as the text `<xs:keyref\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:list\\> inside raw HTML kept as the text `<xs:list\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:unique\\> inside raw HTML kept as the text `<xs:unique\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:appinfo\\> inside raw HTML kept as the text `<xs:appinfo\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:documentation\\> inside raw HTML kept as the text `<xs:documentation\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/create-api/create-rest-api/generate-rest-api-from-soap-backend.md",
+      "message": "unknown element <xs:union\\> inside raw HTML kept as the text `<xs:union\\>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-design-manage/design/endpoints/certificates.md",
+      "message": "<html> block never closes; converted up to the next blank line"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-design-manage/design/endpoints/resiliency/endpoint-timeouts.md",
+      "message": "link to {{base_path}}/reference/synapse-properties/endpoint-properties has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/reference/synapse-properties/endpoint-properties"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-design-manage/design/rate-limiting/rate-limiting-for-ai-apis.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <dependency> inside raw HTML kept as the text `<dependency>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <groupid> inside raw HTML kept as the text `<groupid>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <artifactid> inside raw HTML kept as the text `<artifactid>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <version> inside raw HTML kept as the text `<version>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <scope> inside raw HTML kept as the text `<scope>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <project> inside raw HTML kept as the text `<project>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <modelversion> inside raw HTML kept as the text `<modelversion>`"
+    },
+    {
+      "kind": "html",
+      "file": "api-developer-portal/generating-sdks/write-a-client-application-using-the-sdk.md",
+      "message": "unknown element <dependencies> inside raw HTML kept as the text `<dependencies>`"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-gateway/message-tracing.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-gateway/policies/removing-specific-request-headers-from-response.md",
+      "message": "link to {{base_path}}/api-gateway/message-mediation/changing-the-default-mediation-flow-of-api-requests has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/api-gateway/message-mediation/changing-the-default-mediation-flow-of-api-requests"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-gateway/policies/transforming-api-message-payload.md",
+      "message": "link to {{base_path}}/integrate/examples/json_examples/json-examples/#accessing-content-from-json-payloads has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/integrate/examples/json_examples/json-examples/#accessing-content-from-json-payloads"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-gateway/policies/transforming-api-message-payload.md",
+      "message": "link to {{base_path}}/integrate/examples/json_examples/json-examples/#logging-json-payloads has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/integrate/examples/json_examples/json-examples/#logging-json-payloads"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-gateway/policies/transforming-api-message-payload.md",
+      "message": "link to {{base_path}}/integrate/examples/json_examples/json-examples/#constructing-and-transforming-json-payloads has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/integrate/examples/json_examples/json-examples/#constructing-and-transforming-json-payloads"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-gateway/policies/transforming-api-message-payload.md",
+      "message": "link to {{base_path}}/integrate/examples/json_examples/json-examples/#troubleshooting-debugging-and-logging has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/integrate/examples/json_examples/json-examples/#troubleshooting-debugging-and-logging"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-gateway/rate-limiting/implement-custom-throttling.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "html",
+      "file": "api-gateway/threat-protectors/bot-detection.md",
+      "message": "unknown element <api-m_home> inside raw HTML kept as the text `<api-m_home>`"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-security/design-time/configuring-api-security-audit.md",
+      "message": "link to auditreports has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "auditreports"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "indented-code",
+      "file": "api-security/key-management/third-party-key-managers/configure-azure-ad-key-manager.md",
+      "message": "indented block \"`api://<Application (client) ID>`\" became a code block (Python-Markdown read it as code too)"
+    },
+    {
+      "kind": "html",
+      "file": "api-security/key-management/third-party-key-managers/configure-okta-connector.md",
+      "message": "<table> block never closes; converted up to the next blank line"
+    },
+    {
+      "kind": "html",
+      "file": "api-security/key-management/third-party-key-managers/configure-okta-connector.md",
+      "message": "unbalanced inline </table> removed"
+    },
+    {
+      "kind": "indented-code",
+      "file": "api-security/key-management/third-party-key-managers/configure-wso2is7-connector.md",
+      "message": "indented block \"| Type of role in WSO2 API Manager             | N\" became a code block (Python-Markdown read it as code too)"
+    },
+    {
+      "kind": "broken-link",
+      "file": "api-security/key-management/tokens/encrypting-oauth2-tokens.md",
+      "message": "link to {{base_path}}/install-and-setup/deploying-wso2-api-manager/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/deploying-wso2-api-manager/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "indented-code",
+      "file": "api-security/runtime/authorization/oauth2-scopes/fine-grained-access-control-with-oauth-scopes.md",
+      "message": "indented block \"Open <API-M_HOME>/bin/api-manager.(sh|bat) file.\" became a code block (Python-Markdown read it as code too)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-security/runtime/authorization/role-based-access-control-using-xacml.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "api-security/runtime/openid-connect/obtaining-user-profile-information-with-openid-connect.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "missing-image",
+      "file": "apiops/cli/cicd-using-cli.md",
+      "message": "image {{base_path}}/assets/img/learn/api-controller/prod-dev-endpoints-petstore-api.png does not exist in the source; removed"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "get-started/choosing-your-deployment-strategy.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/install-and-setup-overview.md",
+      "message": "link to {{base_path}}/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "code",
+      "file": "install-and-setup/install/deploying-api-manager-with-kubernetes-resources.md",
+      "message": "code fence \"```\" never closes; kept as text, as on the legacy site"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "install-and-setup/install/deploying-api-manager-with-kubernetes-resources.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "placeholder-link",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.md",
+      "message": "link to the example URL ldap://10.100.1.100:389 removed, text kept"
+    },
+    {
+      "kind": "placeholder-link",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.md",
+      "message": "link to the example URL ldaps://10.100.1.102:639 removed, text kept"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-write-active-directory-user-store.md",
+      "message": "link to {{base_path}}/administer/managing-users-and-roles/configuring-the-system-administrator has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/administer/managing-users-and-roles/configuring-the-system-administrator"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "html",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-write-active-directory-user-store.md",
+      "message": "unbalanced inline </thead> removed"
+    },
+    {
+      "kind": "placeholder-link",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-write-ldap-user-store.md",
+      "message": "link to the example URL ldap://10.100.1.100:389 removed, text kept"
+    },
+    {
+      "kind": "placeholder-link",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-write-ldap-user-store.md",
+      "message": "link to the example URL ldaps://10.100.1.102:639 removed, text kept"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-write-ldap-user-store.md",
+      "message": "link to {{base_path}}/deploy/performance/performance-tuning-recommendations#performance-tuning-ldaps-pooling has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/deploy/performance/performance-tuning-recommendations#performance-tuning-ldaps-pooling"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "install-and-setup/setup/deployment-best-practices/performance-tests-results-graphql.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "html",
+      "file": "install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment.md",
+      "message": "unknown element <code&lt;is_home&gt;> inside raw HTML kept as the text `<code&lt;is_home&gt;>`"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/deployment-best-practices/tuning-performance.md",
+      "message": "link to {{base_path}}/install-and-setup/setup/mi-setup/transport_configurations/configuring-transports/#configuring-the-httphttps-transport has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/mi-setup/transport_configurations/configuring-transports/#configuring-the-httphttps-transport"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
+      "message": "link to {{base_path}}/api-security/key-management/configuration/configure-wso2is7-connector has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/api-security/key-management/configuration/configure-wso2is7-connector",
+        "suggest": {
+          "main": {
+            "page": "guides/api-security/key-management/third-party-key-managers/configure-wso2is7-connector",
+            "oldUrl": "api-security/key-management/third-party-key-managers/configure-wso2is7-connector/"
+          }
+        }
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/security/logins-and-passwords/configuring-recaptcha-for-single-sign-on.md",
+      "message": "image {{base_path}}/assets/img/learn/api-security/recaptcha/recaptcha-sso.png does not exist in the source; removed (alt: \"configure-captcha-for-sso\")"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/setting-up-databases/overview.md",
+      "message": "link to {{base_path}}/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "placeholder-link",
+      "file": "install-and-setup/setup/setting-up-proxy-server-and-the-load-balancer/adding-a-custom-proxy-path.md",
+      "message": "link to the example URL https://<server-ip>:9443/carbon removed, text kept"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "install-and-setup/setup/single-node/all-in-one-deployment-overview.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/is-create-new-org.png does not exist in the source; removed (alt: \"IS 7 dashboard\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/is-register-new-org.png does not exist in the source; removed (alt: \"IS 7 register new org\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/create-traditional-web-app-tenant.png does not exist in the source; removed (alt: \"Create Traditional Web Application\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-authenticator-configs.png does not exist in the source; removed (alt: \"Multi Tenant Authenticator Configs\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-common-sp.png does not exist in the source; removed (alt: \"Multi Tenant Common SP\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-sp-claim-configs.png does not exist in the source; removed (alt: \"Multi Tenant SP Claim Configs\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-sp-oidc-config.png does not exist in the source; removed (alt: \"Multi Tenant SP OIDC Configs\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-sp-outbound-configs.png does not exist in the source; removed (alt: \"Multi Tenant SP Outbound Configs\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-portal-sps.png does not exist in the source; removed (alt: \"Multi Tenant Portal SPs Configs\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
+      "message": "image {{base_path}}/assets/img/setup-and-install/tenant-selection-page.png does not exist in the source; removed (alt: \"Tenant Selection Page\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-add-new-attribute.png does not exist in the source; removed (alt: \"Edit the default profile in the Profile Editor\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-add-new-attribute-add.png does not exist in the source; removed (alt: \"Add new attribute\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-add-new-attribute-details.png does not exist in the source; removed (alt: \"Add new attributes\")"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-profile-edit.png does not exist in the source; removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "link to {{base_path}}/assets/img/learn/okta-profile-edit.png has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/assets/img/learn/okta-profile-edit.png"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-profile-edit2.png does not exist in the source; removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "link to {{base_path}}/assets/img/learn/okta-profile-edit2.png has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/assets/img/learn/okta-profile-edit2.png"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-profile-edit3.png does not exist in the source; removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "link to {{base_path}}/assets/img/learn/okta-profile-edit3.png has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/assets/img/learn/okta-profile-edit3.png"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-apim-add-role-permissions3.png does not exist in the source; removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "link to {{base_path}}/assets/img/learn/okta-apim-add-role-permissions3.png has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/assets/img/learn/okta-apim-add-role-permissions3.png"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-apim-add-role-permissions2.png does not exist in the source; removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "link to {{base_path}}/assets/img/learn/okta-apim-add-role-permissions2.png has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/assets/img/learn/okta-apim-add-role-permissions2.png"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "image {{base_path}}/assets/img/learn/okta-apim-add-role-permissions1.png does not exist in the source; removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "install-and-setup/setup/sso/okta-as-an-external-idp-using-saml.md",
+      "message": "link to {{base_path}}/assets/img/learn/okta-apim-add-role-permissions1.png has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/assets/img/learn/okta-apim-add-role-permissions1.png"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "integrate/develop/working-with-service-catalog.md",
+      "message": "link to {{base_path}}/tutorials/integration-tutorials/service-catalog-tutorial has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/tutorials/integration-tutorials/service-catalog-tutorial"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "integrate/develop/working-with-service-catalog.md",
+      "message": "link to {{base_path}}/tutorials/integration-tutorials/service-catalog-tutorial-for-proxy-services has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/tutorials/integration-tutorials/service-catalog-tutorial-for-proxy-services"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "integrate/develop/working-with-service-catalog.md",
+      "message": "link to {{base_path}}/integrate/develop/integration-development-kickstart has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/integrate/develop/integration-development-kickstart"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "integrate/develop/working-with-service-catalog.md",
+      "message": "image {{base_path}}/assets/img/integrate/tutorials/service-catalog/metadata-folder-service-catalog.png does not exist in the source; removed"
+    },
+    {
+      "kind": "broken-link",
+      "file": "integrate/develop/working-with-service-catalog.md",
+      "message": "link to {{base_path}}/reference/config-catalog-mi/#service-catalog-client has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog-mi/#service-catalog-client"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "integrate/develop/working-with-service-catalog.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "indented-code",
+      "file": "monitoring/api-analytics/on-prem/elk-installation-guide.md",
+      "message": "indented block \"- Linux/Mac OS\" became a code block (Python-Markdown read it as code too)"
+    },
+    {
+      "kind": "indented-code",
+      "file": "monitoring/api-analytics/samples/publishing-analytics-events-to-external-systems.md",
+      "message": "indented block \"[Launch Kibana and discover](https://www.elastic.c\" became a code block (Python-Markdown read it as code too)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "monitoring/api-monetization/configuring-api-monetization-category-labels.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "placeholder",
+      "file": "reference/config-catalog.md",
+      "message": "generated HTML catalog (en/tools/config-catalog-generator); becomes a data-driven Platform component later; a placeholder links to https://apim.docs.wso2.com/en/4.7.0/reference/config-catalog/"
+    },
+    {
+      "kind": "broken-link",
+      "file": "reference/customize-product/customizations/customizing-the-developer-portal/overriding-developer-portal-theme.md",
+      "message": "link to {{base_path}}/reference/customize-product/customizations/customizing-the-developer-portal/styling-api-details-info-section/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/reference/customize-product/customizations/customizing-the-developer-portal/styling-api-details-info-section/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "reference/customize-product/extending-api-manager/extending-gateway/customizing-api-template-for-gateway.md",
+      "message": "link to {{base_path}}/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "reference/customize-product/extending-api-manager/extending-key-management/extending-scope-validation.md",
+      "message": "link to {{base_path}}/manage-apis/design/api-security/oauth2/oauth2-scopes/scope-allowlisting has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/manage-apis/design/api-security/oauth2/oauth2-scopes/scope-allowlisting"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "reference/customize-product/extending-api-manager/extending-workflows/configuring-http-redirection-for-workflows.md",
+      "message": "link to {{base_path}}/develop/product-apis/admin-apis/admin-v1/admin-v1/#tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/develop/product-apis/admin-apis/admin-v1/admin-v1/#tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "indented-code",
+      "file": "reference/governance/rule-validator/rule-validator.md",
+      "message": "indented block \"**Valid Example**\" became a code block (Python-Markdown read it as code too)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "reference/governance/wso2-mcp-server-management-guidelines.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "api-spec",
+      "file": "reference/product-apis/gateway-apis/gateway-v2/gateway-v2.md",
+      "message": "openapi.yaml: converted from Swagger 2.0 to OpenAPI 3.0.3"
+    },
+    {
+      "kind": "broken-link",
+      "file": "reference/troubleshooting/troubleshooting-jms.md",
+      "message": "link to {{base_path}}/integrate/develop/customizations/creating-custom-mediators has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/integrate/develop/customizations/creating-custom-mediators"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "tutorials/create-and-publish-websocket-api.md",
+      "message": "link to {{base_path}}/manage-apis/design/create-api/create-a-websocket-api has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/manage-apis/design/create-api/create-a-websocket-api"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "missing-image",
+      "file": "tutorials/create-and-publish-websocket-api.md",
+      "message": "image {{base_path}}/assets/img/learn/design-new-streaming-api.jpg does not exist in the source; removed (alt: \"Create WebSocket API menu\")"
+    },
+    {
+      "kind": "html",
+      "file": "tutorials/create-and-publish-websocket-api.md",
+      "message": "<html> block never closes; converted up to the next blank line"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "tutorials/create-and-publish-websocket-api.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "html",
+      "file": "tutorials/streaming-api/create-and-publish-websocket-api.md",
+      "message": "<html> block never closes; converted up to the next blank line"
+    },
+    {
+      "kind": "include",
+      "file": "use-cases/streaming-usecase/exposing-stream-as-managed-api-in-service-catalog.md",
+      "message": "include includes/streaming/enable-publishing.md not found; removed"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "use-cases/streaming-usecase/exposing-stream-as-managed-api-in-service-catalog.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/governance/api-governance-admin-capabilities.md",
+      "message": "anchor #apim-governance-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#apim-governance-configurations",
+        "anchor": "apim-governance-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-user-roles.md",
+      "message": "anchor #api-gateway does not exist on get-started/overview.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/getting-started/overview/#api-gateway",
+        "anchor": "api-gateway",
+        "target": "docs/get-started/overview.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-user-roles.md",
+      "message": "anchor #api-publisher does not exist on get-started/overview.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/getting-started/overview/#api-publisher",
+        "anchor": "api-publisher",
+        "target": "docs/get-started/overview.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-user-roles.md",
+      "message": "anchor #adding-role-based-permissions does not exist on deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-permissions.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/product-administration/managing-users-and-roles/managing-permissions/#adding-role-based-permissions",
+        "anchor": "adding-role-based-permissions",
+        "target": "docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-permissions.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-user-roles.md",
+      "message": "anchor #update-before-the-first-startup-recommended does not exist on this page; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/managing-users-and-roles/managing-user-roles/#update-before-the-first-startup-recommended",
+        "anchor": "update-before-the-first-startup-recommended",
+        "target": "docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-user-stores/configuring-the-authorization-manager.md",
+      "message": "anchor #ConfiguringtheAuthorizationManager-Step1:Settinguptherepository does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#ConfiguringtheAuthorizationManager-Step1:Settinguptherepository",
+        "anchor": "ConfiguringtheAuthorizationManager-Step1:Settinguptherepository",
+        "target": "docs/deploy-and-operate/administer/managing-user-stores/configuring-the-authorization-manager.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-user-stores/configuring-the-authorization-manager.md",
+      "message": "anchor #ConfiguringtheAuthorizationManager-Step2:Updatingtheuserrealmconfigurations does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#ConfiguringtheAuthorizationManager-Step2:Updatingtheuserrealmconfigurations",
+        "anchor": "ConfiguringtheAuthorizationManager-Step2:Updatingtheuserrealmconfigurations",
+        "target": "docs/deploy-and-operate/administer/managing-user-stores/configuring-the-authorization-manager.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-users.md",
+      "message": "anchor #create-user-roles does not exist on deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/managing-users-and-roles/managing-user-roles/#create-user-roles",
+        "anchor": "create-user-roles",
+        "target": "docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "administer/managing-users-and-roles/managing-users.md",
+      "message": "anchor #create-user-roles does not exist on deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/managing-users-and-roles/managing-user-roles/#create-user-roles",
+        "anchor": "create-user-roles",
+        "target": "docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "ai-gateway/mcp-gateway/invoke-a-mcp-server-using-playground.md",
+      "message": "anchor #step-3-get-an-access-token does not exist on guides/api-developer-portal/invoke-apis-using-tools/integrated-api-console/invoke-an-api-using-the-integrated-api-console.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/consume/invoke-apis/invoke-apis-using-tools/invoke-an-api-using-the-integrated-api-console/#step-3-get-an-access-token",
+        "anchor": "step-3-get-an-access-token",
+        "target": "docs/guides/api-developer-portal/invoke-apis-using-tools/integrated-api-console/invoke-an-api-using-the-integrated-api-console.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/advanced-topics/block-subscription-to-an-api.md",
+      "message": "anchor #api-gateway does not exist on get-started/overview.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/getting-started/overview/#api-gateway",
+        "anchor": "api-gateway",
+        "target": "docs/get-started/overview.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/advanced-topics/block-subscription-to-an-api.md",
+      "message": "anchor #application does not exist on get-started/apim-architecture.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/getting-started/key-concepts/#application",
+        "anchor": "application",
+        "target": "docs/get-started/apim-architecture.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/advanced-topics/block-subscription-to-an-api.md",
+      "message": "anchor #rate-limits does not exist on get-started/apim-architecture.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/getting-started/key-concepts/#rate-limits",
+        "anchor": "rate-limits",
+        "target": "docs/get-started/apim-architecture.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/advanced-topics/block-subscription-to-an-api.md",
+      "message": "anchor #access-token does not exist on get-started/apim-architecture.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/getting-started/key-concepts/#access-token",
+        "anchor": "access-token",
+        "target": "docs/get-started/apim-architecture.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/api-collaborations/enable-social-media-interaction.md",
+      "message": "anchor #step-2---verify-the-changes-1 does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#step-2---verify-the-changes-1",
+        "anchor": "step-2---verify-the-changes-1",
+        "target": "docs/guides/api-design-manage/design-apis/api-collaborations/enable-social-media-interaction.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/api-policies/create-policy.md",
+      "message": "anchor #restrict-access-java does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#restrict-access-java",
+        "anchor": "restrict-access-java",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/api-policies/create-policy.md",
+      "message": "anchor #restrict-access-java does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#restrict-access-java",
+        "anchor": "restrict-access-java",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-design-manage/design/api-versioning/enabling-notifications.md",
+      "message": "anchor #enable-notifications does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#enable-notifications",
+        "anchor": "enable-notifications",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-gateway/passing-enduser-attributes-to-the-backend-via-api-gateway.md",
+      "message": "anchor #jwt-generation-configuration-details does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#jwt-generation-configuration-details",
+        "anchor": "jwt-generation-configuration-details",
+        "target": "docs/guides/api-gateway/classic-gateway-universal/passing-enduser-attributes-to-the-backend-via-api-gateway.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-gateway/platform-gateway/gateway-registration-and-deployment.md",
+      "message": "anchor #api-m-platform-gateway-connect-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#api-m-platform-gateway-connect-configurations",
+        "anchor": "api-m-platform-gateway-connect-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-gateway/policies/adding-dynamic-endpoints.md",
+      "message": "anchor #creating-and-uploading-manually-in-api-publisher does not exist on guides/api-design-manage/design-apis/api-policies/attach-policy.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/learn/api-gateway/message-mediation/changing-the-default-mediation-flow-of-api-requests#creating-and-uploading-manually-in-api-publisher",
+        "anchor": "creating-and-uploading-manually-in-api-publisher",
+        "target": "docs/guides/api-design-manage/design-apis/api-policies/attach-policy.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/design-time/configuring-api-security-audit.md",
+      "message": "anchor #auditreports does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#auditreports",
+        "anchor": "auditreports",
+        "target": "docs/guides/api-security/design-time/configuring-api-security-audit.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/applications/provisioning-out-of-band-oauth-clients.md",
+      "message": "anchor #step5 does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#step5",
+        "anchor": "step5",
+        "target": "docs/guides/api-security/key-management/applications/provisioning-out-of-band-oauth-clients.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/third-party-key-managers/configure-global-key-manager.md",
+      "message": "anchor #configuring-key-managers-with-wso2-api-m does not exist on guides/api-security/key-management/third-party-key-managers/overview.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/api-security/key-management/third-party-key-managers/overview/#configuring-key-managers-with-wso2-api-m",
+        "anchor": "configuring-key-managers-with-wso2-api-m",
+        "target": "docs/guides/api-security/key-management/third-party-key-managers/overview.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/third-party-key-managers/configure-keycloak-connector.md",
+      "message": "anchor #step12 does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#step12",
+        "anchor": "step12",
+        "target": "docs/guides/api-security/key-management/third-party-key-managers/configure-keycloak-connector.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/third-party-key-managers/configure-okta-connector.md",
+      "message": "anchor #section3 does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#section3",
+        "anchor": "section3",
+        "target": "docs/guides/api-security/key-management/third-party-key-managers/configure-okta-connector.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/tokens/jwt-tokens.md",
+      "message": "anchor #accessing-the-api-publisher does not exist on deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/install/installing-the-product/running-the-api-m/#accessing-the-api-publisher",
+        "anchor": "accessing-the-api-publisher",
+        "target": "docs/deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/tokens/securing-oauth-token-with-hmac-validation.md",
+      "message": "anchor #SecuringOAuthTokenwithHMACValidation-Preventingmiss-useofOAuthTokens does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#SecuringOAuthTokenwithHMACValidation-Preventingmiss-useofOAuthTokens",
+        "anchor": "SecuringOAuthTokenwithHMACValidation-Preventingmiss-useofOAuthTokens",
+        "target": "docs/guides/api-security/key-management/tokens/securing-oauth-token-with-hmac-validation.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/tokens/securing-oauth-token-with-hmac-validation.md",
+      "message": "anchor #SecuringOAuthTokenwithHMACValidation-WSO2ISExtension-OAuthTokenGeneratorExtension does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#SecuringOAuthTokenwithHMACValidation-WSO2ISExtension-OAuthTokenGeneratorExtension",
+        "anchor": "SecuringOAuthTokenwithHMACValidation-WSO2ISExtension-OAuthTokenGeneratorExtension",
+        "target": "docs/guides/api-security/key-management/tokens/securing-oauth-token-with-hmac-validation.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/key-management/tokens/securing-oauth-token-with-hmac-validation.md",
+      "message": "anchor #SecuringOAuthTokenwithHMACValidation-WSO2APIManagerextension-HMACandtimestampverificationhandler does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#SecuringOAuthTokenwithHMACValidation-WSO2APIManagerextension-HMACandtimestampverificationhandler",
+        "anchor": "SecuringOAuthTokenwithHMACValidation-WSO2APIManagerextension-HMACandtimestampverificationhandler",
+        "target": "docs/guides/api-security/key-management/tokens/securing-oauth-token-with-hmac-validation.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/runtime/api-authentication/secure-apis-using-oauth2-tokens.md",
+      "message": "anchor #accessing-the-api-publisher does not exist on deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/install/installing-the-product/running-the-api-m/#accessing-the-api-publisher",
+        "anchor": "accessing-the-api-publisher",
+        "target": "docs/deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/runtime/api-authentication/secure-apis-using-oauth2-tokens.md",
+      "message": "anchor #accessing-the-api-publisher does not exist on deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/install/installing-the-product/running-the-api-m/#accessing-the-api-publisher",
+        "anchor": "accessing-the-api-publisher",
+        "target": "docs/deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/runtime/authorization/role-based-access-control-using-xacml.md",
+      "message": "anchor #sharing-the-user-store does not exist on reference/customizations/extending-api-manager/saml2-sso/configuring-identity-server-as-idp-for-sso.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/customize-product/extending-api-manager/saml2-sso/configuring-identity-server-as-idp-for-sso.md#sharing-the-user-store",
+        "anchor": "sharing-the-user-store",
+        "target": "docs/reference/customizations/extending-api-manager/saml2-sso/configuring-identity-server-as-idp-for-sso.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/runtime/opa-validation/overview.md",
+      "message": "anchor #custom-opa-policy-with-custom-request-generator does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#custom-opa-policy-with-custom-request-generator",
+        "anchor": "custom-opa-policy-with-custom-request-generator",
+        "target": "docs/guides/api-security/runtime/opa-validation/overview.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "api-security/runtime/opa-validation/overview.md",
+      "message": "anchor #custom-opa-policy-with-custom-request-generator does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#custom-opa-policy-with-custom-request-generator",
+        "anchor": "custom-opa-policy-with-custom-request-generator",
+        "target": "docs/guides/api-security/runtime/opa-validation/overview.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/advanced-topics/configuring-environment-specific-parameters.md",
+      "message": "anchor #handling-the-certificates-using-the-params-file does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#handling-the-certificates-using-the-params-file",
+        "anchor": "handling-the-certificates-using-the-params-file",
+        "target": "docs/guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/advanced-topics/configuring-environment-specific-parameters.md",
+      "message": "anchor #handling-the-certificates-using-the-params-file does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#handling-the-certificates-using-the-params-file",
+        "anchor": "handling-the-certificates-using-the-params-file",
+        "target": "docs/guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.md",
+      "message": "anchor #create-user-roles does not exist on deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/managing-users-and-roles/managing-user-roles/#create-user-roles",
+        "anchor": "create-user-roles",
+        "target": "docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/cicd-using-cli.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/importing-apis-via-dev-first-approach.md",
+      "message": "anchor #initialize-api-projects-with-dynamic-data does not exist on guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/using-dynamic-data-in-api-controller-projects/#initialize-api-projects-with-dynamic-data",
+        "anchor": "initialize-api-projects-with-dynamic-data",
+        "target": "docs/guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/importing-apis-via-dev-first-approach.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/migrating-api-products-to-different-environments.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/migrating-api-products-to-different-environments.md",
+      "message": "anchor #defining-the-params-file-for-an-api-product does not exist on guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/configuring-environment-specific-parameters/#defining-the-params-file-for-an-api-product",
+        "anchor": "defining-the-params-file-for-an-api-product",
+        "target": "docs/guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/migrating-api-products-to-different-environments.md",
+      "message": "anchor #add-dynamic-data-to-environment-configs does not exist on guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/using-dynamic-data-in-api-controller-projects/#add-dynamic-data-to-environment-configs",
+        "anchor": "add-dynamic-data-to-environment-configs",
+        "target": "docs/guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/migrating-apis-to-different-environments.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/migrating-apis-to-different-environments.md",
+      "message": "anchor #defining-the-params-file-for-an-api does not exist on guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/configuring-environment-specific-parameters/#defining-the-params-file-for-an-api",
+        "anchor": "defining-the-params-file-for-an-api",
+        "target": "docs/guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-apis-api-products/migrating-apis-to-different-environments.md",
+      "message": "anchor #add-dynamic-data-to-environment-configs does not exist on guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/using-dynamic-data-in-api-controller-projects/#add-dynamic-data-to-environment-configs",
+        "anchor": "add-dynamic-data-to-environment-configs",
+        "target": "docs/guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-applications/migrating-applications-to-different-environments.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-common-api-policies/migrating-common-api-policies-to-different-environments.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-mcp-servers/importing-mcp-servers-via-dev-first-approach.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-mcp-servers/migrating-mcp-servers-to-different-environments.md",
+      "message": "anchor #steps-to-create-a-custom-user-who-can-perform-api-controller-operations does not exist on guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/creating-custom-users-to-perform-api-controller-operations/#steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "anchor": "steps-to-create-a-custom-user-who-can-perform-api-controller-operations",
+        "target": "docs/guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-mcp-servers/migrating-mcp-servers-to-different-environments.md",
+      "message": "anchor #defining-the-params-file-for-an-mcp-server does not exist on guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/configuring-environment-specific-parameters/#defining-the-params-file-for-an-mcp-server",
+        "anchor": "defining-the-params-file-for-an-mcp-server",
+        "target": "docs/guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "apiops/cli/managing-mcp-servers/migrating-mcp-servers-to-different-environments.md",
+      "message": "anchor #add-dynamic-data-to-environment-configs does not exist on guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/api-controller/advanced-topics/using-dynamic-data-in-api-controller-projects/#add-dynamic-data-to-environment-configs",
+        "anchor": "add-dynamic-data-to-environment-configs",
+        "target": "docs/guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "get-started/api-manager-quick-start-guide.md",
+      "message": "anchor #step-1-set-up-basic-configurations does not exist on deploy-and-operate/install-and-setup/deploy/kubernetes-deployment/kubernetes/all-in-one-deployment/am-pattern-0-all-in-one.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/kubernetes-deployment/kubernetes/am-pattern-0-all-in-one/#step-1-set-up-basic-configurations",
+        "anchor": "step-1-set-up-basic-configurations",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/kubernetes-deployment/kubernetes/all-in-one-deployment/am-pattern-0-all-in-one.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/install/installation-prerequisites.md",
+      "message": "anchor #tested-wso2-products does not exist on reference/product-compatibility.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/reference/product-compatibility/#tested-wso2-products",
+        "anchor": "tested-wso2-products",
+        "target": "docs/reference/product-compatibility.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/advance-configurations/configuring-caching.md",
+      "message": "anchor #api-m-token-revocation does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#api-m-token-revocation",
+        "anchor": "api-m-token-revocation",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.md",
+      "message": "anchor #setting-up-an-e-mail-login does not exist on deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/logins-and-passwords/maintaining-logins-and-passwords.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/product-security/logins-and-passwords/maintaining-logins-and-passwords/#setting-up-an-e-mail-login",
+        "anchor": "setting-up-an-e-mail-login",
+        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/logins-and-passwords/maintaining-logins-and-passwords.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.md",
+      "message": "anchor #admin_ConfiguringaRead-OnlyLDAPUserStore-Updatingthesystemadministrator does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#admin_ConfiguringaRead-OnlyLDAPUserStore-Updatingthesystemadministrator",
+        "anchor": "admin_ConfiguringaRead-OnlyLDAPUserStore-Updatingthesystemadministrator",
+        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.md",
+      "message": "anchor #super-admin-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#super-admin-configurations",
+        "anchor": "super-admin-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-write-ldap-user-store.md",
+      "message": "anchor #setting-up-an-e-mail-login does not exist on deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/logins-and-passwords/maintaining-logins-and-passwords.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/product-security/logins-and-passwords/maintaining-logins-and-passwords/#setting-up-an-e-mail-login",
+        "anchor": "setting-up-an-e-mail-login",
+        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/logins-and-passwords/maintaining-logins-and-passwords.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/configure-userstores/configure-primary-user-store/configuring-a-read-write-ldap-user-store.md",
+      "message": "anchor #super-admin-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#super-admin-configurations",
+        "anchor": "super-admin-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment.md",
+      "message": "anchor #super-admin-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#super-admin-configurations",
+        "anchor": "super-admin-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment.md",
+      "message": "anchor #dependency-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#dependency-configurations",
+        "anchor": "dependency-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/deployment-best-practices/tuning-performance.md",
+      "message": "anchor #configuring-wso2-api-m-to-perform-regular-cleaning does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#configuring-wso2-api-m-to-perform-regular-cleaning",
+        "anchor": "configuring-wso2-api-m-to-perform-regular-cleaning",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/performance-tuning/tuning-performance.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
+      "message": "anchor #step3-2 does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#step3-2",
+        "anchor": "step3-2",
+        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.mdx",
+        "context": "main",
+        "suggest": {
+          "anchor": "#step3-2",
+          "score": 1
+        }
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
+      "message": "anchor #Linux-Mac does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#Linux-Mac",
+        "anchor": "Linux-Mac",
+        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
+      "message": "anchor #windows does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#windows",
+        "anchor": "windows",
+        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "includes/deploy/steps-to-deploy-apim-in-a-distributed-setup-with-km-separation.md",
+      "message": "anchor #common-guidelines-and-checklist does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx; anchor removed",
+      "detail": {
+        "href": "../../../../install-and-setup/deploying-wso2-api-manager/production-deployment-guidelines/#common-guidelines-and-checklist",
+        "anchor": "common-guidelines-and-checklist",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "includes/deploy/steps-to-deploy-apim-in-a-distributed-setup-with-km-separation.md",
+      "message": "anchor #api-m-gateway-notification-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "../../../../reference/config-catalog/#api-m-gateway-notification-configurations",
+        "anchor": "api-m-gateway-notification-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "includes/deploy/steps-to-deploy-apim-in-a-distributed-setup-with-tm-separation.md",
+      "message": "anchor #common-guidelines-and-checklist does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx; anchor removed",
+      "detail": {
+        "href": "../../../../install-and-setup/deploying-wso2-api-manager/production-deployment-guidelines/#common-guidelines-and-checklist",
+        "anchor": "common-guidelines-and-checklist",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "includes/deploy/steps-to-deploy-apim-in-a-distributed-setup-with-tm-separation.md",
+      "message": "anchor #api-m-gateway-notification-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "../../../../reference/config-catalog/#api-m-gateway-notification-configurations",
+        "anchor": "api-m-gateway-notification-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/distributed-deployment/deploying-wso2-api-m-in-a-simple-scalable-setup.md",
+      "message": "anchor #common-guidelines-and-checklist does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/deploying-wso2-api-manager/production-deployment-guidelines/#common-guidelines-and-checklist",
+        "anchor": "common-guidelines-and-checklist",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/distributed-deployment/deploying-wso2-api-m-in-a-simple-scalable-setup.md",
+      "message": "anchor #api-m-gateway-notification-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#api-m-gateway-notification-configurations",
+        "anchor": "api-m-gateway-notification-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/kubernetes-deployment/azure/deploying-wso2-api-m-on-aks.md",
+      "message": "anchor #azure-deployment-architecture does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#azure-deployment-architecture",
+        "anchor": "azure-deployment-architecture",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/kubernetes-deployment/deploying-wso2-api-m-on-aks.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/single-node/configuring-a-single-node.md",
+      "message": "anchor #common-guidelines-and-checklist does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/deploying-wso2-api-manager/production-deployment-guidelines/#common-guidelines-and-checklist",
+        "anchor": "common-guidelines-and-checklist",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "install-and-setup/setup/single-node/configuring-an-active-active-deployment.md",
+      "message": "anchor #common-guidelines-and-checklist/ does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}//install-and-setup/setup/deployment-best-practices/production-deployment-guidelines/#common-guidelines-and-checklist/",
+        "anchor": "common-guidelines-and-checklist/",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/production-deployment-guidelines.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "integrate/develop/working-with-service-catalog.md",
+      "message": "anchor #integration-tutorials does not exist on get-started/tutorials/tutorials-overview.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/tutorials/tutorials-overview/#integration-tutorials",
+        "anchor": "integration-tutorials",
+        "target": "docs/get-started/tutorials/tutorials-overview.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "monitoring/api-monetization/monetizing-an-api.md",
+      "message": "anchor #Adding-a-new-subscription---level-throttling-tier does not exist on deploy-and-operate/administer/rate-limiting/manage-subscription-policies.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/manage-apis/design/rate-limiting/adding-new-throttling-policies#Adding-a-new-subscription---level-throttling-tier",
+        "anchor": "Adding-a-new-subscription---level-throttling-tier",
+        "target": "docs/deploy-and-operate/administer/rate-limiting/manage-subscription-policies.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "monitoring/observability/metrics/jmx-based-monitoring.md",
+      "message": "anchor #using-the-serviceadmin-mbean does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#using-the-serviceadmin-mbean",
+        "anchor": "using-the-serviceadmin-mbean",
+        "target": "docs/guides/api-analytics-and-monetization/observability/metrics/jmx-based-monitoring.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "monitoring/observability/monitoring-correlation-logs.md",
+      "message": "anchor #/paths/~1config~1correlation~1/get does not exist on reference/apis/devops-v0/index.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/product-apis/devops-apis/devops-v0/devops-v0/#/paths/~1config~1correlation~1/get",
+        "anchor": "/paths/~1config~1correlation~1/get",
+        "target": "docs/reference/apis/devops-v0/index.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "monitoring/observability/traces/monitoring-with-opentelemetry.md",
+      "message": "anchor #api-m-open-tracer-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#api-m-open-tracer-configurations",
+        "anchor": "api-m-open-tracer-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "monitoring/observability/traces/monitoring-with-opentracing.md",
+      "message": "anchor #api-m-open-tracer-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/config-catalog/#api-m-open-tracer-configurations",
+        "anchor": "api-m-open-tracer-configurations",
+        "target": "docs/reference/product-configurations/config-catalog.mdx",
+        "context": "main",
+        "suggest": null,
+        "placeholder": true
+      },
+      "accepted": "the target is a placeholder page until it is migrated; the link goes to the page without the anchor"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/customize-product/customizations/adding-internationalization.md",
+      "message": "anchor #uploading-via-the-admin-portal-tenants-only does not exist on reference/customizations/customizations/customizing-the-developer-portal/overriding-developer-portal-theme.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/customize-product/customizations/customizing-the-developer-portal/overriding-developer-portal-theme/#uploading-via-the-admin-portal-tenants-only",
+        "anchor": "uploading-via-the-admin-portal-tenants-only",
+        "target": "docs/reference/customizations/customizations/customizing-the-developer-portal/overriding-developer-portal-theme.mdx",
+        "context": "main",
+        "suggest": {
+          "anchor": "uploading-devportal-theme-via-the-admin-portal-tenants-only",
+          "score": 0.75
+        }
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/customize-product/customizations/customize-the-api-store-and-gateway-urls-for-tenants.md",
+      "message": "anchor #configure-per-tenant-service-provider-creation-for-devportal does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#configure-per-tenant-service-provider-creation-for-devportal",
+        "anchor": "configure-per-tenant-service-provider-creation-for-devportal",
+        "target": "docs/reference/customizations/customizations/customize-the-api-store-and-gateway-urls-for-tenants.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/customize-product/extending-api-manager/extending-workflows/configuring-http-redirection-for-workflows.md",
+      "message": "anchor #tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post does not exist on reference/apis/admin-v4/index.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/product-apis/admin-apis/admin-v4/admin-v4/#tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post",
+        "anchor": "tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post",
+        "target": "docs/reference/apis/admin-v4/index.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/customize-product/extending-api-manager/extending-workflows/configuring-http-redirection-for-workflows.md",
+      "message": "anchor #tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post does not exist on reference/apis/admin-v4/index.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/reference/product-apis/admin-apis/admin-v4/admin-v4/#tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post",
+        "anchor": "tag/Workflows-(Individual)/paths/~1workflows~1update-workflow-status/post",
+        "target": "docs/reference/apis/admin-v4/index.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/default-product-ports.md",
+      "message": "anchor #configuring-the-port-offset does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/changing-the-default-ports-with-offset.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/deployment-best-practices/changing-the-default-ports-with-offset/#configuring-the-port-offset",
+        "anchor": "configuring-the-port-offset",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/changing-the-default-ports-with-offset.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/faq.md",
+      "message": "anchor #api-manager does not exist on reference/default-product-ports.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/reference/default-product-ports/#api-manager",
+        "anchor": "api-manager",
+        "target": "docs/reference/default-product-ports.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/faq.md",
+      "message": "anchor #setting-up-an-e-mail-login does not exist on deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/logins-and-passwords/maintaining-logins-and-passwords.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/security/logins-and-passwords/maintaining-logins-and-passwords/#setting-up-an-e-mail-login",
+        "anchor": "setting-up-an-e-mail-login",
+        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/logins-and-passwords/maintaining-logins-and-passwords.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/faq.md",
+      "message": "anchor #configuring-the-session-time-out does not exist on deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/install/installing-the-product/running-the-api-m/#configuring-the-session-time-out",
+        "anchor": "configuring-the-session-time-out",
+        "target": "docs/deploy-and-operate/install-and-setup/install/installing-the-product/running-the-api-m.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/faq.md",
+      "message": "anchor #FAQ-Keystorepassword does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#FAQ-Keystorepassword",
+        "anchor": "FAQ-Keystorepassword",
+        "target": "docs/reference/faq.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/faq.md",
+      "message": "anchor #FAQ-Step1-CreateaselfsignedJavaKeyStorefileandincludeyourdomainastheCN does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#FAQ-Step1-CreateaselfsignedJavaKeyStorefileandincludeyourdomainastheCN",
+        "anchor": "FAQ-Step1-CreateaselfsignedJavaKeyStorefileandincludeyourdomainastheCN",
+        "target": "docs/reference/faq.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/governance/owasp-top-10.md",
+      "message": "anchor #owaspapi22023-jwt-best-practice does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#owaspapi22023-jwt-best-practice",
+        "anchor": "owaspapi22023-jwt-best-practice",
+        "target": "docs/reference/governance/ruleset-catalog/owasp-top-10.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/guides/accessing-api-manager-by-multiple-devices-simultaneously.md",
+      "message": "anchor #AccessingAPIManagerbyMultipleDevicesSimultaneously-Issueinhavingmultipleaccesstokens does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#AccessingAPIManagerbyMultipleDevicesSimultaneously-Issueinhavingmultipleaccesstokens",
+        "anchor": "AccessingAPIManagerbyMultipleDevicesSimultaneously-Issueinhavingmultipleaccesstokens",
+        "target": "docs/reference/guides/accessing-api-manager-by-multiple-devices-simultaneously.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/guides/accessing-api-manager-by-multiple-devices-simultaneously.md",
+      "message": "anchor #AccessingAPIManagerbyMultipleDevicesSimultaneously-RecommendedSolution does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#AccessingAPIManagerbyMultipleDevicesSimultaneously-RecommendedSolution",
+        "anchor": "AccessingAPIManagerbyMultipleDevicesSimultaneously-RecommendedSolution",
+        "target": "docs/reference/guides/accessing-api-manager-by-multiple-devices-simultaneously.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/guides/accessing-api-manager-by-multiple-devices-simultaneously.md",
+      "message": "anchor #AccessingAPIManagerbyMultipleDevicesSimultaneously-Howthisshouldwork does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#AccessingAPIManagerbyMultipleDevicesSimultaneously-Howthisshouldwork",
+        "anchor": "AccessingAPIManagerbyMultipleDevicesSimultaneously-Howthisshouldwork",
+        "target": "docs/reference/guides/accessing-api-manager-by-multiple-devices-simultaneously.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/product-apis/advanced-configurations.md",
+      "message": "anchor #adding-role-based-permissions does not exist on deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-permissions.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/administer/managing-users-and-roles/managing-permissions/#adding-role-based-permissions",
+        "anchor": "adding-role-based-permissions",
+        "target": "docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-permissions.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "reference/vendor-extensions-catalog.md",
+      "message": "anchor #x-wso2-pass-request-payload-to-enforcer does not exist on this page; anchor removed",
+      "detail": {
+        "href": "#x-wso2-pass-request-payload-to-enforcer",
+        "anchor": "x-wso2-pass-request-payload-to-enforcer",
+        "target": "docs/reference/customizations/vendor-extensions-catalog.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    }
+  ]
+}

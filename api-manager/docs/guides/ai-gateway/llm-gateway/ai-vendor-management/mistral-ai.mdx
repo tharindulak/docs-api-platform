@@ -1,0 +1,49 @@
+---
+title: Mistral AI
+description: Mistral AI is a default AI Service Provider in WSO2 API Manager that provides high-performance language models through their API.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_position: 8
+---
+
+Mistral AI is a **default AI Service Provider** in WSO2 API Manager that provides high-performance language models through their API. For more information about Mistral AI, see the [Mistral AI Documentation](https://docs.mistral.ai/).
+
+## Configuring Mistral
+
+### Step 1: Access Configuration
+
+1. Login to the Admin Portal (`https://<hostname>:9443/admin`)
+2. Navigate to **AI Service Providers** → **MistralAI**
+
+<img src={require("../../../../../assets/img/learn/ai-gateway/mistral-config.png").default} alt="Mistral Configuration" style={{width: "90%"}} />
+
+### Step 2: Configure Models
+
+#### Read-Only Configurations
+
+The following configurations are **read-only** and cannot be modified:
+
+| Category | Fields |
+| --- | --- |
+| **General Details** | • Name<br /> • API Version<br /> • Description |
+| **LLM Configurations** | • Request Model<br /> • Response Model<br /> • Prompt Token Count<br /> • Completion Token Count<br /> • Total Token Count<br /> • Remaining Token Count |
+| **LLM Provider Auth Configurations** | • Auth Type: Header, Query Parameter or Unsecured<br /> • Auth Type Identifier: Header/Query Parameter Identifier |
+| **Connector Type for AI Service Provider** | • Connector Type |
+
+#### Editable Configurations
+
+The following configurations can be updated:
+
+| Category | Description |
+| --- | --- |
+| **API Definition** | AI service provider exposed API definition file |
+| **Model List** | Add the list of models supported by the AI service provider. This list enables you to configure routing strategies within your AI APIs. |
+
+- By default, the following models are included: `mistral-small-latest`, `mistral-medium`, and `open-mistral-7b`.
+- To add available models supported by MistralAI, type the model name and press enter. 
+- This enables model-based load balancing and failover capabilities. For more details, see [Multi-Model Routing Overview](../multi-model-routing/overview.mdx).
+
+### Step 3: Save Configuration
+
+Click **Update** to apply your changes.
+
+Once you have saved your changes, the updated MistralAI configuration will be applied and made available for use in your AI APIs, enabling seamless integration with the selected models.

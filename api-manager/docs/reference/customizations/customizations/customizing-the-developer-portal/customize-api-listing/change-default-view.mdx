@@ -1,0 +1,29 @@
+---
+title: Change Default View
+description: By default the API Listing view is a grid view.  # generated from the first paragraph; a writer should improve it
+type: reference
+sidebar_label: Change default view
+sidebar_position: 2
+---
+
+By default the API Listing view is a grid view. You can follow the steps below to change the default API listing to a table view by configuring `userTheme.json`.
+
+The `defaultTheme.js` file has all the parameters defining the look and feel of the developer portal. To learn more about `defaultTheme.js` refer [here](../overriding-developer-portal-theme.mdx#global-theming).
+
+1. Open the `<API-M_HOME>/repository/deployment/server/webapps/devportal/site/public/theme/userTheme.json` file in a text editor.
+
+    You can add the following configuration to the `userTheme.json` to change the default API listing to a table view.
+
+    ```javascript
+    {
+        "custom": {
+            "defaultApiView" : "list"
+        }
+    }
+    ```
+
+    Changes done in the `defaultTheme.js` will be reflected directly in the developer portal. (It is not required to restart the server or rebuild the source code) 
+
+2. Refresh the Developer Portal to view the changes.
+
+    ![\{\{base_path\}\}/assets/img/learn/change-default-view.png](../../../../../../assets/img/learn/change-default-view.png)

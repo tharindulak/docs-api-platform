@@ -1,0 +1,163 @@
+---
+title: Create a Policy
+description: Listed below are two ways of creating a new policy.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Create policy
+sidebar_position: 3
+---
+
+Listed below are two ways of creating a new policy. Depending on whether you need the policy to be accessible only within a specific API or available for all APIs, you can decide on the option you need to follow.
+
+* Creating a **Common Policy**
+* Creating an **API Specific Policy**
+
+:::warning
+When creating custom policies, please note that certain mediators cannot be used within these policies as they are not supported by the API Gateway. Specifically, the following mediators are not supported:
+
+- `Call` mediator in non-blocking mode
+- `Send` mediator
+:::
+
+## Creating a Common Policy
+
+A common policy is a globally maintained policy and you can easily utilize this policy at the operation level of any desired API. Note that these policies are not bound to any API and they are merely templates that you can easily use. Now let’s see how you can create such a policy. Follow the instructions below to create a new common policy.
+
+1. Sign in to the WSO2 API Publisher.
+
+    `https://<hostname>:9443/publisher`
+
+2. Navigate to **Policies** tab from the left menu and click **Add New Policy**.
+
+    <img src={require("../../../../../assets/img/design/api-policies/common-policy-1.png").default} alt="Add policies" style={{width: "90%"}} />
+
+    :::note
+    Common policy list will vary depending on the selected `API Gateway`.
+    :::
+
+3. Let’s create a policy named **Sample Add Header** for demo purposes. First let’s fill the **General Details** section using the following details.
+
+    <img src={require("../../../../../assets/img/design/api-policies/common-policy-2.png").default} alt="Add Header policies" style={{width: "80%"}} />
+
+    | Field | Sample Value |
+    | --- | --- |
+    | Name | Sample Add Header |
+    | Version | 1 |
+    | Description | Description of sample add header policy |
+    | Applicable Flows | Request, Response |
+
+4. Next, we move on to the **Gateway Specific Details** section. This is where we upload the policy file that contains the business logic of the policy. The sample policy that we are creating here will be for the `Regular Gateway (Synapse Gateway)`, and hence, the policy should be a `.j2` or `.xml` file. Use the table provided below to fill this section of the form.
+
+    <table>
+      <tbody>
+        <tr>
+          <th>Field</th>
+          <th>Sample Value</th>
+        </tr>
+        <tr>
+          <td>Supported Gateways</td>
+          <td>Regular Gateway</td>
+        </tr>
+        <tr>
+          <td>Upload Policy File</td>
+          <td>
+
+            Copy the below content to a file named `sampleAddHeader.j2` and upload.
+
+            ```text
+                            ``
+                        
+            ```
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <img src={require("../../../../../assets/img/design/api-policies/common-policy-3.png").default} alt="Gateway-specific details" style={{width: "90%"}} />
+
+    :::note
+    Please note that the policy content should not contain any XML – Prolog components. E.g.,: Should not begin with `<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>`. You have to start from a root element or child elements.
+    :::
+
+    :::note
+    Please note that JS scripts can be used inside the custom policy code to access Java classes, methods, and native objects. By default, all the classes are visible to these scripts. However, it is recommended to restrict access to these by adding the following configuration to the `deployment.toml` file:
+
+           data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">`[synapse_properties] 'limit_java_class_access_in_scripts.enable' = true # or false 'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST" # or BLOCK_LIST 'limit_java_class_access_in_scripts.class_prefixes' = "java.util"`
+
+    To further configure script mediation access control, please refer to the  [Restrict Access to Java classes and Java Methods/Native Objects in Scripts documentation.](../../../../deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx)
+    :::
+
+5. The final section in the form is the **Policy Attributes** section. These attributes are derived from the policy file that you uploaded in the previous step. If you observe the policy content you should notice two dynamic values embedded into that policy, namely the headerName and headerValue. Those are the attributes that we should include when creating our policy (note that you can have a static policy with no attributes if the policy content is static). Let’s fill the **Policy Attributes** section using the following details.
+
+    <img src={require("../../../../../assets/img/design/api-policies/common-policy-4.png").default} alt="Policy attributes" style={{width: "90%"}} />
+
+    **Attribute 1**
+    | Field | Sample Value |
+    | --- | --- |
+    | Name | headerName |
+    | Display Name | Header Name |
+    | Required | True |
+    | Description | Name of the header to be added |
+    | Type | String |
+    | Validation Regex | ^(\[a-zA-Z_\]\[a-zA-Z\\d_\\\\-\\\\ \]\*)$ |
+    | Default Value | Leave this blank |
+
+    **Attribute 2**
+    | Field | Sample Value |
+    | --- | --- |
+    | Name | headerValue |
+    | Display Name | Header Value |
+    | Required | True |
+    | Description | Value of the header |
+    | Type | String |
+    | Validation Regex | ^(\[a-zA-Z\\d_\]\[a-zA-Z\\d_\\\\-\\\\ \]\*)$ |
+    | Default Value | Leave this blank |
+
+6. Once that is done, the completed form should look like the below screenshot. We can now click on **Save**.
+
+    <img src={require("../../../../../assets/img/design/api-policies/common-policy-5.png").default} alt="Completed policy form" style={{width: "90%"}} />
+
+7. Now the newly created policy will appear in the table. You can go ahead and search for this policy to verify.
+
+8. Try viewing this policy by clicking on **View** action. Note that you can download the policy as a `.zip` file using the **Download Policy** button.
+
+    <img src={require("../../../../../assets/img/design/api-policies/common-policy-6.png").default} alt="Policy view" style={{width: "90%"}} />
+
+## Creating an API Specific Policy
+
+If you would rather create a policy that is local to the API, you can follow the below provided steps to create such a policy.
+
+1. Sign in to the WSO2 API Publisher.
+
+    `https://<hostname>:9443/publisher`
+
+2. Click on any API (e.g., `PizzaShackAPI 1.0.0`) and navigate to the **Policies** tab. You will see a screen like below. Click on the **Add New Policy** button in order to create an API specific policy.
+
+    <img src={require("../../../../../assets/img/design/api-policies/specific-policy-1.png").default} alt="Policy view" style={{width: "90%"}} />
+
+3. Then you will be prompted to enter the policy details. Let’s name this API specific policy as **Local Add Header**. Please refer to steps 3 to 5 from the common policy creation guide above to fill the rest of the form. Fully filled form should look like the below screenshot. Then click on **Save**.
+
+    <img src={require("../../../../../assets/img/design/api-policies/specific-policy-2.png").default} alt="Policy view" style={{width: "90%"}} />
+
+4. You should be able to see a policy named **Local Add Header** under the **Request** tab and **Response** tab of the **Policy List**.
+
+    <img src={require("../../../../../assets/img/design/api-policies/specific-policy-3.png").default} alt="Policy view" style={{width: "90%"}} />
+
+5. Once you hover over the **Local Add Header** policy that you created, you should be able to see the view icon and delete icon as shown in the screenshot below.
+
+    <img src={require("../../../../../assets/img/design/api-policies/specific-policy-4.png").default} alt="Policy view" style={{width: "40%"}} />
+
+    - If you click on the **View** action, you will be prompted with a populated policy form with the details you entered.
+    - If you choose to delete the policy, you can click on the **Delete** action that appears on policy hover. It will ask for your consent before deleting the API specific policy. On confirmation that policy will be deleted.
+
+    :::note
+    The `Common Policies` only permit the **View** action as opposed to the `API Specific Policies` that permit both **View** and **Delete** actions. If you wish to delete a common policy, you need to navigate to the globally maintained common policy list to do so.
+    :::
+
+    :::note
+    Please note that JS scripts can be used inside the custom policy code to access Java classes, methods, and native objects. By default, all the classes are visible to these scripts. However, it is recommended to restrict access to these by adding the following configuration to the `deployment.toml` file:
+
+           data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">`[synapse_properties] 'limit_java_class_access_in_scripts.enable' = true # or false 'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST" # or BLOCK_LIST 'limit_java_class_access_in_scripts.class_prefixes' = "java.util"`
+
+    To further configure script mediation access control, please refer to the  [Restrict Access to Java classes and Java Methods/Native Objects in Scripts documentation.](../../../../deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx)
+    :::

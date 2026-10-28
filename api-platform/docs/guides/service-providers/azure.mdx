@@ -1,0 +1,119 @@
+---
+title: Azure guides
+description: Use WSO2 API Platform to govern Azure OpenAI and Azure AI Foundry traffic, moderate content with Azure AI Content Safety, and secure APIs with Entra ID.
+type: reference
+layout: overview
+sidebar_label: Azure
+sidebar_position: 2
+---
+
+WSO2 API Platform works alongside the Microsoft Azure services you already use. Govern Azure OpenAI and Azure AI Foundry traffic, moderate content with Azure AI Content Safety, secure APIs with Microsoft Entra ID, and send gateway telemetry to Azure Monitor.
+
+## AI Gateway with Azure OpenAI and Azure AI Foundry
+
+Route, secure, and govern traffic to your Azure model deployments through WSO2 AI Gateway.
+
+### Azure OpenAI and Azure AI Foundry as LLM providers
+
+Point the gateway at your Azure deployment. The gateway stores the deployment key, so your applications don't need it.
+
+- [Create an AI API for Azure OpenAI](../create-api-proxy/third-party-apis/ai-apis/providers/azure-ai.mdx) Cloud console
+
+- [Configure an LLM provider](../ai-workspace/llm-providers/configure-provider.mdx#authentication) AI Workspace
+
+- [Azure OpenAI provider](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/gateway-artifacts/llm-provider/supported-providers/azure-openai/) AI Gateway
+- [Azure AI Foundry provider](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/gateway-artifacts/llm-provider/supported-providers/azure-ai-foundry/) AI Gateway
+- [Configure an LLM provider](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-providers/configure-provider/#authentication) AI Workspace
+
+### OpenAI-format requests
+
+Keep clients on the OpenAI request format while the gateway routes to your Azure deployment.
+
+- [Call Azure OpenAI through the gateway](../ai-workspace/using-sdks.mdx#azure-openai) AI Workspace
+- [Call Azure AI Foundry through the gateway](../ai-workspace/using-sdks.mdx#azure-ai-foundry) AI Workspace
+
+- [OpenAI-format compatibility](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/gateway-artifacts/llm-provider/supported-providers/azure-openai/#openai-format-compatibility) AI Gateway
+
+### Azure cost tracking
+
+The Azure LLM Cost policy maps each call to your deployment's pricing, so Azure spend appears alongside other providers.
+
+- [Azure LLM Cost policy](https://wso2.com/api-platform/policy-hub/policies/azure-llm-cost) Policy Hub
+- [Cost control and budgets](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/cost-control-and-budgets/) AI Gateway
+
+### Azure AI Content Safety
+
+Check prompts and responses against Azure AI Content Safety categories and severity thresholds.
+
+- [Azure Content Safety content moderation](../create-api-proxy/third-party-apis/ai-apis/policies/guardrails/azure-content-safety-content-moderation.mdx) Cloud console
+
+- [Azure Content Safety guardrail](../ai-workspace/policies/guardrails/azure-content-safety.mdx) AI Workspace
+- [Azure Content Safety policy](https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation) Policy Hub
+
+- [Azure Content Safety policy](https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation) Policy Hub
+- [Guardrails catalogue](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/guardrails/guardrails-catalogue/) AI Gateway
+
+### Semantic caching and guardrails
+
+Semantic caching and the semantic prompt guard compare prompts by meaning, and can use an Azure OpenAI embedding deployment that you set in the policy or gateway configuration.
+
+- [Semantic cache](../create-api-proxy/third-party-apis/ai-apis/policies/semantic-cache.mdx) Cloud console
+
+- [Semantic cache policy](../ai-workspace/policies/other-policies/semantic-cache.mdx) AI Workspace
+- [Semantic prompt guard policy](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) Policy Hub
+
+- [Semantic caching](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/semantic-caching/) AI Gateway
+- [Embedding providers for semantic caching](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/setup-and-deployment/production-deployment/ai-workload-tuning/#provision-infrastructure-for-semantic-caching) AI Gateway
+- [Semantic Cache policy](https://wso2.com/api-platform/policy-hub/policies/semantic-cache) Policy Hub
+- [Semantic prompt guard policy](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) Policy Hub
+
+Token limits, semantic caching, and the other AI API policies work the same way for every provider. See [AI APIs](../create-api-proxy/third-party-apis/ai-apis/ai-apis.mdx).
+
+Routing, token limits, cost control, and the other AI Workspace policies work the same way for every provider. See the [AI Workspace overview](../ai-workspace/overview.mdx).
+
+Routing, token limits, cost control, and the gateway's other policies work the same way for every provider. See the [AI Gateway documentation](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/overview/).
+
+## Microsoft Entra ID
+
+Use Microsoft Entra ID (formerly Azure AD) to authorize calls to your API proxies.
+
+### Authorize API calls with Entra ID tokens
+
+Register Entra ID as a key manager, and require Entra ID tokens on your API proxies.
+
+- [Secure API access with Azure AD](../develop-api-proxy/authentication-and-authorization/secure-api-access-with-azure-ad.mdx) Cloud console
+- [Configure Azure AD as an external key manager](../administer/configure-an-external-idp/configure-azure-ad-as-an-external-idp.mdx) Cloud console
+
+## Azure Monitor
+
+Send the metrics and traces of a gateway you run to Azure Monitor through an OpenTelemetry Collector.
+
+### Metrics and traces
+
+Point the collector at Azure Monitor.
+
+- [Send AI Gateway traces to Azure Monitor](docs:ai-gateway/cloud/guides/logging-and-tracing/tracing/#cloud-native-tracing-solutions) AI Gateway
+
+- [Send API Gateway metrics to Azure Monitor](https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/metrics/alternative-backends/#azure-monitor) API Gateway
+- [Send API Gateway traces to Azure Monitor](https://wso2.com/api-platform/docs/api-gateway/1.2.0/observability/tracing/alternative-backends/#azure-monitor) API Gateway
+- [Send AI Gateway traces to Azure Monitor](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/logging-and-tracing/tracing/#cloud-native-tracing-solutions) AI Gateway
+
+## Architecture and responsibility model
+
+WSO2 API Platform and Azure split the work like this:
+
+| Scenario | WSO2 role | Azure role | Runtime traffic |
+| --- | --- | --- | --- |
+| Azure OpenAI and AI Foundry through AI Gateway | Proxies and governs LLM requests, and tracks cost per deployment | Hosts the model deployments | Goes through WSO2 AI Gateway to your Azure deployment |
+| Azure AI Content Safety | Runs the guardrail and blocks or passes the request | Scores the content | The gateway calls Content Safety alongside each request |
+| Entra ID and Azure Monitor | Validates Entra ID tokens and emits telemetry | Issues tokens, and stores and displays telemetry | API traffic goes through the WSO2 gateway, and telemetry goes to Azure Monitor |
+
+## Learn more
+
+Related pages in the Microsoft documentation:
+
+- [Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry)
+- [Azure AI Content Safety](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview)
+- [Microsoft Entra](https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra)
+
+To browse every guide by goal, see the [Guides overview](../overview.mdx#browse-by-use-case).

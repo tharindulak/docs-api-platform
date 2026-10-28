@@ -1,0 +1,73 @@
+---
+title: Mistral guides
+description: Use WSO2 API Platform to govern traffic to Mistral AI models and to use Mistral embeddings for semantic caching and semantic guardrails.
+type: reference
+layout: overview
+sidebar_label: Mistral
+sidebar_position: 6
+---
+
+WSO2 API Platform works alongside Mistral AI. Govern traffic to Mistral models, and use Mistral embeddings for semantic caching and guardrails.
+
+## AI Gateway with Mistral models
+
+Route, secure, and govern traffic to Mistral AI models through WSO2 AI Gateway.
+
+### Mistral as an LLM provider
+
+Register the Mistral API with the gateway, which stores the API key on behalf of your applications.
+
+- [Create an AI API for Mistral](../create-api-proxy/third-party-apis/ai-apis/providers/mistral.mdx) Cloud console
+
+- [Configure an LLM provider](../ai-workspace/llm-providers/configure-provider.mdx#authentication) AI Workspace
+- [AI Workspace quickstart with Mistral](../ai-workspace/quickstart.mdx) AI Workspace
+
+- [MistralAI provider](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/gateway-artifacts/llm-provider/supported-providers/mistralai/) AI Gateway
+- [Configure an LLM provider](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-providers/configure-provider/#authentication) AI Workspace
+
+### OpenAI-format requests
+
+Keep clients on the OpenAI request format while the gateway routes to Mistral.
+
+- [Call Mistral AI through the gateway](../ai-workspace/using-sdks.mdx#mistral-ai) AI Workspace
+
+- [OpenAI-format compatibility](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/gateway-artifacts/llm-provider/supported-providers/mistralai/#openai-format-compatibility) AI Gateway
+
+### Semantic caching and guardrails
+
+Semantic caching and the semantic prompt guard compare prompts by meaning, and can use a Mistral embedding model that you set in the policy or gateway configuration.
+
+- [Semantic cache](../create-api-proxy/third-party-apis/ai-apis/policies/semantic-cache.mdx) Cloud console
+
+- [Semantic cache policy](../ai-workspace/policies/other-policies/semantic-cache.mdx) AI Workspace
+- [Semantic prompt guard policy](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) Policy Hub
+
+- [Semantic caching](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/semantic-caching/) AI Gateway
+- [Embedding providers for semantic caching](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/setup-and-deployment/production-deployment/ai-workload-tuning/#provision-infrastructure-for-semantic-caching) AI Gateway
+- [Semantic Cache policy](https://wso2.com/api-platform/policy-hub/policies/semantic-cache) Policy Hub
+- [Semantic prompt guard policy](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) Policy Hub
+
+Token limits, semantic caching, and the other AI API policies work the same way for every provider. See [AI APIs](../create-api-proxy/third-party-apis/ai-apis/ai-apis.mdx).
+
+Routing, token limits, cost control, and the other AI Workspace policies work the same way for every provider. See the [AI Workspace overview](../ai-workspace/overview.mdx).
+
+Routing, token limits, cost control, and the gateway's other policies work the same way for every provider. See the [AI Gateway documentation](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/overview/).
+
+## Architecture and responsibility model
+
+WSO2 API Platform and Mistral AI split the work like this:
+
+| Scenario | WSO2 role | Mistral role | Runtime traffic |
+| --- | --- | --- | --- |
+| Applications calling Mistral models | Proxies and governs LLM requests | Hosts the models | Goes through WSO2 AI Gateway to Mistral |
+| Semantic caching and guardrails | Runs the cache or guardrail policy | Returns embeddings for each prompt | The gateway calls the Mistral embeddings API alongside each request |
+
+## Learn more
+
+Related pages in the Mistral documentation:
+
+- [Mistral AI documentation](https://docs.mistral.ai/)
+- [Mistral models](https://docs.mistral.ai/models)
+- [Mistral API reference](https://docs.mistral.ai/api)
+
+To browse every guide by goal, see the [Guides overview](../overview.mdx#browse-by-use-case).

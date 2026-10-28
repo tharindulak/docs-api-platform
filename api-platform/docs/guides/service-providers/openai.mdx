@@ -1,0 +1,74 @@
+---
+title: OpenAI guides
+description: Use WSO2 API Platform to route OpenAI Codex CLI through AI Gateway and govern traffic to OpenAI models with routing, token limits, and caching.
+type: reference
+layout: overview
+sidebar_label: OpenAI
+sidebar_position: 4
+---
+
+WSO2 API Platform works alongside the OpenAI products you already use. Govern OpenAI model traffic, route Codex CLI through AI Gateway, and use OpenAI embeddings for semantic caching and guardrails.
+
+## End-to-end guides
+
+A step-by-step guide for Codex CLI.
+
+- [Configure OpenAI Codex CLI with AI Gateway](../by-use-case/ai-coding-assistants/codex-configuration-with-ai-gateway.mdx)
+
+    Route Codex CLI requests through an OpenAI provider and an App LLM Proxy.
+
+    Guide · Codex CLI · Hybrid
+
+## AI Gateway with OpenAI models
+
+Route, secure, and govern traffic to OpenAI models through WSO2 AI Gateway, including traffic from Codex CLI.
+
+### OpenAI as an LLM provider
+
+Register the OpenAI API with the gateway. The gateway keeps the API key, not your applications.
+
+- [Create an AI API for OpenAI](../create-api-proxy/third-party-apis/ai-apis/providers/open-ai.mdx) Cloud console
+
+- [Configure an LLM provider](../ai-workspace/llm-providers/configure-provider.mdx#authentication) AI Workspace
+- [Call OpenAI through the gateway](../ai-workspace/using-sdks.mdx#openai) AI Workspace
+
+- [OpenAI provider](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/gateway-artifacts/llm-provider/supported-providers/openai/) AI Gateway
+- [Configure an LLM provider](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/llm-providers/configure-provider/#authentication) AI Workspace
+
+### Semantic caching and guardrails
+
+Semantic caching and the semantic prompt guard compare prompts by meaning, and can use an OpenAI embedding model that you set in the policy or gateway configuration.
+
+- [Semantic cache policy](../ai-workspace/policies/other-policies/semantic-cache.mdx) AI Workspace
+- [Semantic prompt guard policy](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) Policy Hub
+
+- [Semantic caching](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/semantic-caching/) AI Gateway
+- [Embedding providers for semantic caching](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/setup-and-deployment/production-deployment/ai-workload-tuning/#provision-infrastructure-for-semantic-caching) AI Gateway
+- [Semantic Cache policy](https://wso2.com/api-platform/policy-hub/policies/semantic-cache) Policy Hub
+- [Semantic prompt guard policy](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) Policy Hub
+
+Token limits, semantic caching, and the other AI API policies work the same way for every provider. See [AI APIs](../create-api-proxy/third-party-apis/ai-apis/ai-apis.mdx).
+
+Routing, token limits, cost control, and the other AI Workspace policies work the same way for every provider. See the [AI Workspace overview](../ai-workspace/overview.mdx).
+
+Routing, token limits, cost control, and the gateway's other policies work the same way for every provider. See the [AI Gateway documentation](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/overview/).
+
+## Architecture and responsibility model
+
+WSO2 API Platform and OpenAI split the work like this:
+
+| Scenario | WSO2 role | OpenAI role | Runtime traffic |
+| --- | --- | --- | --- |
+| Codex CLI through AI Gateway | Authenticates developers and applies guardrails, rate limits, and analytics | Hosts the models and bills the API key | Goes through WSO2 AI Gateway to OpenAI |
+| Applications calling OpenAI models | Proxies and governs LLM requests | Hosts the models | Goes through WSO2 AI Gateway to OpenAI |
+| Semantic caching and guardrails | Runs the cache or guardrail policy | Returns embeddings for each prompt | The gateway calls the OpenAI embeddings API alongside each request |
+
+## Learn more
+
+Related pages in the OpenAI documentation:
+
+- [Codex CLI](https://developers.openai.com/codex/cli)
+- [OpenAI API reference](https://developers.openai.com/api/reference/overview)
+- [OpenAI models](https://developers.openai.com/api/docs/models)
+
+To browse every guide by goal, see the [Guides overview](../overview.mdx#browse-by-use-case).

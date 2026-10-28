@@ -1,0 +1,208 @@
+### Step 1 - Start the GraphQL backend server {#step-1-start-the-graphql-backend-server}
+
+Let's use the Star Wars sample backend server as the backend for the GraphQL API.
+
+1. Clone the [WSO2 API Manager Samples](https://github.com/wso2/samples-apim) repository.
+
+    ```text
+    git clone https://github.com/wso2/samples-apim
+    ```
+
+2. Navigate to `graphql-backend` directory.
+
+    ```text
+    cd samples-apim/graphql-backend
+    ```
+
+3. Run `npm install` to install the necessary node modules.
+
+4. Run `npm start` to start the server.
+
+    Once the above steps are done, the Star Wars server will be running on `http://localhost:8080`.
+
+    <img src={require("../../assets/img/learn/cli-output.png").default} alt="CLI output" style={{width: "45%"}} />
+
+    You can use `http://localhost:8080/graphql` as the endpoint when creating the GraphQL API.
+
+### Step 2 - Design a GraphQL API {#step-2-design-a-graphql-api}
+
+1. Sign in to the API Publisher Portal.
+
+    `https://<hostname>:9443/publisher` 
+
+    Example: `https://localhost:9443/publisher`
+
+    Let's use `admin` as the username and password to sign in.
+
+2. Click **Create API**, go to **GraphQL** and then click **Create a GraphQL API**.
+
+     ![Create GraphQL Schema Option](../../assets/img/learn/create-graphql-schema-option.png)
+
+3. Import the schema by dragging and dropping the file or by uploading the file, and click **Next**.
+
+       Let's use the [StarWarsAPI schema definition](../../assets/attachments/learn/schema_graphql.graphql) to create the schema file. 
+
+       :::note
+       - You need to define the SDL Schema based on the \[GraphQL schema design best practices\](https://graphql.org/learn/best-practices).
+       - The file extension can be either \`.graphql\`, \`.txt\`, or \`.json\`.
+       - The file name can be any name, which is based on your preference.
+       :::
+
+      <img src={require("../../assets/img/learn/import-graphql-schema-via-file.png").default} alt="Import a GraphQL schema by adding a file" style={{width: "80%"}} />
+
+4. Enter the GraphQL API related details and click **Create**.
+
+    Let's create an API named "StarWarsAPI" using the following sample data.
+
+      <table>
+        <thead>
+          <tr>
+            <th>
+
+              **Field**
+
+            </th>
+            <th>
+
+              **Description**
+
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+
+              Name
+
+            </td>
+            <td>
+
+              StarWarsAPI
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+
+              Context
+
+            </td>
+            <td>
+
+              `/swapi`
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+
+              Version
+
+            </td>
+            <td>
+
+              1.0.0
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+
+              Endpoint
+
+            </td>
+            <td>
+
+              [http://localhost:8080/graphql](http://localhost:8080/graphql)
+
+              :::note
+              - When you provide the HTTP URL as the backend endpoint, WSO2 API-M will internally derive the corresponding WebSocket URL `ws://localhost:8080/graphql`.
+              - Thereafter, the API Gateway will use this WebSocket URL as the backend subscription endpoint of the GraphQL API.
+              :::
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    <img src={require("../../assets/img/learn/create-graphql-api-details.png").default} alt="Add GraphQL API details" style={{width: "75%"}} />
+
+5. Optionally, modify the existing GraphQL schema definition.
+
+    1. Navigate to **Develop**, **API Configurations**, and click **Schema Definition**.
+
+    2. Click **Download Definition**.
+
+         The existing GraphQL API schema gets downloaded.
+
+         <img src={require("../../assets/img/learn/download-schema-definition.png").default} alt="Add schema definition" style={{width: "80%"}} />
+
+    3. Update the schema definition as required.
+
+    4. Click **Import Definition** to import the updated schema definition.
+
+6. Update the GraphQL API operations as required.
+
+    Instead of resources, which get populated for REST APIs, operations get populated for GraphQL APIs.
+
+    1. Click **Show More** under the **Operations** section in the **Overview** page to navigate to the operations page.
+
+         ![GraphQL API operations](../../assets/img/learn/operations.png)  
+
+    2. Update the operations as required.
+
+        The Publisher can add Rate Limiting policies, scopes and enable/disable security for each of the GraphQL API operations.
+
+        1. **Create scopes**.
+
+            Repeat the following sub-steps to create two scopes named `adminScope` and `FilmSubscriberScope`.
+
+            1. Click **Local Scopes**, and then click **Create Scopes**.
+
+                ![Add a scope page](../../assets/img/learn/add-scope.png)
+
+            2. Enter the required details.
+
+                   :::note
+                   - The role that you enter **should be a valid role that already exists in WSO2 API Manager**. Make sure to assign the role to the user.
+                   - For more information, see [Adding Users](../../docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-users.mdx) and [Adding User Roles](../../docs/deploy-and-operate/administer/managing-users-and-roles/manage-users-for-api-manager/managing-user-roles.mdx).
+                   :::
+
+                   Enter the following details for this example scenario.
+
+                   | **Name** | **Role** |
+                   |----------|----------|
+                   | `FilmSubscriber` | `FilmSubscriber` |
+                   | `adminScope` | `admin` |
+
+                   ![Create a scope](../../assets/img/learn/create-scope.png)
+
+            3. Press `Enter` to add each role. 
+
+            4. Click **Save**.
+
+                 ![List of added scopes](../../assets/img/learn/starwars-scope-list.png)
+
+         2. **Define the operation level configurations**.
+
+            1. Click **Operations**.
+
+            2. Click **Operation Level** to apply Rate Limiting for operations.
+
+                ![Update GraphQL API operations](../../assets/img/learn/update-operations.png) 
+
+            3. Select a Rate Limiting Policy, scope, and enable or disable security for each of the operations. 
+
+                   Apply the following scopes to the respective operations.
+
+                   | **Operation** | **Scope** |
+                   |----------|----------|
+                   | `allDroids` |`FilmSubscriber` |
+                   | `allCharacters` |`adminScope` |
+
+            4. Click **Save**.
+
+                 If you check the list of scopes, it should appear as follows:
+
+                 ![Scope list](../../assets/img/learn/scope-list.png)

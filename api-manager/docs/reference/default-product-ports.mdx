@@ -1,0 +1,46 @@
+---
+title: Default Product Ports
+description: This page describes the default ports used by each runtime of WSO2 API Manager.  # generated from the first paragraph; a writer should improve it
+type: reference
+sidebar_label: Default product ports
+sidebar_position: 10
+---
+
+This page describes the default ports used by each runtime of WSO2 API Manager.
+
+:::note
+If you [change the default runtime ports](../deploy-and-operate/install-and-setup/deploy/deployment-best-practices/changing-the-default-ports-with-offset.mdx), most of the runtime ports change automatically based on the offset.
+:::
+
+## API-M ports
+
+Listed below are the ports used by the API-M runtime when the [port offset](../deploy-and-operate/install-and-setup/deploy/deployment-best-practices/changing-the-default-ports-with-offset.mdx) is 0.
+
+:::info
+See the instructions on [changing the default API-I ports](../deploy-and-operate/install-and-setup/deploy/deployment-best-practices/changing-the-default-ports-with-offset.mdx#changing-the-default-api-m-ports).
+:::
+
+| Default Port | Description |
+| --- | --- |
+| `9443` | Port of the HTTPS servlet transport. The default HTTPS URL of the management console is `https://localhost:9443/carbon`. |
+| `9763` | Port of the HTTP servlet transport. The default HTTP URL of the management console is `http://localhost:9763/carbon`. |
+| `10389` | Port of the embedded LDAP server. |
+| `5672` | Port of the internal Message Broker of the API-M runtime. |
+| `8280` | Port of the Passthrough or NIO HTTP transport. |
+| `8243` | Port of the Passthrough or NIO HTTPS transport. |
+| `9611` | TCP port to receive throttling events. This is required when the binary data publisher is used for throttling. |
+| `9711` | SSL port of the secure transport for receiving throttling events. This is required when the binary data publisher is used for throttling. |
+| `9099` | Web Socket ports. |
+| `8000` | Port exposing the Kerberos key distribution center server. |
+| `45564` | Opened if the membership scheme is multicast. |
+| `4000` | Opened if the membership scheme is WKA. |
+| `11111` | The RMIRegistry port. Used to monitor Carbon remotely. |
+| `9999` | The MIServer port. Used along with the RMIRegistry port when Carbon is monitored from a JMX client that is behind a firewall |
+
+## Random ports
+
+Certain ports are randomly opened during server startup. This is due to the specific properties and configurations that become effective when the product is started. Note that the IDs of these random ports will change every time the server is started.
+
+-   A random TCP port will open at server startup because the `-Dcom.sun.management.jmxremote` property is set in the server startup script. This property is used for the JMX monitoring facility in JVM.
+
+-   A random UDP port is opened at server startup due to the log4j appender (`SyslogAppender`), which is configured in the `<PRODUCT_HOME>/repository/conf/log4j2.properties` file.
