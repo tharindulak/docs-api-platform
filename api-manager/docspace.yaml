@@ -9,7 +9,7 @@ editionNames:
 home: api-platform
 owners:
   team: api-platform-docs
-repo: wso2/docs-api-platform
+repo: tharindulak/docs-api-platform
 editLinks: false
 issues:
   repo: wso2/docs-apim
