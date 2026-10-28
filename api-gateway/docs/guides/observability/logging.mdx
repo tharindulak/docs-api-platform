@@ -2,7 +2,7 @@
 title: Configure Centralized Logging
 description: Set up centralized log collection for API Platform Gateway using Fluent Bit, OpenSearch, and OpenSearch Dashboards.
 type: how-to
-sidebar_label: Centralized logging
+sidebar_label: Logging
 sidebar_position: 1
 ---
 
@@ -67,7 +67,7 @@ This starts:
 To run only the core gateway services without the demonstration logging stack:
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
 **Note:** The gateway components still log to stdout/stderr. You just won't have the centralized collection and visualization services running. You can still view logs using:
@@ -335,5 +335,5 @@ Configure Fluent Bit to forward to Splunk HEC:
 - [Fluent Bit Documentation](https://docs.fluentbit.io/)
 - [OpenSearch Documentation](https://opensearch.org/docs/latest/)
 - [OpenSearch Dashboards User Guide](https://opensearch.org/docs/latest/dashboards/)
-- [Gateway Overview](../../../index.mdx)
+- [Gateway Overview](../../index.mdx)
 - [Docker Compose Profiles](https://docs.docker.com/compose/profiles/)

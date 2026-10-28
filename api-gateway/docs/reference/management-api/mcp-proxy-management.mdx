@@ -18,7 +18,7 @@ CRUD operations for MCPProxies
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/mcp-proxies \
+curl -X POST http://localhost:9090/api/management/v0.9/mcp-proxies \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -31,7 +31,7 @@ Add a new MCPProxy to the Gateway.
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Mcp",
   "metadata": {
     "name": "everything-mcp-v1.0"
@@ -40,9 +40,7 @@ Add a new MCPProxy to the Gateway.
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersions": [
-      "2025-06-18"
-    ],
+    "specVersion": "2025-06-18",
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -64,12 +62,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[MCPProxyConfigurationRequest](./schemas.mdx#schemamcpproxyconfigurationrequest)|true|none|
 
 > Example responses
->
+
 > 201 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Mcp",
   "metadata": {
     "name": "everything-mcp-v1.0"
@@ -78,9 +76,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersions": [
-      "2025-06-18"
-    ],
+    "specVersion": "2025-06-18",
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -117,7 +113,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/mcp-proxies \
+curl -X GET http://localhost:9090/api/management/v0.9/mcp-proxies \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -145,7 +141,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |status|undeployed|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -154,7 +150,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
   "count": 5,
   "mcpProxies": [
     {
-      "apiVersion": "gateway.api-platform.wso2.com/v1",
+      "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
       "kind": "Mcp",
       "metadata": {
         "name": "everything-mcp-v1.0"
@@ -163,9 +159,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
         "displayName": "Everything",
         "version": "v1.0",
         "context": "/everything",
-        "specVersions": [
-          "2025-06-18"
-        ],
+        "specVersion": "2025-06-18",
         "upstream": {
           "url": "http://everything:3001"
         },
@@ -219,17 +213,8 @@ Status Code **200**
 |displayName|string|true|none|Human-readable MCP Proxy display name|
 |version|string|true|none|MCP Proxy version|
 |context|string|false|none|MCP Proxy context path|
-|specVersion|string|false|none|DEPRECATED - use `specVersions`. Still honored when `specVersions` is absent. Cannot be used together with `specVersions`.|
-|specVersions|[string]|false|none|MCP specification versions supported by this proxy. This gateway build explicitly supports MCP specification versions 2025-06-18, 2025-11-25, and 2026-07-28.|
+|specVersion|string|false|none|MCP specification version|
 |vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
-|upstreamDefinitions|[[UpstreamDefinition](./schemas.mdx#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations. Referenced by upstream.ref.|
-|name|string|true|none|Unique identifier for this upstream definition|
-|basePath|string|false|none|Base path prefix for all endpoints in this upstream (e.g., /api/v2). All requests to this upstream will have this path prepended. Must start with '/' and must not end with '/'; omit for root.|
-|timeout|[UpstreamTimeout](./schemas.mdx#schemaupstreamtimeout)|false|none|Timeout configuration for upstream requests|
-|connect|string|false|none|Connection timeout duration (e.g., "5s", "500ms")|
-|upstreams|[object]|true|none|List of backend targets with optional weights for load balancing|
-|url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
-|weight|integer|false|none|Relative weight for load balancing across multiple upstream targets. Reserved for future multi-target load balancing; not applied yet (only the first target is currently used).|
 |upstream|any|true|none|The backend MCP server url and auth configurations|
 
 *allOf*
@@ -261,7 +246,7 @@ Status Code **200**
 |auth|object|false|none|none|
 |type|string|true|none|none|
 |header|string|false|none|none|
-|value|string|false|write-only|Upstream credential. Write-only: accepted on create/update and never returned by the management API on a read, for any role. Supply either a literal value or a secret reference (e.g. a `secret` template expression); either way the field is omitted from management API response bodies. An update that omits it inherits the stored value; set `type: none` to remove auth.|
+|value|string|false|none|none|
 
 *continued*
 
@@ -295,9 +280,6 @@ Status Code **200**
 |required|boolean|false|none|Whether the argument is required|
 |title|string|false|none|Optional human-readable title of the argument|
 |deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the MCP Proxy is removed from router traffic but configuration and policies are preserved for potential redeployment.|
-|resilience|[Resilience](./schemas.mdx#schemaresilience)|false|none|Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.|
-|timeout|string|false|none|Maximum time for the entire route (request to upstream response). "0s" disables the timeout.|
-|idleTimeout|string|false|none|Per-route stream idle timeout (overrides the listener stream idle timeout for this route). "0s" disables the timeout.|
 
 *and*
 
@@ -315,13 +297,11 @@ Status Code **200**
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|Mcp|
 |hostRewrite|auto|
 |hostRewrite|manual|
 |type|api-key|
-|type|other|
-|type|none|
 |deploymentState|deployed|
 |deploymentState|undeployed|
 |state|deployed|
@@ -337,7 +317,7 @@ Status Code **200**
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/mcp-proxies/{id} \
+curl -X GET http://localhost:9090/api/management/v0.9/mcp-proxies/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -359,12 +339,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier of the MCP Proxy.
 
 > Example responses
->
+
 > 200 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Mcp",
   "metadata": {
     "name": "everything-mcp-v1.0"
@@ -373,9 +353,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersions": [
-      "2025-06-18"
-    ],
+    "specVersion": "2025-06-18",
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -411,7 +389,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X PUT http://localhost:9090/api/management/v1/mcp-proxies/{id} \
+curl -X PUT http://localhost:9090/api/management/v0.9/mcp-proxies/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -424,7 +402,7 @@ Update an existing MCPProxy in the Gateway.
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Mcp",
   "metadata": {
     "name": "everything-mcp-v1.0"
@@ -433,9 +411,7 @@ Update an existing MCPProxy in the Gateway.
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersions": [
-      "2025-06-18"
-    ],
+    "specVersion": "2025-06-18",
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -462,12 +438,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier of the MCP Proxy to update.
 
 > Example responses
->
+
 > 200 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Mcp",
   "metadata": {
     "name": "everything-mcp-v1.0"
@@ -476,9 +452,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersions": [
-      "2025-06-18"
-    ],
+    "specVersion": "2025-06-18",
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -515,7 +489,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X DELETE http://localhost:9090/api/management/v1/mcp-proxies/{id} \
+curl -X DELETE http://localhost:9090/api/management/v0.9/mcp-proxies/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -537,7 +511,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier of the MCP Proxy to delete.
 
 > Example responses
->
+
 > 200 Response
 
 ```json

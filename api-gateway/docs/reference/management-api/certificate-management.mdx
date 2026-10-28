@@ -18,7 +18,7 @@ Manage custom TLS certificates for HTTPS upstream verification
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/certificates \
+curl -X GET http://localhost:9090/api/management/v0.9/certificates \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -31,7 +31,7 @@ These certificates are used for verifying HTTPS upstream connections.
 This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -71,7 +71,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/certificates \
+curl -X POST http://localhost:9090/api/management/v0.9/certificates \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -91,7 +91,7 @@ Upload a new TLS certificate (PEM format) to the Gateway. The certificate is loa
 
 ### Authentication {#authentication_1}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#upload-a-new-certificate-parameters}
 
@@ -100,7 +100,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[CertificateUploadRequest](./schemas.mdx#schemacertificateuploadrequest)|true|none|
 
 > Example responses
->
+
 > 201 Response
 
 ```json
@@ -134,7 +134,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X DELETE http://localhost:9090/api/management/v1/certificates/{id} \
+curl -X DELETE http://localhost:9090/api/management/v0.9/certificates/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -152,7 +152,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |id|path|string|true|ID of the certificate to delete|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -191,7 +191,7 @@ Status Code **200**
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/certificates/reload \
+curl -X POST http://localhost:9090/api/management/v0.9/certificates/reload \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -203,7 +203,7 @@ Manually trigger a reload of all certificates from the filesystem into the Gatew
 This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 > Example responses
->
+
 > 200 Response
 
 ```json

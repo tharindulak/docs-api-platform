@@ -50,21 +50,6 @@ Verify:
 kubectl get pods -n cert-manager
 ```
 
-## Create the Encryption Key Secret
-
-At-rest encryption is **mandatory and fail-closed**. The chart refuses to render without an AES-256 key Secret. Create it in the namespace you install into, **before** installing the chart.
-
-```bash
-openssl rand 32 > default-aesgcm256-v1.bin
-kubectl create secret generic gateway-encryption-keys \
-  --from-file=default-aesgcm256-v1.bin=default-aesgcm256-v1.bin && \
-  rm default-aesgcm256-v1.bin   # remove the plaintext key only after the Secret is created
-# For a non-default namespace, first `kubectl create namespace <namespace>`,
-# then add `-n <namespace>` to both this command and `helm install`.
-```
-
-The Secret's key entry must be named `default-aesgcm256-v1.bin`. See [Security Hardening → Encryption Keys](../../high-availability-production-deployment/security-hardening.mdx#encryption-keys) for key rotation and multi-key setups.
-
 ## Install Gateway Chart
 
 Use one of the following patterns.
@@ -73,8 +58,7 @@ Use one of the following patterns.
 
 ```bash
 helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
-  --set gateway.controller.encryptionKeys.enabled=true \
-  --set gateway.controller.encryptionKeys.secretName=gateway-encryption-keys
+  --set gateway.developmentMode=true
 ```
 
 ### Install into a dedicated namespace
@@ -84,8 +68,7 @@ kubectl create namespace api-gateway
 
 helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
   --namespace api-gateway \
-  --set gateway.controller.encryptionKeys.enabled=true \
-  --set gateway.controller.encryptionKeys.secretName=gateway-encryption-keys
+  --set gateway.developmentMode=true
 ```
 
 ### Install with control-plane overrides
@@ -95,21 +78,10 @@ helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
   --set gateway.controller.controlPlane.host="platform.example.com" \
   --set gateway.controller.controlPlane.port=8443 \
   --set gateway.controller.controlPlane.token.value="your-token-here" \
-  --set gateway.controller.encryptionKeys.enabled=true \
-  --set gateway.controller.encryptionKeys.secretName=gateway-encryption-keys
+  --set gateway.developmentMode=true
 ```
 
 ### Install with a values file
-
-`custom-values.yaml` must define the mandatory encryption settings:
-
-```yaml
-gateway:
-  controller:
-    encryptionKeys:
-      enabled: true
-      secretName: gateway-encryption-keys
-```
 
 ```bash
 helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
@@ -228,32 +200,22 @@ helm install ap-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
 ### Port-forward Gateway Controller Service
 
 ```bash
-kubectl port-forward svc/ap-gateway-controller 9090:9090 9094:9094
+kubectl port-forward svc/ap-gateway-controller 9090:9090
 ```
 
-### Verify the Gateway Controller's admin endpoint is running
-
+### Verify gateway controller admin endpoint is running
 ```bash
-curl --fail http://localhost:9094/api/admin/v1/health
+curl http://localhost:9094/api/admin/v0.9/health
 ```
 
 ### Deploy an API configuration
 
-The management API uses basic auth with the credentials from your Helm values
-(`controller.auth.basic.users`; the chart default is `admin` / `admin`). Export them, changing them if
-you overrode the chart defaults:
-
 ```bash
-export ADMIN_USERNAME=admin
-export ADMIN_PASSWORD=admin
-```
-
-```bash
-curl -X POST http://localhost:9090/api/management/v1/rest-apis \
-  -u "$ADMIN_USERNAME:$ADMIN_PASSWORD" \
+curl -X POST http://localhost:9090/api/management/v0.9/rest-apis \
+  -u admin:admin \
   -H "Content-Type: application/yaml" \
   --data-binary @- <<'EOF'
-apiVersion: gateway.api-platform.wso2.com/v1
+apiVersion: gateway.api-platform.wso2.com/v1alpha1
 kind: RestApi
 metadata:
   name: reading-list-api-v1.0

@@ -18,7 +18,7 @@ CRUD operations for Rest APIs
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/rest-apis \
+curl -X POST http://localhost:9090/api/management/v0.9/rest-apis \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -31,7 +31,7 @@ Add a new RestAPI to the Gateway.
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "RestApi",
   "metadata": {
     "name": "reading-list-api-v1.0"
@@ -106,12 +106,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[RestAPIRequest](./schemas.mdx#schemarestapirequest)|true|none|
 
 > Example responses
->
+
 > 201 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "RestApi",
   "metadata": {
     "name": "reading-list-api-v1.0"
@@ -201,7 +201,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/rest-apis \
+curl -X GET http://localhost:9090/api/management/v0.9/rest-apis \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -229,7 +229,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |status|undeployed|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -238,7 +238,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
   "count": 5,
   "apis": [
     {
-      "apiVersion": "gateway.api-platform.wso2.com/v1",
+      "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
       "kind": "RestApi",
       "metadata": {
         "name": "reading-list-api-v1.0"
@@ -347,12 +347,12 @@ Status Code **200**
 |context|string|true|none|Base path for all API routes (must start with /, no trailing slash). Use $version to embed the version in the path (e.g., /reading-list/$version resolves to /reading-list/v1.0).|
 |upstreamDefinitions|[[UpstreamDefinition](./schemas.mdx#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations|
 |name|string|true|none|Unique identifier for this upstream definition|
-|basePath|string|false|none|Base path prefix for all endpoints in this upstream (e.g., /api/v2). All requests to this upstream will have this path prepended. Must start with '/' and must not end with '/'; omit for root.|
+|basePath|string|false|none|Base path prefix for all endpoints in this upstream (e.g., /api/v2). All requests to this upstream will have this path prepended.|
 |timeout|[UpstreamTimeout](./schemas.mdx#schemaupstreamtimeout)|false|none|Timeout configuration for upstream requests|
 |connect|string|false|none|Connection timeout duration (e.g., "5s", "500ms")|
 |upstreams|[object]|true|none|List of backend targets with optional weights for load balancing|
 |url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
-|weight|integer|false|none|Relative weight for load balancing across multiple upstream targets. Reserved for future multi-target load balancing; not applied yet (only the first target is currently used).|
+|weight|integer|false|none|Weight for load balancing (optional, default 100)|
 |upstream|object|true|none|API-level upstream configuration|
 |main|[Upstream](./schemas.mdx#schemaupstream)|true|none|Upstream backend configuration (single target or reference)|
 |url|string(uri)|false|none|Direct backend URL to route traffic to|
@@ -377,7 +377,7 @@ Status Code **200**
 |---|---|---|---|---|
 |sandbox|[Upstream](./schemas.mdx#schemaupstream)|false|none|Upstream backend configuration (single target or reference)|
 |vhosts|object|false|none|Custom virtual hosts/domains for the API|
-|main|string|true|none|Custom virtual host(s)/domain(s) for production traffic. One or more hostnames<br />separated by ';' — each hostname serves the main upstream (e.g. when a Gateway API<br />HTTPRoute attaches to multiple listener hostnames). The first entry is the primary<br />vhost. Each hostname may be a wildcard such as *.example.com.|
+|main|string|true|none|Custom virtual host/domain for production traffic|
 |sandbox|string|false|none|Custom virtual host/domain for sandbox traffic|
 |subscriptionPlans|[string]|false|none|List of subscription plan names available for this API|
 |policies|[[Policy](./schemas.mdx#schemapolicy)]|false|none|List of API-level policies applied to all operations unless overridden|
@@ -385,23 +385,10 @@ Status Code **200**
 |version|string|true|none|Version of the policy. Only major-only version is allowed (e.g., v0, v1). Full semantic version (e.g., v1.0.0) is not accepted and will be rejected. The Gateway Controller resolves the major version to the single matching full version installed in the gateway image.|
 |executionCondition|string|false|none|Expression controlling conditional execution of the policy|
 |params|object|false|none|Arbitrary parameters for the policy (free-form key/value structure)|
-|resilience|[Resilience](./schemas.mdx#schemaresilience)|false|none|Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.|
-|timeout|string|false|none|Maximum time for the entire route (request to upstream response). "0s" disables the timeout.|
-|idleTimeout|string|false|none|Per-route stream idle timeout (overrides the listener stream idle timeout for this route). "0s" disables the timeout.|
 |operations|[[Operation](./schemas.mdx#schemaoperation)]|true|none|List of HTTP operations/routes|
-|method|[OperationMethod](./schemas.mdx#schemaoperationmethod)|false|none|HTTP method (simple form; ignored when 'match' is set)|
-|path|string|false|none|Route path with optional `{param}` placeholders (simple form; ignored when 'match' is set)|
-|match|[OperationMatch](./schemas.mdx#schemaoperationmatch)|false|none|Request matching criteria for an operation. Extensible with query params, cookies, etc.|
-|method|[OperationMethod](./schemas.mdx#schemaoperationmethod)|true|none|HTTP method|
-|path|[OperationPathMatch](./schemas.mdx#schemaoperationpathmatch)|true|none|none|
-|value|string|true|none|Route path with optional `{param}` placeholders|
-|type|string|false|none|Path matching semantics for the operation route|
-|headers|[[OperationHeaderMatch](./schemas.mdx#schemaoperationheadermatch)]|false|none|Header matchers ANDed with the path match for Envoy route selection|
-|name|string|true|none|Header name (case-insensitive)|
-|value|string|true|none|Header value to match|
-|type|string|false|none|Header match type|
+|method|string|true|none|HTTP method|
+|path|string|true|none|Route path with optional `{param}` placeholders|
 |policies|[[Policy](./schemas.mdx#schemapolicy)]|false|none|List of policies applied only to this operation (overrides or adds to API-level policies)|
-|resilience|[Resilience](./schemas.mdx#schemaresilience)|false|none|Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.|
 |deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the API is removed from router traffic but configuration, API keys, and policies are preserved for potential redeployment.|
 
 *and*
@@ -420,7 +407,7 @@ Status Code **200**
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|RestApi|
 |hostRewrite|auto|
 |hostRewrite|manual|
@@ -431,17 +418,6 @@ Status Code **200**
 |method|PATCH|
 |method|HEAD|
 |method|OPTIONS|
-|method|GET|
-|method|POST|
-|method|PUT|
-|method|DELETE|
-|method|PATCH|
-|method|HEAD|
-|method|OPTIONS|
-|type|Exact|
-|type|PathPrefix|
-|type|Exact|
-|type|RegularExpression|
 |deploymentState|deployed|
 |deploymentState|undeployed|
 |state|deployed|
@@ -457,7 +433,7 @@ Status Code **200**
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/rest-apis/{id} \
+curl -X GET http://localhost:9090/api/management/v0.9/rest-apis/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -479,12 +455,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier for the API.
 
 > Example responses
->
+
 > 200 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "RestApi",
   "metadata": {
     "name": "reading-list-api-v1.0"
@@ -573,7 +549,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X PUT http://localhost:9090/api/management/v1/rest-apis/{id} \
+curl -X PUT http://localhost:9090/api/management/v0.9/rest-apis/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -586,7 +562,7 @@ Update an existing RestAPI in the Gateway.
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "RestApi",
   "metadata": {
     "name": "reading-list-api-v1.0"
@@ -666,12 +642,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier of the API to update.
 
 > Example responses
->
+
 > 200 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "RestApi",
   "metadata": {
     "name": "reading-list-api-v1.0"
@@ -761,7 +737,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X DELETE http://localhost:9090/api/management/v1/rest-apis/{id} \
+curl -X DELETE http://localhost:9090/api/management/v0.9/rest-apis/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -783,7 +759,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier of the API to delete.
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -822,7 +798,7 @@ Status Code **200**
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/rest-apis/{id}/api-keys \
+curl -X POST http://localhost:9090/api/management/v0.9/rest-apis/{id}/api-keys \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -855,7 +831,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier of the API to generate the key for
 
 > Example responses
->
+
 > 201 Response
 
 ```json
@@ -896,7 +872,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/rest-apis/{id}/api-keys \
+curl -X GET http://localhost:9090/api/management/v0.9/rest-apis/{id}/api-keys \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -918,7 +894,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **id**: Unique public identifier of the API to retrieve the keys for
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -959,7 +935,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/rest-apis/{id}/api-keys/{apiKeyName}/regenerate \
+curl -X POST http://localhost:9090/api/management/v0.9/rest-apis/{id}/api-keys/{apiKeyName}/regenerate \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -993,7 +969,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **apiKeyName**: Name of the API key to regenerate
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1034,7 +1010,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X PUT http://localhost:9090/api/management/v1/rest-apis/{id}/api-keys/{apiKeyName} \
+curl -X PUT http://localhost:9090/api/management/v0.9/rest-apis/{id}/api-keys/{apiKeyName} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -1070,7 +1046,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **apiKeyName**: Name of the API key to update
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1111,7 +1087,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X DELETE http://localhost:9090/api/management/v1/rest-apis/{id}/api-keys/{apiKeyName} \
+curl -X DELETE http://localhost:9090/api/management/v0.9/rest-apis/{id}/api-keys/{apiKeyName} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -1136,7 +1112,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 **apiKeyName**: Name of the API key to revoke
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1165,7 +1141,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/subscription-plans \
+curl -X POST http://localhost:9090/api/management/v0.9/subscription-plans \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -1190,7 +1166,7 @@ Create a subscription plan that defines rate limits and access tiers for API sub
 
 ### Authentication {#authentication_10}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#create-a-subscription-plan-parameters}
 
@@ -1199,7 +1175,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[SubscriptionPlanCreateRequest](./schemas.mdx#schemasubscriptionplancreaterequest)|true|none|
 
 > Example responses
->
+
 > 201 Response
 
 ```json
@@ -1237,7 +1213,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/subscription-plans \
+curl -X GET http://localhost:9090/api/management/v0.9/subscription-plans \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -1246,10 +1222,10 @@ List all subscription plans available in the Gateway.
 
 ### Authentication {#authentication_11}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1290,7 +1266,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/subscription-plans/{planId} \
+curl -X GET http://localhost:9090/api/management/v0.9/subscription-plans/{planId} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -1299,7 +1275,7 @@ Get the details of a subscription plan by its ID.
 
 ### Authentication {#authentication_12}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#get-a-subscription-plan-by-id-parameters}
 
@@ -1308,7 +1284,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |planId|path|string|true|none|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1345,7 +1321,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X PUT http://localhost:9090/api/management/v1/subscription-plans/{planId} \
+curl -X PUT http://localhost:9090/api/management/v0.9/subscription-plans/{planId} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -1370,7 +1346,7 @@ Update an existing subscription plan in the Gateway.
 
 ### Authentication {#authentication_13}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#update-a-subscription-plan-parameters}
 
@@ -1380,7 +1356,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[SubscriptionPlanUpdateRequest](./schemas.mdx#schemasubscriptionplanupdaterequest)|false|none|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1417,7 +1393,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X DELETE http://localhost:9090/api/management/v1/subscription-plans/{planId} \
+curl -X DELETE http://localhost:9090/api/management/v0.9/subscription-plans/{planId} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -1426,7 +1402,7 @@ Delete a subscription plan from the Gateway.
 
 ### Authentication {#authentication_14}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#delete-a-subscription-plan-parameters}
 
@@ -1435,7 +1411,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |planId|path|string|true|none|
 
 > Example responses
->
+
 > 404 Response
 
 ```json
@@ -1469,7 +1445,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/subscriptions \
+curl -X POST http://localhost:9090/api/management/v0.9/subscriptions \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -1494,7 +1470,7 @@ Subscribe an application to a RestAPI in the Gateway.
 
 ### Authentication {#authentication_15}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#create-a-subscription-parameters}
 
@@ -1503,7 +1479,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[SubscriptionCreateRequest](./schemas.mdx#schemasubscriptioncreaterequest)|true|none|
 
 > Example responses
->
+
 > 201 Response
 
 ```json
@@ -1541,7 +1517,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/subscriptions \
+curl -X GET http://localhost:9090/api/management/v0.9/subscriptions \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -1550,7 +1526,7 @@ List subscriptions in the Gateway, optionally filtered by API, application, or s
 
 ### Authentication {#authentication_16}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#list-subscriptions-parameters}
 
@@ -1569,7 +1545,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |status|REVOKED|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1610,7 +1586,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/subscriptions/{subscriptionId} \
+curl -X GET http://localhost:9090/api/management/v0.9/subscriptions/{subscriptionId} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -1619,7 +1595,7 @@ Get the details of a subscription by its ID.
 
 ### Authentication {#authentication_17}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#get-a-subscription-by-id-parameters}
 
@@ -1628,7 +1604,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |subscriptionId|path|string|true|none|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1665,7 +1641,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X PUT http://localhost:9090/api/management/v1/subscriptions/{subscriptionId} \
+curl -X PUT http://localhost:9090/api/management/v0.9/subscriptions/{subscriptionId} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -1684,7 +1660,7 @@ Update an existing subscription in the Gateway.
 
 ### Authentication {#authentication_18}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#update-a-subscription-parameters}
 
@@ -1694,7 +1670,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[SubscriptionUpdateRequest](./schemas.mdx#schemasubscriptionupdaterequest)|false|none|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -1731,7 +1707,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X DELETE http://localhost:9090/api/management/v1/subscriptions/{subscriptionId} \
+curl -X DELETE http://localhost:9090/api/management/v0.9/subscriptions/{subscriptionId} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -1740,7 +1716,7 @@ Delete a subscription from the Gateway.
 
 ### Authentication {#authentication_19}
 
-This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
 
 ### Parameters {#delete-a-subscription-parameters}
 
@@ -1749,7 +1725,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |subscriptionId|path|string|true|none|
 
 > Example responses
->
+
 > 404 Response
 
 ```json

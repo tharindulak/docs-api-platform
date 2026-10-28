@@ -3,10 +3,10 @@ title: Management API Schemas
 description: JSON schema definitions for all API Platform Gateway Controller management API request and response objects.
 type: reference
 sidebar_label: Schemas
-sidebar_position: 10
+sidebar_position: 12
 ---
 
-## ResourceStatus
+## ResourceStatus {#tocS_ResourceStatus}
 
 <Anchor id="schemaresourcestatus" />
 <Anchor id="schema_ResourceStatus" />
@@ -25,7 +25,7 @@ sidebar_position: 10
 
 Server-managed lifecycle information for a resource
 
-#### Properties
+### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -35,14 +35,14 @@ Server-managed lifecycle information for a resource
 |updatedAt|string(date-time)|false|none|Timestamp when the resource was last updated (UTC)|
 |deployedAt|string(date-time)|false|none|Timestamp when the resource was last deployed (omitted when undeployed)|
 
-##### Enumerated Values
+#### Enumerated Values
 
 |Property|Value|
 |---|---|
 |state|deployed|
 |state|undeployed|
 
-## RestAPIRequest
+## RestAPIRequest {#tocS_RestAPIRequest}
 
 <Anchor id="schemarestapirequest" />
 <Anchor id="schema_RestAPIRequest" />
@@ -51,7 +51,7 @@ Server-managed lifecycle information for a resource
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "RestApi",
   "metadata": {
     "name": "reading-list-api-v1.0"
@@ -115,7 +115,7 @@ Server-managed lifecycle information for a resource
 }
 ```
 
-#### Properties {#properties_1}
+### Properties {#properties_1}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -124,14 +124,14 @@ Server-managed lifecycle information for a resource
 |metadata|[Metadata](#schemametadata)|true|none|none|
 |spec|[APIConfigData](#schemaapiconfigdata)|true|none|none|
 
-##### Enumerated Values {#enumerated-values_1}
+#### Enumerated Values {#enumerated-values_1}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|RestApi|
 
-## RestAPI
+## RestAPI {#tocS_RestAPI}
 
 <Anchor id="schemarestapi" />
 <Anchor id="schema_RestAPI" />
@@ -140,7 +140,7 @@ Server-managed lifecycle information for a resource
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "RestApi",
   "metadata": {
     "name": "reading-list-api-v1.0"
@@ -211,7 +211,7 @@ Server-managed lifecycle information for a resource
 }
 ```
 
-#### Properties {#properties_2}
+### Properties {#properties_2}
 
 allOf
 
@@ -226,7 +226,109 @@ and
 |*anonymous*|object|false|none|none|
 |status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
 
-## Metadata
+## WebSubAPIRequest {#tocS_WebSubAPIRequest}
+
+<Anchor id="schemawebsubapirequest" />
+<Anchor id="schema_WebSubAPIRequest" />
+<Anchor id="tocSwebsubapirequest" />
+<Anchor id="tocswebsubapirequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
+  "kind": "WebSubApi",
+  "metadata": {
+    "name": "github-events-v1.0"
+  },
+  "spec": {
+    "displayName": "GitHub Events",
+    "version": "v1.0",
+    "context": "/github-events/$version",
+    "channels": [
+      {
+        "name": "issues",
+        "method": "SUB"
+      },
+      {
+        "name": "pull_requests",
+        "method": "SUB"
+      }
+    ]
+  }
+}
+```
+
+### Properties {#properties_3}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|API specification version|
+|kind|string|true|none|API type|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[WebhookAPIData](#schemawebhookapidata)|true|none|none|
+
+#### Enumerated Values {#enumerated-values_2}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
+|kind|WebSubApi|
+
+## WebSubAPI {#tocS_WebSubAPI}
+
+<Anchor id="schemawebsubapi" />
+<Anchor id="schema_WebSubAPI" />
+<Anchor id="tocSwebsubapi" />
+<Anchor id="tocswebsubapi" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
+  "kind": "WebSubApi",
+  "metadata": {
+    "name": "github-events-v1.0"
+  },
+  "spec": {
+    "displayName": "GitHub Events",
+    "version": "v1.0",
+    "context": "/github-events/$version",
+    "channels": [
+      {
+        "name": "issues",
+        "method": "SUB"
+      },
+      {
+        "name": "pull_requests",
+        "method": "SUB"
+      }
+    ]
+  },
+  "status": {
+    "id": "github-events-v1.0",
+    "state": "deployed",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z",
+    "deployedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+### Properties {#properties_4}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[WebSubAPIRequest](#schemawebsubapirequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## Metadata {#tocS_Metadata}
 
 <Anchor id="schemametadata" />
 <Anchor id="schema_Metadata" />
@@ -247,7 +349,7 @@ and
 }
 ```
 
-#### Properties {#properties_3}
+### Properties {#properties_5}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -257,7 +359,7 @@ and
 |annotations|object|false|none|Annotations are arbitrary non-identifying metadata. Use domain-prefixed keys.|
 |**additionalProperties**|string|false|none|none|
 
-## APIConfigData
+## APIConfigData {#tocS_APIConfigData}
 
 <Anchor id="schemaapiconfigdata" />
 <Anchor id="schema_APIConfigData" />
@@ -297,7 +399,7 @@ and
     }
   },
   "vhosts": {
-    "main": "api.example.com;docs.example.com;*.example.com",
+    "main": "api.example.com",
     "sandbox": "sandbox-api.example.com"
   },
   "subscriptionPlans": [
@@ -312,28 +414,10 @@ and
       "params": {}
     }
   ],
-  "resilience": {
-    "timeout": "15s",
-    "idleTimeout": "0s"
-  },
   "operations": [
     {
       "method": "GET",
       "path": "/books/{id}",
-      "match": {
-        "method": "GET",
-        "path": {
-          "value": "/books/{id}",
-          "type": "Exact"
-        },
-        "headers": [
-          {
-            "name": "version",
-            "value": "one",
-            "type": "Exact"
-          }
-        ]
-      },
       "policies": [
         {
           "name": "cors",
@@ -341,18 +425,14 @@ and
           "executionCondition": "request.metadata[authenticated] != true",
           "params": {}
         }
-      ],
-      "resilience": {
-        "timeout": "15s",
-        "idleTimeout": "0s"
-      }
+      ]
     }
   ],
   "deploymentState": "deployed"
 }
 ```
 
-#### Properties {#properties_4}
+### Properties {#properties_6}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -364,22 +444,21 @@ and
 |main|[Upstream](#schemaupstream)|true|none|Upstream backend configuration (single target or reference)|
 |sandbox|[Upstream](#schemaupstream)|false|none|Upstream backend configuration (single target or reference)|
 |vhosts|object|false|none|Custom virtual hosts/domains for the API|
-|main|string|true|none|Custom virtual host(s)/domain(s) for production traffic. One or more hostnames<br />separated by ';' — each hostname serves the main upstream (e.g. when a Gateway API<br />HTTPRoute attaches to multiple listener hostnames). The first entry is the primary<br />vhost. Each hostname may be a wildcard such as *.example.com.|
+|main|string|true|none|Custom virtual host/domain for production traffic|
 |sandbox|string|false|none|Custom virtual host/domain for sandbox traffic|
 |subscriptionPlans|[string]|false|none|List of subscription plan names available for this API|
 |policies|[[Policy](#schemapolicy)]|false|none|List of API-level policies applied to all operations unless overridden|
-|resilience|[Resilience](#schemaresilience)|false|none|Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.|
 |operations|[[Operation](#schemaoperation)]|true|none|List of HTTP operations/routes|
 |deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the API is removed from router traffic but configuration, API keys, and policies are preserved for potential redeployment.|
 
-##### Enumerated Values {#enumerated-values_2}
+#### Enumerated Values {#enumerated-values_3}
 
 |Property|Value|
 |---|---|
 |deploymentState|deployed|
 |deploymentState|undeployed|
 
-## UpstreamDefinition
+## UpstreamDefinition {#tocS_UpstreamDefinition}
 
 <Anchor id="schemaupstreamdefinition" />
 <Anchor id="schema_UpstreamDefinition" />
@@ -404,18 +483,18 @@ and
 
 Reusable upstream configuration with optional timeout and load balancing settings
 
-#### Properties {#properties_5}
+### Properties {#properties_7}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |name|string|true|none|Unique identifier for this upstream definition|
-|basePath|string|false|none|Base path prefix for all endpoints in this upstream (e.g., /api/v2). All requests to this upstream will have this path prepended. Must start with '/' and must not end with '/'; omit for root.|
+|basePath|string|false|none|Base path prefix for all endpoints in this upstream (e.g., /api/v2). All requests to this upstream will have this path prepended.|
 |timeout|[UpstreamTimeout](#schemaupstreamtimeout)|false|none|Timeout configuration for upstream requests|
 |upstreams|[object]|true|none|List of backend targets with optional weights for load balancing|
 |url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
-|weight|integer|false|none|Relative weight for load balancing across multiple upstream targets. Reserved for future multi-target load balancing; not applied yet (only the first target is currently used).|
+|weight|integer|false|none|Weight for load balancing (optional, default 100)|
 
-## UpstreamTimeout
+## UpstreamTimeout {#tocS_UpstreamTimeout}
 
 <Anchor id="schemaupstreamtimeout" />
 <Anchor id="schema_UpstreamTimeout" />
@@ -430,36 +509,13 @@ Reusable upstream configuration with optional timeout and load balancing setting
 
 Timeout configuration for upstream requests
 
-#### Properties {#properties_6}
+### Properties {#properties_8}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |connect|string|false|none|Connection timeout duration (e.g., "5s", "500ms")|
 
-## Resilience
-
-<Anchor id="schemaresilience" />
-<Anchor id="schema_Resilience" />
-<Anchor id="tocSresilience" />
-<Anchor id="tocsresilience" />
-
-```json
-{
-  "timeout": "15s",
-  "idleTimeout": "0s"
-}
-```
-
-Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.
-
-#### Properties {#properties_7}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|timeout|string|false|none|Maximum time for the entire route (request to upstream response). "0s" disables the timeout.|
-|idleTimeout|string|false|none|Per-route stream idle timeout (overrides the listener stream idle timeout for this route). "0s" disables the timeout.|
-
-## Upstream
+## Upstream {#tocS_Upstream}
 
 <Anchor id="schemaupstream" />
 <Anchor id="schema_Upstream" />
@@ -476,7 +532,7 @@ Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be 
 
 Upstream backend configuration (single target or reference)
 
-#### Properties {#properties_8}
+### Properties {#properties_9}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -496,14 +552,14 @@ xor
 |---|---|---|---|---|
 |*anonymous*|object|false|none|none|
 
-##### Enumerated Values {#enumerated-values_3}
+#### Enumerated Values {#enumerated-values_4}
 
 |Property|Value|
 |---|---|
 |hostRewrite|auto|
 |hostRewrite|manual|
 
-## Operation
+## Operation {#tocS_Operation}
 
 <Anchor id="schemaoperation" />
 <Anchor id="schema_Operation" />
@@ -514,20 +570,6 @@ xor
 {
   "method": "GET",
   "path": "/books/{id}",
-  "match": {
-    "method": "GET",
-    "path": {
-      "value": "/books/{id}",
-      "type": "Exact"
-    },
-    "headers": [
-      {
-        "name": "version",
-        "value": "one",
-        "type": "Exact"
-      }
-    ]
-  },
   "policies": [
     {
       "name": "cors",
@@ -535,150 +577,31 @@ xor
       "executionCondition": "request.metadata[authenticated] != true",
       "params": {}
     }
-  ],
-  "resilience": {
-    "timeout": "15s",
-    "idleTimeout": "0s"
-  }
-}
-```
-
-An operation is matched either by the simple top-level method+path form, or by the richer 'match' block (method + path + headers). When 'match' is present it is authoritative and the top-level method/path are ignored. At least one form must be provided.
-
-#### Properties {#properties_9}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|method|[OperationMethod](#schemaoperationmethod)|false|none|HTTP method (simple form; ignored when 'match' is set)|
-|path|string|false|none|Route path with optional `{param}` placeholders (simple form; ignored when 'match' is set)|
-|match|[OperationMatch](#schemaoperationmatch)|false|none|Request matching criteria for an operation. Extensible with query params, cookies, etc.|
-|policies|[[Policy](#schemapolicy)]|false|none|List of policies applied only to this operation (overrides or adds to API-level policies)|
-|resilience|[Resilience](#schemaresilience)|false|none|Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.|
-
-## OperationMethod
-
-<Anchor id="schemaoperationmethod" />
-<Anchor id="schema_OperationMethod" />
-<Anchor id="tocSoperationmethod" />
-<Anchor id="tocsoperationmethod" />
-
-```json
-"GET"
-```
-
-HTTP method
-
-#### Properties {#properties_10}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|string|false|none|HTTP method|
-
-##### Enumerated Values {#enumerated-values_4}
-
-|Property|Value|
-|---|---|
-|*anonymous*|GET|
-|*anonymous*|POST|
-|*anonymous*|PUT|
-|*anonymous*|DELETE|
-|*anonymous*|PATCH|
-|*anonymous*|HEAD|
-|*anonymous*|OPTIONS|
-
-## OperationMatch
-
-<Anchor id="schemaoperationmatch" />
-<Anchor id="schema_OperationMatch" />
-<Anchor id="tocSoperationmatch" />
-<Anchor id="tocsoperationmatch" />
-
-```json
-{
-  "method": "GET",
-  "path": {
-    "value": "/books/{id}",
-    "type": "Exact"
-  },
-  "headers": [
-    {
-      "name": "version",
-      "value": "one",
-      "type": "Exact"
-    }
   ]
 }
 ```
 
-Request matching criteria for an operation. Extensible with query params, cookies, etc.
-
-#### Properties {#properties_11}
+### Properties {#properties_10}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|method|[OperationMethod](#schemaoperationmethod)|true|none|HTTP method|
-|path|[OperationPathMatch](#schemaoperationpathmatch)|true|none|none|
-|headers|[[OperationHeaderMatch](#schemaoperationheadermatch)]|false|none|Header matchers ANDed with the path match for Envoy route selection|
+|method|string|true|none|HTTP method|
+|path|string|true|none|Route path with optional `{param}` placeholders|
+|policies|[[Policy](#schemapolicy)]|false|none|List of policies applied only to this operation (overrides or adds to API-level policies)|
 
-## OperationPathMatch
-
-<Anchor id="schemaoperationpathmatch" />
-<Anchor id="schema_OperationPathMatch" />
-<Anchor id="tocSoperationpathmatch" />
-<Anchor id="tocsoperationpathmatch" />
-
-```json
-{
-  "value": "/books/{id}",
-  "type": "Exact"
-}
-```
-
-#### Properties {#properties_12}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|value|string|true|none|Route path with optional `{param}` placeholders|
-|type|string|false|none|Path matching semantics for the operation route|
-
-##### Enumerated Values {#enumerated-values_5}
+#### Enumerated Values {#enumerated-values_5}
 
 |Property|Value|
 |---|---|
-|type|Exact|
-|type|PathPrefix|
+|method|GET|
+|method|POST|
+|method|PUT|
+|method|DELETE|
+|method|PATCH|
+|method|HEAD|
+|method|OPTIONS|
 
-## OperationHeaderMatch
-
-<Anchor id="schemaoperationheadermatch" />
-<Anchor id="schema_OperationHeaderMatch" />
-<Anchor id="tocSoperationheadermatch" />
-<Anchor id="tocsoperationheadermatch" />
-
-```json
-{
-  "name": "version",
-  "value": "one",
-  "type": "Exact"
-}
-```
-
-#### Properties {#properties_13}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|name|string|true|none|Header name (case-insensitive)|
-|value|string|true|none|Header value to match|
-|type|string|false|none|Header match type|
-
-##### Enumerated Values {#enumerated-values_6}
-
-|Property|Value|
-|---|---|
-|type|Exact|
-|type|RegularExpression|
-
-## Policy
+## Policy {#tocS_Policy}
 
 <Anchor id="schemapolicy" />
 <Anchor id="schema_Policy" />
@@ -694,7 +617,7 @@ Request matching criteria for an operation. Extensible with query params, cookie
 }
 ```
 
-#### Properties {#properties_14}
+### Properties {#properties_11}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -703,7 +626,386 @@ Request matching criteria for an operation. Extensible with query params, cookie
 |executionCondition|string|false|none|Expression controlling conditional execution of the policy|
 |params|object|false|none|Arbitrary parameters for the policy (free-form key/value structure)|
 
-## Channel
+## WebhookAPIData {#tocS_WebhookAPIData}
+
+<Anchor id="schemawebhookapidata" />
+<Anchor id="schema_WebhookAPIData" />
+<Anchor id="tocSwebhookapidata" />
+<Anchor id="tocswebhookapidata" />
+
+```json
+{
+  "displayName": "reading-list-api",
+  "version": "v1.0",
+  "context": "/weather",
+  "vhosts": {
+    "main": "api.example.com",
+    "sandbox": "sandbox-api.example.com"
+  },
+  "allChannels": {
+    "on_subscription": {
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ]
+    },
+    "on_unsubscription": {
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ]
+    },
+    "on_message_received": {
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ]
+    },
+    "on_message_delivery": {
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ]
+    }
+  },
+  "channels": {
+    "property1": {
+      "on_subscription": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_unsubscription": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_message_received": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_message_delivery": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      }
+    },
+    "property2": {
+      "on_subscription": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_unsubscription": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_message_received": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_message_delivery": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      }
+    }
+  },
+  "deploymentState": "deployed"
+}
+```
+
+### Properties {#properties_12}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable API name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
+|version|string|true|none|Semantic version of the API|
+|context|string|true|none|Base path for all API routes (must start with /, no trailing slash)|
+|vhosts|object|false|none|Custom virtual hosts/domains for the API|
+|main|string|true|none|Custom virtual host/domain for production traffic|
+|sandbox|string|false|none|Custom virtual host/domain for sandbox traffic|
+|allChannels|[WebSubAllChannelPolicies](#schemawebsuballchannelpolicies)|false|none|Policies applied to all channels, organized by event type.|
+|channels|object|false|none|Per-channel configuration keyed by channel name. Each key is a channel name and defines policies applied only to that channel.|
+|**additionalProperties**|[WebSubChannel](#schemawebsubchannel)|false|none|A single channel definition with optional per-channel policy overrides.|
+|deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the API is removed from router traffic but configuration, API keys, and policies are preserved for potential redeployment.|
+
+#### Enumerated Values {#enumerated-values_6}
+
+|Property|Value|
+|---|---|
+|deploymentState|deployed|
+|deploymentState|undeployed|
+
+## WebSubChannel {#tocS_WebSubChannel}
+
+<Anchor id="schemawebsubchannel" />
+<Anchor id="schema_WebSubChannel" />
+<Anchor id="tocSwebsubchannel" />
+<Anchor id="tocswebsubchannel" />
+
+```json
+{
+  "on_subscription": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_unsubscription": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_message_received": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_message_delivery": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  }
+}
+```
+
+A single channel definition with optional per-channel policy overrides.
+
+### Properties {#properties_13}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|on_subscription|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+|on_unsubscription|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+|on_message_received|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+|on_message_delivery|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+
+## WebSubEventPolicies {#tocS_WebSubEventPolicies}
+
+<Anchor id="schemawebsubeventpolicies" />
+<Anchor id="schema_WebSubEventPolicies" />
+<Anchor id="tocSwebsubeventpolicies" />
+<Anchor id="tocswebsubeventpolicies" />
+
+```json
+{
+  "policies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ]
+}
+```
+
+Policies for a single event type.
+
+### Properties {#properties_14}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|policies|[[Policy](#schemapolicy)]|false|none|List of policies applied for this event type.|
+
+## WebSubAllChannelPolicies {#tocS_WebSubAllChannelPolicies}
+
+<Anchor id="schemawebsuballchannelpolicies" />
+<Anchor id="schema_WebSubAllChannelPolicies" />
+<Anchor id="tocSwebsuballchannelpolicies" />
+<Anchor id="tocswebsuballchannelpolicies" />
+
+```json
+{
+  "on_subscription": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_unsubscription": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_message_received": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_message_delivery": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  }
+}
+```
+
+Policies applied to all channels, organized by event type.
+
+### Properties {#properties_15}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|on_subscription|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+|on_unsubscription|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+|on_message_received|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+|on_message_delivery|[WebSubEventPolicies](#schemawebsubeventpolicies)|false|none|Policies for a single event type.|
+
+## WebSubChannelPolicies {#tocS_WebSubChannelPolicies}
+
+<Anchor id="schemawebsubchannelpolicies" />
+<Anchor id="schema_WebSubChannelPolicies" />
+<Anchor id="tocSwebsubchannelpolicies" />
+<Anchor id="tocswebsubchannelpolicies" />
+
+```json
+{
+  "on_subscription": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "on_unsubscription": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "on_message_received": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "on_message_delivery": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ]
+}
+```
+
+Policies applied to a specific channel, organized by event type.
+
+### Properties {#properties_16}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|on_subscription|[[Policy](#schemapolicy)]|false|none|Policies applied when a client subscribes to this channel (e.g., rbac)|
+|on_unsubscription|[[Policy](#schemapolicy)]|false|none|Policies applied when a client unsubscribes from this channel|
+|on_message_received|[[Policy](#schemapolicy)]|false|none|Policies applied when a message is received for this channel|
+|on_message_delivery|[[Policy](#schemapolicy)]|false|none|Policies applied when delivering a message for this channel|
+
+## Channel {#tocS_Channel}
 
 <Anchor id="schemachannel" />
 <Anchor id="schema_Channel" />
@@ -727,7 +1029,7 @@ Request matching criteria for an operation. Extensible with query params, cookie
 
 Channel (topic/event stream) definition for async APIs.
 
-#### Properties {#properties_15}
+### Properties {#properties_17}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -735,13 +1037,589 @@ Channel (topic/event stream) definition for async APIs.
 |method|string|true|none|Operation method type.|
 |policies|[[Policy](#schemapolicy)]|false|none|List of policies applied only to this channel (overrides or adds to API-level policies)|
 
-##### Enumerated Values {#enumerated-values_7}
+#### Enumerated Values {#enumerated-values_7}
 
 |Property|Value|
 |---|---|
 |method|SUB|
 
-## APIKeyCreationRequest
+## WebBrokerApiRequest {#tocS_WebBrokerApiRequest}
+
+<Anchor id="schemawebbrokerapirequest" />
+<Anchor id="schema_WebBrokerApiRequest" />
+<Anchor id="tocSwebbrokerapirequest" />
+<Anchor id="tocswebbrokerapirequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
+  "kind": "WebBrokerApi",
+  "metadata": {
+    "name": "stock-trading-v1.0"
+  },
+  "spec": {
+    "displayName": "Stock Trading WebBroker API",
+    "version": "v1.0",
+    "context": "/stock-trading/$version",
+    "receiver": {
+      "name": "websocket-receiver",
+      "type": "websocket"
+    },
+    "broker": {
+      "name": "kafka-driver",
+      "type": "kafka",
+      "properties": {
+        "brokers": [
+          "kafka-broker-1:9092",
+          "kafka-broker-2:9092"
+        ]
+      }
+    },
+    "allChannels": {
+      "on_connection_init": {
+        "policies": []
+      },
+      "on_produce": {
+        "policies": []
+      },
+      "on_consume": {
+        "policies": []
+      }
+    },
+    "channels": {
+      "prices": {
+        "produceTo": {
+          "topic": "stock.prices"
+        },
+        "consumeFrom": {
+          "topic": "stock.prices"
+        },
+        "on_connection_init": {
+          "policies": []
+        },
+        "on_produce": {
+          "policies": []
+        },
+        "on_consume": {
+          "policies": []
+        }
+      }
+    }
+  }
+}
+```
+
+### Properties {#properties_18}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|API specification version|
+|kind|string|true|none|API type|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[WebBrokerApiData](#schemawebbrokerapidata)|true|none|none|
+
+#### Enumerated Values {#enumerated-values_8}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
+|kind|WebBrokerApi|
+
+## WebBrokerApi {#tocS_WebBrokerApi}
+
+<Anchor id="schemawebbrokerapi" />
+<Anchor id="schema_WebBrokerApi" />
+<Anchor id="tocSwebbrokerapi" />
+<Anchor id="tocswebbrokerapi" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
+  "kind": "WebBrokerApi",
+  "metadata": {
+    "name": "stock-trading-v1.0"
+  },
+  "spec": {
+    "displayName": "Stock Trading WebBroker API",
+    "version": "v1.0",
+    "context": "/stock-trading/$version",
+    "receiver": {
+      "name": "websocket-receiver",
+      "type": "websocket"
+    },
+    "broker": {
+      "name": "kafka-driver",
+      "type": "kafka",
+      "properties": {
+        "brokers": [
+          "kafka-broker-1:9092",
+          "kafka-broker-2:9092"
+        ]
+      }
+    },
+    "allChannels": {
+      "on_connection_init": {
+        "policies": []
+      },
+      "on_produce": {
+        "policies": []
+      },
+      "on_consume": {
+        "policies": []
+      }
+    },
+    "channels": {
+      "prices": {
+        "produceTo": {
+          "topic": "stock.prices"
+        },
+        "consumeFrom": {
+          "topic": "stock.prices"
+        },
+        "on_connection_init": {
+          "policies": []
+        },
+        "on_produce": {
+          "policies": []
+        },
+        "on_consume": {
+          "policies": []
+        }
+      }
+    }
+  },
+  "status": {
+    "id": "stock-trading-v1.0",
+    "state": "deployed",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z",
+    "deployedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+### Properties {#properties_19}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[WebBrokerApiRequest](#schemawebbrokerapirequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## WebBrokerApiData {#tocS_WebBrokerApiData}
+
+<Anchor id="schemawebbrokerapidata" />
+<Anchor id="schema_WebBrokerApiData" />
+<Anchor id="tocSwebbrokerapidata" />
+<Anchor id="tocswebbrokerapidata" />
+
+```json
+{
+  "displayName": "Stock Trading WebBroker API",
+  "version": "v1.0",
+  "context": "/stock-trading",
+  "receiver": {
+    "name": "websocket-receiver",
+    "type": "websocket",
+    "properties": {}
+  },
+  "broker": {
+    "name": "kafka-driver",
+    "type": "kafka",
+    "properties": {
+      "brokers": [
+        "kafka-broker-1:9092",
+        "kafka-broker-2:9092"
+      ]
+    }
+  },
+  "allChannels": {
+    "on_connection_init": {
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ]
+    },
+    "on_produce": {
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ]
+    },
+    "on_consume": {
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ]
+    }
+  },
+  "channels": {
+    "property1": {
+      "produceTo": {
+        "topic": "stock.prices"
+      },
+      "consumeFrom": {
+        "topic": "stock.prices"
+      },
+      "on_connection_init": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_produce": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_consume": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      }
+    },
+    "property2": {
+      "produceTo": {
+        "topic": "stock.prices"
+      },
+      "consumeFrom": {
+        "topic": "stock.prices"
+      },
+      "on_connection_init": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_produce": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      },
+      "on_consume": {
+        "policies": [
+          {
+            "name": "cors",
+            "version": "v1",
+            "executionCondition": "request.metadata[authenticated] != true",
+            "params": {}
+          }
+        ]
+      }
+    }
+  },
+  "vhosts": {
+    "main": "api.example.com",
+    "sandbox": "sandbox-api.example.com"
+  },
+  "deploymentState": "deployed"
+}
+```
+
+### Properties {#properties_20}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable API name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
+|version|string|true|none|Semantic version of the API|
+|context|string|true|none|Base path for all API routes (must start with /, no trailing slash)|
+|receiver|[WebBrokerApiReceiver](#schemawebbrokerapireceiver)|true|none|WebSocket receiver configuration|
+|broker|[WebBrokerApiBroker](#schemawebbrokerapibroker)|true|none|Message broker driver configuration|
+|allChannels|[WebBrokerApiAllChannelPolicies](#schemawebbrokerapiallchannelpolicies)|false|none|Protocol mediation policies applied to all channels|
+|channels|object|true|none|Map of WebSocket channels for bidirectional streaming with Kafka (key is channel name)|
+|**additionalProperties**|[WebBrokerApiChannel](#schemawebbrokerapichannel)|false|none|WebSocket channel configuration with Kafka topic mapping|
+|vhosts|object|false|none|Custom virtual hosts/domains for the API|
+|main|string|true|none|Custom virtual host/domain for production traffic|
+|sandbox|string|false|none|Custom virtual host/domain for sandbox traffic|
+|deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the API is removed from router traffic but configuration and policies are preserved for potential redeployment.|
+
+#### Enumerated Values {#enumerated-values_9}
+
+|Property|Value|
+|---|---|
+|deploymentState|deployed|
+|deploymentState|undeployed|
+
+## WebBrokerApiReceiver {#tocS_WebBrokerApiReceiver}
+
+<Anchor id="schemawebbrokerapireceiver" />
+<Anchor id="schema_WebBrokerApiReceiver" />
+<Anchor id="tocSwebbrokerapireceiver" />
+<Anchor id="tocswebbrokerapireceiver" />
+
+```json
+{
+  "name": "websocket-receiver",
+  "type": "websocket",
+  "properties": {}
+}
+```
+
+WebSocket receiver configuration
+
+### Properties {#properties_21}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Receiver name|
+|type|string|true|none|Receiver type|
+|properties|object|false|none|Additional receiver properties|
+
+## WebBrokerApiBroker {#tocS_WebBrokerApiBroker}
+
+<Anchor id="schemawebbrokerapibroker" />
+<Anchor id="schema_WebBrokerApiBroker" />
+<Anchor id="tocSwebbrokerapibroker" />
+<Anchor id="tocswebbrokerapibroker" />
+
+```json
+{
+  "name": "kafka-driver",
+  "type": "kafka",
+  "properties": {
+    "brokers": [
+      "kafka-broker-1:9092",
+      "kafka-broker-2:9092"
+    ]
+  }
+}
+```
+
+Message broker driver configuration
+
+### Properties {#properties_22}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Broker driver name|
+|type|string|true|none|Broker driver type|
+|properties|object|true|none|Broker driver properties (e.g., bootstrap servers)|
+
+## WebBrokerApiAllChannelPolicies {#tocS_WebBrokerApiAllChannelPolicies}
+
+<Anchor id="schemawebbrokerapiallchannelpolicies" />
+<Anchor id="schema_WebBrokerApiAllChannelPolicies" />
+<Anchor id="tocSwebbrokerapiallchannelpolicies" />
+<Anchor id="tocswebbrokerapiallchannelpolicies" />
+
+```json
+{
+  "on_connection_init": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_produce": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_consume": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  }
+}
+```
+
+Protocol mediation policies applied to all channels
+
+### Properties {#properties_23}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|on_connection_init|[WebBrokerApiPolicyGroup](#schemawebbrokerapipolicygroup)|false|none|Group of policies|
+|on_produce|[WebBrokerApiPolicyGroup](#schemawebbrokerapipolicygroup)|false|none|Group of policies|
+|on_consume|[WebBrokerApiPolicyGroup](#schemawebbrokerapipolicygroup)|false|none|Group of policies|
+
+## WebBrokerApiPolicyGroup {#tocS_WebBrokerApiPolicyGroup}
+
+<Anchor id="schemawebbrokerapipolicygroup" />
+<Anchor id="schema_WebBrokerApiPolicyGroup" />
+<Anchor id="tocSwebbrokerapipolicygroup" />
+<Anchor id="tocswebbrokerapipolicygroup" />
+
+```json
+{
+  "policies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ]
+}
+```
+
+Group of policies
+
+### Properties {#properties_24}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|policies|[[Policy](#schemapolicy)]|false|none|List of policies to apply|
+
+## WebBrokerApiChannel {#tocS_WebBrokerApiChannel}
+
+<Anchor id="schemawebbrokerapichannel" />
+<Anchor id="schema_WebBrokerApiChannel" />
+<Anchor id="tocSwebbrokerapichannel" />
+<Anchor id="tocswebbrokerapichannel" />
+
+```json
+{
+  "produceTo": {
+    "topic": "stock.prices"
+  },
+  "consumeFrom": {
+    "topic": "stock.prices"
+  },
+  "on_connection_init": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_produce": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  },
+  "on_consume": {
+    "policies": [
+      {
+        "name": "cors",
+        "version": "v1",
+        "executionCondition": "request.metadata[authenticated] != true",
+        "params": {}
+      }
+    ]
+  }
+}
+```
+
+WebSocket channel configuration with Kafka topic mapping
+
+### Properties {#properties_25}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|produceTo|[WebBrokerApiProduceConfig](#schemawebbrokerapiproduceconfig)|false|none|Configuration for producing messages from WebSocket to Kafka|
+|consumeFrom|[WebBrokerApiConsumeConfig](#schemawebbrokerapiconsumeconfig)|false|none|Configuration for consuming messages from Kafka to WebSocket|
+|on_connection_init|[WebBrokerApiPolicyGroup](#schemawebbrokerapipolicygroup)|false|none|Group of policies|
+|on_produce|[WebBrokerApiPolicyGroup](#schemawebbrokerapipolicygroup)|false|none|Group of policies|
+|on_consume|[WebBrokerApiPolicyGroup](#schemawebbrokerapipolicygroup)|false|none|Group of policies|
+
+## WebBrokerApiProduceConfig {#tocS_WebBrokerApiProduceConfig}
+
+<Anchor id="schemawebbrokerapiproduceconfig" />
+<Anchor id="schema_WebBrokerApiProduceConfig" />
+<Anchor id="tocSwebbrokerapiproduceconfig" />
+<Anchor id="tocswebbrokerapiproduceconfig" />
+
+```json
+{
+  "topic": "stock.prices"
+}
+```
+
+Configuration for producing messages from WebSocket to Kafka
+
+### Properties {#properties_26}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|topic|string|true|none|Kafka topic to produce messages to|
+
+## WebBrokerApiConsumeConfig {#tocS_WebBrokerApiConsumeConfig}
+
+<Anchor id="schemawebbrokerapiconsumeconfig" />
+<Anchor id="schema_WebBrokerApiConsumeConfig" />
+<Anchor id="tocSwebbrokerapiconsumeconfig" />
+<Anchor id="tocswebbrokerapiconsumeconfig" />
+
+```json
+{
+  "topic": "stock.prices"
+}
+```
+
+Configuration for consuming messages from Kafka to WebSocket
+
+### Properties {#properties_27}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|topic|string|true|none|Kafka topic to consume messages from|
+
+## APIKeyCreationRequest {#tocS_APIKeyCreationRequest}
 
 <Anchor id="schemaapikeycreationrequest" />
 <Anchor id="schema_APIKeyCreationRequest" />
@@ -754,7 +1632,7 @@ Channel (topic/event stream) definition for async APIs.
 }
 ```
 
-#### Properties {#properties_16}
+### Properties {#properties_28}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -768,7 +1646,7 @@ Channel (topic/event stream) definition for async APIs.
 |externalRefId|string|false|none|External reference ID for the API key.<br />This field is optional and used for tracing purposes only.<br />The gateway generates its own internal ID for tracking.|
 |issuer|string|false|none|Identifies the portal that created this key. If provided, only api keys generated from<br />the same portal will be accepted. If not provided, there is no portal restriction.|
 
-##### Enumerated Values {#enumerated-values_8}
+#### Enumerated Values {#enumerated-values_10}
 
 |Property|Value|
 |---|---|
@@ -779,7 +1657,7 @@ Channel (topic/event stream) definition for async APIs.
 |unit|weeks|
 |unit|months|
 
-## APIKeyCreationResponse
+## APIKeyCreationResponse {#tocS_APIKeyCreationResponse}
 
 <Anchor id="schemaapikeycreationresponse" />
 <Anchor id="schema_APIKeyCreationResponse" />
@@ -805,7 +1683,7 @@ Channel (topic/event stream) definition for async APIs.
 }
 ```
 
-#### Properties {#properties_17}
+### Properties {#properties_29}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -814,7 +1692,7 @@ Channel (topic/event stream) definition for async APIs.
 |remainingApiKeyQuota|integer|false|none|Remaining API key quota for the user|
 |apiKey|[APIKey](#schemaapikey)|false|none|Details of an API key|
 
-## APIKey
+## APIKey {#tocS_APIKey}
 
 <Anchor id="schemaapikey" />
 <Anchor id="schema_APIKey" />
@@ -837,7 +1715,7 @@ Channel (topic/event stream) definition for async APIs.
 
 Details of an API key
 
-#### Properties {#properties_18}
+### Properties {#properties_30}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -852,7 +1730,7 @@ Details of an API key
 |source|string|true|none|Source of the API key (local or external)|
 |externalRefId|string|false|none|External reference ID for the API key|
 
-##### Enumerated Values {#enumerated-values_9}
+#### Enumerated Values {#enumerated-values_11}
 
 |Property|Value|
 |---|---|
@@ -862,7 +1740,7 @@ Details of an API key
 |source|local|
 |source|external|
 
-## APIKeyRegenerationRequest
+## APIKeyRegenerationRequest {#tocS_APIKeyRegenerationRequest}
 
 <Anchor id="schemaapikeyregenerationrequest" />
 <Anchor id="schema_APIKeyRegenerationRequest" />
@@ -873,7 +1751,7 @@ Details of an API key
 {}
 ```
 
-#### Properties {#properties_19}
+### Properties {#properties_31}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -882,7 +1760,7 @@ Details of an API key
 |duration|integer|true|none|Duration value for expiration|
 |expiresAt|string(date-time)|false|none|Expiration timestamp|
 
-##### Enumerated Values {#enumerated-values_10}
+#### Enumerated Values {#enumerated-values_12}
 
 |Property|Value|
 |---|---|
@@ -893,7 +1771,7 @@ Details of an API key
 |unit|weeks|
 |unit|months|
 
-## APIKeyUpdateRequest
+## APIKeyUpdateRequest {#tocS_APIKeyUpdateRequest}
 
 <Anchor id="schemaapikeyupdaterequest" />
 <Anchor id="schema_APIKeyUpdateRequest" />
@@ -906,11 +1784,11 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_20}
+### Properties {#properties_32}
 
 *None*
 
-## APIKeyRevocationResponse
+## APIKeyRevocationResponse {#tocS_APIKeyRevocationResponse}
 
 <Anchor id="schemaapikeyrevocationresponse" />
 <Anchor id="schema_APIKeyRevocationResponse" />
@@ -924,14 +1802,14 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_21}
+### Properties {#properties_33}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |status|string|true|none|none|
 |message|string|true|none|none|
 
-## SubscriptionPlanCreateRequest
+## SubscriptionPlanCreateRequest {#tocS_SubscriptionPlanCreateRequest}
 
 <Anchor id="schemasubscriptionplancreaterequest" />
 <Anchor id="schema_SubscriptionPlanCreateRequest" />
@@ -950,7 +1828,7 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_22}
+### Properties {#properties_34}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -962,7 +1840,7 @@ Details of an API key
 |expiryTime|string(date-time)|false|none|none|
 |status|string|false|none|none|
 
-##### Enumerated Values {#enumerated-values_11}
+#### Enumerated Values {#enumerated-values_13}
 
 |Property|Value|
 |---|---|
@@ -973,7 +1851,7 @@ Details of an API key
 |status|ACTIVE|
 |status|INACTIVE|
 
-## SubscriptionPlanUpdateRequest
+## SubscriptionPlanUpdateRequest {#tocS_SubscriptionPlanUpdateRequest}
 
 <Anchor id="schemasubscriptionplanupdaterequest" />
 <Anchor id="schema_SubscriptionPlanUpdateRequest" />
@@ -992,7 +1870,7 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_23}
+### Properties {#properties_35}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1004,7 +1882,7 @@ Details of an API key
 |expiryTime|string(date-time)|false|none|none|
 |status|string|false|none|none|
 
-##### Enumerated Values {#enumerated-values_12}
+#### Enumerated Values {#enumerated-values_14}
 
 |Property|Value|
 |---|---|
@@ -1015,7 +1893,7 @@ Details of an API key
 |status|ACTIVE|
 |status|INACTIVE|
 
-## SubscriptionPlanResponse
+## SubscriptionPlanResponse {#tocS_SubscriptionPlanResponse}
 
 <Anchor id="schemasubscriptionplanresponse" />
 <Anchor id="schema_SubscriptionPlanResponse" />
@@ -1038,7 +1916,7 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_24}
+### Properties {#properties_36}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1054,14 +1932,14 @@ Details of an API key
 |createdAt|string(date-time)|false|none|none|
 |updatedAt|string(date-time)|false|none|none|
 
-##### Enumerated Values {#enumerated-values_13}
+#### Enumerated Values {#enumerated-values_15}
 
 |Property|Value|
 |---|---|
 |status|ACTIVE|
 |status|INACTIVE|
 
-## SubscriptionPlanListResponse
+## SubscriptionPlanListResponse {#tocS_SubscriptionPlanListResponse}
 
 <Anchor id="schemasubscriptionplanlistresponse" />
 <Anchor id="schema_SubscriptionPlanListResponse" />
@@ -1089,14 +1967,14 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_25}
+### Properties {#properties_37}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |subscriptionPlans|[[SubscriptionPlanResponse](#schemasubscriptionplanresponse)]|false|none|none|
 |count|integer|false|none|none|
 
-## SubscriptionCreateRequest
+## SubscriptionCreateRequest {#tocS_SubscriptionCreateRequest}
 
 <Anchor id="schemasubscriptioncreaterequest" />
 <Anchor id="schema_SubscriptionCreateRequest" />
@@ -1115,7 +1993,7 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_26}
+### Properties {#properties_38}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1127,7 +2005,7 @@ Details of an API key
 |billingSubscriptionId|string|false|none|Billing subscription identifier (optional, for analytics tracking).|
 |status|string|false|none|none|
 
-##### Enumerated Values {#enumerated-values_14}
+#### Enumerated Values {#enumerated-values_16}
 
 |Property|Value|
 |---|---|
@@ -1135,7 +2013,7 @@ Details of an API key
 |status|INACTIVE|
 |status|REVOKED|
 
-## SubscriptionUpdateRequest
+## SubscriptionUpdateRequest {#tocS_SubscriptionUpdateRequest}
 
 <Anchor id="schemasubscriptionupdaterequest" />
 <Anchor id="schema_SubscriptionUpdateRequest" />
@@ -1148,13 +2026,13 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_27}
+### Properties {#properties_39}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |status|string|false|none|none|
 
-##### Enumerated Values {#enumerated-values_15}
+#### Enumerated Values {#enumerated-values_17}
 
 |Property|Value|
 |---|---|
@@ -1162,7 +2040,7 @@ Details of an API key
 |status|INACTIVE|
 |status|REVOKED|
 
-## SubscriptionResponse
+## SubscriptionResponse {#tocS_SubscriptionResponse}
 
 <Anchor id="schemasubscriptionresponse" />
 <Anchor id="schema_SubscriptionResponse" />
@@ -1185,7 +2063,7 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_28}
+### Properties {#properties_40}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1201,7 +2079,7 @@ Details of an API key
 |createdAt|string(date-time)|false|none|none|
 |updatedAt|string(date-time)|false|none|none|
 
-##### Enumerated Values {#enumerated-values_16}
+#### Enumerated Values {#enumerated-values_18}
 
 |Property|Value|
 |---|---|
@@ -1209,7 +2087,7 @@ Details of an API key
 |status|INACTIVE|
 |status|REVOKED|
 
-## SubscriptionListResponse
+## SubscriptionListResponse {#tocS_SubscriptionListResponse}
 
 <Anchor id="schemasubscriptionlistresponse" />
 <Anchor id="schema_SubscriptionListResponse" />
@@ -1237,14 +2115,14 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_29}
+### Properties {#properties_41}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |subscriptions|[[SubscriptionResponse](#schemasubscriptionresponse)]|false|none|none|
 |count|integer|false|none|none|
 
-## MCPProxyConfigurationRequest
+## MCPProxyConfigurationRequest {#tocS_MCPProxyConfigurationRequest}
 
 <Anchor id="schemamcpproxyconfigurationrequest" />
 <Anchor id="schema_MCPProxyConfigurationRequest" />
@@ -1253,7 +2131,7 @@ Details of an API key
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Mcp",
   "metadata": {
     "name": "everything-mcp-v1.0"
@@ -1262,9 +2140,7 @@ Details of an API key
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersions": [
-      "2025-06-18"
-    ],
+    "specVersion": "2025-06-18",
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -1275,7 +2151,7 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_30}
+### Properties {#properties_42}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1284,14 +2160,14 @@ Details of an API key
 |metadata|[Metadata](#schemametadata)|true|none|none|
 |spec|[MCPProxyConfigData](#schemamcpproxyconfigdata)|true|none|none|
 
-##### Enumerated Values {#enumerated-values_17}
+#### Enumerated Values {#enumerated-values_19}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|Mcp|
 
-## MCPProxyConfiguration
+## MCPProxyConfiguration {#tocS_MCPProxyConfiguration}
 
 <Anchor id="schemamcpproxyconfiguration" />
 <Anchor id="schema_MCPProxyConfiguration" />
@@ -1300,7 +2176,7 @@ Details of an API key
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Mcp",
   "metadata": {
     "name": "everything-mcp-v1.0"
@@ -1309,9 +2185,7 @@ Details of an API key
     "displayName": "Everything",
     "version": "v1.0",
     "context": "/everything",
-    "specVersions": [
-      "2025-06-18"
-    ],
+    "specVersion": "2025-06-18",
     "upstream": {
       "url": "http://everything:3001"
     },
@@ -1329,7 +2203,7 @@ Details of an API key
 }
 ```
 
-#### Properties {#properties_31}
+### Properties {#properties_43}
 
 allOf
 
@@ -1344,7 +2218,7 @@ and
 |*anonymous*|object|false|none|none|
 |status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
 
-## MCPProxyConfigData
+## MCPProxyConfigData {#tocS_MCPProxyConfigData}
 
 <Anchor id="schemamcpproxyconfigdata" />
 <Anchor id="schema_MCPProxyConfigData" />
@@ -1356,26 +2230,8 @@ and
   "displayName": "Everything",
   "version": "v1.0",
   "context": "/everything",
-  "specVersions": [
-    "2025-06-18",
-    "2026-07-28"
-  ],
+  "specVersion": "2025-06-18",
   "vhost": "mcp1.example.com",
-  "upstreamDefinitions": [
-    {
-      "name": "my-upstream-1",
-      "basePath": "/api/v2",
-      "timeout": {
-        "connect": "5s"
-      },
-      "upstreams": [
-        {
-          "url": "http://prod-backend-1:5000",
-          "weight": 80
-        }
-      ]
-    }
-  ],
   "upstream": {
     "url": "http://prod-backend:5000/api/v2",
     "ref": "string",
@@ -1428,25 +2284,19 @@ and
       ]
     }
   ],
-  "deploymentState": "deployed",
-  "resilience": {
-    "timeout": "15s",
-    "idleTimeout": "0s"
-  }
+  "deploymentState": "deployed"
 }
 ```
 
-#### Properties {#properties_32}
+### Properties {#properties_44}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |displayName|string|true|none|Human-readable MCP Proxy display name|
 |version|string|true|none|MCP Proxy version|
 |context|string|false|none|MCP Proxy context path|
-|specVersion|string|false|none|DEPRECATED - use `specVersions`. Still honored when `specVersions` is absent. Cannot be used together with `specVersions`.|
-|specVersions|[string]|false|none|MCP specification versions supported by this proxy. This gateway build explicitly supports MCP specification versions 2025-06-18, 2025-11-25, and 2026-07-28.|
+|specVersion|string|false|none|MCP specification version|
 |vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
-|upstreamDefinitions|[[UpstreamDefinition](#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations. Referenced by upstream.ref.|
 |upstream|any|true|none|The backend MCP server url and auth configurations|
 
 allOf
@@ -1470,16 +2320,15 @@ continued
 |resources|[[MCPResource](#schemamcpresource)]|false|none|none|
 |prompts|[[MCPPrompt](#schemamcpprompt)]|false|none|none|
 |deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the MCP Proxy is removed from router traffic but configuration and policies are preserved for potential redeployment.|
-|resilience|[Resilience](#schemaresilience)|false|none|API-level backend/route timeout configuration. Applies to the traffic-forwarding routes generated for this MCP proxy (GET/POST/DELETE on the MCP resource path). Supported at the API level only. Because MCP transports are long-lived streams, the route timeout defaults to disabled ("0s") for MCP unless a timeout is set here (unlike REST/LLM, which fall back to the gateway's global route timeout); the idle timeout remains the liveness guard.|
 
-##### Enumerated Values {#enumerated-values_18}
+#### Enumerated Values {#enumerated-values_20}
 
 |Property|Value|
 |---|---|
 |deploymentState|deployed|
 |deploymentState|undeployed|
 
-## MCPTool
+## MCPTool {#tocS_MCPTool}
 
 <Anchor id="schemamcptool" />
 <Anchor id="schema_MCPTool" />
@@ -1496,7 +2345,7 @@ continued
 }
 ```
 
-#### Properties {#properties_33}
+### Properties {#properties_45}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1506,7 +2355,7 @@ continued
 |inputSchema|string|true|none|JSON Schema defining expected parameters|
 |outputSchema|string|false|none|Optional JSON Schema defining expected output structure|
 
-## MCPResource
+## MCPResource {#tocS_MCPResource}
 
 <Anchor id="schemamcpresource" />
 <Anchor id="schema_MCPResource" />
@@ -1524,7 +2373,7 @@ continued
 }
 ```
 
-#### Properties {#properties_34}
+### Properties {#properties_46}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1535,7 +2384,7 @@ continued
 |mimeType|string|false|none|Optional MIME type|
 |size|integer|false|none|Optional size in bytes|
 
-## MCPPrompt
+## MCPPrompt {#tocS_MCPPrompt}
 
 <Anchor id="schemamcpprompt" />
 <Anchor id="schema_MCPPrompt" />
@@ -1558,7 +2407,7 @@ continued
 }
 ```
 
-#### Properties {#properties_35}
+### Properties {#properties_47}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1571,7 +2420,7 @@ continued
 |required|boolean|false|none|Whether the argument is required|
 |title|string|false|none|Optional human-readable title of the argument|
 
-## ErrorResponse
+## ErrorResponse {#tocS_ErrorResponse}
 
 <Anchor id="schemaerrorresponse" />
 <Anchor id="schema_ErrorResponse" />
@@ -1591,7 +2440,7 @@ continued
 }
 ```
 
-#### Properties {#properties_36}
+### Properties {#properties_48}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1599,7 +2448,7 @@ continued
 |message|string|true|none|High-level error description|
 |errors|[[ValidationError](#schemavalidationerror)]|false|none|Detailed validation errors|
 
-## ValidationError
+## ValidationError {#tocS_ValidationError}
 
 <Anchor id="schemavalidationerror" />
 <Anchor id="schema_ValidationError" />
@@ -1613,14 +2462,14 @@ continued
 }
 ```
 
-#### Properties {#properties_37}
+### Properties {#properties_49}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |field|string|false|none|Field that failed validation|
 |message|string|false|none|Human-readable error message|
 
-## LLMProviderTemplateRequest
+## LLMProviderTemplateRequest {#tocS_LLMProviderTemplateRequest}
 
 <Anchor id="schemallmprovidertemplaterequest" />
 <Anchor id="schema_LLMProviderTemplateRequest" />
@@ -1629,7 +2478,7 @@ continued
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProviderTemplate",
   "metadata": {
     "name": "openai-template"
@@ -1664,7 +2513,7 @@ continued
 }
 ```
 
-#### Properties {#properties_38}
+### Properties {#properties_50}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1673,14 +2522,14 @@ continued
 |metadata|[Metadata](#schemametadata)|true|none|none|
 |spec|[LLMProviderTemplateData](#schemallmprovidertemplatedata)|true|none|none|
 
-##### Enumerated Values {#enumerated-values_19}
+#### Enumerated Values {#enumerated-values_21}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|LlmProviderTemplate|
 
-## LLMProviderTemplate
+## LLMProviderTemplate {#tocS_LLMProviderTemplate}
 
 <Anchor id="schemallmprovidertemplate" />
 <Anchor id="schema_LLMProviderTemplate" />
@@ -1689,7 +2538,7 @@ continued
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProviderTemplate",
   "metadata": {
     "name": "openai-template"
@@ -1729,7 +2578,7 @@ continued
 }
 ```
 
-#### Properties {#properties_39}
+### Properties {#properties_51}
 
 allOf
 
@@ -1744,7 +2593,7 @@ and
 |*anonymous*|object|false|none|none|
 |status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
 
-## LLMProviderTemplateData
+## LLMProviderTemplateData {#tocS_LLMProviderTemplateData}
 
 <Anchor id="schemallmprovidertemplatedata" />
 <Anchor id="schema_LLMProviderTemplateData" />
@@ -1754,9 +2603,6 @@ and
 ```json
 {
   "displayName": "OpenAI",
-  "groupId": "openai",
-  "managedBy": "wso2",
-  "version": "v1.0",
   "promptTokens": {
     "location": "payload",
     "identifier": "$.usage.inputTokens"
@@ -1815,14 +2661,11 @@ and
 }
 ```
 
-#### Properties {#properties_40}
+### Properties {#properties_52}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |displayName|string|true|none|Human-readable LLM Template name|
-|groupId|string|false|none|Stable family-grouping identifier shared by every version of this<br />template. Multiple versions with the same groupId but different<br />handles are surfaced as versions of one template. Defaults to<br />metadata.name when omitted.|
-|managedBy|string|false|none|Origin of the template. Built-in templates use 'wso2'; custom<br />templates default to 'customer' and may be set to any value.|
-|version|string|false|none|Template content version (e.g. v1.0). Multiple versions of the same<br />groupId can coexist; defaults to v1.0 when omitted.|
 |promptTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
 |completionTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
 |totalTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
@@ -1831,7 +2674,7 @@ and
 |responseModel|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
 |resourceMappings|[LLMProviderTemplateResourceMappings](#schemallmprovidertemplateresourcemappings)|false|none|none|
 
-## LLMProviderTemplateResourceMappings
+## LLMProviderTemplateResourceMappings {#tocS_LLMProviderTemplateResourceMappings}
 
 <Anchor id="schemallmprovidertemplateresourcemappings" />
 <Anchor id="schema_LLMProviderTemplateResourceMappings" />
@@ -1872,13 +2715,13 @@ and
 }
 ```
 
-#### Properties {#properties_41}
+### Properties {#properties_53}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |resources|[[LLMProviderTemplateResourceMapping](#schemallmprovidertemplateresourcemapping)]|false|none|none|
 
-## LLMProviderTemplateResourceMapping
+## LLMProviderTemplateResourceMapping {#tocS_LLMProviderTemplateResourceMapping}
 
 <Anchor id="schemallmprovidertemplateresourcemapping" />
 <Anchor id="schema_LLMProviderTemplateResourceMapping" />
@@ -1915,7 +2758,7 @@ and
 }
 ```
 
-#### Properties {#properties_42}
+### Properties {#properties_54}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -1927,7 +2770,7 @@ and
 |requestModel|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
 |responseModel|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
 
-## ExtractionIdentifier
+## ExtractionIdentifier {#tocS_ExtractionIdentifier}
 
 <Anchor id="schemaextractionidentifier" />
 <Anchor id="schema_ExtractionIdentifier" />
@@ -1941,14 +2784,14 @@ and
 }
 ```
 
-#### Properties {#properties_43}
+### Properties {#properties_55}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |location|string|true|none|Where to find the token information|
 |identifier|string|true|none|JSONPath expression or header name to identify the token value|
 
-##### Enumerated Values {#enumerated-values_20}
+#### Enumerated Values {#enumerated-values_22}
 
 |Property|Value|
 |---|---|
@@ -1957,7 +2800,7 @@ and
 |location|queryParam|
 |location|pathParam|
 
-## LLMProviderConfigurationRequest
+## LLMProviderConfigurationRequest {#tocS_LLMProviderConfigurationRequest}
 
 <Anchor id="schemallmproviderconfigurationrequest" />
 <Anchor id="schema_LLMProviderConfigurationRequest" />
@@ -1966,7 +2809,7 @@ and
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProvider",
   "metadata": {
     "name": "wso2-openai-provider"
@@ -2011,7 +2854,7 @@ and
 }
 ```
 
-#### Properties {#properties_44}
+### Properties {#properties_56}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2020,14 +2863,14 @@ and
 |metadata|[Metadata](#schemametadata)|true|none|none|
 |spec|[LLMProviderConfigData](#schemallmproviderconfigdata)|true|none|none|
 
-##### Enumerated Values {#enumerated-values_21}
+#### Enumerated Values {#enumerated-values_23}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|LlmProvider|
 
-## LLMProviderConfiguration
+## LLMProviderConfiguration {#tocS_LLMProviderConfiguration}
 
 <Anchor id="schemallmproviderconfiguration" />
 <Anchor id="schema_LLMProviderConfiguration" />
@@ -2036,7 +2879,7 @@ and
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProvider",
   "metadata": {
     "name": "wso2-openai-provider"
@@ -2050,7 +2893,8 @@ and
       "url": "https://api.openai.com/v1",
       "auth": {
         "type": "api-key",
-        "header": "Authorization"
+        "header": "Authorization",
+        "value": "Bearer sk-your-api-key"
       }
     },
     "accessControl": {
@@ -2087,7 +2931,7 @@ and
 }
 ```
 
-#### Properties {#properties_45}
+### Properties {#properties_57}
 
 allOf
 
@@ -2102,7 +2946,7 @@ and
 |*anonymous*|object|false|none|none|
 |status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
 
-## LLMProviderConfigData
+## LLMProviderConfigData {#tocS_LLMProviderConfigData}
 
 <Anchor id="schemallmproviderconfigdata" />
 <Anchor id="schema_LLMProviderConfigData" />
@@ -2116,21 +2960,6 @@ and
   "context": "/openai",
   "vhost": "api.openai.com",
   "template": "openai",
-  "upstreamDefinitions": [
-    {
-      "name": "my-upstream-1",
-      "basePath": "/api/v2",
-      "timeout": {
-        "connect": "5s"
-      },
-      "upstreams": [
-        {
-          "url": "http://prod-backend-1:5000",
-          "weight": 80
-        }
-      ]
-    }
-  ],
   "upstream": {
     "url": "http://prod-backend:5000/api/v2",
     "ref": "string",
@@ -2152,30 +2981,6 @@ and
       }
     ]
   },
-  "globalPolicies": [
-    {
-      "name": "cors",
-      "version": "v1",
-      "executionCondition": "request.metadata[authenticated] != true",
-      "params": {}
-    }
-  ],
-  "operationPolicies": [
-    {
-      "name": "token-based-ratelimit",
-      "version": "v1",
-      "executionCondition": "string",
-      "paths": [
-        {
-          "path": "/chat/completions",
-          "methods": [
-            "GET"
-          ],
-          "params": {}
-        }
-      ]
-    }
-  ],
   "policies": [
     {
       "name": "llm-cost-based-ratelimit",
@@ -2191,15 +2996,11 @@ and
       ]
     }
   ],
-  "deploymentState": "deployed",
-  "resilience": {
-    "timeout": "15s",
-    "idleTimeout": "0s"
-  }
+  "deploymentState": "deployed"
 }
 ```
 
-#### Properties {#properties_46}
+### Properties {#properties_58}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2208,7 +3009,6 @@ and
 |context|string|false|none|Base path for all API routes (must start with /, no trailing slash)|
 |vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
 |template|string|true|none|Template name to use for this LLM Provider|
-|upstreamDefinitions|[[UpstreamDefinition](#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations. Referenced by upstream.ref.|
 |upstream|any|true|none|none|
 
 allOf
@@ -2228,20 +3028,17 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |accessControl|[LLMAccessControl](#schemallmaccesscontrol)|true|none|none|
-|globalPolicies|[[Policy](#schemapolicy)]|false|none|Global (api-level) policies applied across ALL operations as one shared scope, evaluated before operation-level policies.|
-|operationPolicies|[[OperationPolicy](#schemaoperationpolicy)]|false|none|Operation-level policies scoped to specific paths/methods, evaluated after global policies.|
-|policies|[[LLMPolicy](#schemallmpolicy)]|false|none|DEPRECATED - use operationPolicies. Still honoured (treated identically to operationPolicies).|
+|policies|[[LLMPolicy](#schemallmpolicy)]|false|none|List of policies applied only to this operation (overrides or adds to API-level policies)|
 |deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the LLM Provider is removed from router traffic but configuration and policies are preserved for potential redeployment.|
-|resilience|[Resilience](#schemaresilience)|false|none|API-level backend/route timeout configuration. Applies to all routes generated for this LLM Provider (the routes that forward traffic upstream). Supported at the API level only - LLM routes are synthesized by the gateway, so there is no operation-level override.|
 
-##### Enumerated Values {#enumerated-values_22}
+#### Enumerated Values {#enumerated-values_24}
 
 |Property|Value|
 |---|---|
 |deploymentState|deployed|
 |deploymentState|undeployed|
 
-## UpstreamAuth
+## UpstreamAuth {#tocS_UpstreamAuth}
 
 <Anchor id="schemaupstreamauth" />
 <Anchor id="schema_UpstreamAuth" />
@@ -2258,24 +3055,22 @@ continued
 }
 ```
 
-#### Properties {#properties_47}
+### Properties {#properties_59}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |auth|object|false|none|none|
 |type|string|true|none|none|
 |header|string|false|none|none|
-|value|string|false|write-only|Upstream credential. Write-only: accepted on create/update and never returned by the management API on a read, for any role. Supply either a literal value or a secret reference (e.g. a `secret` template expression); either way the field is omitted from management API response bodies. An update that omits it inherits the stored value; set `type: none` to remove auth.|
+|value|string|false|none|none|
 
-##### Enumerated Values {#enumerated-values_23}
+#### Enumerated Values {#enumerated-values_25}
 
 |Property|Value|
 |---|---|
 |type|api-key|
-|type|other|
-|type|none|
 
-## LLMUpstreamAuth
+## LLMUpstreamAuth {#tocS_LLMUpstreamAuth}
 
 <Anchor id="schemallmupstreamauth" />
 <Anchor id="schema_LLMUpstreamAuth" />
@@ -2290,23 +3085,21 @@ continued
 }
 ```
 
-#### Properties {#properties_48}
+### Properties {#properties_60}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |type|string|true|none|none|
 |header|string|false|none|none|
-|value|string|false|write-only|Upstream credential. Write-only: accepted on create/update and never returned by the management API on a read, for any role. An update that omits it inherits the stored value; set `type: none` to remove auth.|
+|value|string|false|none|none|
 
-##### Enumerated Values {#enumerated-values_24}
+#### Enumerated Values {#enumerated-values_26}
 
 |Property|Value|
 |---|---|
 |type|api-key|
-|type|other|
-|type|none|
 
-## LLMProxyProvider
+## LLMProxyProvider {#tocS_LLMProxyProvider}
 
 <Anchor id="schemallmproxyprovider" />
 <Anchor id="schema_LLMProxyProvider" />
@@ -2324,74 +3117,14 @@ continued
 }
 ```
 
-#### Properties {#properties_49}
+### Properties {#properties_61}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |id|string|true|none|Unique id of a deployed llm provider|
 |auth|[LLMUpstreamAuth](#schemallmupstreamauth)|false|none|none|
 
-## LLMProxyAdditionalProvider
-
-<Anchor id="schemallmproxyadditionalprovider" />
-<Anchor id="schema_LLMProxyAdditionalProvider" />
-<Anchor id="tocSllmproxyadditionalprovider" />
-<Anchor id="tocsllmproxyadditionalprovider" />
-
-```json
-{
-  "id": "anthropic-provider",
-  "as": "anthropic-upstream",
-  "auth": {
-    "type": "api-key",
-    "header": "string",
-    "value": "string"
-  },
-  "transformer": {
-    "type": "openai-to-anthropic",
-    "version": "v1",
-    "params": {}
-  }
-}
-```
-
-Additional LLM provider attached to this proxy as a selectable upstream. Policies route to it by referring to the `as` name (defaults to `id`). Optional auth config is used by the proxy when calling a protected LlmProvider over the internal loopback route.
-
-#### Properties {#properties_50}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|id|string|true|none|Unique id of a deployed llm provider|
-|as|string|false|none|Logical LLM Provider name used by policies to select this provider. Must be unique within the proxy. Defaults to `id` when omitted.|
-|auth|[LLMUpstreamAuth](#schemallmupstreamauth)|false|none|none|
-|transformer|[LLMProxyTransformer](#schemallmproxytransformer)|false|none|Request/response translator applied when this provider is the selected upstream. The proxy injects the translator as a conditional policy whose execution condition matches this provider, so it runs only when the provider is selected. The provider's `as` name (defaults to `id`) is passed to the translator as its target upstream.|
-
-## LLMProxyTransformer
-
-<Anchor id="schemallmproxytransformer" />
-<Anchor id="schema_LLMProxyTransformer" />
-<Anchor id="tocSllmproxytransformer" />
-<Anchor id="tocsllmproxytransformer" />
-
-```json
-{
-  "type": "openai-to-anthropic",
-  "version": "v1",
-  "params": {}
-}
-```
-
-Request/response translator applied when this provider is the selected upstream. The proxy injects the translator as a conditional policy whose execution condition matches this provider, so it runs only when the provider is selected. The provider's `as` name (defaults to `id`) is passed to the translator as its target upstream.
-
-#### Properties {#properties_51}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|type|string|true|none|Translator policy name (for example openai-to-anthropic).|
-|version|string|true|none|Major-only translator policy version (for example v1). The Gateway Controller resolves it to the installed full version.|
-|params|object|false|none|Translator-specific parameters (for example model, apiVersion).|
-
-## LLMAccessControl
+## LLMAccessControl {#tocS_LLMAccessControl}
 
 <Anchor id="schemallmaccesscontrol" />
 <Anchor id="schema_LLMAccessControl" />
@@ -2412,21 +3145,21 @@ Request/response translator applied when this provider is the selected upstream.
 }
 ```
 
-#### Properties {#properties_52}
+### Properties {#properties_62}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |mode|string|true|none|Access control mode|
 |exceptions|[[RouteException](#schemarouteexception)]|false|none|Path exceptions to the access control mode|
 
-##### Enumerated Values {#enumerated-values_25}
+#### Enumerated Values {#enumerated-values_27}
 
 |Property|Value|
 |---|---|
 |mode|allow_all|
 |mode|deny_all|
 
-## RouteException
+## RouteException {#tocS_RouteException}
 
 <Anchor id="schemarouteexception" />
 <Anchor id="schema_RouteException" />
@@ -2442,14 +3175,14 @@ Request/response translator applied when this provider is the selected upstream.
 }
 ```
 
-#### Properties {#properties_53}
+### Properties {#properties_63}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |path|string|true|none|Path pattern|
 |methods|[string]|true|none|HTTP methods|
 
-## LLMPolicy
+## LLMPolicy {#tocS_LLMPolicy}
 
 <Anchor id="schemallmpolicy" />
 <Anchor id="schema_LLMPolicy" />
@@ -2472,7 +3205,7 @@ Request/response translator applied when this provider is the selected upstream.
 }
 ```
 
-#### Properties {#properties_54}
+### Properties {#properties_64}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2480,7 +3213,7 @@ Request/response translator applied when this provider is the selected upstream.
 |version|string|true|none|none|
 |paths|[[LLMPolicyPath](#schemallmpolicypath)]|true|none|none|
 
-## LLMPolicyPath
+## LLMPolicyPath {#tocS_LLMPolicyPath}
 
 <Anchor id="schemallmpolicypath" />
 <Anchor id="schema_LLMPolicyPath" />
@@ -2497,7 +3230,7 @@ Request/response translator applied when this provider is the selected upstream.
 }
 ```
 
-#### Properties {#properties_55}
+### Properties {#properties_65}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2505,65 +3238,7 @@ Request/response translator applied when this provider is the selected upstream.
 |methods|[string]|true|none|none|
 |params|object|true|none|JSON Schema describing the parameters accepted by this policy. This itself is a JSON Schema document.|
 
-## OperationPolicy
-
-<Anchor id="schemaoperationpolicy" />
-<Anchor id="schema_OperationPolicy" />
-<Anchor id="tocSoperationpolicy" />
-<Anchor id="tocsoperationpolicy" />
-
-```json
-{
-  "name": "token-based-ratelimit",
-  "version": "v1",
-  "executionCondition": "string",
-  "paths": [
-    {
-      "path": "/chat/completions",
-      "methods": [
-        "GET"
-      ],
-      "params": {}
-    }
-  ]
-}
-```
-
-#### Properties {#properties_56}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|name|string|true|none|none|
-|version|string|true|none|none|
-|executionCondition|string|false|none|Expression controlling conditional execution of the policy|
-|paths|[[OperationPolicyPath](#schemaoperationpolicypath)]|true|none|none|
-
-## OperationPolicyPath
-
-<Anchor id="schemaoperationpolicypath" />
-<Anchor id="schema_OperationPolicyPath" />
-<Anchor id="tocSoperationpolicypath" />
-<Anchor id="tocsoperationpolicypath" />
-
-```json
-{
-  "path": "/chat/completions",
-  "methods": [
-    "GET"
-  ],
-  "params": {}
-}
-```
-
-#### Properties {#properties_57}
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|path|string|true|none|none|
-|methods|[string]|true|none|none|
-|params|object|true|none|JSON Schema describing the parameters accepted by this policy. This itself is a JSON Schema document.|
-
-## LLMProxyConfigurationRequest
+## LLMProxyConfigurationRequest {#tocS_LLMProxyConfigurationRequest}
 
 <Anchor id="schemallmproxyconfigurationrequest" />
 <Anchor id="schema_LLMProxyConfigurationRequest" />
@@ -2572,7 +3247,7 @@ Request/response translator applied when this provider is the selected upstream.
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProxy",
   "metadata": {
     "name": "openai-proxy"
@@ -2589,7 +3264,7 @@ Request/response translator applied when this provider is the selected upstream.
 }
 ```
 
-#### Properties {#properties_58}
+### Properties {#properties_66}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2598,14 +3273,14 @@ Request/response translator applied when this provider is the selected upstream.
 |metadata|[Metadata](#schemametadata)|true|none|none|
 |spec|[LLMProxyConfigData](#schemallmproxyconfigdata)|true|none|none|
 
-##### Enumerated Values {#enumerated-values_26}
+#### Enumerated Values {#enumerated-values_28}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|LlmProxy|
 
-## LLMProxyConfiguration
+## LLMProxyConfiguration {#tocS_LLMProxyConfiguration}
 
 <Anchor id="schemallmproxyconfiguration" />
 <Anchor id="schema_LLMProxyConfiguration" />
@@ -2614,7 +3289,7 @@ Request/response translator applied when this provider is the selected upstream.
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProxy",
   "metadata": {
     "name": "openai-proxy"
@@ -2638,7 +3313,7 @@ Request/response translator applied when this provider is the selected upstream.
 }
 ```
 
-#### Properties {#properties_59}
+### Properties {#properties_67}
 
 allOf
 
@@ -2653,7 +3328,7 @@ and
 |*anonymous*|object|false|none|none|
 |status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
 
-## LLMProxyConfigData
+## LLMProxyConfigData {#tocS_LLMProxyConfigData}
 
 <Anchor id="schemallmproxyconfigdata" />
 <Anchor id="schema_LLMProxyConfigData" />
@@ -2674,46 +3349,6 @@ and
       "value": "string"
     }
   },
-  "globalPolicies": [
-    {
-      "name": "cors",
-      "version": "v1",
-      "executionCondition": "request.metadata[authenticated] != true",
-      "params": {}
-    }
-  ],
-  "operationPolicies": [
-    {
-      "name": "token-based-ratelimit",
-      "version": "v1",
-      "executionCondition": "string",
-      "paths": [
-        {
-          "path": "/chat/completions",
-          "methods": [
-            "GET"
-          ],
-          "params": {}
-        }
-      ]
-    }
-  ],
-  "additionalProviders": [
-    {
-      "id": "anthropic-provider",
-      "as": "anthropic-upstream",
-      "auth": {
-        "type": "api-key",
-        "header": "string",
-        "value": "string"
-      },
-      "transformer": {
-        "type": "openai-to-anthropic",
-        "version": "v1",
-        "params": {}
-      }
-    }
-  ],
   "policies": [
     {
       "name": "llm-cost-based-ratelimit",
@@ -2729,15 +3364,11 @@ and
       ]
     }
   ],
-  "deploymentState": "deployed",
-  "resilience": {
-    "timeout": "15s",
-    "idleTimeout": "0s"
-  }
+  "deploymentState": "deployed"
 }
 ```
 
-#### Properties {#properties_60}
+### Properties {#properties_68}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2746,21 +3377,17 @@ and
 |context|string|false|none|Base path for all API routes (must start with /, no trailing slash)|
 |vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
 |provider|[LLMProxyProvider](#schemallmproxyprovider)|true|none|none|
-|globalPolicies|[[Policy](#schemapolicy)]|false|none|Global (api-level) policies applied across ALL operations as one shared scope, evaluated before operation-level policies.|
-|operationPolicies|[[OperationPolicy](#schemaoperationpolicy)]|false|none|Operation-level policies scoped to specific paths/methods, evaluated after global policies.|
-|additionalProviders|[[LLMProxyAdditionalProvider](#schemallmproxyadditionalprovider)]|false|none|Optional list of additional LLM providers attached to this proxy as selectable upstreams. Policies (e.g. an OpenAI translator) can route requests to any of these by setting the upstream name. The primary `provider` field above remains the default upstream and the FK target.|
-|policies|[[LLMPolicy](#schemallmpolicy)]|false|none|DEPRECATED - use operationPolicies. Still honoured (treated identically to operationPolicies).|
+|policies|[[LLMPolicy](#schemallmpolicy)]|false|none|List of policies applied only to this operation (overrides or adds to API-level policies)|
 |deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the LLM Proxy is removed from router traffic but configuration and policies are preserved for potential redeployment.|
-|resilience|[Resilience](#schemaresilience)|false|none|API-level backend/route timeout configuration. Applies to all routes generated for this LLM Proxy (the routes that forward traffic upstream). Supported at the API level only - LLM routes are synthesized by the gateway, so there is no operation-level override.|
 
-##### Enumerated Values {#enumerated-values_27}
+#### Enumerated Values {#enumerated-values_29}
 
 |Property|Value|
 |---|---|
 |deploymentState|deployed|
 |deploymentState|undeployed|
 
-## SecretConfigurationRequest
+## SecretConfigurationRequest {#tocS_SecretConfigurationRequest}
 
 <Anchor id="schemasecretconfigurationrequest" />
 <Anchor id="schema_SecretConfigurationRequest" />
@@ -2769,7 +3396,7 @@ and
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Secret",
   "metadata": {
     "name": "database-password"
@@ -2782,7 +3409,7 @@ and
 }
 ```
 
-#### Properties {#properties_61}
+### Properties {#properties_69}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2791,14 +3418,14 @@ and
 |metadata|[Metadata](#schemametadata)|true|none|none|
 |spec|[SecretConfigData](#schemasecretconfigdata)|true|none|none|
 
-##### Enumerated Values {#enumerated-values_28}
+#### Enumerated Values {#enumerated-values_30}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|Secret|
 
-## SecretConfiguration
+## SecretConfiguration {#tocS_SecretConfiguration}
 
 <Anchor id="schemasecretconfiguration" />
 <Anchor id="schema_SecretConfiguration" />
@@ -2807,7 +3434,7 @@ and
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Secret",
   "metadata": {
     "name": "database-password"
@@ -2830,7 +3457,7 @@ For actual HTTP response shapes, use `SecretConfigurationResponseCreateUpdate`,
 `SecretConfigurationResponseRetrieved`, or `SecretListItem` (see
 `SecretResourceServiceStatus` for the id/timestamp-only status on secret APIs).
 
-#### Properties {#properties_62}
+### Properties {#properties_70}
 
 allOf
 
@@ -2845,7 +3472,7 @@ and
 |*anonymous*|object|false|none|none|
 |status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
 
-## SecretConfigData
+## SecretConfigData {#tocS_SecretConfigData}
 
 <Anchor id="schemasecretconfigdata" />
 <Anchor id="schema_SecretConfigData" />
@@ -2860,7 +3487,7 @@ and
 }
 ```
 
-#### Properties {#properties_63}
+### Properties {#properties_71}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2868,7 +3495,7 @@ and
 |description|string|false|none|Description of the secret|
 |value|string(password)|true|none|Secret value (stored encrypted)|
 
-## SecretConfigListData
+## SecretConfigListData {#tocS_SecretConfigListData}
 
 <Anchor id="schemasecretconfiglistdata" />
 <Anchor id="schema_SecretConfigListData" />
@@ -2882,14 +3509,14 @@ and
 }
 ```
 
-#### Properties {#properties_64}
+### Properties {#properties_72}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |displayName|string|true|none|Human-readable secret name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
 |description|string|false|none|Description of the secret, if the server includes it|
 
-## SecretListItem
+## SecretListItem {#tocS_SecretListItem}
 
 <Anchor id="schemasecretlistitem" />
 <Anchor id="schema_SecretListItem" />
@@ -2898,7 +3525,7 @@ and
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Secret",
   "metadata": {
     "name": "database-password"
@@ -2914,7 +3541,7 @@ and
 }
 ```
 
-#### Properties {#properties_65}
+### Properties {#properties_73}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2924,14 +3551,14 @@ and
 |spec|[SecretConfigListData](#schemasecretconfiglistdata)|true|none|none|
 |status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Omitted in list items may vary; the secret value is never included here.|
 
-##### Enumerated Values {#enumerated-values_29}
+#### Enumerated Values {#enumerated-values_31}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|Secret|
 
-## CertificateUploadRequest
+## CertificateUploadRequest {#tocS_CertificateUploadRequest}
 
 <Anchor id="schemacertificateuploadrequest" />
 <Anchor id="schema_CertificateUploadRequest" />
@@ -2945,14 +3572,14 @@ and
 }
 ```
 
-#### Properties {#properties_66}
+### Properties {#properties_74}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |name|string|true|none|Unique name for the certificate. Must be unique across all certificates.|
 |certificate|string|true|none|PEM-encoded X.509 certificate(s). Can contain multiple certificates.|
 
-## CertificateResponse
+## CertificateResponse {#tocS_CertificateResponse}
 
 <Anchor id="schemacertificateresponse" />
 <Anchor id="schema_CertificateResponse" />
@@ -2972,7 +3599,7 @@ and
 }
 ```
 
-#### Properties {#properties_67}
+### Properties {#properties_75}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -2985,14 +3612,14 @@ and
 |message|string|false|none|Success or informational message|
 |status|string|false|none|none|
 
-##### Enumerated Values {#enumerated-values_30}
+#### Enumerated Values {#enumerated-values_32}
 
 |Property|Value|
 |---|---|
 |status|success|
 |status|error|
 
-## CertificateListResponse
+## CertificateListResponse {#tocS_CertificateListResponse}
 
 <Anchor id="schemacertificatelistresponse" />
 <Anchor id="schema_CertificateListResponse" />
@@ -3019,7 +3646,7 @@ and
 }
 ```
 
-#### Properties {#properties_68}
+### Properties {#properties_76}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -3028,7 +3655,7 @@ and
 |totalBytes|integer|false|none|Total bytes of all certificate files|
 |status|string|false|none|none|
 
-## APIKeyListResponse
+## APIKeyListResponse {#tocS_APIKeyListResponse}
 
 <Anchor id="schemaapikeylistresponse" />
 <Anchor id="schema_APIKeyListResponse" />
@@ -3055,7 +3682,7 @@ and
 }
 ```
 
-#### Properties {#properties_69}
+### Properties {#properties_77}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -3063,7 +3690,7 @@ and
 |totalCount|integer|false|none|Total number of API keys|
 |status|string|false|none|none|
 
-## SecretListResponse
+## SecretListResponse {#tocS_SecretListResponse}
 
 <Anchor id="schemasecretlistresponse" />
 <Anchor id="schema_SecretListResponse" />
@@ -3076,7 +3703,7 @@ and
   "count": 5,
   "secrets": [
     {
-      "apiVersion": "gateway.api-platform.wso2.com/v1",
+      "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
       "kind": "Secret",
       "metadata": {
         "name": "database-password"
@@ -3094,7 +3721,7 @@ and
 }
 ```
 
-#### Properties {#properties_70}
+### Properties {#properties_78}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -3102,7 +3729,7 @@ and
 |count|integer|false|none|Total number of secrets|
 |secrets|[[SecretListItem](#schemasecretlistitem)]|false|none|List of secrets. For security, the spec.value field is omitted for every item in the list; retrieve a single secret by id to obtain the decrypted value.|
 
-## SecretResourceServiceStatus
+## SecretResourceServiceStatus {#tocS_SecretResourceServiceStatus}
 
 <Anchor id="schemasecretresourceservicestatus" />
 <Anchor id="schema_SecretResourceServiceStatus" />
@@ -3120,7 +3747,7 @@ and
 Id and optional timestamps. Not the full ResourceStatus model (no `state` or
 `deployedAt`).
 
-#### Properties {#properties_71}
+### Properties {#properties_79}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -3128,7 +3755,7 @@ Id and optional timestamps. Not the full ResourceStatus model (no `state` or
 |createdAt|string(date-time)|false|none|none|
 |updatedAt|string(date-time)|false|none|none|
 
-## SecretConfigurationResponseCreateUpdate
+## SecretConfigurationResponseCreateUpdate {#tocS_SecretConfigurationResponseCreateUpdate}
 
 <Anchor id="schemasecretconfigurationresponsecreateupdate" />
 <Anchor id="schema_SecretConfigurationResponseCreateUpdate" />
@@ -3137,7 +3764,7 @@ Id and optional timestamps. Not the full ResourceStatus model (no `state` or
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Secret",
   "metadata": {
     "name": "database-password"
@@ -3156,7 +3783,7 @@ Id and optional timestamps. Not the full ResourceStatus model (no `state` or
 
 POST/PUT /secrets response. `spec.value` is not returned; see SecretConfigurationRequest for create/update request bodies.
 
-#### Properties {#properties_72}
+### Properties {#properties_80}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -3166,14 +3793,14 @@ POST/PUT /secrets response. `spec.value` is not returned; see SecretConfiguratio
 |spec|[SecretConfigListData](#schemasecretconfiglistdata)|true|none|none|
 |status|[SecretResourceServiceStatus](#schemasecretresourceservicestatus)|true|none|Id and optional timestamps. Not the full ResourceStatus model (no `state` or<br />`deployedAt`).|
 
-##### Enumerated Values {#enumerated-values_31}
+#### Enumerated Values {#enumerated-values_33}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|Secret|
 
-## SecretConfigurationResponseRetrieved
+## SecretConfigurationResponseRetrieved {#tocS_SecretConfigurationResponseRetrieved}
 
 <Anchor id="schemasecretconfigurationresponseretrieved" />
 <Anchor id="schema_SecretConfigurationResponseRetrieved" />
@@ -3182,7 +3809,7 @@ POST/PUT /secrets response. `spec.value` is not returned; see SecretConfiguratio
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "Secret",
   "metadata": {
     "name": "database-password"
@@ -3202,7 +3829,7 @@ POST/PUT /secrets response. `spec.value` is not returned; see SecretConfiguratio
 
 GET `/secrets/{id}` response including decrypted `spec.value`.
 
-#### Properties {#properties_73}
+### Properties {#properties_81}
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -3212,9 +3839,9 @@ GET `/secrets/{id}` response including decrypted `spec.value`.
 |spec|[SecretConfigData](#schemasecretconfigdata)|true|none|none|
 |status|[SecretResourceServiceStatus](#schemasecretresourceservicestatus)|true|none|Id and optional timestamps. Not the full ResourceStatus model (no `state` or<br />`deployedAt`).|
 
-##### Enumerated Values {#enumerated-values_32}
+#### Enumerated Values {#enumerated-values_34}
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|Secret|
