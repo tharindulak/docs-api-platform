@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::note
-This step is optional. Configure it only if the gateway needs to sync API artifacts from the [WSO2 APIM control plane](https://apim.docs.wso2.com/en/latest/api-gateway/platform-gateway/getting-started/) or [API Platform Cloud control plane](../../../guides/self-hosted-gateway/getting-started.mdx).
+This step is optional. Configure it only if the gateway needs to sync API artifacts from the [WSO2 APIM control plane](https://apim.docs.wso2.com/en/latest/api-gateway/platform-gateway/getting-started/) or [API Platform Cloud control plane](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started/).
 :::
 
 The WSO2 API Platform gateway supports two fundamentally different deployment approaches, distinguished by the direction of API flow.
@@ -25,7 +25,7 @@ In this model, the platform control plane pushes APIs to the gateway via a persi
 The registration token is generated when you register the gateway with your control plane. Refer to the setup guide for your control plane to obtain it:
 
 - [WSO2 APIM control plane](https://apim.docs.wso2.com/en/latest/api-gateway/platform-gateway/getting-started/)
-- [API Platform Cloud control plane](../../../guides/self-hosted-gateway/getting-started.mdx)
+- [API Platform Cloud control plane](https://wso2.com/api-platform/docs/cloud/api-platform-gateway/getting-started/)
 
 ```bash
 kubectl create secret generic gateway-cp-token \
@@ -81,8 +81,6 @@ kubectl create secret generic gateway-cp-token \
 Register a DCR client against your APIM instance to obtain the client ID and secret:
 
 ```bash
-# Use your WSO2 APIM instance's admin credentials here (the APIM control plane's own
-# superadmin — not the gateway-controller credential provisioned by setup.sh).
 curl -k -X POST https://<APIM_HOST>/client-registration/v0.17/register \
   -H "Content-Type: application/json" \
   -u admin:admin \

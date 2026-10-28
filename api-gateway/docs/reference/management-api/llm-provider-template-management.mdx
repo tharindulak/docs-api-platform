@@ -18,7 +18,7 @@ CRUD operations for LLM Provider Template configurations
 
 ```bash
 
-curl -X POST http://localhost:9090/api/management/v1/llm-provider-templates \
+curl -X POST http://localhost:9090/api/management/v0.9/llm-provider-templates \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -31,7 +31,7 @@ Add a new LLM provider template to the Gateway. A template defines token trackin
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProviderTemplate",
   "metadata": {
     "name": "openai-template"
@@ -66,21 +66,6 @@ Add a new LLM provider template to the Gateway. A template defines token trackin
 }
 ```
 
-:::note[Using a YAML downloaded from AI Workspace]
-If you downloaded the template YAML from AI Workspace, you have two options to use it with this endpoint:
-
-- **Convert to JSON:** Convert the YAML file to JSON before passing it as the request body with `-H 'Content-Type: application/json'`.
-- **Send as YAML:** Pass the YAML file directly and change the content type header to `application/yaml`:
-
-```bash
-curl -X POST http://localhost:9090/api/management/v1/llm-provider-templates \
-  -u {username}:{password} \
-  -H 'Content-Type: application/yaml' \
-  -H 'Accept: application/json' \
-  --data-binary @template.yaml
-```
-:::
-
 ### Authentication
 
 This operation requires **Basic Auth** authentication. Required roles: \`admin\`
@@ -92,12 +77,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[LLMProviderTemplateRequest](./schemas.mdx#schemallmprovidertemplaterequest)|true|none|
 
 > Example responses
->
+
 > 201 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProviderTemplate",
   "metadata": {
     "name": "openai-template"
@@ -156,7 +141,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/llm-provider-templates \
+curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -174,7 +159,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |displayName|query|string|false|Filter by template display name|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
@@ -183,7 +168,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
   "count": 3,
   "templates": [
     {
-      "apiVersion": "gateway.api-platform.wso2.com/v1",
+      "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
       "kind": "LlmProviderTemplate",
       "metadata": {
         "name": "openai-template"
@@ -257,9 +242,6 @@ Status Code **200**
 |**additionalProperties**|string|false|none|none|
 |spec|[LLMProviderTemplateData](./schemas.mdx#schemallmprovidertemplatedata)|true|none|none|
 |displayName|string|true|none|Human-readable LLM Template name|
-|groupId|string|false|none|Stable family-grouping identifier shared by every version of this<br />template. Multiple versions with the same groupId but different<br />handles are surfaced as versions of one template. Defaults to<br />metadata.name when omitted.|
-|managedBy|string|false|none|Origin of the template. Built-in templates use 'wso2'; custom<br />templates default to 'customer' and may be set to any value.|
-|version|string|false|none|Template content version (e.g. v1.0). Multiple versions of the same<br />groupId can coexist; defaults to v1.0 when omitted.|
 |promptTokens|[ExtractionIdentifier](./schemas.mdx#schemaextractionidentifier)|false|none|none|
 |location|string|true|none|Where to find the token information|
 |identifier|string|true|none|JSONPath expression or header name to identify the token value|
@@ -294,7 +276,7 @@ Status Code **200**
 
 |Property|Value|
 |---|---|
-|apiVersion|gateway.api-platform.wso2.com/v1|
+|apiVersion|gateway.api-platform.wso2.com/v1alpha1|
 |kind|LlmProviderTemplate|
 |location|payload|
 |location|header|
@@ -313,7 +295,7 @@ Status Code **200**
 
 ```bash
 
-curl -X GET http://localhost:9090/api/management/v1/llm-provider-templates/{id} \
+curl -X GET http://localhost:9090/api/management/v0.9/llm-provider-templates/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -331,12 +313,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |id|path|string|true|Unique public identifier for the LLM provider template|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProviderTemplate",
   "metadata": {
     "name": "openai-template"
@@ -394,7 +376,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X PUT http://localhost:9090/api/management/v1/llm-provider-templates/{id} \
+curl -X PUT http://localhost:9090/api/management/v0.9/llm-provider-templates/{id} \
   -u {username}:{password} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
@@ -407,7 +389,7 @@ Update an existing LLM provider template in the Gateway.
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProviderTemplate",
   "metadata": {
     "name": "openai-template"
@@ -454,12 +436,12 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |body|body|[LLMProviderTemplateRequest](./schemas.mdx#schemallmprovidertemplaterequest)|true|none|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
 {
-  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "apiVersion": "gateway.api-platform.wso2.com/v1alpha1",
   "kind": "LlmProviderTemplate",
   "metadata": {
     "name": "openai-template"
@@ -518,7 +500,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 
 ```bash
 
-curl -X DELETE http://localhost:9090/api/management/v1/llm-provider-templates/{id} \
+curl -X DELETE http://localhost:9090/api/management/v0.9/llm-provider-templates/{id} \
   -u {username}:{password} \
   -H 'Accept: application/json'
 ```
@@ -536,7 +518,7 @@ This operation requires **Basic Auth** authentication. Required roles: \`admin\`
 |id|path|string|true|Unique public identifier of the template to delete|
 
 > Example responses
->
+
 > 200 Response
 
 ```json
