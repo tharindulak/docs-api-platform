@@ -65,14 +65,16 @@ When you create a WebSocket Streaming API it's exposed via both `ws` and `wss` p
 
      2. Delete the existing default topic, which has the name `/*`.
 
-     3. Add the following topics one by one. 
+     3. Add the following operations one by one. 
 
-           Select **pub** and **sub** as the **Types**, enter the **Topic Name**, and click **+** to add each topic.
+           | **Type** | **Channel Address** | **Operation** |
+           | --- | --- | --- |
+           | send | /notifications | sendNotifications |
+           | receive | /notifications | receiveNotifications |
+           | send | /rooms/\{roomID\} | sendMessages |
+           | receive | /rooms/\{roomID\} | receiveMessages |
 
-          - /notifications
-          - `/rooms/{roomID}`
-
-          <img src={require("../../../../../assets/img/tutorials/streaming-api/websocket-api-add-topics.png").default} alt="Add Topics to WebSocket API" width="80%" />
+          <img src={require("../../../../../assets/img/tutorials/streaming-api/websocket-api-v3-add-topics.png").default} alt="Add Topics to WebSocket API" width="80%" />
 
      4. Expand each topic, provide URL Mappings as follows, and click **Save**.
 
@@ -83,7 +85,7 @@ When you create a WebSocket Streaming API it's exposed via both `ws` and `wss` p
 
           URL Mapping provided for a topic will be appended to the WebSocket endpoint URL, which was provided when creating the API, and the traffic via the topic will be sent to & received from the resulting URL.
 
-          ![Add URL Mappings to WebSocket API Topics](../../../../../assets/img/tutorials/streaming-api/websocket-api-topic-url-mapping.png)
+          ![Add URL Mappings to WebSocket API Topics](../../../../../assets/img/tutorials/streaming-api/websocket-api-v3-topic-url-mapping.png)
 
 6. Attach business plans to your WebSocket API.
 

@@ -70,6 +70,11 @@ Use the [existing REST API](../../../reference/apis/overview.mdx) to add a new A
 
 ### Retrieve custom properties via the REST API
 
+:::info
+From update level 18 onwards for wso2am-4.7.0 and wso2am-acp-4.7.0, the custom
+properties of each API can be retrieved from the API listing.
+:::
+
 `GET /apis/{apiId}` returns the custom properties of an API by default. The API listing (`GET /apis`) does not, because the properties are not read for every API in a listing unless you ask for them.
 
 To include them in the listing, set the `expandProperties` query parameter to `true`:

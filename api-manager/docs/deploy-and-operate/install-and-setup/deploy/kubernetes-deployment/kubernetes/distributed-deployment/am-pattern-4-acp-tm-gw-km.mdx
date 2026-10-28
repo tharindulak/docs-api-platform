@@ -32,8 +32,6 @@ The Key Manager uses the same Docker image as the API Control Plane — no separ
 1. **An external database** — H2 is not supported. Set up an external database before deploying.
 2. **A custom Docker image** — for the API Control Plane, with the JDBC driver for your database. The Key Manager reuses this image.
 3. **Database schema initialised** — run the WSO2 schema scripts against both databases before the pods start.
-
-Detailed steps for each of the above are explained in the sections below.
 :::
 
 ## Minimum Node Requirements

@@ -48,13 +48,13 @@ The tutorial demonstrates a simple WebSub/WebHook API that monitors your GitHub 
 
      2. Click **Add Topic**, add a topic with the name **/issues**, click **Add**, and finally click **Save**.
 
-           ![Add Topics to WebSub API](../../../../../assets/img/tutorials/streaming-api/websub-api-add-topic.png)
+           ![Add Topics to WebSub API](../../../../../assets/img/design/create-api/streaming-api/websub-api-v3-add-topic.png)
 
 6. Generate a secret.
 
       1. Expand the **Subscription Configuration** section in the **Topics** page.
 
-           ![WebSub API Runtime Configurations](../../../../../assets/img/tutorials/streaming-api/enable-secret-generation.png)
+           ![WebSub API Runtime Configurations](../../../../../assets/img/tutorials/streaming-api/enable-secret-generation-v3.png)
 
       2. Click **Enable** to enable secret generation.
 
@@ -141,7 +141,7 @@ You can use an existing GitHub repository of yours, or create a new one for this
 
                   `http://3b1*******c9.ngrok.io/repo-watcher/1.0.0/webhooks_events_receiver_resource?topic=/issues`
 
-                  This is obtained by replacing `https://{GATEWAY_HOST}:9021` part of the \*\*/issues\*\* topic's **Callback URL**, with the forwarding HTTP URL from ngrok (For example, `http://3b1*******c9.ngrok.io`).
+                  This is obtained by replacing `https://{GATEWAY_HOST}:9021` part of the \*\*/issues\*\* topic's **Callback URL**, with the forwarding HTTP URL from ngrock (For example, `http://3b1*******c9.ngrok.io`).
 
                 </td>
               </tr>

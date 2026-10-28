@@ -1,34 +1,34 @@
 {
   "summary": {
-    "source": "wso2/docs-apim@ba0a7cf93a2d7fa1551a2cbc319d4fddfe61fbc8",
-    "edition": "next",
-    "legacyBase": null,
+    "source": "wso2/docs-apim@297e6604db978641566b2299924e67ec3e2e8a76",
+    "edition": "4.7.0",
+    "legacyBase": "https://apim.docs.wso2.com/en/4.7.0/",
     "navPages": 548,
     "sourceFiles": 596,
     "stats": {
       "pages": 577,
       "partials": 17,
       "apiPages": 7,
-      "placeholders": 53,
-      "images": 1483,
-      "attachments": 27,
-      "missingImages": 25,
-      "links": 3263,
-      "externalLinks": 862,
+      "placeholders": 50,
+      "images": 1511,
+      "attachments": 28,
+      "missingImages": 13,
+      "links": 3250,
+      "externalLinks": 857,
       "legacyHostLinks": 2,
-      "otherVersionLinks": 52,
-      "crossProductLinks": 114,
-      "linksViaRedirect": 411,
+      "otherVersionLinks": 56,
+      "crossProductLinks": 110,
+      "linksViaRedirect": 407,
       "droppedLinks": 38,
-      "droppedAnchors": 98,
-      "placeholdersWrapped": 53,
-      "admonitions": 1708,
-      "details": 68,
-      "tabSets": 342,
-      "codeBlocks": 3183,
-      "indentedCode": 6,
-      "htmlBlocks": 471,
-      "explicitIds": 631,
+      "droppedAnchors": 94,
+      "placeholdersWrapped": 50,
+      "admonitions": 1700,
+      "details": 65,
+      "tabSets": 337,
+      "codeBlocks": 3171,
+      "indentedCode": 5,
+      "htmlBlocks": 464,
+      "explicitIds": 611,
       "basePathInCode": 1,
       "basePathInText": 3,
       "unknownElements": 63,
@@ -58,41 +58,34 @@
       "ambiguousCounterparts": 0,
       "overviewPages": 1,
       "exportSingleFolders": 0,
-      "legacyRedirects": 0,
+      "legacyRedirectsExternal": 15,
+      "legacyRedirectsUnresolved": 20,
+      "legacyRedirects": 1317,
       "legacyRedirectsSource": 722,
-      "acceptedByOverrides": 135
+      "acceptedByOverrides": 131
     },
     "issues": {
-      "nav": 2,
       "not-in-nav": 29,
-      "html": 40,
-      "missing-image": 25,
-      "indented-code": 6,
+      "html": 41,
+      "indented-code": 5,
+      "missing-image": 13,
       "code": 1,
       "placeholder-link": 5,
       "placeholder": 1,
       "api-spec": 1,
-      "include": 1
+      "include": 1,
+      "redirect": 21,
+      "override": 1
     },
     "compileFailures": 0,
     "overrides": {
       "file": "api-manager.overrides.yaml",
-      "patches": 41,
-      "patchesApplied": 41,
-      "accepted": 129
+      "patches": 43,
+      "patchesApplied": 43,
+      "accepted": 127
     }
   },
   "items": [
-    {
-      "kind": "nav",
-      "file": null,
-      "message": "nav section \"API Developer Portal > View API Documentation\" has no pages; dropped"
-    },
-    {
-      "kind": "nav",
-      "file": "api-gateway/platform-gateway-capability.md",
-      "message": "nav entry \"Overview\" points to a missing file"
-    },
     {
       "kind": "not-in-nav",
       "file": "administer/governance/quick-start-guide.md",
@@ -140,16 +133,6 @@
       "kind": "html",
       "file": "administer/rate-limiting/manage-advanced-policies.md",
       "message": "unknown element <http:> inside raw HTML kept as the text `<http:>`"
-    },
-    {
-      "kind": "missing-image",
-      "file": "ai-gateway/multi-model-routing/intelligent-model-routing.md",
-      "message": "image {{base_path}}/assets/img/learn/ai-gateway/attach-model-intelligent-model-routing.png does not exist in the source; removed (alt: \"Attach Intelligent Model Routing Policy\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "ai-gateway/multi-model-routing/semantic-model-routing.md",
-      "message": "image {{base_path}}/assets/img/learn/ai-gateway/attach-model-semantic-model-routing.png does not exist in the source; removed (alt: \"Attach Semantic Model Routing Policy\")"
     },
     {
       "kind": "not-in-nav",
@@ -505,9 +488,9 @@
       "message": "unbalanced inline </table> removed"
     },
     {
-      "kind": "indented-code",
+      "kind": "html",
       "file": "api-security/key-management/third-party-key-managers/configure-wso2is7-connector.md",
-      "message": "indented block \"| Type of role in WSO2 API Manager             | N\" became a code block (Python-Markdown read it as code too)"
+      "message": "unbalanced inline <li> removed"
     },
     {
       "kind": "broken-link",
@@ -625,21 +608,6 @@
       "accepted": "the legacy site has no page there either"
     },
     {
-      "kind": "broken-link",
-      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
-      "message": "link to {{base_path}}/api-security/key-management/configuration/configure-wso2is7-connector has no target in this version; link removed, text kept",
-      "detail": {
-        "href": "{{base_path}}/api-security/key-management/configuration/configure-wso2is7-connector",
-        "suggest": {
-          "main": {
-            "page": "guides/api-security/key-management/third-party-key-managers/configure-wso2is7-connector",
-            "oldUrl": "api-security/key-management/third-party-key-managers/configure-wso2is7-connector/"
-          }
-        }
-      },
-      "accepted": "the legacy site has no page there either"
-    },
-    {
       "kind": "missing-image",
       "file": "install-and-setup/setup/security/logins-and-passwords/configuring-recaptcha-for-single-sign-on.md",
       "message": "image {{base_path}}/assets/img/learn/api-security/recaptcha/recaptcha-sso.png does not exist in the source; removed (alt: \"configure-captcha-for-sso\")"
@@ -662,56 +630,6 @@
       "kind": "not-in-nav",
       "file": "install-and-setup/setup/single-node/all-in-one-deployment-overview.md",
       "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/is-create-new-org.png does not exist in the source; removed (alt: \"IS 7 dashboard\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/is-register-new-org.png does not exist in the source; removed (alt: \"IS 7 register new org\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/create-traditional-web-app-tenant.png does not exist in the source; removed (alt: \"Create Traditional Web Application\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-authenticator-configs.png does not exist in the source; removed (alt: \"Multi Tenant Authenticator Configs\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-common-sp.png does not exist in the source; removed (alt: \"Multi Tenant Common SP\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-sp-claim-configs.png does not exist in the source; removed (alt: \"Multi Tenant SP Claim Configs\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-sp-oidc-config.png does not exist in the source; removed (alt: \"Multi Tenant SP OIDC Configs\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-sp-outbound-configs.png does not exist in the source; removed (alt: \"Multi Tenant SP Outbound Configs\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/multi-tenant-portal-sps.png does not exist in the source; removed (alt: \"Multi Tenant Portal SPs Configs\")"
-    },
-    {
-      "kind": "missing-image",
-      "file": "install-and-setup/setup/sso/configuring-external-idp-using-oidc-for-multi-tenancy.md",
-      "message": "image {{base_path}}/assets/img/setup-and-install/tenant-selection-page.png does not exist in the source; removed (alt: \"Tenant Selection Page\")"
     },
     {
       "kind": "missing-image",
@@ -884,6 +802,15 @@
       "message": "link to {{base_path}}/reference/customize-product/customizations/customizing-the-developer-portal/styling-api-details-info-section/ has no target in this version; link removed, text kept",
       "detail": {
         "href": "{{base_path}}/reference/customize-product/customizations/customizing-the-developer-portal/styling-api-details-info-section/"
+      },
+      "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "reference/customize-product/customizations/log-in-to-the-dev-portal-using-social-media.md",
+      "message": "link to {{base_path}}/install-and-setup/deploying-wso2-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/deploying-wso2-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager/"
       },
       "accepted": "the legacy site has no page there either"
     },
@@ -1411,32 +1338,6 @@
     },
     {
       "kind": "broken-anchor",
-      "file": "api-security/runtime/opa-validation/overview.md",
-      "message": "anchor #custom-opa-policy-with-custom-request-generator does not exist on this page; anchor removed",
-      "detail": {
-        "href": "#custom-opa-policy-with-custom-request-generator",
-        "anchor": "custom-opa-policy-with-custom-request-generator",
-        "target": "docs/guides/api-security/runtime/opa-validation/overview.mdx",
-        "context": "main",
-        "suggest": null
-      },
-      "accepted": "the anchor is not on the target page on the legacy site either"
-    },
-    {
-      "kind": "broken-anchor",
-      "file": "api-security/runtime/opa-validation/overview.md",
-      "message": "anchor #custom-opa-policy-with-custom-request-generator does not exist on this page; anchor removed",
-      "detail": {
-        "href": "#custom-opa-policy-with-custom-request-generator",
-        "anchor": "custom-opa-policy-with-custom-request-generator",
-        "target": "docs/guides/api-security/runtime/opa-validation/overview.mdx",
-        "context": "main",
-        "suggest": null
-      },
-      "accepted": "the anchor is not on the target page on the legacy site either"
-    },
-    {
-      "kind": "broken-anchor",
       "file": "apiops/cli/advanced-topics/configuring-environment-specific-parameters.md",
       "message": "anchor #handling-the-certificates-using-the-params-file does not exist on this page; anchor removed",
       "detail": {
@@ -1778,6 +1679,19 @@
     },
     {
       "kind": "broken-anchor",
+      "file": "install-and-setup/setup/deployment-best-practices/production-deployment-guidelines.md",
+      "message": "anchor #wsdl-url-generation does not exist on deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx; anchor removed",
+      "detail": {
+        "href": "{{base_path}}/install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment/#wsdl-url-generation",
+        "anchor": "wsdl-url-generation",
+        "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/security-guidelines-for-production-deployment.mdx",
+        "context": "main",
+        "suggest": null
+      },
+      "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "broken-anchor",
       "file": "install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment.md",
       "message": "anchor #super-admin-configurations does not exist on reference/product-configurations/config-catalog.mdx; anchor removed",
       "detail": {
@@ -1812,48 +1726,6 @@
         "href": "#configuring-wso2-api-m-to-perform-regular-cleaning",
         "anchor": "configuring-wso2-api-m-to-perform-regular-cleaning",
         "target": "docs/deploy-and-operate/install-and-setup/deploy/deployment-best-practices/performance-tuning/tuning-performance.mdx",
-        "context": "main",
-        "suggest": null
-      },
-      "accepted": "the anchor is not on the target page on the legacy site either"
-    },
-    {
-      "kind": "broken-anchor",
-      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
-      "message": "anchor #step3-2 does not exist on this page; anchor removed",
-      "detail": {
-        "href": "#step3-2",
-        "anchor": "step3-2",
-        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.mdx",
-        "context": "main",
-        "suggest": {
-          "anchor": "#step3-2",
-          "score": 1
-        }
-      },
-      "accepted": "the anchor is not on the target page on the legacy site either"
-    },
-    {
-      "kind": "broken-anchor",
-      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
-      "message": "anchor #Linux-Mac does not exist on this page; anchor removed",
-      "detail": {
-        "href": "#Linux-Mac",
-        "anchor": "Linux-Mac",
-        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.mdx",
-        "context": "main",
-        "suggest": null
-      },
-      "accepted": "the anchor is not on the target page on the legacy site either"
-    },
-    {
-      "kind": "broken-anchor",
-      "file": "install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md",
-      "message": "anchor #windows does not exist on this page; anchor removed",
-      "detail": {
-        "href": "#windows",
-        "anchor": "windows",
-        "target": "docs/deploy-and-operate/install-and-setup/setup/set-up-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.mdx",
         "context": "main",
         "suggest": null
       },
@@ -2269,6 +2141,116 @@
         "suggest": null
       },
       "accepted": "the anchor is not on the target page on the legacy site either"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect install-and-setup/deploying-wso2-api-manager/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m.md → {{SITE_URL}}/install-and-setup/setup/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect install-and-setup/deploying-wso2-api-manager/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager.md → {{SITE_URL}}/install-and-setup/setup/distributed-deployment/configuring-wso2-identity-server-as-a-key-manager/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect learn/api-security/oauth2/oauth2-scopes/fine-grained-access-control-with-oauth-scopes.md → {{SITE_URL}}/api-security/runtime/oauth2/oauth2-scopes/fine-grained-access-control-with-oauth-scopes/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect learn/api-security/oauth2/oauth2-scopes/scope-allowlisting.md → {{SITE_URL}}/api-security/runtime/oauth2/oauth2-scopes/scope-whitelisting/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect administer/product-security/mutual-ssl-between-api-gateway-and-backend.md → {{SITE_URL}}/deploy-and-publish/deploy-on-gateway/api-gateway/mutual-ssl-between-api-gateway-and-backend/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/configure-analytics/working-with-organizations.md → {{SITE_URL}}/api-analytics/role-based-access-control/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/configure-analytics/configure-alerts.md → {{SITE_URL}}/api-analytics/configure-alerts/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-introduction.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-introduction/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-overview.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-overview/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-traffic.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-traffic/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-errors.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-errors/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-latency.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-latency/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-devices.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-devices/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-alerts.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-alerts/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect observe/api-manager-analytics/analytics-pages/analytics-pages-report.md → {{SITE_URL}}/api-analytics/viewing/analytics-pages-report/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect administer/logging-and-monitoring/logging/setting-up-logging.md → {{SITE_URL}}/administer/logging-and-monitoring/logging/configuring-logging/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect administer/logging-and-monitoring/logging/configuring-logging.md → {{SITE_URL}}/observe/api-manager/configuring-logging/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect administer/key-managers/configure-wso2is-connector.md → {{SITE_URL}}/api-security/key-management/third-party-key-managers/configure-wso2is-connector/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect manage-apis/design/api-security/api-authentication/securing-apis-using-certificate-bound-access-tokens.md → {{SITE_URL}}/api-design-manage/design/api-security/api-authentication/securing-apis-using-certificate-bound-access-tokens/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": null,
+      "message": "legacy redirect design/endpoints/endpoint-security/oauth-2.0.md → {{SITE_URL}}/manage-apis/design/endpoints/endpoint-security/oauth-2.0/ has no target page in 4.7.0; sent to the Edition home"
+    },
+    {
+      "kind": "redirect",
+      "file": "includes/work-in-progress.md",
+      "message": "include that no page uses; its legacy URL goes to the Edition home"
+    },
+    {
+      "kind": "override",
+      "file": "api-security/runtime/opa-validation/overview.md",
+      "message": "accepted link #custom-opa-policy-with-custom-request-generator is no longer broken or no longer there; remove the entry or limit it with editions:"
     }
   ]
 }

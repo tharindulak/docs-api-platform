@@ -19,6 +19,10 @@ Sign in to the Admin Portal, add a Platform Gateway environment with a display n
 
 ## Automated Gateway Registration
 
+:::note
+This feature is available in WSO2 API Manager 4.7.0 starting from update level 7.
+:::
+
 As an alternative to the Admin Portal, you can declare a Platform Gateway directly in `<API-M_HOME>/repository/conf/deployment.toml`. This lets you onboard a gateway purely through configuration, for example to automate provisioning with GitOps. The gateway record is not created at Control Plane startup - it is created the first time the gateway connects, using the details below.
 
 ### Configure the gateway

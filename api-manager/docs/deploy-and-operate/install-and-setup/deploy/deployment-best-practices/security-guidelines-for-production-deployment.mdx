@@ -22,6 +22,8 @@ Given below are the security guidelines for the API-M runtime.
 
 Given below are the security guidelines for the API-M runtime.
 
+\>
+
 <table>
   <thead>
     <tr>
@@ -500,7 +502,16 @@ Given below are the security guidelines for the API-M runtime.
         'limit_java_class_access_in_scripts.class_prefixes' = "java.util"
         ```
 
-        Only the Java classes having names starting with any of the values given under `limit_java_class_access_in_scripts.class_prefixes` will be allowed, when `limit_java_class_access_in_scripts.list_type` is `ALLOW_LIST` (all other classes will not be allowed). Likewise, when `limit_java_class_access_in_scripts.list_type` is `BLOCK_LIST`, classes with matching names will be selectively blocked. <br /> <br /> **Limiting Access to Java Methods/Native Objects** <br /> Access to Java Methods/Native Objects can be restricted by providing the following configurations in `deployment.toml`.
+        Only the Java classes having names starting with any of the values given under `limit_java_class_access_in_scripts.class_prefixes` will be allowed, when `limit_java_class_access_in_scripts.list_type` is `ALLOW_LIST` (all other classes will not be allowed). Likewise, when `limit_java_class_access_in_scripts.list_type` is `BLOCK_LIST`, classes with matching names will be selectively blocked. <br /> <br /> The following configuration is applied by default. If you have any script mediator related use cases with classes included in the prefixes list, modify it according to your requirements.
+
+        ```text
+        [synapse_properties]
+        'limit_java_class_access_in_scripts.enable'=true
+        'limit_java_class_access_in_scripts.list_type' = "BLOCK_LIST"
+        'limit_java_class_access_in_scripts.class_prefixes' = "java.lang,java.io,java.nio,java.net"
+        ```
+
+        **Limiting Access to Java Methods/Native Objects** <br /> Access to Java Methods/Native Objects can be restricted by providing the following configurations in `deployment.toml`.
 
         ```text
         [synapse_properties]
@@ -509,14 +520,7 @@ Given below are the security guidelines for the API-M runtime.
         'limit_java_native_object_access_in_scripts.object_names' = "getClassLoader"
         ```
 
-        Java methods/native objects having names equal to any of the values given under `limit_java_native_object_access_in_scripts.object_names`, will be selectively blocked when `limit_java_native_object_access_in_scripts.list_type` is `BLOCK_LIST` (all other classes will be allowed). Likewise, when `limit_java_native_object_access_in_scripts.list_type` is `ALLOW_LIST`, classes with matching names will be selectively allowed. <br /><br /> **Recommended Approach for Restricting Access** <br /> It is recommended to use an Allow List approach for both class and method access restrictions, as it provides a more secure method of permitting only the required classes and methods to be used in the script, while blocking all others by default. The following `ALLOW_LIST` configuration is the recommended baseline to enable the API mocking feature. If you have any script mediator-related use cases with classes included in the prefixes list, adjust it according to your requirements.
-
-        ```text
-        [synapse_properties]
-        'limit_java_class_access_in_scripts.enable' = true
-        'limit_java_class_access_in_scripts.list_type' = "ALLOW_LIST"
-        'limit_java_class_access_in_scripts.class_prefixes' = "org.apache.synapse.mediators.bsf.CommonScriptMessageContext,java.lang.String"
-        ```
+        Java methods/native objects having names equal to any of the values given under `limit_java_native_object_access_in_scripts.object_names`, will be selectively blocked when `limit_java_native_object_access_in_scripts.list_type` is `BLOCK_LIST` (all other classes will be allowed). Likewise, when `limit_java_native_object_access_in_scripts.list_type` is `ALLOW_LIST`, classes with matching names will be selectively allowed. <br /><br /> **Note: This feature is enabled by default in APIM 4.6.0.**
 
       </td>
     </tr>
@@ -546,6 +550,31 @@ Given below are the security guidelines for the API-M runtime.
       <td>
 
         You should generate a symmetric encryption key for internal encryption and add it to the `deployment.toml` file. See [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key) for instructions.
+
+      </td>
+    </tr>
+    <tr id="wsdl-url-generation">
+      <td>
+
+        Configure WSDL URL generation secret
+
+      </td>
+      <td>
+
+        If you are using the WSDL URL of a SOAP API generated using the Developer Portal, configure a secret to secure the generated URLs. Add the following to the `deployment.toml` file:
+
+        ```text
+        [apim.devportal]
+        url_generation_secret = "your_secret"
+        ```
+
+        A randomly generated string of at least 32 characters is recommended. You can generate a strong secret using the following command:
+
+        ```text
+        openssl rand -base64 32
+        ```
+
+        It is highly recommended to encrypt this secret using the secure vault. See [Encrypting Passwords in Configuration Files](../../setup/set-up-api-manager/security/logins-and-passwords/secure-passwords/working-with-encrypted-passwords.mdx) for instructions.
 
       </td>
     </tr>

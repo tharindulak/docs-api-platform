@@ -107,32 +107,6 @@ Given below is a checklist that will guide you to set up your production environ
       </td>
     </tr>
     <tr>
-      <td>HTTP header size</td>
-      <td>
-
-        The default value of `maxHttpHeaderSize` on both the HTTP and HTTPS connectors in `<API-M_HOME>/repository/conf/tomcat/catalina-server.xml` is set to **32 KB (32768 bytes)**.
-
-        This value **must not be set to less than 32 KB (32768 bytes)**, specifically on the **API Control Plane (ACP) node** in a distributed deployment (or on the single node in an all-in-one deployment), if **Multi-Option Authentication** is used for portal (Publisher, DevPortal, Admin) logins in federated authentication flows.
-
-        If set lower, the `/commonauth` redirect from the external Identity Provider carries the full OAuth scope list in the request URI, and the combined size of the request line and headers exceeds the buffer. Tomcat then rejects the request with a `400 Bad Request` or `414 Request-URI Too Long` error, breaking the federated login flow.
-
-        If you need to override the value via `deployment.toml`, keep it at or above the default:
-
-        <Anchor id="cb2" />
-
-        ```text
-        [transport.http.properties]
-        maxHttpHeaderSize = 32768
-
-        [transport.https.properties]
-        maxHttpHeaderSize = 32768
-        ```
-
-        If a reverse proxy, load balancer, ingress controller, or CDN is deployed in front of API-M, ensure its header and URL size limits are also aligned to at least 32 KB — otherwise the request will be rejected at the front tier before it reaches API-M.
-
-      </td>
-    </tr>
-    <tr>
       <td>High availability</td>
       <td>
 
@@ -153,6 +127,16 @@ Given below is a checklist that will guide you to set up your production environ
         Generate a symmetric encryption key and add it to the `deployment.toml` file. See [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key) for instructions.
 
         **Note:** In distributed or high-availability deployments, **all API-M instances must use the same symmetric encryption key**. Ensure the identical key value is added to the `deployment.toml` of every node in the cluster to maintain the ability to decrypt registry resources across instances.
+
+      </td>
+    </tr>
+    <tr>
+      <td>WSDL URL generation in Developer Portal</td>
+      <td>
+
+        Generate a random string and add it to the `deployment.toml` file. See [Configure WSDL URL generation secret](./security-guidelines-for-production-deployment.mdx) for instructions.
+
+        **Note:** In distributed or high-availability deployments, **all API-M instances must use the same secret key**. Ensure the identical key value is added to the `deployment.toml` of every node in the cluster to maintain the ability to validate generated WSDL URLs across instances.
 
       </td>
     </tr>

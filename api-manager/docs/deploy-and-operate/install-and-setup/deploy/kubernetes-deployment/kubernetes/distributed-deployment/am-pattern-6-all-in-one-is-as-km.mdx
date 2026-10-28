@@ -33,8 +33,6 @@ WSO2 IS 7.x in this pattern acts as a **third-party Key Manager** only. The foll
 1. **An external database** — H2 is not supported for production. Set up an external database before deploying.
 2. **Two custom Docker images** — one for WSO2 API Manager (with JDBC driver) and one for WSO2 Identity Server (with the APIM notification event handler JAR).
 3. **Database schema initialised** — run the WSO2 schema scripts against both databases before the APIM pods start.
-
-Detailed steps for each of the above are explained in the sections below.
 :::
 
 ## Minimum Node Requirements
