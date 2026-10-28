@@ -1,0 +1,3220 @@
+---
+title: Management API Schemas
+description: JSON schema definitions for all API Platform Gateway Controller management API request and response objects.
+type: reference
+sidebar_label: Schemas
+sidebar_position: 10
+---
+
+## ResourceStatus
+
+<Anchor id="schemaresourcestatus" />
+<Anchor id="schema_ResourceStatus" />
+<Anchor id="tocSresourcestatus" />
+<Anchor id="tocsresourcestatus" />
+
+```json
+{
+  "id": "reading-list-api-v1.0",
+  "state": "deployed",
+  "createdAt": "2026-04-24T07:21:13Z",
+  "updatedAt": "2026-04-24T07:21:13Z",
+  "deployedAt": "2026-04-24T07:21:13Z"
+}
+```
+
+Server-managed lifecycle information for a resource
+
+#### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|false|none|Unique identifier assigned by the server (equal to metadata.name)|
+|state|string|false|none|Desired deployment state reported by the server|
+|createdAt|string(date-time)|false|none|Timestamp when the resource was first created (UTC)|
+|updatedAt|string(date-time)|false|none|Timestamp when the resource was last updated (UTC)|
+|deployedAt|string(date-time)|false|none|Timestamp when the resource was last deployed (omitted when undeployed)|
+
+##### Enumerated Values
+
+|Property|Value|
+|---|---|
+|state|deployed|
+|state|undeployed|
+
+## RestAPIRequest
+
+<Anchor id="schemarestapirequest" />
+<Anchor id="schema_RestAPIRequest" />
+<Anchor id="tocSrestapirequest" />
+<Anchor id="tocsrestapirequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "RestApi",
+  "metadata": {
+    "name": "reading-list-api-v1.0"
+  },
+  "spec": {
+    "displayName": "Reading-List-API",
+    "version": "v1.0",
+    "context": "/reading-list/$version",
+    "upstream": {
+      "main": {
+        "url": "https://apis.bijira.dev/samples/reading-list-api-service/v1.0"
+      }
+    },
+    "policies": [
+      {
+        "name": "set-headers",
+        "version": "v1",
+        "params": {
+          "request": {
+            "headers": [
+              {
+                "name": "x-wso2-apip-gateway-version",
+                "value": "v1.0.0"
+              }
+            ]
+          },
+          "response": {
+            "headers": [
+              {
+                "name": "x-environment",
+                "value": "development"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "operations": [
+      {
+        "method": "GET",
+        "path": "/books"
+      },
+      {
+        "method": "POST",
+        "path": "/books"
+      },
+      {
+        "method": "GET",
+        "path": "/books/{id}"
+      },
+      {
+        "method": "PUT",
+        "path": "/books/{id}"
+      },
+      {
+        "method": "DELETE",
+        "path": "/books/{id}"
+      }
+    ]
+  }
+}
+```
+
+#### Properties {#properties_1}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|API specification version|
+|kind|string|true|none|API type|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[APIConfigData](#schemaapiconfigdata)|true|none|none|
+
+##### Enumerated Values {#enumerated-values_1}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|RestApi|
+
+## RestAPI
+
+<Anchor id="schemarestapi" />
+<Anchor id="schema_RestAPI" />
+<Anchor id="tocSrestapi" />
+<Anchor id="tocsrestapi" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "RestApi",
+  "metadata": {
+    "name": "reading-list-api-v1.0"
+  },
+  "spec": {
+    "displayName": "Reading-List-API",
+    "version": "v1.0",
+    "context": "/reading-list/$version",
+    "upstream": {
+      "main": {
+        "url": "https://apis.bijira.dev/samples/reading-list-api-service/v1.0"
+      }
+    },
+    "policies": [
+      {
+        "name": "set-headers",
+        "version": "v1",
+        "params": {
+          "request": {
+            "headers": [
+              {
+                "name": "x-wso2-apip-gateway-version",
+                "value": "v1.0.0"
+              }
+            ]
+          },
+          "response": {
+            "headers": [
+              {
+                "name": "x-environment",
+                "value": "development"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "operations": [
+      {
+        "method": "GET",
+        "path": "/books"
+      },
+      {
+        "method": "POST",
+        "path": "/books"
+      },
+      {
+        "method": "GET",
+        "path": "/books/{id}"
+      },
+      {
+        "method": "PUT",
+        "path": "/books/{id}"
+      },
+      {
+        "method": "DELETE",
+        "path": "/books/{id}"
+      }
+    ]
+  },
+  "status": {
+    "id": "reading-list-api-v1.0",
+    "state": "deployed",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z",
+    "deployedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+#### Properties {#properties_2}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[RestAPIRequest](#schemarestapirequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## Metadata
+
+<Anchor id="schemametadata" />
+<Anchor id="schema_Metadata" />
+<Anchor id="tocSmetadata" />
+<Anchor id="tocsmetadata" />
+
+```json
+{
+  "name": "reading-list-api-v1.0",
+  "labels": {
+    "environment": "production",
+    "team": "backend",
+    "version": "v1"
+  },
+  "annotations": {
+    "gateway.api-platform.wso2.com/project-id": "019d953f-d386-7a64-aa92-1869a28292e0"
+  }
+}
+```
+
+#### Properties {#properties_3}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Unique handle for the resource|
+|labels|object|false|none|Labels are key-value pairs for organizing and selecting APIs. Keys must not contain spaces.|
+|**additionalProperties**|string|false|none|none|
+|annotations|object|false|none|Annotations are arbitrary non-identifying metadata. Use domain-prefixed keys.|
+|**additionalProperties**|string|false|none|none|
+
+## APIConfigData
+
+<Anchor id="schemaapiconfigdata" />
+<Anchor id="schema_APIConfigData" />
+<Anchor id="tocSapiconfigdata" />
+<Anchor id="tocsapiconfigdata" />
+
+```json
+{
+  "displayName": "Reading List API",
+  "version": "v1.0",
+  "context": "/reading-list/$version",
+  "upstreamDefinitions": [
+    {
+      "name": "my-upstream-1",
+      "basePath": "/api/v2",
+      "timeout": {
+        "connect": "5s"
+      },
+      "upstreams": [
+        {
+          "url": "http://prod-backend-1:5000",
+          "weight": 80
+        }
+      ]
+    }
+  ],
+  "upstream": {
+    "main": {
+      "url": "http://prod-backend:5000/api/v2",
+      "ref": "string",
+      "hostRewrite": "auto"
+    },
+    "sandbox": {
+      "url": "http://prod-backend:5000/api/v2",
+      "ref": "string",
+      "hostRewrite": "auto"
+    }
+  },
+  "vhosts": {
+    "main": "api.example.com;docs.example.com;*.example.com",
+    "sandbox": "sandbox-api.example.com"
+  },
+  "subscriptionPlans": [
+    "Gold",
+    "Silver"
+  ],
+  "policies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "resilience": {
+    "timeout": "15s",
+    "idleTimeout": "0s"
+  },
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/books/{id}",
+      "match": {
+        "method": "GET",
+        "path": {
+          "value": "/books/{id}",
+          "type": "Exact"
+        },
+        "headers": [
+          {
+            "name": "version",
+            "value": "one",
+            "type": "Exact"
+          }
+        ]
+      },
+      "policies": [
+        {
+          "name": "cors",
+          "version": "v1",
+          "executionCondition": "request.metadata[authenticated] != true",
+          "params": {}
+        }
+      ],
+      "resilience": {
+        "timeout": "15s",
+        "idleTimeout": "0s"
+      }
+    }
+  ],
+  "deploymentState": "deployed"
+}
+```
+
+#### Properties {#properties_4}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable API name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
+|version|string|true|none|Semantic version of the API|
+|context|string|true|none|Base path for all API routes (must start with /, no trailing slash). Use $version to embed the version in the path (e.g., /reading-list/$version resolves to /reading-list/v1.0).|
+|upstreamDefinitions|[[UpstreamDefinition](#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations|
+|upstream|object|true|none|API-level upstream configuration|
+|main|[Upstream](#schemaupstream)|true|none|Upstream backend configuration (single target or reference)|
+|sandbox|[Upstream](#schemaupstream)|false|none|Upstream backend configuration (single target or reference)|
+|vhosts|object|false|none|Custom virtual hosts/domains for the API|
+|main|string|true|none|Custom virtual host(s)/domain(s) for production traffic. One or more hostnames<br />separated by ';' — each hostname serves the main upstream (e.g. when a Gateway API<br />HTTPRoute attaches to multiple listener hostnames). The first entry is the primary<br />vhost. Each hostname may be a wildcard such as *.example.com.|
+|sandbox|string|false|none|Custom virtual host/domain for sandbox traffic|
+|subscriptionPlans|[string]|false|none|List of subscription plan names available for this API|
+|policies|[[Policy](#schemapolicy)]|false|none|List of API-level policies applied to all operations unless overridden|
+|resilience|[Resilience](#schemaresilience)|false|none|Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.|
+|operations|[[Operation](#schemaoperation)]|true|none|List of HTTP operations/routes|
+|deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the API is removed from router traffic but configuration, API keys, and policies are preserved for potential redeployment.|
+
+##### Enumerated Values {#enumerated-values_2}
+
+|Property|Value|
+|---|---|
+|deploymentState|deployed|
+|deploymentState|undeployed|
+
+## UpstreamDefinition
+
+<Anchor id="schemaupstreamdefinition" />
+<Anchor id="schema_UpstreamDefinition" />
+<Anchor id="tocSupstreamdefinition" />
+<Anchor id="tocsupstreamdefinition" />
+
+```json
+{
+  "name": "my-upstream-1",
+  "basePath": "/api/v2",
+  "timeout": {
+    "connect": "5s"
+  },
+  "upstreams": [
+    {
+      "url": "http://prod-backend-1:5000",
+      "weight": 80
+    }
+  ]
+}
+```
+
+Reusable upstream configuration with optional timeout and load balancing settings
+
+#### Properties {#properties_5}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Unique identifier for this upstream definition|
+|basePath|string|false|none|Base path prefix for all endpoints in this upstream (e.g., /api/v2). All requests to this upstream will have this path prepended. Must start with '/' and must not end with '/'; omit for root.|
+|timeout|[UpstreamTimeout](#schemaupstreamtimeout)|false|none|Timeout configuration for upstream requests|
+|upstreams|[object]|true|none|List of backend targets with optional weights for load balancing|
+|url|string(uri)|true|none|Backend URL (host and port only, path comes from basePath)|
+|weight|integer|false|none|Relative weight for load balancing across multiple upstream targets. Reserved for future multi-target load balancing; not applied yet (only the first target is currently used).|
+
+## UpstreamTimeout
+
+<Anchor id="schemaupstreamtimeout" />
+<Anchor id="schema_UpstreamTimeout" />
+<Anchor id="tocSupstreamtimeout" />
+<Anchor id="tocsupstreamtimeout" />
+
+```json
+{
+  "connect": "5s"
+}
+```
+
+Timeout configuration for upstream requests
+
+#### Properties {#properties_6}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|connect|string|false|none|Connection timeout duration (e.g., "5s", "500ms")|
+
+## Resilience
+
+<Anchor id="schemaresilience" />
+<Anchor id="schema_Resilience" />
+<Anchor id="tocSresilience" />
+<Anchor id="tocsresilience" />
+
+```json
+{
+  "timeout": "15s",
+  "idleTimeout": "0s"
+}
+```
+
+Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.
+
+#### Properties {#properties_7}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|timeout|string|false|none|Maximum time for the entire route (request to upstream response). "0s" disables the timeout.|
+|idleTimeout|string|false|none|Per-route stream idle timeout (overrides the listener stream idle timeout for this route). "0s" disables the timeout.|
+
+## Upstream
+
+<Anchor id="schemaupstream" />
+<Anchor id="schema_Upstream" />
+<Anchor id="tocSupstream" />
+<Anchor id="tocsupstream" />
+
+```json
+{
+  "url": "http://prod-backend:5000/api/v2",
+  "ref": "string",
+  "hostRewrite": "auto"
+}
+```
+
+Upstream backend configuration (single target or reference)
+
+#### Properties {#properties_8}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|url|string(uri)|false|none|Direct backend URL to route traffic to|
+|ref|string|false|none|Reference to a predefined upstreamDefinition|
+|hostRewrite|string|false|none|Controls how the Host header is handled when routing to the upstream. `auto` delegates host rewriting to Envoy, which rewrites the Host header using the upstream cluster host. `manual` disables automatic rewriting and expects explicit configuration.|
+
+oneOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+
+xor
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+
+##### Enumerated Values {#enumerated-values_3}
+
+|Property|Value|
+|---|---|
+|hostRewrite|auto|
+|hostRewrite|manual|
+
+## Operation
+
+<Anchor id="schemaoperation" />
+<Anchor id="schema_Operation" />
+<Anchor id="tocSoperation" />
+<Anchor id="tocsoperation" />
+
+```json
+{
+  "method": "GET",
+  "path": "/books/{id}",
+  "match": {
+    "method": "GET",
+    "path": {
+      "value": "/books/{id}",
+      "type": "Exact"
+    },
+    "headers": [
+      {
+        "name": "version",
+        "value": "one",
+        "type": "Exact"
+      }
+    ]
+  },
+  "policies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "resilience": {
+    "timeout": "15s",
+    "idleTimeout": "0s"
+  }
+}
+```
+
+An operation is matched either by the simple top-level method+path form, or by the richer 'match' block (method + path + headers). When 'match' is present it is authoritative and the top-level method/path are ignored. At least one form must be provided.
+
+#### Properties {#properties_9}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|method|[OperationMethod](#schemaoperationmethod)|false|none|HTTP method (simple form; ignored when 'match' is set)|
+|path|string|false|none|Route path with optional `{param}` placeholders (simple form; ignored when 'match' is set)|
+|match|[OperationMatch](#schemaoperationmatch)|false|none|Request matching criteria for an operation. Extensible with query params, cookies, etc.|
+|policies|[[Policy](#schemapolicy)]|false|none|List of policies applied only to this operation (overrides or adds to API-level policies)|
+|resilience|[Resilience](#schemaresilience)|false|none|Backend/route timeout configuration. Maps to Envoy RouteAction timeouts. Can be set at the API level (applies to all routes) and/or the operation level (applies to that operation's route). When set at both levels, the operation-level value takes precedence. When unset, the gateway's global route timeout defaults apply.|
+
+## OperationMethod
+
+<Anchor id="schemaoperationmethod" />
+<Anchor id="schema_OperationMethod" />
+<Anchor id="tocSoperationmethod" />
+<Anchor id="tocsoperationmethod" />
+
+```json
+"GET"
+```
+
+HTTP method
+
+#### Properties {#properties_10}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|string|false|none|HTTP method|
+
+##### Enumerated Values {#enumerated-values_4}
+
+|Property|Value|
+|---|---|
+|*anonymous*|GET|
+|*anonymous*|POST|
+|*anonymous*|PUT|
+|*anonymous*|DELETE|
+|*anonymous*|PATCH|
+|*anonymous*|HEAD|
+|*anonymous*|OPTIONS|
+
+## OperationMatch
+
+<Anchor id="schemaoperationmatch" />
+<Anchor id="schema_OperationMatch" />
+<Anchor id="tocSoperationmatch" />
+<Anchor id="tocsoperationmatch" />
+
+```json
+{
+  "method": "GET",
+  "path": {
+    "value": "/books/{id}",
+    "type": "Exact"
+  },
+  "headers": [
+    {
+      "name": "version",
+      "value": "one",
+      "type": "Exact"
+    }
+  ]
+}
+```
+
+Request matching criteria for an operation. Extensible with query params, cookies, etc.
+
+#### Properties {#properties_11}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|method|[OperationMethod](#schemaoperationmethod)|true|none|HTTP method|
+|path|[OperationPathMatch](#schemaoperationpathmatch)|true|none|none|
+|headers|[[OperationHeaderMatch](#schemaoperationheadermatch)]|false|none|Header matchers ANDed with the path match for Envoy route selection|
+
+## OperationPathMatch
+
+<Anchor id="schemaoperationpathmatch" />
+<Anchor id="schema_OperationPathMatch" />
+<Anchor id="tocSoperationpathmatch" />
+<Anchor id="tocsoperationpathmatch" />
+
+```json
+{
+  "value": "/books/{id}",
+  "type": "Exact"
+}
+```
+
+#### Properties {#properties_12}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|value|string|true|none|Route path with optional `{param}` placeholders|
+|type|string|false|none|Path matching semantics for the operation route|
+
+##### Enumerated Values {#enumerated-values_5}
+
+|Property|Value|
+|---|---|
+|type|Exact|
+|type|PathPrefix|
+
+## OperationHeaderMatch
+
+<Anchor id="schemaoperationheadermatch" />
+<Anchor id="schema_OperationHeaderMatch" />
+<Anchor id="tocSoperationheadermatch" />
+<Anchor id="tocsoperationheadermatch" />
+
+```json
+{
+  "name": "version",
+  "value": "one",
+  "type": "Exact"
+}
+```
+
+#### Properties {#properties_13}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Header name (case-insensitive)|
+|value|string|true|none|Header value to match|
+|type|string|false|none|Header match type|
+
+##### Enumerated Values {#enumerated-values_6}
+
+|Property|Value|
+|---|---|
+|type|Exact|
+|type|RegularExpression|
+
+## Policy
+
+<Anchor id="schemapolicy" />
+<Anchor id="schema_Policy" />
+<Anchor id="tocSpolicy" />
+<Anchor id="tocspolicy" />
+
+```json
+{
+  "name": "cors",
+  "version": "v1",
+  "executionCondition": "request.metadata[authenticated] != true",
+  "params": {}
+}
+```
+
+#### Properties {#properties_14}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Name of the policy|
+|version|string|true|none|Version of the policy. Only major-only version is allowed (e.g., v0, v1). Full semantic version (e.g., v1.0.0) is not accepted and will be rejected. The Gateway Controller resolves the major version to the single matching full version installed in the gateway image.|
+|executionCondition|string|false|none|Expression controlling conditional execution of the policy|
+|params|object|false|none|Arbitrary parameters for the policy (free-form key/value structure)|
+
+## Channel
+
+<Anchor id="schemachannel" />
+<Anchor id="schema_Channel" />
+<Anchor id="tocSchannel" />
+<Anchor id="tocschannel" />
+
+```json
+{
+  "name": "issues",
+  "method": "SUB",
+  "policies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ]
+}
+```
+
+Channel (topic/event stream) definition for async APIs.
+
+#### Properties {#properties_15}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Channel name or topic identifier relative to API context.|
+|method|string|true|none|Operation method type.|
+|policies|[[Policy](#schemapolicy)]|false|none|List of policies applied only to this channel (overrides or adds to API-level policies)|
+
+##### Enumerated Values {#enumerated-values_7}
+
+|Property|Value|
+|---|---|
+|method|SUB|
+
+## APIKeyCreationRequest
+
+<Anchor id="schemaapikeycreationrequest" />
+<Anchor id="schema_APIKeyCreationRequest" />
+<Anchor id="tocSapikeycreationrequest" />
+<Anchor id="tocsapikeycreationrequest" />
+
+```json
+{
+  "name": "my-production-key"
+}
+```
+
+#### Properties {#properties_16}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|false|none|Identifier of the API key. If not provided, a default identifier will be generated|
+|apiKey|string|false|none|Optional plain-text API key value for external key injection.<br />If provided, this key will be used instead of generating a new one.<br />The key will be hashed before storage. The key can be in any format<br />(minimum 36 characters). Use this for injecting externally generated<br />API keys.|
+|maskedApiKey|string|false|none|Masked version of the API key for display purposes.<br />Provided by the platform API when injecting pre-hashed keys.|
+|expiresIn|object|false|none|Expiration duration for the API key|
+|unit|string|true|none|Time unit for expiration|
+|duration|integer|true|none|Duration value for expiration|
+|expiresAt|string(date-time)|false|none|Expiration timestamp. If both expiresIn and expiresAt are provided, expiresAt takes precedence.|
+|externalRefId|string|false|none|External reference ID for the API key.<br />This field is optional and used for tracing purposes only.<br />The gateway generates its own internal ID for tracking.|
+|issuer|string|false|none|Identifies the portal that created this key. If provided, only api keys generated from<br />the same portal will be accepted. If not provided, there is no portal restriction.|
+
+##### Enumerated Values {#enumerated-values_8}
+
+|Property|Value|
+|---|---|
+|unit|seconds|
+|unit|minutes|
+|unit|hours|
+|unit|days|
+|unit|weeks|
+|unit|months|
+
+## APIKeyCreationResponse
+
+<Anchor id="schemaapikeycreationresponse" />
+<Anchor id="schema_APIKeyCreationResponse" />
+<Anchor id="tocSapikeycreationresponse" />
+<Anchor id="tocsapikeycreationresponse" />
+
+```json
+{
+  "status": "success",
+  "message": "API key generated successfully",
+  "remainingApiKeyQuota": 9,
+  "apiKey": {
+    "name": "my-production-key",
+    "displayName": "My Production Key",
+    "apiKey": "apip_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+    "apiId": "reading-list-api-v1.0",
+    "status": "active",
+    "createdAt": "2026-04-01T10:30:00Z",
+    "createdBy": "admin",
+    "expiresAt": null,
+    "source": "local"
+  }
+}
+```
+
+#### Properties {#properties_17}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|string|true|none|none|
+|message|string|true|none|none|
+|remainingApiKeyQuota|integer|false|none|Remaining API key quota for the user|
+|apiKey|[APIKey](#schemaapikey)|false|none|Details of an API key|
+
+## APIKey
+
+<Anchor id="schemaapikey" />
+<Anchor id="schema_APIKey" />
+<Anchor id="tocSapikey" />
+<Anchor id="tocsapikey" />
+
+```json
+{
+  "name": "my-production-key",
+  "displayName": "My Production Key",
+  "apiKey": "apip_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+  "apiId": "reading-list-api-v1.0",
+  "status": "active",
+  "createdAt": "2026-04-01T10:30:00Z",
+  "createdBy": "admin",
+  "expiresAt": null,
+  "source": "local"
+}
+```
+
+Details of an API key
+
+#### Properties {#properties_18}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|URL-safe identifier for the API key (auto-generated from displayName, immutable, used as path parameter)|
+|displayName|string|false|none|Human-readable name for the API key (user-provided, mutable)|
+|apiKey|string|false|none|Generated API key with apip_ prefix|
+|apiId|string|true|none|Unique public identifier of the API that the key is associated with|
+|status|string|true|none|Status of the API key|
+|createdAt|string(date-time)|true|none|Timestamp when the API key was generated|
+|createdBy|string|true|none|Identifier of the user who generated the API key|
+|expiresAt|string(date-time)¦null|true|none|Expiration timestamp (null if no expiration)|
+|source|string|true|none|Source of the API key (local or external)|
+|externalRefId|string|false|none|External reference ID for the API key|
+
+##### Enumerated Values {#enumerated-values_9}
+
+|Property|Value|
+|---|---|
+|status|active|
+|status|revoked|
+|status|expired|
+|source|local|
+|source|external|
+
+## APIKeyRegenerationRequest
+
+<Anchor id="schemaapikeyregenerationrequest" />
+<Anchor id="schema_APIKeyRegenerationRequest" />
+<Anchor id="tocSapikeyregenerationrequest" />
+<Anchor id="tocsapikeyregenerationrequest" />
+
+```json
+{}
+```
+
+#### Properties {#properties_19}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|expiresIn|object|false|none|Expiration duration for the API key|
+|unit|string|true|none|Time unit for expiration|
+|duration|integer|true|none|Duration value for expiration|
+|expiresAt|string(date-time)|false|none|Expiration timestamp|
+
+##### Enumerated Values {#enumerated-values_10}
+
+|Property|Value|
+|---|---|
+|unit|seconds|
+|unit|minutes|
+|unit|hours|
+|unit|days|
+|unit|weeks|
+|unit|months|
+
+## APIKeyUpdateRequest
+
+<Anchor id="schemaapikeyupdaterequest" />
+<Anchor id="schema_APIKeyUpdateRequest" />
+<Anchor id="tocSapikeyupdaterequest" />
+<Anchor id="tocsapikeyupdaterequest" />
+
+```json
+{
+  "name": "my-production-key"
+}
+```
+
+#### Properties {#properties_20}
+
+*None*
+
+## APIKeyRevocationResponse
+
+<Anchor id="schemaapikeyrevocationresponse" />
+<Anchor id="schema_APIKeyRevocationResponse" />
+<Anchor id="tocSapikeyrevocationresponse" />
+<Anchor id="tocsapikeyrevocationresponse" />
+
+```json
+{
+  "status": "success",
+  "message": "API key revoked successfully"
+}
+```
+
+#### Properties {#properties_21}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|string|true|none|none|
+|message|string|true|none|none|
+
+## SubscriptionPlanCreateRequest
+
+<Anchor id="schemasubscriptionplancreaterequest" />
+<Anchor id="schema_SubscriptionPlanCreateRequest" />
+<Anchor id="tocSsubscriptionplancreaterequest" />
+<Anchor id="tocssubscriptionplancreaterequest" />
+
+```json
+{
+  "planName": "Gold",
+  "billingPlan": "COMMERCIAL",
+  "stopOnQuotaReach": true,
+  "throttleLimitCount": 1000,
+  "throttleLimitUnit": "Hour",
+  "expiryTime": "2026-12-31T23:59:59Z",
+  "status": "ACTIVE"
+}
+```
+
+#### Properties {#properties_22}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|planName|string|true|none|none|
+|billingPlan|string|false|none|none|
+|stopOnQuotaReach|boolean|false|none|none|
+|throttleLimitCount|integer|false|none|none|
+|throttleLimitUnit|string|false|none|none|
+|expiryTime|string(date-time)|false|none|none|
+|status|string|false|none|none|
+
+##### Enumerated Values {#enumerated-values_11}
+
+|Property|Value|
+|---|---|
+|throttleLimitUnit|Min|
+|throttleLimitUnit|Hour|
+|throttleLimitUnit|Day|
+|throttleLimitUnit|Month|
+|status|ACTIVE|
+|status|INACTIVE|
+
+## SubscriptionPlanUpdateRequest
+
+<Anchor id="schemasubscriptionplanupdaterequest" />
+<Anchor id="schema_SubscriptionPlanUpdateRequest" />
+<Anchor id="tocSsubscriptionplanupdaterequest" />
+<Anchor id="tocssubscriptionplanupdaterequest" />
+
+```json
+{
+  "planName": "string",
+  "billingPlan": "string",
+  "stopOnQuotaReach": true,
+  "throttleLimitCount": 0,
+  "throttleLimitUnit": "Min",
+  "expiryTime": "2019-08-24T14:15:22Z",
+  "status": "ACTIVE"
+}
+```
+
+#### Properties {#properties_23}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|planName|string|false|none|none|
+|billingPlan|string|false|none|none|
+|stopOnQuotaReach|boolean|false|none|none|
+|throttleLimitCount|integer|false|none|none|
+|throttleLimitUnit|string|false|none|none|
+|expiryTime|string(date-time)|false|none|none|
+|status|string|false|none|none|
+
+##### Enumerated Values {#enumerated-values_12}
+
+|Property|Value|
+|---|---|
+|throttleLimitUnit|Min|
+|throttleLimitUnit|Hour|
+|throttleLimitUnit|Day|
+|throttleLimitUnit|Month|
+|status|ACTIVE|
+|status|INACTIVE|
+
+## SubscriptionPlanResponse
+
+<Anchor id="schemasubscriptionplanresponse" />
+<Anchor id="schema_SubscriptionPlanResponse" />
+<Anchor id="tocSsubscriptionplanresponse" />
+<Anchor id="tocssubscriptionplanresponse" />
+
+```json
+{
+  "id": "string",
+  "planName": "string",
+  "billingPlan": "string",
+  "stopOnQuotaReach": true,
+  "throttleLimitCount": 0,
+  "throttleLimitUnit": "string",
+  "expiryTime": "2019-08-24T14:15:22Z",
+  "gatewayId": "string",
+  "status": "ACTIVE",
+  "createdAt": "2019-08-24T14:15:22Z",
+  "updatedAt": "2019-08-24T14:15:22Z"
+}
+```
+
+#### Properties {#properties_24}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|false|none|none|
+|planName|string|false|none|none|
+|billingPlan|string|false|none|none|
+|stopOnQuotaReach|boolean|false|none|none|
+|throttleLimitCount|integer|false|none|none|
+|throttleLimitUnit|string|false|none|none|
+|expiryTime|string(date-time)|false|none|none|
+|gatewayId|string|false|none|none|
+|status|string|false|none|none|
+|createdAt|string(date-time)|false|none|none|
+|updatedAt|string(date-time)|false|none|none|
+
+##### Enumerated Values {#enumerated-values_13}
+
+|Property|Value|
+|---|---|
+|status|ACTIVE|
+|status|INACTIVE|
+
+## SubscriptionPlanListResponse
+
+<Anchor id="schemasubscriptionplanlistresponse" />
+<Anchor id="schema_SubscriptionPlanListResponse" />
+<Anchor id="tocSsubscriptionplanlistresponse" />
+<Anchor id="tocssubscriptionplanlistresponse" />
+
+```json
+{
+  "subscriptionPlans": [
+    {
+      "id": "string",
+      "planName": "string",
+      "billingPlan": "string",
+      "stopOnQuotaReach": true,
+      "throttleLimitCount": 0,
+      "throttleLimitUnit": "string",
+      "expiryTime": "2019-08-24T14:15:22Z",
+      "gatewayId": "string",
+      "status": "ACTIVE",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "count": 0
+}
+```
+
+#### Properties {#properties_25}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|subscriptionPlans|[[SubscriptionPlanResponse](#schemasubscriptionplanresponse)]|false|none|none|
+|count|integer|false|none|none|
+
+## SubscriptionCreateRequest
+
+<Anchor id="schemasubscriptioncreaterequest" />
+<Anchor id="schema_SubscriptionCreateRequest" />
+<Anchor id="tocSsubscriptioncreaterequest" />
+<Anchor id="tocssubscriptioncreaterequest" />
+
+```json
+{
+  "apiId": "c9f2b6ae-1234-5678-9abc-def012345678",
+  "subscriptionToken": "sub-token-abc123xyz",
+  "applicationId": "string",
+  "subscriptionPlanId": "string",
+  "billingCustomerId": "string",
+  "billingSubscriptionId": "string",
+  "status": "ACTIVE"
+}
+```
+
+#### Properties {#properties_26}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiId|string|true|none|API identifier (deployment ID or handle)|
+|subscriptionToken|string|true|none|Opaque subscription token for API invocation (required; stored as hash only)|
+|applicationId|string|false|none|Application identifier (from DevPortal/STS). Optional for token-based subscriptions.|
+|subscriptionPlanId|string|false|none|Subscription plan UUID for rate limit and billing configuration.|
+|billingCustomerId|string|false|none|Billing customer identifier (optional, for analytics tracking).|
+|billingSubscriptionId|string|false|none|Billing subscription identifier (optional, for analytics tracking).|
+|status|string|false|none|none|
+
+##### Enumerated Values {#enumerated-values_14}
+
+|Property|Value|
+|---|---|
+|status|ACTIVE|
+|status|INACTIVE|
+|status|REVOKED|
+
+## SubscriptionUpdateRequest
+
+<Anchor id="schemasubscriptionupdaterequest" />
+<Anchor id="schema_SubscriptionUpdateRequest" />
+<Anchor id="tocSsubscriptionupdaterequest" />
+<Anchor id="tocssubscriptionupdaterequest" />
+
+```json
+{
+  "status": "ACTIVE"
+}
+```
+
+#### Properties {#properties_27}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|string|false|none|none|
+
+##### Enumerated Values {#enumerated-values_15}
+
+|Property|Value|
+|---|---|
+|status|ACTIVE|
+|status|INACTIVE|
+|status|REVOKED|
+
+## SubscriptionResponse
+
+<Anchor id="schemasubscriptionresponse" />
+<Anchor id="schema_SubscriptionResponse" />
+<Anchor id="tocSsubscriptionresponse" />
+<Anchor id="tocssubscriptionresponse" />
+
+```json
+{
+  "id": "string",
+  "apiId": "string",
+  "applicationId": "string",
+  "subscriptionToken": "string",
+  "subscriptionPlanId": "string",
+  "billingCustomerId": "string",
+  "billingSubscriptionId": "string",
+  "gatewayId": "string",
+  "status": "ACTIVE",
+  "createdAt": "2019-08-24T14:15:22Z",
+  "updatedAt": "2019-08-24T14:15:22Z"
+}
+```
+
+#### Properties {#properties_28}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|false|none|none|
+|apiId|string|false|none|none|
+|applicationId|string|false|none|none|
+|subscriptionToken|string|false|none|Opaque subscription token (returned only on create; use Platform-API to retrieve for existing subscriptions)|
+|subscriptionPlanId|string|false|none|Subscription plan UUID|
+|billingCustomerId|string|false|none|Billing customer identifier|
+|billingSubscriptionId|string|false|none|Billing subscription identifier|
+|gatewayId|string|false|none|none|
+|status|string|false|none|none|
+|createdAt|string(date-time)|false|none|none|
+|updatedAt|string(date-time)|false|none|none|
+
+##### Enumerated Values {#enumerated-values_16}
+
+|Property|Value|
+|---|---|
+|status|ACTIVE|
+|status|INACTIVE|
+|status|REVOKED|
+
+## SubscriptionListResponse
+
+<Anchor id="schemasubscriptionlistresponse" />
+<Anchor id="schema_SubscriptionListResponse" />
+<Anchor id="tocSsubscriptionlistresponse" />
+<Anchor id="tocssubscriptionlistresponse" />
+
+```json
+{
+  "subscriptions": [
+    {
+      "id": "string",
+      "apiId": "string",
+      "applicationId": "string",
+      "subscriptionToken": "string",
+      "subscriptionPlanId": "string",
+      "billingCustomerId": "string",
+      "billingSubscriptionId": "string",
+      "gatewayId": "string",
+      "status": "ACTIVE",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "count": 0
+}
+```
+
+#### Properties {#properties_29}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|subscriptions|[[SubscriptionResponse](#schemasubscriptionresponse)]|false|none|none|
+|count|integer|false|none|none|
+
+## MCPProxyConfigurationRequest
+
+<Anchor id="schemamcpproxyconfigurationrequest" />
+<Anchor id="schema_MCPProxyConfigurationRequest" />
+<Anchor id="tocSmcpproxyconfigurationrequest" />
+<Anchor id="tocsmcpproxyconfigurationrequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Mcp",
+  "metadata": {
+    "name": "everything-mcp-v1.0"
+  },
+  "spec": {
+    "displayName": "Everything",
+    "version": "v1.0",
+    "context": "/everything",
+    "specVersions": [
+      "2025-06-18"
+    ],
+    "upstream": {
+      "url": "http://everything:3001"
+    },
+    "tools": [],
+    "resources": [],
+    "prompts": []
+  }
+}
+```
+
+#### Properties {#properties_30}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|MCP Proxy specification version|
+|kind|string|true|none|MCP Proxy type|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[MCPProxyConfigData](#schemamcpproxyconfigdata)|true|none|none|
+
+##### Enumerated Values {#enumerated-values_17}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|Mcp|
+
+## MCPProxyConfiguration
+
+<Anchor id="schemamcpproxyconfiguration" />
+<Anchor id="schema_MCPProxyConfiguration" />
+<Anchor id="tocSmcpproxyconfiguration" />
+<Anchor id="tocsmcpproxyconfiguration" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Mcp",
+  "metadata": {
+    "name": "everything-mcp-v1.0"
+  },
+  "spec": {
+    "displayName": "Everything",
+    "version": "v1.0",
+    "context": "/everything",
+    "specVersions": [
+      "2025-06-18"
+    ],
+    "upstream": {
+      "url": "http://everything:3001"
+    },
+    "tools": [],
+    "resources": [],
+    "prompts": []
+  },
+  "status": {
+    "id": "everything-mcp-v1.0",
+    "state": "deployed",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z",
+    "deployedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+#### Properties {#properties_31}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[MCPProxyConfigurationRequest](#schemamcpproxyconfigurationrequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## MCPProxyConfigData
+
+<Anchor id="schemamcpproxyconfigdata" />
+<Anchor id="schema_MCPProxyConfigData" />
+<Anchor id="tocSmcpproxyconfigdata" />
+<Anchor id="tocsmcpproxyconfigdata" />
+
+```json
+{
+  "displayName": "Everything",
+  "version": "v1.0",
+  "context": "/everything",
+  "specVersions": [
+    "2025-06-18",
+    "2026-07-28"
+  ],
+  "vhost": "mcp1.example.com",
+  "upstreamDefinitions": [
+    {
+      "name": "my-upstream-1",
+      "basePath": "/api/v2",
+      "timeout": {
+        "connect": "5s"
+      },
+      "upstreams": [
+        {
+          "url": "http://prod-backend-1:5000",
+          "weight": 80
+        }
+      ]
+    }
+  ],
+  "upstream": {
+    "url": "http://prod-backend:5000/api/v2",
+    "ref": "string",
+    "hostRewrite": "auto",
+    "auth": {
+      "type": "api-key",
+      "header": "string",
+      "value": "string"
+    }
+  },
+  "policies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "tools": [
+    {
+      "name": "string",
+      "title": "string",
+      "description": "string",
+      "inputSchema": "string",
+      "outputSchema": "string"
+    }
+  ],
+  "resources": [
+    {
+      "uri": "string",
+      "name": "string",
+      "title": "string",
+      "description": "string",
+      "mimeType": "string",
+      "size": 0
+    }
+  ],
+  "prompts": [
+    {
+      "name": "string",
+      "title": "string",
+      "description": "string",
+      "arguments": [
+        {
+          "name": "string",
+          "description": "string",
+          "required": true,
+          "title": "string"
+        }
+      ]
+    }
+  ],
+  "deploymentState": "deployed",
+  "resilience": {
+    "timeout": "15s",
+    "idleTimeout": "0s"
+  }
+}
+```
+
+#### Properties {#properties_32}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable MCP Proxy display name|
+|version|string|true|none|MCP Proxy version|
+|context|string|false|none|MCP Proxy context path|
+|specVersion|string|false|none|DEPRECATED - use `specVersions`. Still honored when `specVersions` is absent. Cannot be used together with `specVersions`.|
+|specVersions|[string]|false|none|MCP specification versions supported by this proxy. This gateway build explicitly supports MCP specification versions 2025-06-18, 2025-11-25, and 2026-07-28.|
+|vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
+|upstreamDefinitions|[[UpstreamDefinition](#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations. Referenced by upstream.ref.|
+|upstream|any|true|none|The backend MCP server url and auth configurations|
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[Upstream](#schemaupstream)|false|none|Upstream backend configuration (single target or reference)|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[UpstreamAuth](#schemaupstreamauth)|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|policies|[[Policy](#schemapolicy)]|false|none|List of MCP Proxy level policies applied|
+|tools|[[MCPTool](#schemamcptool)]|false|none|none|
+|resources|[[MCPResource](#schemamcpresource)]|false|none|none|
+|prompts|[[MCPPrompt](#schemamcpprompt)]|false|none|none|
+|deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the MCP Proxy is removed from router traffic but configuration and policies are preserved for potential redeployment.|
+|resilience|[Resilience](#schemaresilience)|false|none|API-level backend/route timeout configuration. Applies to the traffic-forwarding routes generated for this MCP proxy (GET/POST/DELETE on the MCP resource path). Supported at the API level only. Because MCP transports are long-lived streams, the route timeout defaults to disabled ("0s") for MCP unless a timeout is set here (unlike REST/LLM, which fall back to the gateway's global route timeout); the idle timeout remains the liveness guard.|
+
+##### Enumerated Values {#enumerated-values_18}
+
+|Property|Value|
+|---|---|
+|deploymentState|deployed|
+|deploymentState|undeployed|
+
+## MCPTool
+
+<Anchor id="schemamcptool" />
+<Anchor id="schema_MCPTool" />
+<Anchor id="tocSmcptool" />
+<Anchor id="tocsmcptool" />
+
+```json
+{
+  "name": "string",
+  "title": "string",
+  "description": "string",
+  "inputSchema": "string",
+  "outputSchema": "string"
+}
+```
+
+#### Properties {#properties_33}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Unique identifier for the tool|
+|title|string|false|none|Optional human-readable name of the tool for display purposes.|
+|description|string|true|none|Human-readable description of functionality|
+|inputSchema|string|true|none|JSON Schema defining expected parameters|
+|outputSchema|string|false|none|Optional JSON Schema defining expected output structure|
+
+## MCPResource
+
+<Anchor id="schemamcpresource" />
+<Anchor id="schema_MCPResource" />
+<Anchor id="tocSmcpresource" />
+<Anchor id="tocsmcpresource" />
+
+```json
+{
+  "uri": "string",
+  "name": "string",
+  "title": "string",
+  "description": "string",
+  "mimeType": "string",
+  "size": 0
+}
+```
+
+#### Properties {#properties_34}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|uri|string|true|none|Unique identifier for the resource|
+|name|string|true|none|The name of the resource|
+|title|string|false|none|Optional human-readable name of the resource for display purposes|
+|description|string|false|none|Optional description|
+|mimeType|string|false|none|Optional MIME type|
+|size|integer|false|none|Optional size in bytes|
+
+## MCPPrompt
+
+<Anchor id="schemamcpprompt" />
+<Anchor id="schema_MCPPrompt" />
+<Anchor id="tocSmcpprompt" />
+<Anchor id="tocsmcpprompt" />
+
+```json
+{
+  "name": "string",
+  "title": "string",
+  "description": "string",
+  "arguments": [
+    {
+      "name": "string",
+      "description": "string",
+      "required": true,
+      "title": "string"
+    }
+  ]
+}
+```
+
+#### Properties {#properties_35}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Unique identifier for the prompt|
+|title|string|false|none|Optional human-readable name of the prompt for display purposes|
+|description|string|false|none|Optional human-readable description|
+|arguments|[object]|false|none|Optional list of arguments for customization|
+|name|string|true|none|Name of the argument|
+|description|string|false|none|Description of the argument|
+|required|boolean|false|none|Whether the argument is required|
+|title|string|false|none|Optional human-readable title of the argument|
+
+## ErrorResponse
+
+<Anchor id="schemaerrorresponse" />
+<Anchor id="schema_ErrorResponse" />
+<Anchor id="tocSerrorresponse" />
+<Anchor id="tocserrorresponse" />
+
+```json
+{
+  "status": "error",
+  "message": "Configuration validation failed",
+  "errors": [
+    {
+      "field": "spec.context",
+      "message": "Context must start with / and cannot end with /"
+    }
+  ]
+}
+```
+
+#### Properties {#properties_36}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|string|true|none|none|
+|message|string|true|none|High-level error description|
+|errors|[[ValidationError](#schemavalidationerror)]|false|none|Detailed validation errors|
+
+## ValidationError
+
+<Anchor id="schemavalidationerror" />
+<Anchor id="schema_ValidationError" />
+<Anchor id="tocSvalidationerror" />
+<Anchor id="tocsvalidationerror" />
+
+```json
+{
+  "field": "spec.context",
+  "message": "Context must start with / and cannot end with /"
+}
+```
+
+#### Properties {#properties_37}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|field|string|false|none|Field that failed validation|
+|message|string|false|none|Human-readable error message|
+
+## LLMProviderTemplateRequest
+
+<Anchor id="schemallmprovidertemplaterequest" />
+<Anchor id="schema_LLMProviderTemplateRequest" />
+<Anchor id="tocSllmprovidertemplaterequest" />
+<Anchor id="tocsllmprovidertemplaterequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "LlmProviderTemplate",
+  "metadata": {
+    "name": "openai-template"
+  },
+  "spec": {
+    "displayName": "OpenAI",
+    "promptTokens": {
+      "location": "payload",
+      "identifier": "$.usage.prompt_tokens"
+    },
+    "completionTokens": {
+      "location": "payload",
+      "identifier": "$.usage.completion_tokens"
+    },
+    "totalTokens": {
+      "location": "payload",
+      "identifier": "$.usage.total_tokens"
+    },
+    "remainingTokens": {
+      "location": "header",
+      "identifier": "x-ratelimit-remaining-tokens"
+    },
+    "requestModel": {
+      "location": "payload",
+      "identifier": "$.model"
+    },
+    "responseModel": {
+      "location": "payload",
+      "identifier": "$.model"
+    }
+  }
+}
+```
+
+#### Properties {#properties_38}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|Template specification version|
+|kind|string|true|none|Template kind|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[LLMProviderTemplateData](#schemallmprovidertemplatedata)|true|none|none|
+
+##### Enumerated Values {#enumerated-values_19}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|LlmProviderTemplate|
+
+## LLMProviderTemplate
+
+<Anchor id="schemallmprovidertemplate" />
+<Anchor id="schema_LLMProviderTemplate" />
+<Anchor id="tocSllmprovidertemplate" />
+<Anchor id="tocsllmprovidertemplate" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "LlmProviderTemplate",
+  "metadata": {
+    "name": "openai-template"
+  },
+  "spec": {
+    "displayName": "OpenAI",
+    "promptTokens": {
+      "location": "payload",
+      "identifier": "$.usage.prompt_tokens"
+    },
+    "completionTokens": {
+      "location": "payload",
+      "identifier": "$.usage.completion_tokens"
+    },
+    "totalTokens": {
+      "location": "payload",
+      "identifier": "$.usage.total_tokens"
+    },
+    "remainingTokens": {
+      "location": "header",
+      "identifier": "x-ratelimit-remaining-tokens"
+    },
+    "requestModel": {
+      "location": "payload",
+      "identifier": "$.model"
+    },
+    "responseModel": {
+      "location": "payload",
+      "identifier": "$.model"
+    }
+  },
+  "status": {
+    "id": "openai-template",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+#### Properties {#properties_39}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[LLMProviderTemplateRequest](#schemallmprovidertemplaterequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## LLMProviderTemplateData
+
+<Anchor id="schemallmprovidertemplatedata" />
+<Anchor id="schema_LLMProviderTemplateData" />
+<Anchor id="tocSllmprovidertemplatedata" />
+<Anchor id="tocsllmprovidertemplatedata" />
+
+```json
+{
+  "displayName": "OpenAI",
+  "groupId": "openai",
+  "managedBy": "wso2",
+  "version": "v1.0",
+  "promptTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "completionTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "totalTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "remainingTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "requestModel": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "responseModel": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "resourceMappings": {
+    "resources": [
+      {
+        "resource": "/responses",
+        "promptTokens": {
+          "location": "payload",
+          "identifier": "$.usage.inputTokens"
+        },
+        "completionTokens": {
+          "location": "payload",
+          "identifier": "$.usage.inputTokens"
+        },
+        "totalTokens": {
+          "location": "payload",
+          "identifier": "$.usage.inputTokens"
+        },
+        "remainingTokens": {
+          "location": "payload",
+          "identifier": "$.usage.inputTokens"
+        },
+        "requestModel": {
+          "location": "payload",
+          "identifier": "$.usage.inputTokens"
+        },
+        "responseModel": {
+          "location": "payload",
+          "identifier": "$.usage.inputTokens"
+        }
+      }
+    ]
+  }
+}
+```
+
+#### Properties {#properties_40}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable LLM Template name|
+|groupId|string|false|none|Stable family-grouping identifier shared by every version of this<br />template. Multiple versions with the same groupId but different<br />handles are surfaced as versions of one template. Defaults to<br />metadata.name when omitted.|
+|managedBy|string|false|none|Origin of the template. Built-in templates use 'wso2'; custom<br />templates default to 'customer' and may be set to any value.|
+|version|string|false|none|Template content version (e.g. v1.0). Multiple versions of the same<br />groupId can coexist; defaults to v1.0 when omitted.|
+|promptTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|completionTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|totalTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|remainingTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|requestModel|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|responseModel|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|resourceMappings|[LLMProviderTemplateResourceMappings](#schemallmprovidertemplateresourcemappings)|false|none|none|
+
+## LLMProviderTemplateResourceMappings
+
+<Anchor id="schemallmprovidertemplateresourcemappings" />
+<Anchor id="schema_LLMProviderTemplateResourceMappings" />
+<Anchor id="tocSllmprovidertemplateresourcemappings" />
+<Anchor id="tocsllmprovidertemplateresourcemappings" />
+
+```json
+{
+  "resources": [
+    {
+      "resource": "/responses",
+      "promptTokens": {
+        "location": "payload",
+        "identifier": "$.usage.inputTokens"
+      },
+      "completionTokens": {
+        "location": "payload",
+        "identifier": "$.usage.inputTokens"
+      },
+      "totalTokens": {
+        "location": "payload",
+        "identifier": "$.usage.inputTokens"
+      },
+      "remainingTokens": {
+        "location": "payload",
+        "identifier": "$.usage.inputTokens"
+      },
+      "requestModel": {
+        "location": "payload",
+        "identifier": "$.usage.inputTokens"
+      },
+      "responseModel": {
+        "location": "payload",
+        "identifier": "$.usage.inputTokens"
+      }
+    }
+  ]
+}
+```
+
+#### Properties {#properties_41}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|resources|[[LLMProviderTemplateResourceMapping](#schemallmprovidertemplateresourcemapping)]|false|none|none|
+
+## LLMProviderTemplateResourceMapping
+
+<Anchor id="schemallmprovidertemplateresourcemapping" />
+<Anchor id="schema_LLMProviderTemplateResourceMapping" />
+<Anchor id="tocSllmprovidertemplateresourcemapping" />
+<Anchor id="tocsllmprovidertemplateresourcemapping" />
+
+```json
+{
+  "resource": "/responses",
+  "promptTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "completionTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "totalTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "remainingTokens": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "requestModel": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  },
+  "responseModel": {
+    "location": "payload",
+    "identifier": "$.usage.inputTokens"
+  }
+}
+```
+
+#### Properties {#properties_42}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|resource|string|true|none|Resource path pattern for this mapping|
+|promptTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|completionTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|totalTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|remainingTokens|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|requestModel|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+|responseModel|[ExtractionIdentifier](#schemaextractionidentifier)|false|none|none|
+
+## ExtractionIdentifier
+
+<Anchor id="schemaextractionidentifier" />
+<Anchor id="schema_ExtractionIdentifier" />
+<Anchor id="tocSextractionidentifier" />
+<Anchor id="tocsextractionidentifier" />
+
+```json
+{
+  "location": "payload",
+  "identifier": "$.usage.inputTokens"
+}
+```
+
+#### Properties {#properties_43}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|location|string|true|none|Where to find the token information|
+|identifier|string|true|none|JSONPath expression or header name to identify the token value|
+
+##### Enumerated Values {#enumerated-values_20}
+
+|Property|Value|
+|---|---|
+|location|payload|
+|location|header|
+|location|queryParam|
+|location|pathParam|
+
+## LLMProviderConfigurationRequest
+
+<Anchor id="schemallmproviderconfigurationrequest" />
+<Anchor id="schema_LLMProviderConfigurationRequest" />
+<Anchor id="tocSllmproviderconfigurationrequest" />
+<Anchor id="tocsllmproviderconfigurationrequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "LlmProvider",
+  "metadata": {
+    "name": "wso2-openai-provider"
+  },
+  "spec": {
+    "displayName": "OpenAI Provider",
+    "version": "v1.0",
+    "template": "openai",
+    "context": "/openai/latest",
+    "upstream": {
+      "url": "https://api.openai.com/v1",
+      "auth": {
+        "type": "api-key",
+        "header": "Authorization",
+        "value": "Bearer sk-your-api-key"
+      }
+    },
+    "accessControl": {
+      "mode": "deny_all",
+      "exceptions": [
+        {
+          "path": "/chat/completions",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/models",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/models/{modelId}",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  }
+}
+```
+
+#### Properties {#properties_44}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|Provider specification version|
+|kind|string|true|none|Provider kind|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[LLMProviderConfigData](#schemallmproviderconfigdata)|true|none|none|
+
+##### Enumerated Values {#enumerated-values_21}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|LlmProvider|
+
+## LLMProviderConfiguration
+
+<Anchor id="schemallmproviderconfiguration" />
+<Anchor id="schema_LLMProviderConfiguration" />
+<Anchor id="tocSllmproviderconfiguration" />
+<Anchor id="tocsllmproviderconfiguration" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "LlmProvider",
+  "metadata": {
+    "name": "wso2-openai-provider"
+  },
+  "spec": {
+    "displayName": "OpenAI Provider",
+    "version": "v1.0",
+    "template": "openai",
+    "context": "/openai/latest",
+    "upstream": {
+      "url": "https://api.openai.com/v1",
+      "auth": {
+        "type": "api-key",
+        "header": "Authorization"
+      }
+    },
+    "accessControl": {
+      "mode": "deny_all",
+      "exceptions": [
+        {
+          "path": "/chat/completions",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/models",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/models/{modelId}",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  "status": {
+    "id": "wso2-openai-provider",
+    "state": "deployed",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z",
+    "deployedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+#### Properties {#properties_45}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[LLMProviderConfigurationRequest](#schemallmproviderconfigurationrequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## LLMProviderConfigData
+
+<Anchor id="schemallmproviderconfigdata" />
+<Anchor id="schema_LLMProviderConfigData" />
+<Anchor id="tocSllmproviderconfigdata" />
+<Anchor id="tocsllmproviderconfigdata" />
+
+```json
+{
+  "displayName": "WSO2 OpenAI Provider",
+  "version": "v1.0",
+  "context": "/openai",
+  "vhost": "api.openai.com",
+  "template": "openai",
+  "upstreamDefinitions": [
+    {
+      "name": "my-upstream-1",
+      "basePath": "/api/v2",
+      "timeout": {
+        "connect": "5s"
+      },
+      "upstreams": [
+        {
+          "url": "http://prod-backend-1:5000",
+          "weight": 80
+        }
+      ]
+    }
+  ],
+  "upstream": {
+    "url": "http://prod-backend:5000/api/v2",
+    "ref": "string",
+    "hostRewrite": "auto",
+    "auth": {
+      "type": "api-key",
+      "header": "string",
+      "value": "string"
+    }
+  },
+  "accessControl": {
+    "mode": "deny_all",
+    "exceptions": [
+      {
+        "path": "/chat/completions",
+        "methods": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  "globalPolicies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "operationPolicies": [
+    {
+      "name": "token-based-ratelimit",
+      "version": "v1",
+      "executionCondition": "string",
+      "paths": [
+        {
+          "path": "/chat/completions",
+          "methods": [
+            "GET"
+          ],
+          "params": {}
+        }
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "name": "llm-cost-based-ratelimit",
+      "version": "v1",
+      "paths": [
+        {
+          "path": "/chat/completions",
+          "methods": [
+            "GET"
+          ],
+          "params": {}
+        }
+      ]
+    }
+  ],
+  "deploymentState": "deployed",
+  "resilience": {
+    "timeout": "15s",
+    "idleTimeout": "0s"
+  }
+}
+```
+
+#### Properties {#properties_46}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable LLM Provider name|
+|version|string|true|none|Semantic version of the LLM Provider|
+|context|string|false|none|Base path for all API routes (must start with /, no trailing slash)|
+|vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
+|template|string|true|none|Template name to use for this LLM Provider|
+|upstreamDefinitions|[[UpstreamDefinition](#schemaupstreamdefinition)]|false|none|List of reusable upstream definitions with optional timeout configurations. Referenced by upstream.ref.|
+|upstream|any|true|none|none|
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[Upstream](#schemaupstream)|false|none|Upstream backend configuration (single target or reference)|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[UpstreamAuth](#schemaupstreamauth)|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|accessControl|[LLMAccessControl](#schemallmaccesscontrol)|true|none|none|
+|globalPolicies|[[Policy](#schemapolicy)]|false|none|Global (api-level) policies applied across ALL operations as one shared scope, evaluated before operation-level policies.|
+|operationPolicies|[[OperationPolicy](#schemaoperationpolicy)]|false|none|Operation-level policies scoped to specific paths/methods, evaluated after global policies.|
+|policies|[[LLMPolicy](#schemallmpolicy)]|false|none|DEPRECATED - use operationPolicies. Still honoured (treated identically to operationPolicies).|
+|deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the LLM Provider is removed from router traffic but configuration and policies are preserved for potential redeployment.|
+|resilience|[Resilience](#schemaresilience)|false|none|API-level backend/route timeout configuration. Applies to all routes generated for this LLM Provider (the routes that forward traffic upstream). Supported at the API level only - LLM routes are synthesized by the gateway, so there is no operation-level override.|
+
+##### Enumerated Values {#enumerated-values_22}
+
+|Property|Value|
+|---|---|
+|deploymentState|deployed|
+|deploymentState|undeployed|
+
+## UpstreamAuth
+
+<Anchor id="schemaupstreamauth" />
+<Anchor id="schema_UpstreamAuth" />
+<Anchor id="tocSupstreamauth" />
+<Anchor id="tocsupstreamauth" />
+
+```json
+{
+  "auth": {
+    "type": "api-key",
+    "header": "string",
+    "value": "string"
+  }
+}
+```
+
+#### Properties {#properties_47}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|auth|object|false|none|none|
+|type|string|true|none|none|
+|header|string|false|none|none|
+|value|string|false|write-only|Upstream credential. Write-only: accepted on create/update and never returned by the management API on a read, for any role. Supply either a literal value or a secret reference (e.g. a `secret` template expression); either way the field is omitted from management API response bodies. An update that omits it inherits the stored value; set `type: none` to remove auth.|
+
+##### Enumerated Values {#enumerated-values_23}
+
+|Property|Value|
+|---|---|
+|type|api-key|
+|type|other|
+|type|none|
+
+## LLMUpstreamAuth
+
+<Anchor id="schemallmupstreamauth" />
+<Anchor id="schema_LLMUpstreamAuth" />
+<Anchor id="tocSllmupstreamauth" />
+<Anchor id="tocsllmupstreamauth" />
+
+```json
+{
+  "type": "api-key",
+  "header": "string",
+  "value": "string"
+}
+```
+
+#### Properties {#properties_48}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|type|string|true|none|none|
+|header|string|false|none|none|
+|value|string|false|write-only|Upstream credential. Write-only: accepted on create/update and never returned by the management API on a read, for any role. An update that omits it inherits the stored value; set `type: none` to remove auth.|
+
+##### Enumerated Values {#enumerated-values_24}
+
+|Property|Value|
+|---|---|
+|type|api-key|
+|type|other|
+|type|none|
+
+## LLMProxyProvider
+
+<Anchor id="schemallmproxyprovider" />
+<Anchor id="schema_LLMProxyProvider" />
+<Anchor id="tocSllmproxyprovider" />
+<Anchor id="tocsllmproxyprovider" />
+
+```json
+{
+  "id": "wso2-openai-provider",
+  "auth": {
+    "type": "api-key",
+    "header": "string",
+    "value": "string"
+  }
+}
+```
+
+#### Properties {#properties_49}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|true|none|Unique id of a deployed llm provider|
+|auth|[LLMUpstreamAuth](#schemallmupstreamauth)|false|none|none|
+
+## LLMProxyAdditionalProvider
+
+<Anchor id="schemallmproxyadditionalprovider" />
+<Anchor id="schema_LLMProxyAdditionalProvider" />
+<Anchor id="tocSllmproxyadditionalprovider" />
+<Anchor id="tocsllmproxyadditionalprovider" />
+
+```json
+{
+  "id": "anthropic-provider",
+  "as": "anthropic-upstream",
+  "auth": {
+    "type": "api-key",
+    "header": "string",
+    "value": "string"
+  },
+  "transformer": {
+    "type": "openai-to-anthropic",
+    "version": "v1",
+    "params": {}
+  }
+}
+```
+
+Additional LLM provider attached to this proxy as a selectable upstream. Policies route to it by referring to the `as` name (defaults to `id`). Optional auth config is used by the proxy when calling a protected LlmProvider over the internal loopback route.
+
+#### Properties {#properties_50}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|true|none|Unique id of a deployed llm provider|
+|as|string|false|none|Logical LLM Provider name used by policies to select this provider. Must be unique within the proxy. Defaults to `id` when omitted.|
+|auth|[LLMUpstreamAuth](#schemallmupstreamauth)|false|none|none|
+|transformer|[LLMProxyTransformer](#schemallmproxytransformer)|false|none|Request/response translator applied when this provider is the selected upstream. The proxy injects the translator as a conditional policy whose execution condition matches this provider, so it runs only when the provider is selected. The provider's `as` name (defaults to `id`) is passed to the translator as its target upstream.|
+
+## LLMProxyTransformer
+
+<Anchor id="schemallmproxytransformer" />
+<Anchor id="schema_LLMProxyTransformer" />
+<Anchor id="tocSllmproxytransformer" />
+<Anchor id="tocsllmproxytransformer" />
+
+```json
+{
+  "type": "openai-to-anthropic",
+  "version": "v1",
+  "params": {}
+}
+```
+
+Request/response translator applied when this provider is the selected upstream. The proxy injects the translator as a conditional policy whose execution condition matches this provider, so it runs only when the provider is selected. The provider's `as` name (defaults to `id`) is passed to the translator as its target upstream.
+
+#### Properties {#properties_51}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|type|string|true|none|Translator policy name (for example openai-to-anthropic).|
+|version|string|true|none|Major-only translator policy version (for example v1). The Gateway Controller resolves it to the installed full version.|
+|params|object|false|none|Translator-specific parameters (for example model, apiVersion).|
+
+## LLMAccessControl
+
+<Anchor id="schemallmaccesscontrol" />
+<Anchor id="schema_LLMAccessControl" />
+<Anchor id="tocSllmaccesscontrol" />
+<Anchor id="tocsllmaccesscontrol" />
+
+```json
+{
+  "mode": "deny_all",
+  "exceptions": [
+    {
+      "path": "/chat/completions",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}
+```
+
+#### Properties {#properties_52}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mode|string|true|none|Access control mode|
+|exceptions|[[RouteException](#schemarouteexception)]|false|none|Path exceptions to the access control mode|
+
+##### Enumerated Values {#enumerated-values_25}
+
+|Property|Value|
+|---|---|
+|mode|allow_all|
+|mode|deny_all|
+
+## RouteException
+
+<Anchor id="schemarouteexception" />
+<Anchor id="schema_RouteException" />
+<Anchor id="tocSrouteexception" />
+<Anchor id="tocsrouteexception" />
+
+```json
+{
+  "path": "/chat/completions",
+  "methods": [
+    "GET"
+  ]
+}
+```
+
+#### Properties {#properties_53}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|path|string|true|none|Path pattern|
+|methods|[string]|true|none|HTTP methods|
+
+## LLMPolicy
+
+<Anchor id="schemallmpolicy" />
+<Anchor id="schema_LLMPolicy" />
+<Anchor id="tocSllmpolicy" />
+<Anchor id="tocsllmpolicy" />
+
+```json
+{
+  "name": "llm-cost-based-ratelimit",
+  "version": "v1",
+  "paths": [
+    {
+      "path": "/chat/completions",
+      "methods": [
+        "GET"
+      ],
+      "params": {}
+    }
+  ]
+}
+```
+
+#### Properties {#properties_54}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|none|
+|version|string|true|none|none|
+|paths|[[LLMPolicyPath](#schemallmpolicypath)]|true|none|none|
+
+## LLMPolicyPath
+
+<Anchor id="schemallmpolicypath" />
+<Anchor id="schema_LLMPolicyPath" />
+<Anchor id="tocSllmpolicypath" />
+<Anchor id="tocsllmpolicypath" />
+
+```json
+{
+  "path": "/chat/completions",
+  "methods": [
+    "GET"
+  ],
+  "params": {}
+}
+```
+
+#### Properties {#properties_55}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|path|string|true|none|none|
+|methods|[string]|true|none|none|
+|params|object|true|none|JSON Schema describing the parameters accepted by this policy. This itself is a JSON Schema document.|
+
+## OperationPolicy
+
+<Anchor id="schemaoperationpolicy" />
+<Anchor id="schema_OperationPolicy" />
+<Anchor id="tocSoperationpolicy" />
+<Anchor id="tocsoperationpolicy" />
+
+```json
+{
+  "name": "token-based-ratelimit",
+  "version": "v1",
+  "executionCondition": "string",
+  "paths": [
+    {
+      "path": "/chat/completions",
+      "methods": [
+        "GET"
+      ],
+      "params": {}
+    }
+  ]
+}
+```
+
+#### Properties {#properties_56}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|none|
+|version|string|true|none|none|
+|executionCondition|string|false|none|Expression controlling conditional execution of the policy|
+|paths|[[OperationPolicyPath](#schemaoperationpolicypath)]|true|none|none|
+
+## OperationPolicyPath
+
+<Anchor id="schemaoperationpolicypath" />
+<Anchor id="schema_OperationPolicyPath" />
+<Anchor id="tocSoperationpolicypath" />
+<Anchor id="tocsoperationpolicypath" />
+
+```json
+{
+  "path": "/chat/completions",
+  "methods": [
+    "GET"
+  ],
+  "params": {}
+}
+```
+
+#### Properties {#properties_57}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|path|string|true|none|none|
+|methods|[string]|true|none|none|
+|params|object|true|none|JSON Schema describing the parameters accepted by this policy. This itself is a JSON Schema document.|
+
+## LLMProxyConfigurationRequest
+
+<Anchor id="schemallmproxyconfigurationrequest" />
+<Anchor id="schema_LLMProxyConfigurationRequest" />
+<Anchor id="tocSllmproxyconfigurationrequest" />
+<Anchor id="tocsllmproxyconfigurationrequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "LlmProxy",
+  "metadata": {
+    "name": "openai-proxy"
+  },
+  "spec": {
+    "displayName": "OpenAI Proxy",
+    "version": "v1.0",
+    "context": "/openai-proxy",
+    "provider": {
+      "id": "wso2-openai-provider"
+    },
+    "policies": []
+  }
+}
+```
+
+#### Properties {#properties_58}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|Proxy specification version|
+|kind|string|true|none|Proxy kind|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[LLMProxyConfigData](#schemallmproxyconfigdata)|true|none|none|
+
+##### Enumerated Values {#enumerated-values_26}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|LlmProxy|
+
+## LLMProxyConfiguration
+
+<Anchor id="schemallmproxyconfiguration" />
+<Anchor id="schema_LLMProxyConfiguration" />
+<Anchor id="tocSllmproxyconfiguration" />
+<Anchor id="tocsllmproxyconfiguration" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "LlmProxy",
+  "metadata": {
+    "name": "openai-proxy"
+  },
+  "spec": {
+    "displayName": "OpenAI Proxy",
+    "version": "v1.0",
+    "context": "/openai-proxy",
+    "provider": {
+      "id": "wso2-openai-provider"
+    },
+    "policies": []
+  },
+  "status": {
+    "id": "openai-proxy",
+    "state": "deployed",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z",
+    "deployedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+#### Properties {#properties_59}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[LLMProxyConfigurationRequest](#schemallmproxyconfigurationrequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## LLMProxyConfigData
+
+<Anchor id="schemallmproxyconfigdata" />
+<Anchor id="schema_LLMProxyConfigData" />
+<Anchor id="tocSllmproxyconfigdata" />
+<Anchor id="tocsllmproxyconfigdata" />
+
+```json
+{
+  "displayName": "OpenAI Proxy",
+  "version": "v1.0",
+  "context": "/openai",
+  "vhost": "api.openai.com",
+  "provider": {
+    "id": "wso2-openai-provider",
+    "auth": {
+      "type": "api-key",
+      "header": "string",
+      "value": "string"
+    }
+  },
+  "globalPolicies": [
+    {
+      "name": "cors",
+      "version": "v1",
+      "executionCondition": "request.metadata[authenticated] != true",
+      "params": {}
+    }
+  ],
+  "operationPolicies": [
+    {
+      "name": "token-based-ratelimit",
+      "version": "v1",
+      "executionCondition": "string",
+      "paths": [
+        {
+          "path": "/chat/completions",
+          "methods": [
+            "GET"
+          ],
+          "params": {}
+        }
+      ]
+    }
+  ],
+  "additionalProviders": [
+    {
+      "id": "anthropic-provider",
+      "as": "anthropic-upstream",
+      "auth": {
+        "type": "api-key",
+        "header": "string",
+        "value": "string"
+      },
+      "transformer": {
+        "type": "openai-to-anthropic",
+        "version": "v1",
+        "params": {}
+      }
+    }
+  ],
+  "policies": [
+    {
+      "name": "llm-cost-based-ratelimit",
+      "version": "v1",
+      "paths": [
+        {
+          "path": "/chat/completions",
+          "methods": [
+            "GET"
+          ],
+          "params": {}
+        }
+      ]
+    }
+  ],
+  "deploymentState": "deployed",
+  "resilience": {
+    "timeout": "15s",
+    "idleTimeout": "0s"
+  }
+}
+```
+
+#### Properties {#properties_60}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable LLM proxy name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
+|version|string|true|none|Semantic version of the LLM proxy|
+|context|string|false|none|Base path for all API routes (must start with /, no trailing slash)|
+|vhost|string|false|none|Virtual host name used for routing. Supports standard domain names, subdomains, or wildcard domains. Must follow RFC-compliant hostname rules. Wildcards are only allowed in the left-most label (e.g., *.example.com).|
+|provider|[LLMProxyProvider](#schemallmproxyprovider)|true|none|none|
+|globalPolicies|[[Policy](#schemapolicy)]|false|none|Global (api-level) policies applied across ALL operations as one shared scope, evaluated before operation-level policies.|
+|operationPolicies|[[OperationPolicy](#schemaoperationpolicy)]|false|none|Operation-level policies scoped to specific paths/methods, evaluated after global policies.|
+|additionalProviders|[[LLMProxyAdditionalProvider](#schemallmproxyadditionalprovider)]|false|none|Optional list of additional LLM providers attached to this proxy as selectable upstreams. Policies (e.g. an OpenAI translator) can route requests to any of these by setting the upstream name. The primary `provider` field above remains the default upstream and the FK target.|
+|policies|[[LLMPolicy](#schemallmpolicy)]|false|none|DEPRECATED - use operationPolicies. Still honoured (treated identically to operationPolicies).|
+|deploymentState|string|false|none|Desired deployment state - 'deployed' (default) or 'undeployed'. When set to 'undeployed', the LLM Proxy is removed from router traffic but configuration and policies are preserved for potential redeployment.|
+|resilience|[Resilience](#schemaresilience)|false|none|API-level backend/route timeout configuration. Applies to all routes generated for this LLM Proxy (the routes that forward traffic upstream). Supported at the API level only - LLM routes are synthesized by the gateway, so there is no operation-level override.|
+
+##### Enumerated Values {#enumerated-values_27}
+
+|Property|Value|
+|---|---|
+|deploymentState|deployed|
+|deploymentState|undeployed|
+
+## SecretConfigurationRequest
+
+<Anchor id="schemasecretconfigurationrequest" />
+<Anchor id="schema_SecretConfigurationRequest" />
+<Anchor id="tocSsecretconfigurationrequest" />
+<Anchor id="tocssecretconfigurationrequest" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "database-password"
+  },
+  "spec": {
+    "displayName": "Database Password",
+    "description": "PostgreSQL main database password",
+    "value": "sup3rs3cr3t!"
+  }
+}
+```
+
+#### Properties {#properties_61}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|Secret specification version|
+|kind|string|true|none|Secret resource kind|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[SecretConfigData](#schemasecretconfigdata)|true|none|none|
+
+##### Enumerated Values {#enumerated-values_28}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|Secret|
+
+## SecretConfiguration
+
+<Anchor id="schemasecretconfiguration" />
+<Anchor id="schema_SecretConfiguration" />
+<Anchor id="tocSsecretconfiguration" />
+<Anchor id="tocssecretconfiguration" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "database-password"
+  },
+  "spec": {
+    "displayName": "Database Password",
+    "description": "PostgreSQL main database password",
+    "value": "sup3rs3cr3t!"
+  },
+  "status": {
+    "id": "database-password",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+Composite of request fields plus a generic k8s-style `status` for documentation.
+For actual HTTP response shapes, use `SecretConfigurationResponseCreateUpdate`,
+`SecretConfigurationResponseRetrieved`, or `SecretListItem` (see
+`SecretResourceServiceStatus` for the id/timestamp-only status on secret APIs).
+
+#### Properties {#properties_62}
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[SecretConfigurationRequest](#schemasecretconfigurationrequest)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Populated on responses.|
+
+## SecretConfigData
+
+<Anchor id="schemasecretconfigdata" />
+<Anchor id="schema_SecretConfigData" />
+<Anchor id="tocSsecretconfigdata" />
+<Anchor id="tocssecretconfigdata" />
+
+```json
+{
+  "displayName": "Database Password",
+  "description": "PostgreSQL main database password",
+  "value": "sup3rs3cr3t!"
+}
+```
+
+#### Properties {#properties_63}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable secret name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
+|description|string|false|none|Description of the secret|
+|value|string(password)|true|none|Secret value (stored encrypted)|
+
+## SecretConfigListData
+
+<Anchor id="schemasecretconfiglistdata" />
+<Anchor id="schema_SecretConfigListData" />
+<Anchor id="tocSsecretconfiglistdata" />
+<Anchor id="tocssecretconfiglistdata" />
+
+```json
+{
+  "displayName": "Database Password",
+  "description": "PostgreSQL main database password"
+}
+```
+
+#### Properties {#properties_64}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|displayName|string|true|none|Human-readable secret name (must be URL-friendly - only letters, numbers, spaces, hyphens, underscores, and dots allowed)|
+|description|string|false|none|Description of the secret, if the server includes it|
+
+## SecretListItem
+
+<Anchor id="schemasecretlistitem" />
+<Anchor id="schema_SecretListItem" />
+<Anchor id="tocSsecretlistitem" />
+<Anchor id="tocssecretlistitem" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "database-password"
+  },
+  "spec": {
+    "displayName": "Database Password"
+  },
+  "status": {
+    "id": "database-password",
+    "createdAt": "2026-04-24T07:21:13Z",
+    "updatedAt": "2026-04-24T07:21:13Z"
+  }
+}
+```
+
+#### Properties {#properties_65}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|Secret specification version|
+|kind|string|true|none|Secret resource kind|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[SecretConfigListData](#schemasecretconfiglistdata)|true|none|none|
+|status|[ResourceStatus](#schemaresourcestatus)|false|read-only|Server-managed lifecycle fields. Omitted in list items may vary; the secret value is never included here.|
+
+##### Enumerated Values {#enumerated-values_29}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|Secret|
+
+## CertificateUploadRequest
+
+<Anchor id="schemacertificateuploadrequest" />
+<Anchor id="schema_CertificateUploadRequest" />
+<Anchor id="tocScertificateuploadrequest" />
+<Anchor id="tocscertificateuploadrequest" />
+
+```json
+{
+  "name": "my-custom-ca",
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAKL0UG+mRKtjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\n...\n-----END CERTIFICATE-----\n"
+}
+```
+
+#### Properties {#properties_66}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string|true|none|Unique name for the certificate. Must be unique across all certificates.|
+|certificate|string|true|none|PEM-encoded X.509 certificate(s). Can contain multiple certificates.|
+
+## CertificateResponse
+
+<Anchor id="schemacertificateresponse" />
+<Anchor id="schema_CertificateResponse" />
+<Anchor id="tocScertificateresponse" />
+<Anchor id="tocscertificateresponse" />
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "my-custom-ca",
+  "subject": "CN=My CA,O=My Organization,C=US",
+  "issuer": "CN=My CA,O=My Organization,C=US",
+  "notAfter": "2026-11-26 06:07:26",
+  "count": 1,
+  "message": "Certificate uploaded and SDS updated successfully",
+  "status": "success"
+}
+```
+
+#### Properties {#properties_67}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|false|none|Unique identifier (UUID) for the certificate|
+|name|string|false|none|Name of the certificate|
+|subject|string|false|none|Certificate subject DN (for first cert if bundle)|
+|issuer|string|false|none|Certificate issuer DN (for first cert if bundle)|
+|notAfter|string(date-time)|false|none|Certificate expiration date (for first cert if bundle)|
+|count|integer|false|none|Number of certificates in the file|
+|message|string|false|none|Success or informational message|
+|status|string|false|none|none|
+
+##### Enumerated Values {#enumerated-values_30}
+
+|Property|Value|
+|---|---|
+|status|success|
+|status|error|
+
+## CertificateListResponse
+
+<Anchor id="schemacertificatelistresponse" />
+<Anchor id="schema_CertificateListResponse" />
+<Anchor id="tocScertificatelistresponse" />
+<Anchor id="tocscertificatelistresponse" />
+
+```json
+{
+  "certificates": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "my-custom-ca",
+      "subject": "CN=My CA,O=My Organization,C=US",
+      "issuer": "CN=My CA,O=My Organization,C=US",
+      "notAfter": "2026-11-26 06:07:26",
+      "count": 1,
+      "message": "Certificate uploaded and SDS updated successfully",
+      "status": "success"
+    }
+  ],
+  "totalCount": 3,
+  "totalBytes": 221599,
+  "status": "success"
+}
+```
+
+#### Properties {#properties_68}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|certificates|[[CertificateResponse](#schemacertificateresponse)]|false|none|none|
+|totalCount|integer|false|none|Total number of certificate files|
+|totalBytes|integer|false|none|Total bytes of all certificate files|
+|status|string|false|none|none|
+
+## APIKeyListResponse
+
+<Anchor id="schemaapikeylistresponse" />
+<Anchor id="schema_APIKeyListResponse" />
+<Anchor id="tocSapikeylistresponse" />
+<Anchor id="tocsapikeylistresponse" />
+
+```json
+{
+  "apiKeys": [
+    {
+      "name": "my-production-key",
+      "displayName": "My Production Key",
+      "apiKey": "apip_1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "apiId": "reading-list-api-v1.0",
+      "status": "active",
+      "createdAt": "2026-04-01T10:30:00Z",
+      "createdBy": "admin",
+      "expiresAt": null,
+      "source": "local"
+    }
+  ],
+  "totalCount": 3,
+  "status": "success"
+}
+```
+
+#### Properties {#properties_69}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiKeys|[[APIKey](#schemaapikey)]|false|none|[Details of an API key]|
+|totalCount|integer|false|none|Total number of API keys|
+|status|string|false|none|none|
+
+## SecretListResponse
+
+<Anchor id="schemasecretlistresponse" />
+<Anchor id="schema_SecretListResponse" />
+<Anchor id="tocSsecretlistresponse" />
+<Anchor id="tocssecretlistresponse" />
+
+```json
+{
+  "status": "success",
+  "count": 5,
+  "secrets": [
+    {
+      "apiVersion": "gateway.api-platform.wso2.com/v1",
+      "kind": "Secret",
+      "metadata": {
+        "name": "database-password"
+      },
+      "spec": {
+        "displayName": "Database Password"
+      },
+      "status": {
+        "id": "database-password",
+        "createdAt": "2026-04-24T07:21:13Z",
+        "updatedAt": "2026-04-24T07:21:13Z"
+      }
+    }
+  ]
+}
+```
+
+#### Properties {#properties_70}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|string|false|none|none|
+|count|integer|false|none|Total number of secrets|
+|secrets|[[SecretListItem](#schemasecretlistitem)]|false|none|List of secrets. For security, the spec.value field is omitted for every item in the list; retrieve a single secret by id to obtain the decrypted value.|
+
+## SecretResourceServiceStatus
+
+<Anchor id="schemasecretresourceservicestatus" />
+<Anchor id="schema_SecretResourceServiceStatus" />
+<Anchor id="tocSsecretresourceservicestatus" />
+<Anchor id="tocssecretresourceservicestatus" />
+
+```json
+{
+  "id": "database-password",
+  "createdAt": "2026-01-05T10:30:00Z",
+  "updatedAt": "2026-01-05T10:30:00Z"
+}
+```
+
+Id and optional timestamps. Not the full ResourceStatus model (no `state` or
+`deployedAt`).
+
+#### Properties {#properties_71}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|string|true|none|Same as metadata.name / secret handle|
+|createdAt|string(date-time)|false|none|none|
+|updatedAt|string(date-time)|false|none|none|
+
+## SecretConfigurationResponseCreateUpdate
+
+<Anchor id="schemasecretconfigurationresponsecreateupdate" />
+<Anchor id="schema_SecretConfigurationResponseCreateUpdate" />
+<Anchor id="tocSsecretconfigurationresponsecreateupdate" />
+<Anchor id="tocssecretconfigurationresponsecreateupdate" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "database-password"
+  },
+  "spec": {
+    "displayName": "Database Password",
+    "description": "PostgreSQL main database password"
+  },
+  "status": {
+    "id": "database-password",
+    "createdAt": "2026-01-05T10:30:00Z",
+    "updatedAt": "2026-01-05T10:30:00Z"
+  }
+}
+```
+
+POST/PUT /secrets response. `spec.value` is not returned; see SecretConfigurationRequest for create/update request bodies.
+
+#### Properties {#properties_72}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|none|
+|kind|string|true|none|none|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[SecretConfigListData](#schemasecretconfiglistdata)|true|none|none|
+|status|[SecretResourceServiceStatus](#schemasecretresourceservicestatus)|true|none|Id and optional timestamps. Not the full ResourceStatus model (no `state` or<br />`deployedAt`).|
+
+##### Enumerated Values {#enumerated-values_31}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|Secret|
+
+## SecretConfigurationResponseRetrieved
+
+<Anchor id="schemasecretconfigurationresponseretrieved" />
+<Anchor id="schema_SecretConfigurationResponseRetrieved" />
+<Anchor id="tocSsecretconfigurationresponseretrieved" />
+<Anchor id="tocssecretconfigurationresponseretrieved" />
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "database-password"
+  },
+  "spec": {
+    "displayName": "Database Password",
+    "description": "PostgreSQL main database password",
+    "value": "sup3rs3cr3t!"
+  },
+  "status": {
+    "id": "database-password",
+    "createdAt": "2026-01-05T10:30:00Z",
+    "updatedAt": "2026-01-05T10:30:00Z"
+  }
+}
+```
+
+GET `/secrets/{id}` response including decrypted `spec.value`.
+
+#### Properties {#properties_73}
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|apiVersion|string|true|none|none|
+|kind|string|true|none|none|
+|metadata|[Metadata](#schemametadata)|true|none|none|
+|spec|[SecretConfigData](#schemasecretconfigdata)|true|none|none|
+|status|[SecretResourceServiceStatus](#schemasecretresourceservicestatus)|true|none|Id and optional timestamps. Not the full ResourceStatus model (no `state` or<br />`deployedAt`).|
+
+##### Enumerated Values {#enumerated-values_32}
+
+|Property|Value|
+|---|---|
+|apiVersion|gateway.api-platform.wso2.com/v1|
+|kind|Secret|

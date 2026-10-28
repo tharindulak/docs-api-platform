@@ -1,0 +1,113 @@
+{
+  "summary": {
+    "source": "wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b",
+    "edition": "cloud",
+    "legacyBase": "https://wso2.com/api-platform/docs/",
+    "navPages": 71,
+    "sourceFiles": 1103,
+    "stats": {
+      "pages": 74,
+      "partials": 0,
+      "apiPages": 0,
+      "placeholders": 5,
+      "images": 52,
+      "attachments": 0,
+      "missingImages": 0,
+      "links": 1097,
+      "externalLinks": 414,
+      "legacyHostLinks": 3,
+      "otherVersionLinks": 13,
+      "crossProductLinks": 5,
+      "linksViaRedirect": 2,
+      "droppedLinks": 0,
+      "droppedAnchors": 0,
+      "placeholdersWrapped": 5,
+      "admonitions": 101,
+      "details": 0,
+      "tabSets": 24,
+      "codeBlocks": 852,
+      "indentedCode": 0,
+      "htmlBlocks": 185,
+      "explicitIds": 229,
+      "basePathInCode": 0,
+      "basePathInText": 0,
+      "unknownElements": 0,
+      "unknownLanguages": [
+        "promql"
+      ],
+      "generatedDescriptions": 12,
+      "sidebarLabels": 68,
+      "relativeFallback": 56,
+      "unlisted": 3,
+      "placeholders_": 0,
+      "sharedPages": 0,
+      "cloudOnlyPages": 14,
+      "selfHostedOnlyPages": 0,
+      "markedPages": 0,
+      "markers": 0,
+      "flatMerged": 0,
+      "editionCheckFailures": 0,
+      "imageVariants": 0,
+      "linkVariants": 0,
+      "includesExpanded": 0,
+      "includeFrontMatter": 0,
+      "flaggedOffPages": 0,
+      "specsFixed": 0,
+      "titlesVarying": 0,
+      "variants": 0,
+      "adjacentAlternatives": 0,
+      "cloudCounterparts": 0,
+      "ambiguousCounterparts": 0,
+      "keptDescriptions": 62,
+      "legacySiteLinks": 1,
+      "otherDocSpaceLinks": 12,
+      "exportSingleFolders": 0,
+      "legacyRedirectsExternal": 0,
+      "legacyRedirectsUnresolved": 0,
+      "legacyRedirects": 90,
+      "legacyRedirectsSource": 16,
+      "acceptedByOverrides": 0
+    },
+    "issues": {
+      "not-in-nav": 3,
+      "code-language": 1
+    },
+    "compileFailures": 0,
+    "overrides": {
+      "file": "api-gateway.overrides.yaml",
+      "patches": 0,
+      "patchesApplied": 0,
+      "accepted": 0
+    },
+    "cloudDiff": {
+      "source": "wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b",
+      "matched": 2,
+      "identical": 0,
+      "differ": 2,
+      "cloudOnly": 14,
+      "possibleCounterparts": 1
+    }
+  },
+  "items": [
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/api-platform-gateway/analytics.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/api-platform-gateway/cloud-gateway.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/api-platform-gateway/troubleshooting.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "code-language",
+      "file": null,
+      "message": "code language \"promql\" is not highlighted by the Platform's Prism set"
+    }
+  ]
+}
