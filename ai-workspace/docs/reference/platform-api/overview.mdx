@@ -1,0 +1,172 @@
+---
+title: Platform API
+description: Overview of the WSO2 API Platform Platform API for managing AI Workspace gateways, LLM providers, proxies, applications, and secrets.
+type: concept
+sidebar_label: Overview
+sidebar_position: 1
+---
+
+This document specifies a **RESTful API** for WSO2 **API Platform** - **Platform API**.
+
+## Authentication
+
+Most API endpoints require a Bearer JWT token in the `Authorization` header. Tokens are
+validated against a configured Identity Provider (IDP) using JWKS-based signature
+verification.
+
+**Required claim**: `organization` — UUID of the caller's organization. All operations are
+automatically scoped to this organization.
+
+**Supported signing algorithms**: RS256, RS384, RS512 (RSA) and ES256, ES384, ES512 (ECDSA).
+Works with any standards-compliant IDP (Keycloak, Azure AD, Okta, Auth0, WSO2 IS, etc.).
+
+## Scope-Based Access Control
+
+Authorization is enforced via OAuth2 scopes carried in the JWT. Both read (GET) and write
+operations require specific scopes declared in the `security` field of each operation.
+
+Base URLs:
+* [https://localhost:9243/api/v0.9](https://localhost:9243/api/v0.9)
+* [https://api.platform.com/api/v0.9](https://api.platform.com/api/v0.9)
+
+License: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0.html)
+
+## Table of Contents
+
+### [Authentication](./authentication.mdx) {#authentication_1}
+
+- [Overview](./authentication.mdx#overview)
+- [Authentication Modes](./authentication.mdx#authentication-modes)
+- [Required Claims](./authentication.mdx#required-claims)
+- [Authorization](./authentication.mdx#authorization)
+- [Error Responses](./authentication.mdx#error-responses)
+- [Troubleshooting](./authentication.mdx#troubleshooting)
+- [Scope Reference](./authentication.mdx#scope-reference)
+
+### [Projects](./projects.mdx)
+
+- [Create a new project](./projects.mdx#create-a-new-project)
+- [Get all projects for current user's organization](./projects.mdx#get-all-projects-for-current-users-organization)
+- [Get project by ID](./projects.mdx#get-project-by-id)
+- [Update project](./projects.mdx#update-project)
+- [Delete project](./projects.mdx#delete-project)
+
+### [Applications](./applications.mdx)
+
+- [Create a new application](./applications.mdx#create-a-new-application)
+- [Get applications for current user's organization](./applications.mdx#get-applications-for-current-users-organization)
+- [Get application by handle](./applications.mdx#get-application-by-handle)
+- [Update application](./applications.mdx#update-application)
+- [Delete application](./applications.mdx#delete-application)
+- [List application API key mappings](./applications.mdx#list-application-api-key-mappings)
+- [Add application API key mappings](./applications.mdx#add-application-api-key-mappings)
+- [Remove application API key mapping](./applications.mdx#remove-application-api-key-mapping)
+- [List application associations](./applications.mdx#list-application-associations)
+- [Add application associations](./applications.mdx#add-application-associations)
+- [Remove application association](./applications.mdx#remove-application-association)
+- [List application API key mappings for an association](./applications.mdx#list-application-api-key-mappings-for-an-association)
+
+### [Gateways](./gateways.mdx)
+
+- [Register a new gateway](./gateways.mdx#register-a-new-gateway)
+- [List all gateways](./gateways.mdx#list-all-gateways)
+- [Get gateway by ID](./gateways.mdx#get-gateway-by-id)
+- [Update gateway](./gateways.mdx#update-gateway)
+- [Delete gateway](./gateways.mdx#delete-gateway)
+- [Get gateway policy manifest](./gateways.mdx#get-gateway-policy-manifest)
+
+### [Gateway Tokens](./gateway-tokens.mdx)
+
+- [List active gateway tokens](./gateway-tokens.mdx#list-active-gateway-tokens)
+- [Rotate gateway token](./gateway-tokens.mdx#rotate-gateway-token)
+- [Revoke gateway token](./gateway-tokens.mdx#revoke-gateway-token)
+
+### [Gateway Policies](./gateway-policies.mdx)
+
+- [Get synced custom policies for the current organization](./gateway-policies.mdx#get-synced-custom-policies-for-the-current-organization)
+- [Sync a custom policy from the gateway manifest](./gateway-policies.mdx#sync-a-custom-policy-from-the-gateway-manifest)
+- [Get a specific custom policy version](./gateway-policies.mdx#get-a-specific-custom-policy-version)
+- [Delete a specific custom policy version](./gateway-policies.mdx#delete-a-specific-custom-policy-version)
+
+### [LLM Providers](./llm-providers.mdx)
+
+- [Create a new LLM provider](./llm-providers.mdx#create-a-new-llm-provider)
+- [List all LLM providers](./llm-providers.mdx#list-all-llm-providers)
+- [Get LLM provider by identifier](./llm-providers.mdx#get-llm-provider-by-identifier)
+- [Update an existing LLM provider](./llm-providers.mdx#update-an-existing-llm-provider)
+- [Delete an LLM provider](./llm-providers.mdx#delete-an-llm-provider)
+- [List LLM proxies by provider](./llm-providers.mdx#list-llm-proxies-by-provider)
+- [Create a new API key for an LLM provider](./llm-providers.mdx#create-a-new-api-key-for-an-llm-provider)
+- [List API keys for an LLM provider](./llm-providers.mdx#list-api-keys-for-an-llm-provider)
+- [Delete an API key for an LLM provider](./llm-providers.mdx#delete-an-api-key-for-an-llm-provider)
+
+### [LLM Proxies](./llm-proxies.mdx)
+
+- [Create a new LLM proxy](./llm-proxies.mdx#create-a-new-llm-proxy)
+- [List all LLM proxies](./llm-proxies.mdx#list-all-llm-proxies)
+- [Get LLM proxy by unique identifier](./llm-proxies.mdx#get-llm-proxy-by-unique-identifier)
+- [Update an existing LLM proxy](./llm-proxies.mdx#update-an-existing-llm-proxy)
+- [Delete an LLM proxy](./llm-proxies.mdx#delete-an-llm-proxy)
+- [Create a new API key for an LLM proxy](./llm-proxies.mdx#create-a-new-api-key-for-an-llm-proxy)
+- [List API keys for an LLM proxy](./llm-proxies.mdx#list-api-keys-for-an-llm-proxy)
+- [Delete an API key for an LLM proxy](./llm-proxies.mdx#delete-an-api-key-for-an-llm-proxy)
+
+### [LLM Provider Templates](./llm-provider-templates.mdx)
+
+- [Create a new LLM provider template family](./llm-provider-templates.mdx#create-a-new-llm-provider-template-family)
+- [List templates, list a family's versions, or get a single version](./llm-provider-templates.mdx#list-templates-list-a-familys-versions-or-get-a-single-version)
+- [Create a new version by copying an existing one](./llm-provider-templates.mdx#create-a-new-version-by-copying-an-existing-one)
+- [Get LLM provider template by id](./llm-provider-templates.mdx#get-llm-provider-template-by-id)
+- [Update an existing LLM provider template](./llm-provider-templates.mdx#update-an-existing-llm-provider-template)
+- [Enable or disable a template version](./llm-provider-templates.mdx#enable-or-disable-a-template-version)
+- [Delete a template version](./llm-provider-templates.mdx#delete-a-template-version)
+
+### [LLM Provider Deployments](./llm-provider-deployments.mdx)
+
+- [Create and deploy a new LLM provider deployment](./llm-provider-deployments.mdx#create-and-deploy-a-new-llm-provider-deployment)
+- [Get deployments for an LLM provider](./llm-provider-deployments.mdx#get-deployments-for-an-llm-provider)
+- [Get LLM provider deployment by ID](./llm-provider-deployments.mdx#get-llm-provider-deployment-by-id)
+- [Delete LLM provider deployment](./llm-provider-deployments.mdx#delete-llm-provider-deployment)
+- [Undeploy LLM provider deployment from gateway](./llm-provider-deployments.mdx#undeploy-llm-provider-deployment-from-gateway)
+- [Restore a previous LLM provider deployment](./llm-provider-deployments.mdx#restore-a-previous-llm-provider-deployment)
+
+### [LLM Proxy Deployments](./llm-proxy-deployments.mdx)
+
+- [Create and deploy a new LLM proxy deployment](./llm-proxy-deployments.mdx#create-and-deploy-a-new-llm-proxy-deployment)
+- [Get deployments for an LLM proxy](./llm-proxy-deployments.mdx#get-deployments-for-an-llm-proxy)
+- [Get LLM proxy deployment by ID](./llm-proxy-deployments.mdx#get-llm-proxy-deployment-by-id)
+- [Delete LLM proxy deployment](./llm-proxy-deployments.mdx#delete-llm-proxy-deployment)
+- [Undeploy LLM proxy deployment from gateway](./llm-proxy-deployments.mdx#undeploy-llm-proxy-deployment-from-gateway)
+- [Restore a previous LLM proxy deployment](./llm-proxy-deployments.mdx#restore-a-previous-llm-proxy-deployment)
+
+### [API Keys](./api-keys.mdx)
+
+- [List API keys for the current user, or for all users with `ap:api_key:all:manage`](./api-keys.mdx)
+
+### [MCP Proxies](./mcp-proxies.mdx)
+
+- [Create a new MCP proxy](./mcp-proxies.mdx#create-a-new-mcp-proxy)
+- [List all MCP proxies](./mcp-proxies.mdx#list-all-mcp-proxies)
+- [Get MCP proxy by unique identifier](./mcp-proxies.mdx#get-mcp-proxy-by-unique-identifier)
+- [Update an existing MCP proxy](./mcp-proxies.mdx#update-an-existing-mcp-proxy)
+- [Delete an MCP proxy](./mcp-proxies.mdx#delete-an-mcp-proxy)
+- [Fetch server info from MCP proxy backend services](./mcp-proxies.mdx#fetch-server-info-from-mcp-proxy-backend-services)
+
+### [MCP Proxy Deployments](./mcp-proxy-deployments.mdx)
+
+- [Create and deploy a new deployment for MCP proxy](./mcp-proxy-deployments.mdx#create-and-deploy-a-new-deployment-for-mcp-proxy)
+- [Get deployments for an MCP proxy](./mcp-proxy-deployments.mdx#get-deployments-for-an-mcp-proxy)
+- [Get deployment by ID](./mcp-proxy-deployments.mdx#get-deployment-by-id)
+- [Delete deployment](./mcp-proxy-deployments.mdx#delete-deployment)
+- [Undeploy deployment from gateway](./mcp-proxy-deployments.mdx#undeploy-deployment-from-gateway)
+- [Restore a previous deployment](./mcp-proxy-deployments.mdx#restore-a-previous-deployment)
+
+### [Secrets](./secrets.mdx)
+
+- [Create a secret](./secrets.mdx#create-a-secret)
+- [List secrets](./secrets.mdx#list-secrets)
+- [Get a secret by handle](./secrets.mdx#get-a-secret-by-handle)
+- [Rotate a secret value](./secrets.mdx#rotate-a-secret-value)
+- [Delete a secret](./secrets.mdx#delete-a-secret)
+
+### [Schemas](./schemas.mdx)

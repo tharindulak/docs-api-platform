@@ -1,0 +1,118 @@
+{
+  "summary": {
+    "source": "wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b",
+    "edition": "cloud",
+    "legacyBase": "https://wso2.com/api-platform/docs/",
+    "navPages": 80,
+    "sourceFiles": 1103,
+    "stats": {
+      "pages": 83,
+      "partials": 0,
+      "apiPages": 0,
+      "placeholders": 12,
+      "images": 54,
+      "attachments": 0,
+      "missingImages": 0,
+      "links": 1903,
+      "externalLinks": 592,
+      "legacyHostLinks": 0,
+      "otherVersionLinks": 71,
+      "crossProductLinks": 0,
+      "linksViaRedirect": 27,
+      "droppedLinks": 0,
+      "droppedAnchors": 1,
+      "placeholdersWrapped": 12,
+      "admonitions": 128,
+      "details": 15,
+      "tabSets": 26,
+      "codeBlocks": 1075,
+      "indentedCode": 0,
+      "htmlBlocks": 254,
+      "explicitIds": 359,
+      "basePathInCode": 0,
+      "basePathInText": 0,
+      "unknownElements": 0,
+      "unknownLanguages": [],
+      "generatedDescriptions": 11,
+      "sidebarLabels": 68,
+      "relativeFallback": 56,
+      "unlisted": 3,
+      "placeholders_": 0,
+      "sharedPages": 0,
+      "cloudOnlyPages": 16,
+      "selfHostedOnlyPages": 0,
+      "markedPages": 0,
+      "markers": 0,
+      "flatMerged": 0,
+      "editionCheckFailures": 0,
+      "imageVariants": 0,
+      "linkVariants": 0,
+      "includesExpanded": 0,
+      "includeFrontMatter": 0,
+      "flaggedOffPages": 0,
+      "specsFixed": 0,
+      "titlesVarying": 0,
+      "variants": 0,
+      "adjacentAlternatives": 0,
+      "cloudCounterparts": 0,
+      "ambiguousCounterparts": 0,
+      "keptDescriptions": 72,
+      "otherDocSpaceLinks": 15,
+      "legacySiteLinks": 4,
+      "exportSingleFolders": 0,
+      "legacyRedirectsExternal": 0,
+      "legacyRedirectsUnresolved": 0,
+      "legacyRedirects": 136,
+      "legacyRedirectsSource": 53,
+      "acceptedByOverrides": 0
+    },
+    "issues": {
+      "not-in-nav": 3,
+      "broken-anchor": 1
+    },
+    "compileFailures": 0,
+    "overrides": {
+      "file": "ai-workspace.overrides.yaml",
+      "patches": 0,
+      "patchesApplied": 0,
+      "accepted": 0
+    },
+    "cloudDiff": {
+      "source": "wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b",
+      "matched": 19,
+      "identical": 1,
+      "differ": 18,
+      "cloudOnly": 16,
+      "possibleCounterparts": 1
+    }
+  },
+  "items": [
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-workspace/policies/other-policies/basic-rate-limit.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "not-in-nav",
+      "file": "cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md",
+      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
+    },
+    {
+      "kind": "broken-anchor",
+      "file": "ai-workspace/next/platform-api/overview.md",
+      "message": "anchor #list-api-keys-for-the-current-user-or-for-all-users-with-apapikeyallmanage does not exist on reference/platform-api/api-keys.mdx; anchor removed",
+      "detail": {
+        "href": "api-keys.md#list-api-keys-for-the-current-user-or-for-all-users-with-apapikeyallmanage",
+        "anchor": "list-api-keys-for-the-current-user-or-for-all-users-with-apapikeyallmanage",
+        "target": "docs/reference/platform-api/api-keys.mdx",
+        "context": "main",
+        "suggest": null
+      }
+    }
+  ]
+}

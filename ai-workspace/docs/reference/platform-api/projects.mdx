@@ -1,0 +1,596 @@
+---
+title: 'Platform API: Projects'
+description: REST API reference for creating, listing, updating, and deleting projects.
+type: reference
+sidebar_label: Projects
+sidebar_position: 3
+---
+
+Project management operations
+
+## Create a new project
+
+<Anchor id="opIdCreateProject" />
+
+`POST /projects`
+
+> Code samples
+
+```bash
+
+curl -X POST https://localhost:9243/api/v0.9/projects \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d @payload.json
+```
+
+Creates a new project within the organization specified in the JWT token.
+Organization ID is automatically extracted from the token and does not need to be provided.
+
+> Payload
+
+```json
+{
+  "id": "default-project",
+  "displayName": "Default Project",
+  "description": "This is the default project for development"
+}
+```
+
+### Authentication
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`ap:project:create\`, \`ap:project:manage\`
+
+### Parameters {#create-a-new-project-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CreateProjectRequest](./schemas.mdx#schemacreateprojectrequest)|true|none|
+
+> Example responses
+>
+> 201 Response
+
+```json
+{
+  "id": "default-project",
+  "displayName": "Default Project",
+  "description": "This is the default project for development",
+  "organizationId": "acme",
+  "createdBy": "john.doe",
+  "updatedBy": "john.doe",
+  "createdAt": "2023-10-12T10:30:00Z",
+  "updatedAt": "2023-10-12T10:30:00Z"
+}
+```
+
+> 400 Response
+
+```json
+{
+  "status": "error",
+  "code": "VALIDATION_FAILED",
+  "message": "The request failed validation.",
+  "errors": [
+    {
+      "field": "<name of the offending field>",
+      "message": "<reason this field failed validation>"
+    }
+  ]
+}
+```
+
+> 401 Response
+
+```json
+{
+  "status": "error",
+  "code": "UNAUTHORIZED",
+  "message": "Authorization header is required, or the token is invalid or expired."
+}
+```
+
+> 403 Response
+
+```json
+{
+  "status": "error",
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action."
+}
+```
+
+> 409 Response
+
+```json
+{
+  "status": "error",
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_ERROR",
+  "message": "An unexpected error occurred.",
+  "trackingId": "4f1c6f2e-8a4b-4c93-b1de-9f2f6f0c2a11"
+}
+```
+
+### Responses {#create-a-new-project-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Project created successfully|[Project](./schemas.mdx#schemaproject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request. Invalid request or validation error.|[Error](./schemas.mdx#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized. Authentication credentials are missing or invalid.|[Error](./schemas.mdx#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden. The authenticated user does not have permission to access this resource.|[Error](./schemas.mdx#schemaerror)|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|Conflict. The request conflicts with the current state of the resource.|[Error](./schemas.mdx#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error.|[Error](./schemas.mdx#schemaerror)|
+
+### Response Headers
+
+|Status|Header|Type|Format|Description|
+|---|---|---|---|---|
+|201|Location|string|uri|URL of the newly created resource.|
+
+## Get all projects for current user's organization
+
+<Anchor id="opIdListProjects" />
+
+`GET /projects`
+
+> Code samples
+
+```bash
+
+curl -X GET https://localhost:9243/api/v0.9/projects \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json'
+```
+
+Retrieves all projects belonging to the organization specified in the JWT token.
+Organization ID is automatically extracted from the token.
+
+### Authentication {#authentication_1}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`ap:project:read\`, \`ap:project:manage\`
+
+### Parameters {#get-all-projects-for-current-user's-organization-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Maximum number of items to return per page.|
+|offset|query|integer|false|Zero-based index of the first item to return.|
+|sortBy|query|string|false|Field to sort the collection by. An unrecognized value falls back to the default sort (createdAt).|
+|sortOrder|query|string|false|Sort direction applied to `sortBy`.|
+|query|query|string|false|Case-insensitive substring filter matched against the resource id (handle).|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|sortBy|name|
+|sortBy|createdAt|
+|sortOrder|asc|
+|sortOrder|desc|
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "count": 2,
+  "list": [
+    {
+      "id": "default-project",
+      "displayName": "Default Project",
+      "description": "This is the default project for development",
+      "organizationId": "acme",
+      "createdBy": "john.doe",
+      "updatedBy": "john.doe",
+      "createdAt": "2023-10-12T10:30:00Z",
+      "updatedAt": "2023-10-12T10:30:00Z"
+    }
+  ],
+  "pagination": {
+    "total": 10,
+    "offset": 0,
+    "limit": 10
+  }
+}
+```
+
+> 401 Response
+
+```json
+{
+  "status": "error",
+  "code": "UNAUTHORIZED",
+  "message": "Authorization header is required, or the token is invalid or expired."
+}
+```
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "NOT_FOUND",
+  "message": "The specified resource does not exist."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_ERROR",
+  "message": "An unexpected error occurred.",
+  "trackingId": "4f1c6f2e-8a4b-4c93-b1de-9f2f6f0c2a11"
+}
+```
+
+### Responses {#get-all-projects-for-current-user's-organization-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Projects retrieved successfully|[ProjectListResponse](./schemas.mdx#schemaprojectlistresponse)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized. Authentication credentials are missing or invalid.|[Error](./schemas.mdx#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found. The specified resource does not exist.|[Error](./schemas.mdx#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error.|[Error](./schemas.mdx#schemaerror)|
+
+## Get project by ID
+
+<Anchor id="opIdGetProject" />
+
+`GET /projects/{projectId}`
+
+> Code samples
+
+```bash
+
+curl -X GET https://localhost:9243/api/v0.9/projects/{projectId} \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json'
+```
+
+Retrieves a specific project by its ID (handle). Access is validated against the organization
+in the JWT token to ensure users can only access projects in their organization.
+
+### Authentication {#authentication_2}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`ap:project:read\`, \`ap:project:manage\`
+
+### Parameters {#get-project-by-id-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|projectId|path|string|true|**Project ID** consisting of the **handle** (unique slug identifier) of the Project.|
+
+#### Detailed descriptions
+
+**projectId**: **Project ID** consisting of the **handle** (unique slug identifier) of the Project.
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "id": "default-project",
+  "displayName": "Default Project",
+  "description": "This is the default project for development",
+  "organizationId": "acme",
+  "createdBy": "john.doe",
+  "updatedBy": "john.doe",
+  "createdAt": "2023-10-12T10:30:00Z",
+  "updatedAt": "2023-10-12T10:30:00Z"
+}
+```
+
+> 400 Response
+
+```json
+{
+  "status": "error",
+  "code": "VALIDATION_FAILED",
+  "message": "The request failed validation.",
+  "errors": [
+    {
+      "field": "<name of the offending field>",
+      "message": "<reason this field failed validation>"
+    }
+  ]
+}
+```
+
+> 401 Response
+
+```json
+{
+  "status": "error",
+  "code": "UNAUTHORIZED",
+  "message": "Authorization header is required, or the token is invalid or expired."
+}
+```
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "NOT_FOUND",
+  "message": "The specified resource does not exist."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_ERROR",
+  "message": "An unexpected error occurred.",
+  "trackingId": "4f1c6f2e-8a4b-4c93-b1de-9f2f6f0c2a11"
+}
+```
+
+### Responses {#get-project-by-id-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Project retrieved successfully|[Project](./schemas.mdx#schemaproject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request. Invalid request or validation error.|[Error](./schemas.mdx#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized. Authentication credentials are missing or invalid.|[Error](./schemas.mdx#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found. The specified resource does not exist.|[Error](./schemas.mdx#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error.|[Error](./schemas.mdx#schemaerror)|
+
+## Update project
+
+<Anchor id="opIdUpdateProject" />
+
+`PUT /projects/{projectId}`
+
+> Code samples
+
+```bash
+
+curl -X PUT https://localhost:9243/api/v0.9/projects/{projectId} \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d @payload.json
+```
+
+Updates an existing project's name. Access is validated against the organization 
+in the JWT token.
+
+> Payload
+
+```json
+{
+  "displayName": "Default Project",
+  "description": "This is the default project for development"
+}
+```
+
+### Authentication {#authentication_3}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`ap:project:update\`, \`ap:project:manage\`
+
+### Parameters {#update-project-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|projectId|path|string|true|**Project ID** consisting of the **handle** (unique slug identifier) of the Project.|
+|body|body|[Project](./schemas.mdx#schemaproject)|true|none|
+
+#### Detailed descriptions {#detailed-descriptions_1}
+
+**projectId**: **Project ID** consisting of the **handle** (unique slug identifier) of the Project.
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "id": "default-project",
+  "displayName": "Default Project",
+  "description": "This is the default project for development",
+  "organizationId": "acme",
+  "createdBy": "john.doe",
+  "updatedBy": "john.doe",
+  "createdAt": "2023-10-12T10:30:00Z",
+  "updatedAt": "2023-10-12T10:30:00Z"
+}
+```
+
+> 400 Response
+
+```json
+{
+  "status": "error",
+  "code": "VALIDATION_FAILED",
+  "message": "The request failed validation.",
+  "errors": [
+    {
+      "field": "<name of the offending field>",
+      "message": "<reason this field failed validation>"
+    }
+  ]
+}
+```
+
+> 401 Response
+
+```json
+{
+  "status": "error",
+  "code": "UNAUTHORIZED",
+  "message": "Authorization header is required, or the token is invalid or expired."
+}
+```
+
+> 403 Response
+
+```json
+{
+  "status": "error",
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action."
+}
+```
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "NOT_FOUND",
+  "message": "The specified resource does not exist."
+}
+```
+
+> 409 Response
+
+```json
+{
+  "status": "error",
+  "code": "CONFLICT",
+  "message": "The request conflicts with the current state of the resource."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_ERROR",
+  "message": "An unexpected error occurred.",
+  "trackingId": "4f1c6f2e-8a4b-4c93-b1de-9f2f6f0c2a11"
+}
+```
+
+### Responses {#update-project-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Project updated successfully|[Project](./schemas.mdx#schemaproject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request. Invalid request or validation error.|[Error](./schemas.mdx#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized. Authentication credentials are missing or invalid.|[Error](./schemas.mdx#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden. The authenticated user does not have permission to access this resource.|[Error](./schemas.mdx#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found. The specified resource does not exist.|[Error](./schemas.mdx#schemaerror)|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|Conflict. The request conflicts with the current state of the resource.|[Error](./schemas.mdx#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error.|[Error](./schemas.mdx#schemaerror)|
+
+## Delete project
+
+<Anchor id="opIdDeleteProject" />
+
+`DELETE /projects/{projectId}`
+
+> Code samples
+
+```bash
+
+curl -X DELETE https://localhost:9243/api/v0.9/projects/{projectId} \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json'
+```
+
+Deletes a specific project by its handle (unique slug identifier). Access is validated
+against the organization in the JWT token.
+
+### Authentication {#authentication_4}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`ap:project:delete\`, \`ap:project:manage\`
+
+### Parameters {#delete-project-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|projectId|path|string|true|**Project ID** consisting of the **handle** (unique slug identifier) of the Project.|
+
+#### Detailed descriptions {#detailed-descriptions_2}
+
+**projectId**: **Project ID** consisting of the **handle** (unique slug identifier) of the Project.
+
+> Example responses
+>
+> 400 Response
+
+```json
+{
+  "status": "error",
+  "code": "VALIDATION_FAILED",
+  "message": "The request failed validation.",
+  "errors": [
+    {
+      "field": "<name of the offending field>",
+      "message": "<reason this field failed validation>"
+    }
+  ]
+}
+```
+
+> 401 Response
+
+```json
+{
+  "status": "error",
+  "code": "UNAUTHORIZED",
+  "message": "Authorization header is required, or the token is invalid or expired."
+}
+```
+
+> 403 Response
+
+```json
+{
+  "status": "error",
+  "code": "FORBIDDEN",
+  "message": "You do not have permission to perform this action."
+}
+```
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "NOT_FOUND",
+  "message": "The specified resource does not exist."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_ERROR",
+  "message": "An unexpected error occurred.",
+  "trackingId": "4f1c6f2e-8a4b-4c93-b1de-9f2f6f0c2a11"
+}
+```
+
+### Responses {#delete-project-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Project deleted successfully|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad Request. Invalid request or validation error.|[Error](./schemas.mdx#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Unauthorized. Authentication credentials are missing or invalid.|[Error](./schemas.mdx#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Forbidden. The authenticated user does not have permission to access this resource.|[Error](./schemas.mdx#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Not Found. The specified resource does not exist.|[Error](./schemas.mdx#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal Server Error.|[Error](./schemas.mdx#schemaerror)|

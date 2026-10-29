@@ -5,6 +5,7 @@ A Content repo of WSO2 Docs (docs.wso2.com). It holds these Doc spaces, one dire
 | Directory | Doc space | Editions and branches |
 |---|---|---|
 | `ai-gateway/` | AI Gateway | 1.2.0 on `ai-gateway/release/1.2.0`; 2026.09.24 on `ai-gateway/release/2026.09.24`; its Cloud part of api-platform on `main` |
+| `ai-workspace/` | AI Workspace | 1.0.0 on `ai-workspace/release/1.0.0`; its Cloud part of api-platform on `main` |
 | `api-gateway/` | API Gateway | 1.2.0 on `api-gateway/release/1.2.0`; 1.1.0 on `api-gateway/release/1.1.0`; 1.0.0 on `api-gateway/release/1.0.0`; its Cloud part of api-platform on `main` |
 | `api-manager/` | API Manager | 4.7.0 on `api-manager/release/4.7.0`; 4.6.0 on `api-manager/release/4.6.0` |
 | `api-platform/` | API Platform Cloud | Cloud on `main` (Cloud parts: ai-gateway, api-gateway) |
