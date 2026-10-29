@@ -1,0 +1,509 @@
+---
+title: Views
+description: Create, list, update, and delete views via the API Portal REST API.
+type: reference
+sidebar_position: 5
+---
+
+## Create a view
+
+<Anchor id="opIdaddView" />
+
+`POST /views`
+
+> Code samples
+
+```bash
+
+curl -X POST https://localhost:9543/api-portal/api/v0.9/views \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d @payload.json
+```
+
+Creates an API Portal view for an organization and associates it with the supplied label names. If `name` is omitted, the service stores the view's handle as its name.
+
+> Payload
+
+```json
+{
+  "id": "partner-apis",
+  "displayName": "Partner APIs",
+  "labels": [
+    "partner",
+    "public"
+  ]
+}
+```
+
+### Authentication
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:view:create\`, \`dp:view:manage\`
+
+### Parameters {#create-a-view-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ViewCreateRequest](./schemas.mdx#schemaviewcreaterequest)|true|View creation payload with the label names that should be visible in the view.|
+
+> Example responses
+>
+> 201 Response
+
+```json
+{
+  "message": "string"
+}
+```
+
+> Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.
+
+```json
+{
+  "status": "error",
+  "code": "MISSING_REQUIRED_PARAMETER",
+  "message": "Missing required parameter."
+}
+```
+
+```json
+{
+  "message": "Missing or invalid fields in the request payload"
+}
+```
+
+> 409 Response
+
+```json
+{
+  "status": "error",
+  "code": "CONFLICT",
+  "message": "Conflict"
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#create-a-view-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|JSON message response.|[MessageResponse](./schemas.mdx#schemamessageresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.|Inline|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|The request conflicts with an existing resource.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response schema {#create-a-view-responseschema}
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|status|error|
+
+## List views
+
+<Anchor id="opIdgetAllViews" />
+
+`GET /views`
+
+> Code samples
+
+```bash
+
+curl -X GET https://localhost:9543/api-portal/api/v0.9/views \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json'
+```
+
+Lists all views configured for the organization. Each view includes the label names attached to it.
+
+### Authentication {#authentication_1}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:view:read\`, \`dp:view:manage\`
+
+### Parameters {#list-views-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|limit|query|integer|false|Maximum number of records to return.|
+|offset|query|integer|false|Number of records to skip before returning results.|
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "list": [
+    {
+      "id": "partner-apis",
+      "displayName": "Partner APIs",
+      "labels": [
+        "partner",
+        "public"
+      ],
+      "createdBy": "alice@example.com",
+      "updatedBy": "alice@example.com",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
+    }
+  ],
+  "count": 1,
+  "pagination": {
+    "total": 42,
+    "limit": 20,
+    "offset": 0
+  }
+}
+```
+
+> 404 Response
+
+```text
+"string"
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#list-views-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of view DTOs.|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Plain text success response.|string|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response schema {#list-views-responseschema}
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» list|[[ViewResponse](./schemas.mdx#schemaviewresponse)]|false|none|none|
+|»» id|string|true|none|The view's handle (unique per org). Not the internal database uuid.|
+|»» displayName|string|true|none|none|
+|»» labels|[string]|true|none|none|
+|»» createdBy|string|false|none|Identity of the user who created this view, or `deleted_user` if that user's IDP reference no longer exists. Present on single-resource GET responses and list items.|
+|»» updatedBy|string|false|none|Identity of the user who last updated this view, or `deleted_user` if that user's IDP reference no longer exists. Present on single-resource GET responses only, omitted on list items.|
+|»» createdAt|string(date-time)|false|none|none|
+|»» updatedAt|string(date-time)|false|none|none|
+|» count|integer|false|none|Number of items returned in this page.|
+|» pagination|[Pagination](./schemas.mdx#schemapagination)|false|none|Standard pagination metadata returned with collection responses.|
+|»» total|integer|true|none|Total number of records matching the query.|
+|»» limit|integer|true|none|Maximum number of records returned in this response.|
+|»» offset|integer|true|none|Number of records skipped before this page.|
+
+## Update a view
+
+<Anchor id="opIdupdateView" />
+
+`PUT /views/{viewId}`
+
+> Code samples
+
+```bash
+
+curl -X PUT https://localhost:9543/api-portal/api/v0.9/views/{viewId} \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d @payload.json
+```
+
+Updates the view's display name, its label associations, or both. When `labels` is supplied, it fully replaces the view's label set — labels present in the list are attached and any others are detached. The service returns the accepted request payload.
+
+> Payload
+
+```json
+{
+  "displayName": "Partner and Public APIs",
+  "labels": [
+    "partner",
+    "premium"
+  ]
+}
+```
+
+### Authentication {#authentication_2}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:view:update\`, \`dp:view:manage\`
+
+### Parameters {#update-a-view-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ViewUpdateRequest](./schemas.mdx#schemaviewupdaterequest)|true|View update payload. Include only the display name or label changes that should be applied.|
+|viewId|path|string|true|The view's handle (unique per org). Not the internal database uuid.|
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "displayName": "Partner and Public APIs",
+  "labels": [
+    "partner",
+    "premium"
+  ]
+}
+```
+
+> Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.
+
+```json
+{
+  "status": "error",
+  "code": "MISSING_REQUIRED_PARAMETER",
+  "message": "Missing required parameter."
+}
+```
+
+```json
+{
+  "message": "Missing or invalid fields in the request payload"
+}
+```
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "ORG_NOT_FOUND",
+  "message": "Organization not found."
+}
+```
+
+> 409 Response
+
+```json
+{
+  "status": "error",
+  "code": "CONFLICT",
+  "message": "Conflict"
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#update-a-view-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Echo of the accepted view update payload.|[ViewUpdateRequest](./schemas.mdx#schemaviewupdaterequest)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Resource not found.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|The request conflicts with an existing resource.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response schema {#update-a-view-responseschema}
+
+#### Enumerated Values {#enumerated-values_1}
+
+|Property|Value|
+|---|---|
+|status|error|
+
+## Get a view
+
+<Anchor id="opIdgetView" />
+
+`GET /views/{viewId}`
+
+> Code samples
+
+```bash
+
+curl -X GET https://localhost:9543/api-portal/api/v0.9/views/{viewId} \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json'
+```
+
+Retrieves one view by its `viewId` handle, including the label names attached to that view.
+
+### Authentication {#authentication_3}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:view:read\`, \`dp:view:manage\`
+
+### Parameters {#get-a-view-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|viewId|path|string|true|The view's handle (unique per org). Not the internal database uuid.|
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "id": "partner-apis",
+  "displayName": "Partner APIs",
+  "labels": [
+    "partner",
+    "public"
+  ],
+  "createdBy": "alice@example.com",
+  "updatedBy": "alice@example.com",
+  "createdAt": "2026-05-07T08:30:00Z",
+  "updatedAt": "2026-05-07T08:30:00Z"
+}
+```
+
+> Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.
+
+```json
+{
+  "status": "error",
+  "code": "MISSING_REQUIRED_PARAMETER",
+  "message": "Missing required parameter."
+}
+```
+
+```json
+{
+  "message": "Missing or invalid fields in the request payload"
+}
+```
+
+> 404 Response
+
+```text
+"string"
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#get-a-view-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|View DTO response.|[ViewResponse](./schemas.mdx#schemaviewresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Plain text success response.|string|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response schema {#get-a-view-responseschema}
+
+#### Enumerated Values {#enumerated-values_2}
+
+|Property|Value|
+|---|---|
+|status|error|
+
+## Delete a view
+
+<Anchor id="opIddeleteView" />
+
+`DELETE /views/{viewId}`
+
+> Code samples
+
+```bash
+
+curl -X DELETE https://localhost:9543/api-portal/api/v0.9/views/{viewId} \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json'
+```
+
+Deletes a view by its `viewId` handle. A missing view is returned as a not-found error.
+
+### Authentication {#authentication_4}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:view:delete\`, \`dp:view:manage\`
+
+### Parameters {#delete-a-view-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|viewId|path|string|true|The view's handle (unique per org). Not the internal database uuid.|
+
+> Example responses
+>
+> Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.
+
+```json
+{
+  "status": "error",
+  "code": "MISSING_REQUIRED_PARAMETER",
+  "message": "Missing required parameter."
+}
+```
+
+```json
+{
+  "message": "Missing or invalid fields in the request payload"
+}
+```
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "ORG_NOT_FOUND",
+  "message": "Organization not found."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#delete-a-view-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|View deleted successfully.|None|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Resource not found.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response schema {#delete-a-view-responseschema}
+
+#### Enumerated Values {#enumerated-values_3}
+
+|Property|Value|
+|---|---|
+|status|error|

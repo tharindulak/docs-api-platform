@@ -1,0 +1,109 @@
+{
+  "summary": {
+    "source": "wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b",
+    "edition": "cloud",
+    "legacyBase": "https://wso2.com/api-platform/docs/",
+    "navPages": 88,
+    "sourceFiles": 1103,
+    "stats": {
+      "pages": 88,
+      "partials": 0,
+      "apiPages": 0,
+      "placeholders": 0,
+      "images": 43,
+      "attachments": 0,
+      "missingImages": 0,
+      "links": 1391,
+      "externalLinks": 374,
+      "legacyHostLinks": 0,
+      "otherVersionLinks": 0,
+      "crossProductLinks": 0,
+      "linksViaRedirect": 0,
+      "droppedLinks": 0,
+      "droppedAnchors": 1,
+      "placeholdersWrapped": 0,
+      "admonitions": 84,
+      "details": 10,
+      "tabSets": 3,
+      "codeBlocks": 824,
+      "indentedCode": 0,
+      "htmlBlocks": 320,
+      "explicitIds": 240,
+      "basePathInCode": 0,
+      "basePathInText": 0,
+      "unknownElements": 0,
+      "unknownLanguages": [
+        "handlebars"
+      ],
+      "generatedDescriptions": 9,
+      "sidebarLabels": 70,
+      "relativeFallback": 45,
+      "unlisted": 0,
+      "placeholders_": 0,
+      "sharedPages": 0,
+      "cloudOnlyPages": 13,
+      "selfHostedOnlyPages": 0,
+      "markedPages": 0,
+      "markers": 0,
+      "flatMerged": 0,
+      "editionCheckFailures": 0,
+      "imageVariants": 0,
+      "linkVariants": 0,
+      "includesExpanded": 0,
+      "includeFrontMatter": 0,
+      "flaggedOffPages": 0,
+      "specsFixed": 0,
+      "titlesVarying": 0,
+      "variants": 0,
+      "adjacentAlternatives": 0,
+      "cloudCounterparts": 0,
+      "ambiguousCounterparts": 0,
+      "keptDescriptions": 79,
+      "otherDocSpaceLinks": 7,
+      "exportSingleFolders": 0,
+      "legacyRedirectsExternal": 0,
+      "legacyRedirectsUnresolved": 0,
+      "legacyRedirects": 115,
+      "legacyRedirectsSource": 27,
+      "acceptedByOverrides": 0
+    },
+    "issues": {
+      "broken-anchor": 1,
+      "code-language": 1
+    },
+    "compileFailures": 0,
+    "overrides": {
+      "file": "api-portal.overrides.yaml",
+      "patches": 0,
+      "patchesApplied": 0,
+      "accepted": 0
+    },
+    "cloudDiff": {
+      "source": "wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b",
+      "matched": 2,
+      "identical": 0,
+      "differ": 2,
+      "cloudOnly": 13,
+      "possibleCounterparts": 0
+    }
+  },
+  "items": [
+    {
+      "kind": "broken-anchor",
+      "file": "api-portal/next/setting-up/authentication/connect-an-identity-provider.md",
+      "message": "anchor #interpolation-tokens does not exist on reference/configurations.mdx; anchor removed",
+      "detail": {
+        "href": "../../references/configurations.md#interpolation-tokens",
+        "anchor": "interpolation-tokens",
+        "target": "docs/reference/configurations.mdx",
+        "context": "main",
+        "suggest": null
+      }
+    },
+    {
+      "kind": "code-language",
+      "file": null,
+      "message": "code language \"handlebars\" is not highlighted by the Platform's Prism set"
+    }
+  ]
+}

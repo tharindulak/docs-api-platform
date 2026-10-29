@@ -6,5 +6,6 @@
 /api-gateway/ @wso2/api-platform-docs
 /api-manager/ @wso2/api-platform-docs
 /api-platform/ @wso2/api-platform-docs
+/api-portal/ @wso2/api-platform-docs
 /.github/ @wso2/docs-platform
 /.vscode/ @wso2/docs-platform

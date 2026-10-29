@@ -1,0 +1,283 @@
+---
+title: Organization Content
+description: Get, apply, reset, and download an organization's theme assets via the API Portal REST API.
+type: reference
+sidebar_label: Organization content
+sidebar_position: 4
+---
+
+## Get a theme asset
+
+<Anchor id="opIdgetOrgAsset" />
+
+`GET /views/{viewId}/asset`
+
+> Code samples
+
+```bash
+
+curl -X GET https://localhost:9543/api-portal/api/v0.9/views/{viewId}/asset?fileType=string&fileName=string \
+  -u {username}:{password} \
+  -H 'Accept: text/css'
+```
+
+Retrieves a single organization theme asset (CSS, image, etc.) by `fileType` and `fileName` query parameters. The response content type is derived from the stored file type and extension.
+
+### Parameters {#get-a-theme-asset-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|fileType|query|string|true|Organization content file type, such as style, image, text, template, or partial.|
+|fileName|query|string|true|Stored organization content file name.|
+|filePath|query|string|false|Optional relative content path used together with `fileType` and `fileName`.|
+|orgId|query|string|false|Deprecated and ignored. Accepted only so existing callers (the portal's own style-URL rewrite appends it) are not rejected. The organization is always this instance's own — from the session when there is one, otherwise from `organization.handle` configuration. It was previously honoured on this unauthenticated endpoint, which made it a selector for any organization's branding in a shared database.|
+|viewId|path|string|true|The view's handle (unique per org). Not the internal database uuid.|
+
+> Example responses
+>
+> 200 Response
+
+```text
+"string"
+```
+
+> Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.
+
+```json
+{
+  "status": "error",
+  "code": "MISSING_REQUIRED_PARAMETER",
+  "message": "Missing required parameter."
+}
+```
+
+```json
+{
+  "message": "Missing or invalid fields in the request payload"
+}
+```
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "ORG_NOT_FOUND",
+  "message": "Organization not found."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#get-a-theme-asset-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Stored organization content asset.|string|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Resource not found.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response schema {#get-a-theme-asset-responseschema}
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|status|error|
+
+## Apply a theme
+
+<Anchor id="opIdapplyTheme" />
+
+`POST /views/{viewId}/apply-theme`
+
+> Code samples
+
+```bash
+
+curl -X POST https://localhost:9543/api-portal/api/v0.9/views/{viewId}/apply-theme \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json' \
+  -F 'file=@theme.zip'
+```
+
+Uploads a ZIP file and atomically replaces the view's theme assets. Only the assets contained in the uploaded ZIP are present afterward.
+
+### Authentication
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:organization_content:manage\`, \`dp:organization:manage\`
+
+### Parameters {#apply-a-theme-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|ZIP file upload. Organization content uploads are limited to 50 MB.|
+|» file|body|string(binary)|true|ZIP file containing organization theme assets.|
+|viewId|path|string|true|The view's handle (unique per org). Not the internal database uuid.|
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "id": "string",
+  "fileName": "string"
+}
+```
+
+> Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.
+
+```json
+{
+  "status": "error",
+  "code": "MISSING_REQUIRED_PARAMETER",
+  "message": "Missing required parameter."
+}
+```
+
+```json
+{
+  "message": "Missing or invalid fields in the request payload"
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#apply-a-theme-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Organization content upload accepted and stored successfully.|[OrganizationContentUploadResponse](./schemas.mdx#schemaorganizationcontentuploadresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Bad request. Validation and other bad-request errors are returned as a standard error object (field-level details, when present, are carried in its `errors` array); some legacy handlers return a message-only object.|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response schema {#apply-a-theme-responseschema}
+
+#### Enumerated Values {#enumerated-values_1}
+
+|Property|Value|
+|---|---|
+|status|error|
+
+## Reset theme to defaults
+
+<Anchor id="opIdresetTheme" />
+
+`POST /views/{viewId}/reset-theme`
+
+> Code samples
+
+```bash
+
+curl -X POST https://localhost:9543/api-portal/api/v0.9/views/{viewId}/reset-theme \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/json'
+```
+
+Deletes all stored theme assets for the view, reverting it to built-in defaults.
+
+### Authentication {#authentication_1}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:organization_content:manage\`, \`dp:organization:manage\`
+
+### Parameters {#reset-theme-to-defaults-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|viewId|path|string|true|The view's handle (unique per org). Not the internal database uuid.|
+
+> Example responses
+>
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#reset-theme-to-defaults-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Theme reset successfully.|None|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+## Download the current theme
+
+<Anchor id="opIdexportTheme" />
+
+`GET /views/{viewId}/export-theme`
+
+> Code samples
+
+```bash
+
+curl -X GET https://localhost:9543/api-portal/api/v0.9/views/{viewId}/export-theme \
+  -H 'Authorization: Bearer {access_token}' \
+  -H 'Accept: application/zip'
+```
+
+Bundles the view's current custom theme assets into a single ZIP archive for download. The archive is wrapped in a top-level folder so it can be re-uploaded via the apply-theme endpoint. Returns 404 when the view has no custom theme.
+
+### Authentication {#authentication_2}
+
+This operation requires a **Bearer JWT** access token in the `Authorization` header. Required scopes (the token must carry at least one of): \`dp:organization_content:read\`, \`dp:organization:manage\`
+
+### Parameters {#download-the-current-theme-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|viewId|path|string|true|The view's handle (unique per org). Not the internal database uuid.|
+
+> Example responses
+>
+> 200 Response
+
+> 404 Response
+
+```json
+{
+  "status": "error",
+  "code": "ORG_NOT_FOUND",
+  "message": "Organization not found."
+}
+```
+
+> 500 Response
+
+```json
+{
+  "status": "error",
+  "code": "INTERNAL_SERVER_ERROR",
+  "message": "An unexpected error occurred."
+}
+```
+
+### Responses {#download-the-current-theme-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Theme archive.|string|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Resource not found.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error.|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
