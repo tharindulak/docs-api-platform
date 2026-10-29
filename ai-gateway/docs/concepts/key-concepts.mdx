@@ -9,9 +9,8 @@ A gateway for managing and securing AI traffic, including Large Language Model (
 
 ## Quick Start
 
-- [LLM Quick Start Guide](../get-started/quick-start-guide.mdx) — Set up the gateway and route traffic to LLM providers like OpenAI
-- [MCP proxy](../guides/gateway-artifacts/mcp-proxy.mdx) — Set up the gateway and route traffic to MCP servers
-- [A2A agent quick start guide](../guides/agent-governance/quick-start-guide.mdx) — Put an A2A agent behind the gateway and invoke it on both protocol bindings
+- [LLM Quick Start Guide](../guides/llm-proxy/quick-start-guide.mdx) - Set up the gateway and route traffic to LLM providers like OpenAI
+- [MCP Quick Start Guide](../guides/mcp-proxy/quick-start-guide.mdx) - Set up the gateway and route traffic to MCP servers
 
 ## Key Concepts
 
@@ -27,7 +26,6 @@ Following templates are shipped out-of-the-box
 - AWS Bedrock
 - Azure AI Foundry
 - Gemini
-- MistralAI
 
 ### LLM Provider
 
@@ -41,8 +39,6 @@ An LLM Provider represents a connection to an AI backend service such as OpenAI,
 - Organization-wide policies such as guardrails
 
 Once configured, the LLM Provider allows traffic to flow through the gateway to the AI backend.
-
-To connect the gateway to AWS Bedrock, see [Configure an AWS Bedrock LLM Provider](../guides/gateway-artifacts/llm-provider/supported-providers/aws-bedrock.mdx). The guide covers both Bedrock bearer API keys and AWS Signature Version 4 (SigV4) authentication.
 
 ### LLM Proxy
 
@@ -59,14 +55,6 @@ An MCP Proxy routes Model Context Protocol traffic to MCP servers. MCP is a prot
 - Expose MCP servers through a centralized gateway
 - Apply authentication and access control to MCP traffic
 - Manage multiple MCP servers from a single control plane
-
-### Agent
-
-An Agent fronts an Agent2Agent (A2A) agent. A2A is a protocol that lets one AI agent discover another and delegate work to it. With Agents, you can:
-
-- Expose an A2A agent on the JSON-RPC binding, the HTTP+JSON binding, or both
-- Serve an Agent Card that advertises the gateway rather than the agent
-- Apply authentication and rate limits to individual A2A operations
 
 ## Default Ports
 
@@ -106,5 +94,5 @@ An Agent fronts an Agent2Agent (A2A) agent. A2A is a protocol that lets one AI a
 | llm/ | LLM provider configuration, guardrails, prompt management, and semantic caching |
 | mcp/ | MCP proxy setup and policies |
 | observability/ | Logging and tracing configuration |
-| [analytics/](../guides/analytics/index.mdx) | Analytics integrations (Moesif) |
-| gateway-controller-management-api/ | Management API reference |
+| analytics/ | Analytics integrations (Moesif) |
+| ai-gateway-rest-api/ | REST API authentication and usage |

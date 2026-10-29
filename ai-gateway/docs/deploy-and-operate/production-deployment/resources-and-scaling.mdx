@@ -2,7 +2,7 @@
 title: Resources and Scaling
 description: Size CPU and memory for the AI Gateway controller and runtime, spread replicas with anti-affinity, and configure autoscaling and pod disruption budgets.
 type: how-to
-sidebar_label: Resources and scaling
+sidebar_label: Resources & scaling
 sidebar_position: 4
 ---
 
@@ -10,7 +10,7 @@ sidebar_position: 4
 
 Set requests and limits on both components in production. Without them, a traffic spike on the gateway can starve other workloads on the node.
 
-The allocations below match the ones used in the [AI Gateway performance tests](../sizing-and-performance/index.mdx), so the published throughput and latency figures describe what these settings deliver.
+The allocations below match the ones used in the [AI Gateway performance tests](../performance/overview.mdx), so the published throughput and latency figures describe what these settings deliver.
 
 **Gateway Controller:**
 
@@ -49,7 +49,7 @@ gateway:
 Two things drive runtime CPU on an AI Gateway more than raw request rate:
 
 - **Guardrails.** PII masking, JSON schema validation, and URL guardrails inspect the full request and response bodies. The performance tests show measurably lower throughput with PII masking enabled, and lower again with PII masking plus URL and JSON schema guardrails, at the same concurrency.
-- **Payload size.** LLM request and response bodies are far larger than typical representational state transfer (REST) payloads, and body-inspecting policies buffer them. See [Tune the gateway for AI traffic](./ai-workload-tuning.mdx#size-the-body-buffers) for the buffer limits that govern this.
+- **Payload size.** LLM request and response bodies are far larger than typical representational state transfer (REST) payloads, and body-inspecting policies buffer them in the runtime's memory. The ceiling multiplies by concurrency, so size the memory limit against both.
 
 Benchmark with your own proxies and policy set before settling on final numbers. A proxy with several guardrails needs noticeably more CPU per request than one with authentication alone.
 
@@ -120,7 +120,7 @@ gateway:
 When the HPA is enabled the chart omits the Deployment's `replicas` field, so `replicaCount` no longer applies.
 
 :::warning[The controller HPA needs an external database]
-Scaling the controller past one replica requires `storage.type` set to `postgres` or `sqlserver`. SQLite doesn't support concurrent replicas. See [Database configuration](./database-configuration.mdx).
+Scaling the controller past one replica requires `storage.type` set to `postgres`. SQLite doesn't support concurrent replicas. See [Database configuration](./database-configuration.mdx).
 :::
 
 :::note

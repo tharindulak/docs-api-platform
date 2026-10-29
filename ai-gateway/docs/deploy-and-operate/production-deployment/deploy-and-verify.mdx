@@ -2,7 +2,7 @@
 title: Deploy and Verify
 description: Install the API Platform AI Gateway Helm chart, confirm the controller and runtime are healthy, route a live LLM request, and run upgrades and rollbacks.
 type: how-to
-sidebar_label: Deploy and verify
+sidebar_label: Deploy & verify
 sidebar_position: 6
 ---
 
@@ -15,7 +15,7 @@ Render the chart without installing it. This catches the fail-closed encryption 
 
 ```bash
 helm template ai-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
-  --version 1.2.0 \
+  --version 1.1.5 \
   --namespace ai-gateway \
   --values ./values.yaml > /dev/null
 ```
@@ -29,7 +29,7 @@ A failure mentioning encryption keys means `gateway.controller.encryptionKeys` i
 
 ```bash
 helm install ai-gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
-  --version 1.2.0 \
+  --version 1.1.5 \
   --namespace ai-gateway \
   --create-namespace \
   --values ./values.yaml \
@@ -52,7 +52,7 @@ helm install ai-gateway ./kubernetes/helm/gateway-helm-chart \
 </TabItem>
 </Tabs>
 
-Chart version `1.2.0` pairs with AI Gateway 1.2.0. Keep the chart major version aligned with the image tags you pinned in the [overview](./index.mdx#pin-the-image-versions).
+Chart version `1.1.5` is the final chart release in the 1.1.x line and pairs with AI Gateway 1.1.0. Keep the chart major version aligned with the image tags you pinned in the [overview](./overview.mdx#pin-the-image-versions).
 
 ## Verify the deployment
 
@@ -67,7 +67,7 @@ Check the controller's health endpoint. The admin server listens on port 9092:
 
 ```bash
 kubectl exec -n ai-gateway deploy/ai-gateway-controller -- \
-  wget -qO- http://localhost:9092/api/admin/v1/health
+  wget -qO- http://localhost:9092/api/admin/v0.9/health
 ```
 
 Confirm the runtime is ready to accept traffic. The router serves its readiness route on the HTTPS listener:
@@ -102,7 +102,7 @@ Deploy an LLM provider. Read the provider key with `read -rs`, which keeps it of
 ```bash
 read -rsp "OpenAI API key: " OPENAI_API_KEY && echo
 
-curl --fail --show-error -X POST http://localhost:9090/api/management/v1/llm-providers \
+curl --fail --show-error -X POST http://localhost:9090/api/management/v0.9/llm-providers \
   -H "Content-Type: application/yaml" \
   --netrc-file controller.netrc \
   --data-binary @- <<EOF
@@ -149,7 +149,7 @@ In each request, replace `--netrc-file controller.netrc` with `--config controll
 Deploy a proxy that consumes it:
 
 ```bash
-curl --fail --show-error -X POST http://localhost:9090/api/management/v1/llm-proxies \
+curl --fail --show-error -X POST http://localhost:9090/api/management/v0.9/llm-proxies \
   -H "Content-Type: application/yaml" \
   --netrc-file controller.netrc \
   --data-binary @- <<'EOF'
@@ -231,7 +231,7 @@ done
 exit "$failed"
 ```
 
-Every pod should answer. A pod that returns a routing error hasn't received the artifact yet. Allow for the EventHub `poll_interval` set in [Database configuration](./database-configuration.mdx#tune-the-eventhub) before a newly deployed artifact appears everywhere.
+Every pod should answer. A pod that returns a routing error hasn't received the artifact yet. Allow a short interval for a freshly deployed artifact to reach every replica. Controller replicas coordinate through the shared database rather than directly with one another.
 
 This check covers artifact routing only. It reaches each pod over `localhost`, a name the runtime certificate isn't issued for, so it skips certificate validation. Validate the certificate separately through the hostname it was issued for:
 
@@ -281,4 +281,4 @@ Controller pods restart during an upgrade. Each runtime receives its configurati
 
 ---
 
-[← Tune the gateway for AI traffic](./ai-workload-tuning.mdx) &nbsp;|&nbsp; [Connect to AI Workspace →](./control-plane-connection.mdx)
+[← Tune the gateway for AI traffic](./ai-workload-tuning.mdx) &nbsp;|&nbsp; [Connect to a control plane →](./control-plane-connection.mdx)

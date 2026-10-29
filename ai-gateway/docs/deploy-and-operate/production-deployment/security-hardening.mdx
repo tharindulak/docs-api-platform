@@ -21,7 +21,11 @@ All three matter more on an AI Gateway than on a plain API gateway. Its artifact
 
 The controller encrypts sensitive data at rest with 256-bit keys under Advanced Encryption Standard in Galois/Counter Mode (AES-GCM). On an AI Gateway this covers the LLM provider upstream API keys and the guardrail service credentials, such as Azure Content Safety and AWS Bedrock Guardrails keys. It also covers any values you store through the secrets management API.
 
-At-rest encryption is mandatory. The 1.2.0 chart is fail-closed: it refuses to render unless `gateway.controller.encryptionKeys.enabled` is `true` with a `secretName`, and the controller doesn't start without its key. Provision the key before you install.
+At-rest encryption is mandatory in production. The 1.1.5 chart is fail-closed whenever `gateway.developmentMode` is `false`, which is the default: it refuses to render unless `gateway.controller.encryptionKeys.enabled` is `true` with a `secretName`, and the controller doesn't start without its key. Provision the key before you install.
+
+:::warning[Leave development mode off]
+`gateway.developmentMode` relaxes security checks, including the encryption key requirement. It exists for local work. Keep it at `false` in every deployment that carries real traffic or real credentials.
+:::
 
 Generate a 256-bit AES key:
 
@@ -225,7 +229,6 @@ gateway:
           enabled: true
           jwks_url: "https://idp.example.com/.well-known/jwks.json"
           issuer: "https://idp.example.com"
-          audience: ["gateway-controller"]
           roles_claim: "scope"
           role_mapping:
             admin: ["gateway:admin"]
@@ -233,10 +236,8 @@ gateway:
             consumer: ["gateway:consumer"]
 ```
 
-Set `audience` to the value your identity provider puts in the `aud` claim of tokens it issues for the gateway controller. If you leave `audience` empty, the controller accepts tokens issued for any audience and logs a warning at startup. For details on `audience`, `roles_claim`, and `role_mapping`, see [Secure the management API](../secure-the-management-api.mdx).
-
 :::note
-The values in `role_mapping` must match claims the identity provider actually issues in its JSON Web Tokens (JWTs). For the roles the controller recognizes and the operations each one permits, see the [gateway controller management API definition](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/ai-gateway/v1.2.0/gateway/gateway-controller/api/management-openapi.yaml).
+The values in `role_mapping` must match claims the identity provider actually issues in its JSON Web Tokens (JWTs). For the roles the controller recognizes and the operations each one permits, see the [gateway controller management API definition](https://raw.githubusercontent.com/wso2/api-platform/refs/tags/ai-gateway/v1.1.0/gateway/gateway-controller/api/management-openapi.yaml).
 :::
 
 </TabItem>
@@ -286,29 +287,20 @@ Basic auth users are an array of structs, so environment variables can't overrid
 
 ## Restrict the debug endpoints
 
-The controller and the policy engine both run an admin server that dumps configuration. Keep Go profiling off and narrow the address ranges that can reach them:
+The policy engine runs an admin server that dumps configuration. The chart ships it with `allowed_ips: ["*"]`, which suits a local container and is too wide for a cluster. Narrow it to the addresses that genuinely need it:
 
 ```yaml
 gateway:
   config:
-    controller:
-      admin_server:
-        enabled: true
-        port: 9092
-        allowed_ips: ["10.0.0.0/8"]
-        pprof:
-          enabled: false
     policy_engine:
       admin:
         enabled: true
         port: 9002
         allowed_ips: ["127.0.0.1"]
-        pprof:
-          enabled: false
 ```
 
-The chart ships `allowed_ips: ["*"]` for both servers, which is appropriate for a local container and too wide for a cluster. Narrow it to your pod or node CIDR, and leave the admin ports off the Services as described in [Ingress configuration](./index.mdx#ingress-configuration).
+Leave the admin ports off the Services as described in [Ingress configuration](./overview.mdx#ingress-configuration), and reach them with `kubectl port-forward` when you need them.
 
 ---
 
-[← Production deployment overview](./index.mdx) &nbsp;|&nbsp; [Database configuration →](./database-configuration.mdx)
+[← Production deployment overview](./overview.mdx) &nbsp;|&nbsp; [Database configuration →](./database-configuration.mdx)

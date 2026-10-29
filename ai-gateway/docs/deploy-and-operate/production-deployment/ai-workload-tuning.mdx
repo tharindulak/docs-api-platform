@@ -1,12 +1,12 @@
 ---
 title: Tune the Gateway for AI Traffic
-description: 'Tune API Platform AI Gateway for LLM and MCP traffic: streaming timeouts, body buffers, guardrail limits, cost pricing data, and semantic cache backing.'
+description: 'Tune API Platform AI Gateway for LLM and MCP traffic: streaming timeouts, guardrail limits, cost pricing data, and semantic cache backing.'
 type: how-to
 sidebar_label: Tune for AI traffic
 sidebar_position: 5
 ---
 
-Large language model (LLM) and Model Context Protocol (MCP) traffic differs from representational state transfer (REST) traffic in ways the chart defaults don't anticipate. Requests stay open for tens of seconds, bodies run to megabytes, and guardrails inspect every one of those bodies. This page covers the settings that matter because of those differences. The gateway starts with the chart defaults for these settings, and production LLM traffic tends to outgrow the defaults listed below.
+Large language model (LLM) and Model Context Protocol (MCP) traffic differs from representational state transfer (REST) traffic in ways the chart defaults don't anticipate. Requests stay open for tens of seconds, bodies run to megabytes, and guardrails inspect every one of those bodies. This page covers the settings that matter because of those differences.
 
 ## Raise the timeouts for long completions
 
@@ -21,39 +21,23 @@ gateway:
           route_timeout_ms: 300000        # 5 minutes for a full completion
           route_idle_timeout_ms: 300000   # Gap allowed between stream chunks
           connect_timeout_ms: 5000
-      http_listener:
-        timeouts:
-          request_timeout: "0s"           # Leave disabled; the route timeout governs
-          stream_idle_timeout: "10m"
-          idle_timeout: "1h"
 ```
 
-The two idle timeouts are what keep a streaming response alive. `route_idle_timeout_ms` bounds the gap between chunks arriving from the provider, and `stream_idle_timeout` bounds the same gap on the client side. Set both longer than the longest pause you expect between tokens, not longer than the response as a whole.
-
-Individual proxies can override the route timeouts through their `resilience` block, which is useful when one model is much slower than the rest. For the full precedence order between the `resilience` block and these defaults, see [Timeouts](../../guides/timeouts-and-resilience.mdx).
+`route_idle_timeout_ms` is what keeps a streaming response alive: it bounds the gap between chunks arriving from the provider, not the length of the response as a whole. Set it longer than the longest pause you expect between tokens.
 
 :::note
 Raise the matching timeouts on whatever sits in front of the gateway as well. An ingress controller or load balancer with a 60-second read timeout cuts the response off regardless of what the gateway allows.
 :::
 
-## Size the body buffers
-
-The policy engine decompresses request and response bodies so that policies can inspect them. The default limit is 10 MiB in each direction, and the configuration below overrides it to 20 MiB. For streaming responses it applies per chunk rather than cumulatively, so a long Server-Sent Events stream isn't affected. A large buffered response, a request carrying a long conversation history, or a document-heavy prompt can cross it.
+Settings the structured chart values don't expose can be appended as raw TOML, which the chart merges into the generated `config.toml`:
 
 ```yaml
 gateway:
-  config:
-    policy_engine:
-      request_body:
-        max_decompressed_bytes: 20971520    # 20 MiB, overriding the 10 MiB default
-      response_body:
-        max_decompressed_bytes: 20971520    # 20 MiB, overriding the 10 MiB default
-    router:
-      http_listener:
-        per_connection_buffer_limit_bytes: 4194304   # 4 MiB
+  config_toml: |
+    [router.http_listener.timeouts]
+    stream_idle_timeout = "10m"
+    idle_timeout = "1h"
 ```
-
-Raise these only as far as your payloads need. Every concurrent request holds its buffer in the runtime's memory, so the ceiling multiplies by concurrency and lands directly on the memory limit you set in [Resources and scaling](./resources-and-scaling.mdx).
 
 ## Give guardrails room to run
 
@@ -67,13 +51,11 @@ gateway:
         timeout_ms: 60000
         message_timeout_ms: 60000
         route_cache_action: RETAIN
-    policy_engine:
-      python_executor:
-        timeout: 30s
 ```
 
-- `python_executor.timeout` bounds a single policy execution. Guardrails that call an external service spend most of that budget on the network call. [Azure Content Safety](https://wso2.com/api-platform/policy-hub/policies/azure-content-safety-content-moderation), [AWS Bedrock guardrails](https://wso2.com/api-platform/policy-hub/policies/aws-bedrock-guardrail), and a [semantic prompt guardrail](https://wso2.com/api-platform/policy-hub/policies/semantic-prompt-guard) that generates embeddings all behave this way. Raise the timeout when the guardrail service is slow or distant. Keep it below `route_timeout_ms`, so the route timeout stays the outer bound.
-- `route_cache_action: RETAIN` keeps the route cache warm across requests. Leave it at `RETAIN`.
+Guardrails that call an external service—[Azure Content Safety](../../guides/llm-proxy/guardrails/azure-content-safety.mdx), [AWS Bedrock guardrails](../../guides/llm-proxy/guardrails/aws-bedrock-guardrail.mdx), or a [semantic prompt guardrail](../../guides/llm-proxy/guardrails/semantic-prompt-guard.mdx) that generates embeddings—spend most of that budget on the network call. Keep these values below `route_timeout_ms` so the route timeout stays the outer bound.
+
+Leave `route_cache_action` at `RETAIN`, which keeps the route cache warm across requests.
 
 Guardrails that reach an external service add that service's latency and its failure modes to every request. Deploy the guardrail service in the same region as the gateway, and check what your chosen guardrail does when the service is unreachable before you rely on it in production.
 
@@ -120,7 +102,7 @@ Cost figures are only as accurate as this file. Treat it as data to review on a 
 
 ## Provision infrastructure for semantic caching
 
-[Semantic caching](https://wso2.com/api-platform/policy-hub/policies/semantic-cache) depends on two external services that the gateway chart doesn't deploy, so provision both before you enable the policy:
+[Semantic caching](../../guides/llm-proxy/semantic-caching.mdx) depends on two external services that the gateway chart doesn't deploy, so provision both before you enable the policy:
 
 - **A vector database** — Redis or Milvus — that stores the cached responses and their embeddings. Size it for your retention window, place it in the same region as the gateway, and secure it: it holds prompt and completion content in full.
 - **An embedding provider** — OpenAI, Mistral, or Azure OpenAI — called on every request that reaches the policy. Its latency is added to every cache miss, and its API key is stored as a gateway secret, encrypted with the key from [Security hardening](./security-hardening.mdx).
@@ -145,7 +127,7 @@ gateway:
 ```
 
 :::warning[Prompts and completions are sensitive]
-Debug-level logging can record request and response bodies, which on an AI Gateway means user prompts and model completions. Before you enable debug-level logging in production, confirm that your log retention and access controls suit that content. If you forward traffic data to an external analytics service, control what leaves the gateway with the [analytics header filter](../../guides/analytics/analytics-header-filter.mdx). For where the logs go and how to read them, see [Gateway logs](../../guides/logging-and-tracing/gateway-logs.mdx).
+Debug-level logging can record request and response bodies, which on an AI Gateway means user prompts and model completions. Before you enable debug-level logging in production, confirm that your log retention and access controls suit that content. If you forward traffic data to an external analytics service, control what leaves the gateway with the [analytics header filter](../../guides/analytics/analytics-header-filter.mdx). For where the logs go and how to read them, see [Gateway logging](../../guides/observability/logging.mdx).
 :::
 
 ---
