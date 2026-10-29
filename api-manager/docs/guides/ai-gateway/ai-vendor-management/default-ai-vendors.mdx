@@ -1,0 +1,33 @@
+---
+title: Default AI Vendors
+description: 'WSO2 API Manager provides built-in support for three AI/LLM vendors:'  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Default AI vendors
+sidebar_position: 1
+---
+
+WSO2 API Manager provides built-in support for three AI/LLM vendors:
+
+- OpenAI
+- Azure OpenAI
+- Mistral
+
+These default AI vendors come pre-configured within WSO2 API Manager, enabling seamless integration with their AI models. This out-of-the-box support simplifies API creation and ensures a smooth experience when working with AI services.
+
+## Managing Default AI Vendor Configurations
+
+The following configurations are **read-only** and you can view them by navigating to the **AI/LLM Vendors** section under the Admin Portal.
+
+| Category | Field |
+| --- | --- |
+| General Details | Name<br /> API Version<br /> Description<br /> |
+| LLM Configurations | Request Model<br /> Response Model<br /> Prompt Token Count<br /> Completion Token Count<br /> Total Token Count<br /> Remaining Token Count<br /> |
+| LLM Provider Auth Configurations | Auth Type: Header, Query Parameter or Unsecured<br /> Auth Type Identifer: Header/Query Parameter Identifier<br /> |
+| Connector Type for AI/LLM Vendor | Connector Type |
+
+Note that the following configurations can be updated.
+
+| Category | Field |
+| --- | --- |
+| API Definition | AI vendor exposed API definition file |
+| Model List | Add the list of models supported by the AI vendor. This list enables you to configure routing stratergies within your AI APIs. |

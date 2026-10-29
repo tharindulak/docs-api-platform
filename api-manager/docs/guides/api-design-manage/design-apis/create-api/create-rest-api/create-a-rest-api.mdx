@@ -19,11 +19,15 @@ Follow the instructions below to create a REST API using the basic flow:
     The **Create API** button will only appear for a user who has the `creator` role permission.
     :::
 
-2. Select **REST API** from the home screen and then click **Start From Scratch**.
+2. Select **REST API** from the options available.
 
-    ![Select REST API](../../../../../../assets/img/get_started/design-new-rest-api.png)
+    <img src={require("../../../../../../assets/img/learn/select-rest-api.png").default} alt="Select REST API" style={{width: "90%"}} />
 
-3.  Enter API details. 
+3.  Click **Start from Scratch**.
+
+    <img src={require("../../../../../../assets/img/learn/create-a-rest-api.png").default} alt="Select Start from Scratch" style={{width: "30%"}} />
+
+4.  Enter API details. 
 
      <table>
        <colgroup>
@@ -75,13 +79,21 @@ Follow the instructions below to create a REST API using the basic flow:
 
       <img src={require("../../../../../../assets/img/learn/create-rest-api-form.png").default} alt="Create an API page" style={{width: "70%"}} />
 
-4.  Click **Create** to create the API.
+5.  Click **Create** to create the API.
+
+    <details>
+    <summary>If you click Create & Publish</summary>
+
+    If you click **Create & Publish**, WSO2 API Manager will automatically create a revision for the API, deploy the revision on the Gateway, and also publish your API to the Developer Portal.
+    ![API overview page](../../../../../../assets/img/learn/rest-api-create-publish.png)
+
+    </details>
 
     The overview page of the newly created API appears. 
 
     ![API overview page](../../../../../../assets/img/learn/overviewpage-rest-api.png)
 
-5. Go to **Develop**, **Portal Configurations**, and click **Basic Info**.
+6. Go to **Develop**, **Portal Configurations**, and click **Basic Info**.
 
      [<img src={require("../../../../../../assets/img/learn/click-basic-info.png").default} width="20%" />](../../../../../../assets/img/learn/click-basic-info.png)
 
@@ -120,7 +132,7 @@ Follow the instructions below to create a REST API using the basic flow:
 
      4. Click **Save**.
 
-6. Configure the runtime configurations.
+7. Configure the runtime configurations.
 
     1. Click **Runtime**, which is under the **API Configurations** section.
 
@@ -132,7 +144,7 @@ Follow the instructions below to create a REST API using the basic flow:
 
          Both HTTP and HTTPS transports are selected by default.
 
-7. Configure the resources.
+8. Configure the resources.
 
      By default, the API will have five resources with `/*` as the URL pattern.
 
@@ -176,7 +188,7 @@ Follow the instructions below to create a REST API using the basic flow:
                 | `cookie` | Operations can also pass parameters in the Cookie header, as `Cookie: name=value`. Multiple cookie parameters are sent in the same header, separated by a semicolon and space.                                                                                            |
                 | `body`| An arbitrary amount of data of any type is sent with a POST message.                                                                                                                                |
 
-8.  Optionally, view the API definition.
+9.  Optionally, view the API definition.
 
      Click **API Definition**. 
 
@@ -206,17 +218,17 @@ You can observe results for the Linter rules you create by doing the following.
 
 </details>
 
-Now, you have successfully created and configured a REST API. Next, [deploy the API](../../../deploy-and-publish/deploy-api/deploy-api/deploy-an-api.mdx), [test the API](./test-a-rest-api.mdx), and finally [publish the API](../../../deploy-and-publish/publish-on-dev-portal/publish-an-api.mdx).
+Now, you have successfully created and configured a REST API. Next, [deploy the API](../../../deploy-and-publish/deploy-on-gateway/deploy-api/deploy-an-api.mdx), [test the API](./test-a-rest-api.mdx), and finally [publish the API](../../../deploy-and-publish/publish-on-dev-portal/publish-an-api.mdx).
 
 ## See Also
 
 Learn more on the concepts that you need to know when creating a REST API:
 
 -   [Endpoints](../../endpoints/endpoint-types.mdx)
--   [API Security](../../../../api-security/runtime/api-authentication/secure-apis-using-oauth2-tokens.mdx)
--   [Rate Limiting](../../../../api-gateway/classic-gateway-universal/rate-limiting/understand-rate-limit-enforcement.mdx)
+-   [API Security](../../api-security/api-authentication/secure-apis-using-oauth2-tokens.mdx)
+-   [Rate Limiting](../../rate-limiting/introducing-throttling-use-cases.mdx)
 -   [Life Cycle Management](../../lifecycle-management/api-lifecycle.mdx)
--   [API Monetization](../../../../api-analytics-and-monetization/api-monetization/monetizing-an-api.mdx)
+-   [API Monetization](../../api-monetization/monetizing-an-api.mdx)
 -   [API Visibility](../../advanced-topics/control-api-visibility-and-subscription-availability-in-developer-portal.mdx)
 -   [API Documentation](../../api-documentation/add-api-documentation.mdx)
 -   [Custom Properties](../../adding-custom-properties-to-apis.mdx)

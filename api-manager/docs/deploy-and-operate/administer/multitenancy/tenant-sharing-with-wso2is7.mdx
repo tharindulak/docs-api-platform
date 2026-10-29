@@ -13,6 +13,10 @@ Tenant sharing can be configured in either direction: from API Manager to Identi
 It is important to note that this feature must not be enabled on both products simultaneously, as it is designed to work in only one direction per deployment.
 :::
 
+:::note
+**Tenant Sharing between WSO2 API Manager and WSO2 Identity Server 7.x** feature is supported from WSO2 Identity Server 7.1.0.43 update level  and WSO2 API Manager 4.5.0.46 update level onwards.
+:::
+
 ## Setting up Configuration for Mutual SSL
 
 By default, authentication between WSO2 API Manager and WSO2 Identity Server 7.x is performed via Mutual SSL. Therefore, it is necessary to configure a certificate that is trusted by both components during deployment.
@@ -78,7 +82,7 @@ order = 1
 [event_listener.properties]
 notification_endpoint = "https://localhost:9443/internal/data/v1/notify"
 username = "<username>"
-password = "<password>”
+password = "<password>"
 'header.X-WSO2-KEY-MANAGER' = "TENANT_MANAGEMENT"
 ```
 
@@ -170,4 +174,4 @@ skip_create_resident_key_manager=true
 :::
 
 ## Configuring WSO2 IS 7.x as a third party key manager
-Please refer [this](../../../guides/api-security/key-management/third-party-key-managers/configure-wso2is7-connector.mdx) guide to configure WSO2 IS as a Key Manager in API Manager.
+Please refer [this](../key-managers/configure-wso2is7-connector.mdx) guide to configure WSO2 IS 7.x as a Key Manager in API Manager.

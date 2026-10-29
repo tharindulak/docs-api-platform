@@ -41,17 +41,13 @@ Follow the instructions below to add a mock implementation to the API:
 
 3. View the inline script that has been generated.
 
-    :::warning[Important]
-       Currently, generation of example payloads for mock implementations is supported only for Swagger 2.x and OpenAPI 3.0.x versions.
+     Click and expand any of the methods that contain a sample/mock payload. 
 
-    Click and expand any of the methods that contain a sample/mock payload.
+     Let's click on the `GET /pet/{petId}` method.
 
-    Let's click on the `GET /pet/{petId}` method.
+     ![Generated inline script](../../../../../../assets/img/learn/create-api-prototype-generated-script.png)
 
-    ![Generated inline script](../../../../../../assets/img/learn/create-api-prototype-generated-script.png)
-
-    The example response defined in the OpenAPI definition is set as the mock response payload. You can modify the generated inline scripts as required. 
-    :::
+     The example response defined in the OpenAPI definition is set as the mock response payload. You can modify the generated inline scripts as required. 
 
     <details>
     <summary>Click here to view the inline Mock Implementation script.</summary>
@@ -195,7 +191,7 @@ Follow the instructions below to add a mock implementation to the API:
 3. If you have enabled security, you can either use the access token that you got from the above step or use the **GET TEST KEY** option.
 
     :::note
-       Skip this step if you have [disabled security for the API](../../../../api-security/runtime/api-authentication/disable-security.mdx), and leave the **Access Token** field empty.
+       Skip this step if you have [disabled security for the API](../../api-security/api-authentication/disable-security.mdx), and leave the **Access Token** field empty.
 
     ![Try out prototype](../../../../../../assets/img/learn/prototype-api/create-prototype-api-dev-portal-tryout-petstore.png)
     :::
@@ -334,10 +330,10 @@ It is recommended to use an Allow List approach for both class and method access
 Learn more on the concepts that you need to know when creating a Prototype API:
 
 -   [Endpoints](../../endpoints/endpoint-types.mdx)
--   [API Security](../../../../api-security/runtime/api-authentication/secure-apis-using-oauth2-tokens.mdx)
--   [Rate Limiting](../../../../api-gateway/classic-gateway-universal/rate-limiting/understand-rate-limit-enforcement.mdx)
+-   [API Security](../../api-security/api-authentication/secure-apis-using-oauth2-tokens.mdx)
+-   [Rate Limiting](../../rate-limiting/introducing-throttling-use-cases.mdx)
 -   [Life Cycle Management](../../lifecycle-management/api-lifecycle.mdx)
--   [API Monetization](../../../../api-analytics-and-monetization/api-monetization/monetizing-an-api.mdx)
+-   [API Monetization](../../api-monetization/monetizing-an-api.mdx)
 -   [API Visibility](../../advanced-topics/control-api-visibility-and-subscription-availability-in-developer-portal.mdx)
 -   [API Documentation](../../api-documentation/add-api-documentation.mdx)
 -   [Custom Properties](../../adding-custom-properties-to-apis.mdx)

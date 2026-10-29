@@ -1,0 +1,294 @@
+---
+title: Building a CI/CD Pipeline for APIs Using WSO2 API Controller
+description: In the modern digital-era, many organizations adopt digital transformation technologies to keep up with the changes.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Build a CI/CD pipeline for APIs using Jenkins
+sidebar_position: 3
+---
+
+In the modern digital-era, many organizations adopt digital transformation technologies to keep up with the changes. APIs are one of the basic building blocks used in a digitally-driven organization. When the number of APIs managed by the organization grows, they need to have an automated process to handle the rapid API development process. Having a proper continuous integration and continuous deployment (CI/CD) process would give an added advantage to your organization. 
+
+In this section, you will learn how to build an automated process using the WSO2 API Controller (apictl) with WSO2 API Manager (WSO2 API-M). You will see how a solution is built using a version control system (Github), artifact repository(JFrog Artifactory) and CI/CD Tool (Jenkins).
+
+[<img src={require("../../../../../assets/img/learn/api-controller/cicd-jenkins-arch.png").default} width="600" />](../../../../../assets/img/learn/api-controller/cicd-jenkins-arch.png)
+
+## Setting up the environment
+
+### Step 1 - Setup Jenkins {#step-1-setup-jenkins}
+
+Before you begin, you need to set up the Jenkins server on a remote machine which has public access. To  use webhooks in Github and Artifactory repository to trigger Jenkins jobs you need a publicly accessible Jenkins server url. If you are trying this on a local machine, you may have to use a tool such as [socketxp](https://www.socketxp.com/) to create a tunnel.
+
+In this section, the instructions are tested out on an ubuntu server setup on [https://cloud.google.com/compute](https://cloud.google.com/compute) . 
+
+Log in to the server and install following.
+
+1. Install jq  using the command given below.
+  ```text
+  sudo apt-get install jq
+  ```
+2. Install the [apictl tool](../manage-environments-using-the-cli/getting-started-with-wso2-api-controller.mdx#download-and-initialize-the-apictl). Extract to a location henceforth referred as `CTL_HOME`.
+
+3. Install java.
+
+4. Setup the Jenkins server following the instructions given [here](https://www.jenkins.io/doc/book/installing/linux/). You can choose to install the suggested default plugins. This will install the commonly-used plugins.
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/customize-jenkins.png").default} width="500" />](../../../../../assets/img/learn/api-controller/customize-jenkins.png)
+
+5. Register a webhook in the JForg Artifact repository to notify changes. To capture these events and trigger a Jenkins job, install a generic-webhook-trigger plugin.
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/webhook-trigger-plugin.png").default} width="500" />](../../../../../assets/img/learn/api-controller/webhook-trigger-plugin.png)
+
+6. Configure apictl home as an environment variable. Go to the **Manage Jenkins** section and select **Configure System**. 
+    [<img src={require("../../../../../assets/img/learn/api-controller/configure-system.png").default} width="500" />](../../../../../assets/img/learn/api-controller/configure-system.png)
+
+    Under the **Global properties** select **Environment variables** and set the APICTL home as below and click **Save**.
+    [<img src={require("../../../../../assets/img/learn/api-controller/environment-variables.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/environment-variables.png)
+
+Now the Jenkins server is set up.
+
+### Step 2 - Create Github repositories {#step-2-create-github-repositories}
+
+In this section, two repositories are created to illustrate this scenario.
+
+1. Source Repository -[https://github.com/chamilaadhi/poc-cicd-source-repo](https://github.com/chamilaadhi/poc-cicd-source-repo)
+
+2. Deployment Repository - [https://github.com/chamilaadhi/poc-cicd-deployment-repo](https://github.com/chamilaadhi/poc-cicd-deployment-repo)
+
+Source repository contains the files and metadata related to the API. Deployment repository contains the configurations related to each environment this APIs is getting deployed. 
+
+#### Step 2.1 - Setup source repository {#step-21-setup-source-repository}
+
+This section shows how to trigger a Jenkins job when a change is made to the repository. Lets use [Github webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks) to trigger a Jenkins job. 
+
+1. Go to the **source** repository and under the **Settings**, select **Webhooks** and add a webhook to the jenkins server.
+
+  [<img src={require("../../../../../assets/img/learn/api-controller/select-webhooks.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/select-webhooks.png)
+
+2. Use your jenkins server URL (e.g., `http://&lt;public_ip>:8080/github-webhook/`) as the URL and **Content type** as application/json.
+
+3. Under the **Which events would you like to trigger this webhook?** section, select **Let me select individual events**, and select **pull request** and **pushes**.
+
+  [<img src={require("../../../../../assets/img/learn/api-controller/jenkins-server-url.png").default} alt="Jenkins server URL" width="70%" />](../../../../../assets/img/learn/api-controller/jenkins-server-url.png)
+
+Source repository is now configured. 
+
+Now let’s initialize the source repository. This will be done from the developer’s local machine.
+
+:::note
+If you haven’t setup API Controller, set it up using the [apictl tool](../manage-environments-using-the-cli/getting-started-with-wso2-api-controller.mdx#download-and-initialize-the-apictl) 
+:::
+
+1. Clone the source repository. Navigate to the repository folder.
+
+    ```text
+    git clone https://github.com/chamilaadhi/poc-cicd-source-repo.git
+    cd poc-cicd-source-repo
+    ```
+
+2. Execute the following command.
+
+    ```text
+    $ apictl vcs init
+    ```
+    This will create a `vcs.yaml` file in the repository. Commit it to the source repository. 
+
+Now the source repository is configured.
+
+#### Step 2.2 - Setup deployment repository {#step-22-setup-deployment-repository}
+
+Deployment repository will be used to gather configurations for each deployment. To separate out the configuration, we will use git branches. Create a branch named ‘dev’ to keep the configuration related to the dev environment.
+
+### Step 3 - Setup JFrog Artifactory {#step-3-setup-jfrog-artifactory}
+
+:::note[Before you begin]
+Create a free cloud repository using [https://jfrog.com/start-free/#saas](https://jfrog.com/start-free/#saas). After the registration is complete, Login to `https://&lt;name>.jfrog.io/ui/`
+:::
+
+1. Create a user to upload artifacts. Login using admin credentials and go to **Identity and Access** → **Users** and create a user. All roles are selected in this scenario.
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/create-a-user.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/create-a-user.png)
+
+2. Make the repo accessible public. Go to **Security → Settings** and select **Allow Anonymous Access**
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/repo-public-access.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/repo-public-access.png)
+
+3. Create a repository to upload the artifacts. Go to **Repositories** and select **Add Repositories**. Select **Generic** type and provide a name (e.g., `myrepo`).
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/create-repository.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/create-repository.png)
+
+    After saving, You should be able to access `https://<your_org>.jfrog.io/artifactory/<repo_name>/`.
+
+    Try uploading a sample resource. An example is given below.
+
+    ```text
+    touch resource.txt
+    curl -u repouser:<password> -X PUT https://xxxx.jfrog.io/artifactory/myrepo/ -T resource.txt
+    ```
+
+    Access the repository URL to see the resource.
+
+4. Configure a webhook to triggerb the Jenkins job.
+
+    Create a webhook to trigger the Jenkins job when a new resource is uploaded to the repository. Go to **General** → **Webhooks** and create a new one.
+
+    URL - `http://<jenkins_host>:8080/generic-webhook-trigger/invoke?token=123**`
+
+    Add the **Event set** as **Artifact was deployed**.
+
+      [<img src={require("../../../../../assets/img/learn/api-controller/set-event.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/set-event.png)
+
+    Select the repository from the new window that appears.
+
+      [<img src={require("../../../../../assets/img/learn/api-controller/select-repository.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/select-repository.png)
+
+### Step 4 - Setup API-M instances {#step-4-setup-api-m-instances}
+
+Download the WSO2 API Manager [here](../manage-environments-using-the-cli/getting-started-with-wso2-api-controller.mdx#download-and-initialize-the-apictl) and start the instance. Set this in a separate instance as the `dev` instance. 
+
+### Step 5 - Configure Jenkins Jobs {#step-5-configure-jenkins-jobs}
+
+#### Step 5.1 - Setup Global variables {#step-51-setup-global-variables}
+
+As shown in the **Setup Jenkins** Section, Go to **Manage Jenkins** section and select **Configure System**. Under the **Global properties** select **Environment variables** and set following variables with your environment related details.
+
+| Variable | Description |
+| --- | --- |
+| APIM_DEV_HOST | IP or host name of the dev instance (ex 10.100.5.96 ) |
+| APIM_PROD_HOST | IP or host name of the prod instance (ex 10.100.5.97 ) |
+| ARTIFACTORY_HOST | Artifactory host name (ex: testrepo.jfrog.io) |
+| ARTIFACTORY_PWD | Artifact uploading user’s password |
+| ARTIFACTORY_REPO | Repo name.(ex: myrepo) |
+| ARTIFACTORY_USER | Artifact uploading user’s username |
+
+[<img src={require("../../../../../assets/img/learn/api-controller/global-variables.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/global-variables.png)
+
+#### Step 5.2 - Setup Artifact build and upload job {#step-52-setup-artifact-build-and-upload-job}
+
+1. Create a jenkins **Pipeline** project.
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/create-pipeline.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/create-pipeline.png)
+
+2. Use [this](https://gist.github.com/chamilaadhi/def68ba36cedec6b901731f32bbad532) script for the pipeline. 
+
+    :::note
+    Jenkins server default workspace URL is `/var/lib/jenkins/workspace/`. If you have installed the Jenkins server in a different location, change this path in the script accordingly.
+    :::
+
+3. Under the **Build Triggers** set the GitHub hook trigger for **GITScm polling**. 
+
+4. Save the configuration. Now the Jenkins job is configured to listen to any change in the source repository and upload any new update to the artifact repository.
+
+To set up, Execute a build job. Note that this will fail.
+
+  [<img src={require("../../../../../assets/img/learn/api-controller/build-now.png").default} width="40%" />](../../../../../assets/img/learn/api-controller/build-now.png)
+
+#### Step 5.3 - Setup Artifact deployment Job {#step-53-setup-artifact-deployment-job}
+
+The artifact deployment job will listen to any new updates in the Artifactory repository and deploy the artifact with the configurations in the Deployment git repository to the `dev` API-M environment.
+
+1. Create a Jenkins pipeline using [this](https://gist.github.com/chamilaadhi/81241bf2e9c46b720ef61fb516e00249) script . 
+
+2. Save the script and execute a build to setup. Note that this will fail.
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/build-dev-now.png").default} width="40%" />](../../../../../assets/img/learn/api-controller/build-dev-now.png)
+
+3. To test whether the webhook between Artifactory and the Jenkins job is working, you could execute the same upload test we did under Setup JFrog Artifactory section
+  ```text
+  touch resource.txt
+  curl -u repouser:<password> -X PUT https://xxxxx.jfrog.io/artifactory/myrepo/ -T resource.txt
+  ```
+
+If the configuration is working, this will trigger a new build.
+
+  [<img src={require("../../../../../assets/img/learn/api-controller/trigger-new-build.png").default} width="40%" />](../../../../../assets/img/learn/api-controller/trigger-new-build.png)
+
+## Test the scenario
+
+To test this setup, use the OpenAPI definition based method to create the APIs.
+
+1. Create API using an OAS Definition. This will create a project with name **PetstoreAPI**. A sample command is given below.
+
+    ```text
+    $apictl init PetstoreAPI --oas https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v2.0/yaml/petstore.yaml
+    ```
+
+2. Generate deployment resource using the command given below.
+
+    ```text
+    $apictl gen deployment-dir --source /Path/To/PetstoreAPI --destination <deployment_repo_path>/poc-cicd-deployment-repo
+    ```
+
+    You will see the resources created with the following structure.
+
+    ```text
+    ├── DeploymentArtifacts_SwaggerPetstore-1.0.0
+    │   ├── api_meta.yaml
+    │   ├── certificates
+    │   └── params.yaml
+    ```
+
+3. Open the `params.yaml` file and update the content with the code given below.
+
+    ```text
+    environments:
+      - name: dev
+        configs:
+          endpoints:
+              production:
+                  url: 'https://petstore.swagger.io/v2/'
+          deploymentEnvironments:
+              - displayOnDevportal: true
+                deploymentEnvironment: Default
+                deploymentVhost : localhost
+    ```
+    The environment name is set as `dev`. This configuration will be used for the `dev` environment.
+
+4. Commit this to the **dev** branch in the deployment repository.
+5. Copy the **PetstoreAPI** folder to the source repository git location. 
+6. Create a file named **meta.yaml** inside the **PetstoreAPI** folder and add a version similar to following.
+
+    ```text
+    version: 1.0.0
+    ```
+    This version is used to deploy the bundle created using the **PetstoreAPI** API in the Artifactory repository.
+
+7. Following is the content for the PetstoreAPI. Commit all the files to the git repository
+
+    ```text
+    ├── PetstoreAPI
+    │   ├── Definitions
+    │   │   └── swagger.yaml
+    │   ├── README.md
+    │   ├── api.yaml
+    │   ├── api_meta.yaml
+    │   ├── deployment_environments.yaml
+    │   └── meta.yaml
+    ```
+
+    When you commit to the source repository, the `CICD_ARTIFACT_UPLOAD` will get triggered first and upload the built component to the Artifactory. This is displayed in the console log of the Jenkins job.
+
+      [<img src={require("../../../../../assets/img/learn/api-controller/console-log-jenkins.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/console-log-jenkins.png)
+
+    Once the bundle is uploaded to the Artifactory repository, it will trigger the deployment Jenkins job. The bundle getting deployed in API-M is displayed in the logs.
+
+      [<img src={require("../../../../../assets/img/learn/api-controller/apim-logs.png").default} width="70%" />](../../../../../assets/img/learn/api-controller/apim-logs.png)
+
+    Log in to the API Manager instance and you should see the API is created.
+
+      [<img src={require("../../../../../assets/img/learn/api-controller/created-api.png").default} width="50%" />](../../../../../assets/img/learn/api-controller/created-api.png)
+
+Let's update the API and see the changes. The API is in **CREATED** state. Let’s publish this API by following the steps given below. 
+
+1. Open the  **PetstoreAPI/api.yaml** file and change the **lifeCycleStatus** to **PUBLISHED**
+2. Open **PetstoreAPI/meta.yaml** file and change the version to some new value (let’s say 1.0.1) .
+    [<img src={require("../../../../../assets/img/learn/api-controller/create-file-git.png").default} width="40%" />](../../../../../assets/img/learn/api-controller/create-file-git.png)
+
+    [<img src={require("../../../../../assets/img/learn/api-controller/api-state.png").default} width="40%" />](../../../../../assets/img/learn/api-controller/api-state.png)
+
+3. Commit both files.
+
+Once you commit the changes to the source repository, you would see the jenkins jobs getting triggered. Log in to the Publisher Portal and check the changes.
+
+If you go to the artifactory repository and check the **PetstoreAPI** you will see two versions in the repository.
+
+  [<img src={require("../../../../../assets/img/learn/api-controller/two-versions.png").default} width="60%" />](../../../../../assets/img/learn/api-controller/two-versions.png)

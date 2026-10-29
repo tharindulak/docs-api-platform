@@ -2,7 +2,8 @@
 title: Enabling CORS for APIs
 description: Cross-Origin Resource Sharing (CORS) is a mechanism that allows accessing restricted resources (i.e., fonts, images, scripts, videos, and iframes) from…  # generated from the first paragraph; a writer should improve it
 type: how-to
-sidebar_position: 5
+sidebar_label: Enable CORS for APIs
+sidebar_position: 3
 ---
 
 Cross-Origin Resource Sharing (CORS) is a mechanism that allows accessing restricted resources (i.e., fonts, images, scripts, videos, and iframes) from domains outside the domain from which the requesting resource originated. Browsers define the origin as a combination of Scheme (`http://`, `https://`), Host, and Port. By default, web browsers apply the same-origin policy to avoid interactions between different origins. CORS defines a way in which a browser and a server can interact to determine whether or not it is safe to allow the cross-origin requests.
@@ -49,7 +50,7 @@ You need to enable CORS globally before you enable CORS Per API. Therefore, if y
 When CORS is enabled globally, it applies to all APIs served by the API Gateway. You can override this global configuration for a specific API by following the instructions below. However, disabling CORS for an individual API does not turn off the global CORS configuration.
 :::
 
-1.  Sign in to API Publisher and [create a new API](../create-api/create-rest-api/create-a-rest-api.mdx).
+1.  Sign in to API Publisher and [create a new API](../create-api/create-rest-api/create-a-rest-api.mdx).
 
 2.  Go to **API Configurations** from the left menu and click **Runtime**.
 

@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 Follow the instructions below to configure WSO2 Identity Server (WSO2 IS) as the Resident Key Manager of the WSO2 API Manager (WSO2 API-M) deployment globally.
 
 :::warning
-WSO2 Identity Server 7.x **cannot** be set up as a Resident Key Manager. It can only be set up as a [Third-party Key Manager](./configure-a-third-party-key-manager.mdx). See Configure WSO2 IS Key Manager for instructions on configuring WSO2 Identity Server 7.x as a Third-party Key Manager.
+WSO2 Identity Server 7.x **cannot** be set up as a Resident Key Manager. It can only be set up as a [Third-party Key Manager](./configure-a-third-party-key-manager.mdx). See [Configure WSO2 IS 7.x as a Key Manager](../../../../administer/key-managers/configure-wso2is7-connector.mdx) for instructions on configuring WSO2 Identity Server 7.x as a Third-party Key Manager.
 :::
 
 - [Step 1 - Download and install WSO2 IS](#step-1-download-and-install-wso2-is)
@@ -200,14 +200,14 @@ Follow the instructions below to set up and configure the databases for the WSO2
 
 ## Step 4 - Configure WSO2 IS with WSO2 API-M {#step-4-configure-wso2-is-with-wso2-api-m}
 
-1. Download the [WSO2 IS Connector](../../../../../../assets/attachments/administer/wso2is-extensions-1.8.8.zip).
+1. Download the [WSO2 IS Connector](../../../../../../assets/attachments/administer/wso2is-extensions-1.7.12.zip).
 
-2. Extract the distribution and copy the following JAR files, which are in the `<wso2is-extensions-1.8.8>/dropins` directory, to the `<IS_HOME>/repository/components/dropins` directory.
+2. Extract the distribution and copy the following JAR files, which are in the `<wso2is-extensions-1.7.12>/dropins` directory, to the `<IS_HOME>/repository/components/dropins` directory.
 
-     - `wso2is.key.manager.core-1.8.8.jar`
-     - `wso2is.notification.event.handlers-1.8.8.jar`
+     - `wso2is.key.manager.core-1.7.12.jar`
+     - `wso2is.notification.event.handlers-1.7.12.jar`
 
-3. Add the `keymanager-operations.war`, which is in the `<wso2is-extensions-1.8.8>/webapps` directory, to the `<IS_HOME>/repository/deployment/server/webapps` directory.
+3. Add the `keymanager-operations.war`, which is in the `<wso2is-extensions-1.7.12>/webapps` directory, to the `<IS_HOME>/repository/deployment/server/webapps` directory.
 
 4.  Configure the Traffic Manager endpoints.
 
@@ -302,7 +302,7 @@ Follow the instructions below to set up and configure the databases for the WSO2
     </TabItem>
     </Tabs>
 
-6. Add the following configuration in the `<IS_HOME>/repository/conf/deployment.toml` file to change the default encryption type and remove the `keystore.primary` configuration. **This should only be done if you have added the same configurations below to enable asymmetric cryptography in `<APIM_HOME>/repository/conf/deployment.toml`**.
+6. Add the following configuration in the `<IS_HOME>/repository/conf/deployment.toml` file to change the default encryption type and remove the `keystore.primary` configuration.
     ```text
     [keystore]
     userstore_password_encryption = "InternalKeyStore"
@@ -329,7 +329,7 @@ Follow the instructions below to set up and configure the databases for the WSO2
 
 ## Step 5 - Configure WSO2 API-M with the WSO2 IS {#step-5-configure-wso2-api-m-with-the-wso2-is}
 
-1. By default, WSO2 API Manager and WSO2 Identity Server come with a JDBC User Store as the primary userstore. If you wish to use any other type of user store (e.g., LDAP, Active Directory, etc.) in WSO2 IS, it has to be configured in the API Manager nodes. For more information, see [Configuring the Primary User Store](../configure-userstores/configure-primary-user-store/configuring-the-primary-user-store.mdx) and apply the relevant configs to plug in a new user store.
+1. By default, WSO2 API Manager and WSO2 Identity Server come with a JDBC User Store as the primary userstore. If you wish to use any other type of user store (e.g., LDAP, Active Directory, etc.) in WSO2 IS, it has to be configured in the API Manager nodes. For more information, see Configuring the Primary User Store and apply the relevant configs to plug in a new user store.
 
     Add below configuration in `<APIM_HOME>/repository/conf/deployment.toml`
 
@@ -396,6 +396,6 @@ Start WSO2 Identity Server for the changes to take effect. For more information,
 Follow the instructions below to configure the other WSO2 API-M components, namely the Publisher, Developer Portal, Traffic Manager, and Gateway:
 
 - All-in-One Deployment
-    - [Configuring a Single Node](../../../deploy/deploy-on-vms/single-node/configuring-a-single-node.mdx)
-    - [Configuring an Active-Active Deployment](../../../deploy/deploy-on-vms/single-node/configuring-an-active-active-deployment.mdx)
-- [Distributed Deployment](../../../deploy/deploy-on-vms/distributed-deployment/deploying-wso2-api-m-in-a-distributed-setup.mdx)
+    - Configuring a Single Node
+    - Configuring an Active-Active Deployment
+- [Distributed Deployment](../../../deploy/deploy-on-vm/distributed-deployment/deploying-wso2-api-m-in-a-distributed-setup.mdx)

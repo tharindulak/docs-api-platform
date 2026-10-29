@@ -60,6 +60,10 @@ Given below is a checklist that will guide you to set up your production environ
 
         - [Database registry](../../setup/set-up-api-manager/setting-up-databases/overview.mdx) for the API-M runtime.
 
+        The Micro Integrator runtime uses a file-based registry instead of a database.
+
+        - File-based registry for the Micro Integrator. runtime.
+
       </td>
     </tr>
     <tr>
@@ -102,33 +106,7 @@ Given below is a checklist that will guide you to set up your production environ
         If the runtime is hosted behind a proxy such as ApacheHTTPD, you can configure the runtime to use the proxy server. See the following topics for instructions:
 
         - Configuring a [proxy server for the API-M runtime](../../setup/set-up-api-manager/setting-up-proxy-server-and-the-load-balancer/configuring-the-proxy-server-and-the-load-balancer.mdx).
-        - Configuring a [proxy server for the Micro Integrator runtime](https://mi.docs.wso2.com/en/latest/install-and-setup/setup/configuring-proxy-servers/).
-
-      </td>
-    </tr>
-    <tr>
-      <td>HTTP header size</td>
-      <td>
-
-        The default value of `maxHttpHeaderSize` on both the HTTP and HTTPS connectors in `<API-M_HOME>/repository/conf/tomcat/catalina-server.xml` is set to **32 KB (32768 bytes)**.
-
-        This value **must not be set to less than 32 KB (32768 bytes)**, specifically on the **API Control Plane (ACP) node** in a distributed deployment (or on the single node in an all-in-one deployment), if **Multi-Option Authentication** is used for portal (Publisher, DevPortal, Admin) logins in federated authentication flows.
-
-        If set lower, the `/commonauth` redirect from the external Identity Provider carries the full OAuth scope list in the request URI, and the combined size of the request line and headers exceeds the buffer. Tomcat then rejects the request with a `400 Bad Request` or `414 Request-URI Too Long` error, breaking the federated login flow.
-
-        If you need to override the value via `deployment.toml`, keep it at or above the default:
-
-        <Anchor id="cb2" />
-
-        ```text
-        [transport.http.properties]
-        maxHttpHeaderSize = 32768
-
-        [transport.https.properties]
-        maxHttpHeaderSize = 32768
-        ```
-
-        If a reverse proxy, load balancer, ingress controller, or CDN is deployed in front of API-M, ensure its header and URL size limits are also aligned to at least 32 KB — otherwise the request will be rejected at the front tier before it reaches API-M.
+        - Configuring a proxy server for the Micro Integrator runtime.
 
       </td>
     </tr>
@@ -136,7 +114,7 @@ Given below is a checklist that will guide you to set up your production environ
       <td>High availability</td>
       <td>
 
-        Configure your deployment with high availability. Refer the [recommended deployment patterns](../../../../get-started/deployment-options/deployment-patterns.mdx) and select an option that fits your requirements.
+        Configure your deployment with high availability. Refer the [recommended deployment patterns](../deployment-overview.mdx) and select an option that fits your requirements.
 
         In the cloud native deployment, high availability should be achieved via the container orchestration system (Kubernetes).
 
@@ -145,16 +123,6 @@ Given below is a checklist that will guide you to set up your production environ
     <tr>
       <td>Data backup and archiving</td>
       <td>Implement a [backup and recovery strategy](./backup-recovery.mdx) for your system.</td>
-    </tr>
-    <tr>
-      <td>Encryption Key</td>
-      <td>
-
-        Generate a symmetric encryption key and add it to the `deployment.toml` file. See [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key) for instructions.
-
-        **Note:** In distributed or high-availability deployments, **all API-M instances must use the same symmetric encryption key**. Ensure the identical key value is added to the `deployment.toml` of every node in the cluster to maintain the ability to decrypt registry resources across instances.
-
-      </td>
     </tr>
   </tbody>
 </table>

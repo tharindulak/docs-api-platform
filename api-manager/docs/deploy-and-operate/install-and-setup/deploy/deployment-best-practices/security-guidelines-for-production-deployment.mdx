@@ -63,7 +63,7 @@ Given below are the security guidelines for the API-M runtime.
         - Use an SHA256 certificate.
         - Make sure that WSO2 default certificates do not exist in any of the keystores in your production environment. For example, be sure to delete the default public certificate in the default trust store that is shipped with the product.
 
-        For more information on recommendations for using keystores in WSO2 products, see [Recommendations for setting up keystores](../../setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx#recommendations-for-setting-up-keystores).<br /> For information on how to create and configure your own keys and keystores, see [Creating New Keystores](../../setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx).
+        For more information on recommendations for using keystores in WSO2 products, see [About Asymmetric Cryptography](../../setup/set-up-api-manager/security/configuring-keystores/keystore-basics/about-asymetric-cryptography.mdx).<br /> For information on how to create and configure your own keys and keystores, see [Creating New Keystores](../../setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx).
 
       </td>
     </tr>
@@ -87,7 +87,7 @@ Given below are the security guidelines for the API-M runtime.
       </td>
       <td>
 
-        For information on all the default ports used by WSO2 API Manager, see [Default Product Ports](../../../../reference/default-product-ports.mdx). For example, the default HTTPS port is 9443 and the HTTP port is 9763. In addition, Axis2 services are exposed over the following ports: 8243 and 8280.
+        For information on all the default ports used by WSO2 API Manager, see [Default Product Ports](../../reference/default-product-ports.mdx). For example, the default HTTPS port is 9443 and the HTTP port is 9763. In addition, Axis2 services are exposed over the following ports: 8243 and 8280.
 
         For information on changing a default port, see [Changing the Default Ports with Offset](./changing-the-default-ports-with-offset.mdx).
 
@@ -103,7 +103,7 @@ Given below are the security guidelines for the API-M runtime.
 
         If your product runtimes are connecting to an external user store, such as Microsoft Active Directory for the purpose of reading and retrieving user information, be sure to enable read-only access to that user store.
 
-        See [Configuring a Read-Only LDAP User Store](../../setup/set-up-api-manager/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.mdx) for the API-M runtime.
+        See [Configuring a Read-Only LDAP User Store](../../setup/set-up-api-manager/managing-user-stores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.mdx) for the API-M runtime.
 
       </td>
     </tr>
@@ -142,7 +142,7 @@ Given below are the security guidelines for the API-M runtime.
         To have strong transport-level security, disable SSL protocol versions and enable only TLS protocol versions: TLS 1, TLS 1.1, and TLS 1.2. This can be done by replacing the `sslProtocol = "TLS"` property with `protocols="+TLSv1, +TLSv1.1, +TLSv1.2, +TLSv1.3"` under `[transport.https.sslHostConfig.properties]` in the `deployment.toml` file. You can configure multiple TLS versions or a single TLS version according to your preference. To achieve high security, use the latest TLS version by removing `+TLSv1`, `+TLSv1.1`, and `+TLSv1.2` from the protocols `property` of the configuration. In addition, configure strong ciphers for `ThriftAuthenticationService`, Tomcat transport, and PassThrough transport in the `deployment.toml` file. See the following links for instructions:
 
         - [Configuring Transport Level Security](../../setup/set-up-api-manager/security/configuring-transport-level-security.mdx)
-        - [Supported Cipher Suites](../../../../reference/supported-cipher-suites.mdx)
+        - [Supported Cipher Suites](../../reference/supported-cipher-suites.mdx)
 
         **Note :**
 
@@ -382,7 +382,7 @@ Given below are the security guidelines for the API-M runtime.
 
         `appender.AUDIT_LOGFILE.layout.pattern = [%u] TID: [%tenantId] [%d] %5p {%c} - %m%ex%n `
 
-        For more information on configuring logging, see [Setting up logging in API Manage](../../../../guides/api-analytics-and-monetization/observability/logs/configuring-logging.mdx).
+        For more information on configuring logging, see Setting up logging in API Manage.
 
       </td>
     </tr>
@@ -396,7 +396,7 @@ Given below are the security guidelines for the API-M runtime.
       </td>
       <td>
 
-        The recommended JDK version is JDK 21 or 25. For more information, see [Tested Operating Systems and JDKs](../../../../reference/product-compatibility.mdx#tested-operating-systems).
+        The recommended JDK version is JDK 8 or 11. For more information, see [Tested Operating Systems and JDKs](../../reference/product-compatibility.mdx#tested-operating-systems).
 
         You do not need to set the Heap and Permgen values for the JVM from JDK 1.8 onwards as the `MaxPermSize` value has been removed from Hotspot JVM.
 
@@ -414,7 +414,7 @@ Given below are the security guidelines for the API-M runtime.
 
         In an API-M deployment, it is recommended to restrict outbound connections of the Control Plane node (which contains the Publisher) and only allow access to the internal nodes (only to the nodes that the Publisher portal is intended to communicate with) of the deployment. Therefore, even if a situation arises where privileged user credentials are exposed to a user with malicious intent, such users will not be able to exploit and perform any unintended network interactions.
 
-        See the [API-M deployment](../../../../get-started/deployment-options/deployment-patterns.mdx) documentation for details.
+        See the [API-M deployment](../deployment-overview.mdx) documentation for details.
 
       </td>
     </tr>
@@ -430,7 +430,7 @@ Given below are the security guidelines for the API-M runtime.
 
         WSO2 recommends that you use two separate admin user accounts in production - one account for logging into the system and the other one as the system user doing configurations (for internal service communications).
 
-        For more information regarding admin user accounts, see [super admin configurations](../../../../reference/product-configurations/config-catalog.mdx).
+        For more information regarding admin user accounts, see [super admin configurations](../../../../reference/reference/config-catalog.mdx).
 
       </td>
     </tr>
@@ -537,15 +537,45 @@ Given below are the security guidelines for the API-M runtime.
 
       </td>
     </tr>
-    <tr id="encryption-key">
+    <tr>
       <td>
 
-        Add the symmetric encryption key
+        Mediator Access Control
 
       </td>
       <td>
 
-        You should generate a symmetric encryption key for internal encryption and add it to the `deployment.toml` file. See [Configuring Encryption Key](../../setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx#generate-a-secret-key) for instructions.
+        API/Operation policies are designed to extend and customize API gateway behavior. They use Synapse mediators to support use cases such as message transformation, routing control, backend interaction handling, and organization-specific policy enforcement. These capabilities allow users to adapt gateway behavior based on deployment requirements. For more information, see the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/).
+
+        To provide better control over mediator usage, a mediator access control configuration has been introduced. This configuration allows administrators to allow or block mediators based on deployment requirements.
+
+        Add the following configuration to the `<APIM_HOME>/repository/conf/deployment.toml` file.
+
+        <br /> <br /> **Allow list Configuration:** <br />
+
+        ```text
+        [synapse_properties]
+        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
+        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
+        ```
+
+        <br /> **Block list Configuration:** <br />
+
+        ```text
+        [synapse_properties]
+        'synapse.mediators.access.control.mode' = “BLOCK_LIST”
+        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
+        ```
+
+        <br /> **Recommended Configuration:** <br /> The following configuration is the recommended configuration for allowing only the simple mediators, along with the mediators that are used by default in API Manager for common use cases.
+
+        ```text
+        [synapse_properties]
+        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
+        'synapse.mediators.access.control.list' = “aggregate,builder,cache,call,class,clone,drop,enrich,filter,foreach,header,in,iterate,log,loopback,makefault,opa,out,payloadfactory,property,propertygroup,respond,rewrite,scatter-gather,script,send,sequence,switch,throwerror,variable”
+        ```
+
+        <br /> If you use any other mediators, or if you want to enable mediators that are not included in the recommended allow list, review the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/) to understand their capabilities and use cases before adding them to the configuration.
 
       </td>
     </tr>
@@ -559,7 +589,7 @@ Given below are the security guidelines for the API-M runtime.
       </td>
       <td>
 
-        The default codepoint limit of SnakeYAML Dependency is 3,145,728 (~3MB), which is set to avoid exposing the system to DoS attacks via large malicious files. By default, API-M uses this default limit. However, the [dependency configuration](../../../../reference/product-configurations/config-catalog.mdx) of SnakeYAML Dependency can be overridden using the following configuration:
+        The default codepoint limit of SnakeYAML Dependency is 3,145,728 (~3MB), which is set to avoid exposing the system to DoS attacks via large malicious files. By default, API-M uses this default limit. However, the [dependency configuration](../../../../reference/reference/config-catalog.mdx) of SnakeYAML Dependency can be overridden using the following configuration:
 
         ```text
         [dependency_properties]
@@ -567,48 +597,6 @@ Given below are the security guidelines for the API-M runtime.
         ```
 
         In a production environment, it is strongly recommended to set this value according to your file size requirements and security policies to mitigate potential security risks. You do not need to set this value by default; configure it only if you encounter a SnakeYAML codepoint limit issue.
-
-      </td>
-    </tr>
-    <tr>
-      <td>
-
-        Mediator Access Control
-
-      </td>
-      <td>
-
-        API/Operation Policies are designed to extend and customize API gateway behavior. They use synapse mediators to support use cases such as message transformation, routing control, backend interaction handling, and organization-specific policy enforcement. These capabilities allow users to adapt gateway behavior based on deployment requirements. For more information, see the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/).
-
-        To provide better control over mediator usage, a mediator access control configuration has been introduced. This configuration allows administrators to allow or block mediators based on deployment requirements.
-
-        Add the following configuration to the `<APIM_HOME>/repository/conf/deployment.toml` file.
-
-        <br /> <br /> **Allowlist Configuration:** <br />
-
-        ```text
-        [synapse_properties]
-        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
-        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
-        ```
-
-        <br /> **Blocklist Configuration:** <br />
-
-        ```text
-        [synapse_properties]
-        'synapse.mediators.access.control.mode' = “BLOCK_LIST”
-        'synapse.mediators.access.control.list' = “<mediator localnames comma separated eg: property, log>”
-        ```
-
-        <br /> **Recommended Configuration:** <br /> The following configuration is the default recommended configuration for allowing only the simple mediators, along with the mediators that are used by default in API Manager for common use cases.
-
-        ```text
-        [synapse_properties]
-        'synapse.mediators.access.control.mode' = “ALLOW_LIST”
-        'synapse.mediators.access.control.list' = “aggregate,builder,cache,call,class,clone,drop,enrich,filter,foreach,header,in,iterate,log,loopback,makefault,opa,out,payloadfactory,property,propertygroup,respond,rewrite,scatter-gather,script,send,sequence,switch,throwerror,variable”
-        ```
-
-        <br /> If you use any other mediators, or if you want to enable mediators that are not included in the recommended allowlist, review the \[mediator catalog\](https://mi.docs.wso2.com/en/latest/reference/mediators/about-mediators/) to understand their capabilities and use cases before adding them to the configuration.
 
       </td>
     </tr>
@@ -796,7 +784,7 @@ This section provides a list of security guidelines for configuring the network
 
         Periodically check for open ports using port scanning tools and make sure that only the necessary ports are open to both internal and external networks. Be sure that only the ports relevant to your WSO2 products are open for communication. If there are other ports started, be sure to monitor them.
 
-        For the full list of ports in all WSO2 products, see [Default Product Ports](../../../../reference/default-product-ports.mdx).
+        For the full list of ports in all WSO2 products, see [Default Product Ports](../../reference/default-product-ports.mdx).
 
       </td>
     </tr>
@@ -844,7 +832,7 @@ This section provides a list of security guidelines for configuring the network
 
         **Note:**
 
-        It is recommended to use an allowlisting approach when allowing access to resources in your product from the DMZ level.
+        It is recommended to use an allow listing approach when allowing access to resources in your product from the DMZ level.
 
         For the API-M Developer Portal, exposing the following paths would be sufficient:
 

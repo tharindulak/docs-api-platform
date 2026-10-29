@@ -1,0 +1,111 @@
+---
+title: Onboarding Anthropic's Claude
+description: This guide explains how to integrate WSO2 API Manager with Claude, allowing you to access Claude's APIs via API Manager's AI Gateway.  # generated from the first paragraph; a writer should improve it
+type: how-to
+sidebar_label: Onboarding Anthropic's claude
+sidebar_position: 3
+---
+
+This guide explains how to integrate WSO2 API Manager with **Claude**, allowing you to access Claude's APIs via API Manager's AI Gateway. It provides step-by-step instructions for configuring Claude as a custom AI vendor to effectively manage and track AI API interactions.
+
+1. Login to the Admin Portal
+2. Navigate to the **AI/LLM Vendors** section and click on **Add AI/LLM Vendor**.
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/custom-ai-vendor/add-anthropic-claude/add-ai-vendor.png").default} width="600" />
+
+3. Fill in the general details for the AI vendor as shown below.
+
+    <table>
+      <colgroup>
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <tbody>
+        <tr>
+          <th colSpan="2">Field</th>
+          <th>Sample value</th>
+        </tr>
+        <tr>
+          <td colSpan="2">Name</td>
+          <td>Anthropic Claude</td>
+        </tr>
+        <tr>
+          <td colSpan="2">API Version</td>
+          <td>1.0.0</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Description</td>
+          <td>Anthropic Claude LLM Service</td>
+        </tr>
+      </tbody>
+    </table>
+
+4. Enter the LLM configurations as outlined below.
+
+    <table>
+      <colgroup>
+        <col />
+        <col />
+        <col />
+      </colgroup>
+      <tbody>
+        <tr>
+          <th colSpan="2">Attribute Name</th>
+          <th colSpan="2">Input Source</th>
+          <th colSpan="2">Attribute Identifier</th>
+        </tr>
+        <tr>
+          <td colSpan="2">Request Model</td>
+          <td colSpan="2">payload</td>
+          <td colSpan="2">\`$.model\`</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Response Model</td>
+          <td colSpan="2">payload</td>
+          <td colSpan="2">\`$.model\`</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Prompt Token Count</td>
+          <td colSpan="2">payload</td>
+          <td colSpan="2">\`$.usage.input_tokens\`</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Completion Token Count</td>
+          <td colSpan="2">payload</td>
+          <td colSpan="2">\`$.usage.output_tokens\`</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Total Token Count</td>
+          <td colSpan="2">payload</td>
+          <td colSpan="2">\`N/A\`</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Remaining Token Count</td>
+          <td colSpan="2">header</td>
+          <td colSpan="2">\`anthropic-ratelimit-tokens-remaining\`</td>
+        </tr>
+      </tbody>
+    </table>
+
+    Refer the image below for the LLM configuration.
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/custom-ai-vendor/add-anthropic-claude/llm-configurations.png").default} width="500" />
+
+5. Download the API definition for Anthropic Claude from [Anthropic Claude API Definition](../../../../../assets/attachments/admin/custom-ai-vendors/add-anthropic-claude/claude-api.yaml) and upload it as the API Definition.
+
+    :::note
+    The Anthropic Claude API definition provided above is an unofficial OpenAPI 3.0.0 schema created and shared by the community. Please be aware that this schema may not cover all features of the official API.
+    :::
+
+6. Configure the authentication configurations by setting the type to `authHeader` and the identifier to `x-api-key`.
+
+    <img src={require("../../../../../assets/img/learn/ai-gateway/custom-ai-vendor/add-anthropic-claude/auth-header.png").default} width="400" />
+
+7. Choose the connector type as `default`.
+
+8. Next, you can add any models you prefer. For instance, add `claude-3-5-sonnet-20241022` and press enter. You can always add more models later. This enables you to set up model-based load balancing and failover using Claude's APIs.
+
+9. Finally, click **Add** to integrate Anthropic Claude as an AI Vendor.
+
+Once added, you'll be able to create and manage AI APIs for Anthropic Claude, allowing you to leverage its capabilities within your applications.

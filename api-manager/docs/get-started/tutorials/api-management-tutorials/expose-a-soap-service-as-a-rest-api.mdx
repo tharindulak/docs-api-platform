@@ -6,7 +6,7 @@ sidebar_position: 10
 ---
 
 WSO2 API Manager supports the management of an existing SOAP and WSDL based services exposing as REST APIs.
-The organizations who have SOAP/ WSDL based services, can easily bridge their existing services to REST without the cost of a major migration. WSO2 API Manager supports two kinds of services as one for performing a  "pass through" of the SOAP message to the backend and other one is generating [a RESTful API from the backend SOAP service](../../../guides/api-design-manage/design-apis/create-api/create-rest-api/generate-rest-api-from-soap-backend.mdx).
+The organizations who have SOAP/ WSDL based services, can easily bridge their existing services to REST without the cost of a major migration. WSO2 API Manager supports two kinds of services as one for performing a  "pass through" of the SOAP message to the backend and other one is generating a RESTful API from the backend SOAP service.
 
 This tutorial will explain the steps to design, publish and invoke a SOAP service as a RESTful API using **Pass Through**
 
@@ -14,7 +14,7 @@ This tutorial will explain the steps to design, publish and invoke a SOAP servic
 
 1.  Sign in to the API Publisher and click **CREATE API**.
 
-    ![Create SOAP API](../../../../assets/img/learn/create-soap-api.png)
+    ![Create SOAP API](../../../../assets/img/learn/create-soap-api.jpg)
 
 2.  Select **Pass Through** option and thereafter, select one of the following options:
 
@@ -47,7 +47,7 @@ This tutorial will explain the steps to design, publish and invoke a SOAP servic
      ![SOAP API Definition](../../../../assets/img/learn/api-definition-of-soap-api-created-by-passthrough-mode.jpg)
 
     :::note
-    If you wish to add scopes to the resources that were created, navigate to \*\*\*Resources\*\*\* and expand the resources. Thereafter, creating new scopes and specify them under operation scope. If you specify a scope, you need to use the same scope when generating access tokens for the subscribed application to invoke the API. For more information on working with the scopes, see \[OAuthscopes\](\{\{base_path\}\}/api-security/runtime/authorization/oauth2-scopes/fine-grained-access-control-with-oauth-scopes/)
+    If you wish to add scopes to the resources that were created, navigate to \*\*\*Resources\*\*\* and expand the resources. Thereafter, creating new scopes and specify them under operation scope. If you specify a scope, you need to use the same scope when generating access tokens for the subscribed application to invoke the API. For more information on working with the scopes, see \[OAuthscopes\](\{\{base_path\}\}/manage-apis/design/api-security/oauth2/oauth2-scopes/fine-grained-access-control-with-oauth-scopes/)
     :::
 
     ![Add scopes for Pass Through API](../../../../assets/img/learn/add-scope-for-passthrough-soap-api.jpg)

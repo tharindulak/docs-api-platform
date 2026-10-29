@@ -1,153 +1,72 @@
 ---
 title: Overview
-description: WSO2 API Manager is a comprehensive, fully open-source API management platform that provides complete API lifecycle management with enterprise-grade…  # generated from the first paragraph; a writer should improve it
+description: WSO2 API Manager is a fully open-source API management platform.  # generated from the first paragraph; a writer should improve it
 type: concept
-sidebar_label: Introduction
 sidebar_position: 1
 ---
 
-WSO2 API Manager is a comprehensive, fully open-source API management platform that provides complete API lifecycle management with enterprise-grade security, advanced gateway capabilities, and AI-powered features. It enables organizations to design, secure, publish, and analyze APIs while providing developers with a rich marketplace experience.
+WSO2 API Manager is a fully open-source API management platform. It supports API designing, API publishing, lifecycle management, application development, API security, rate limiting, viewing statistics of APIs, as well as connecting APIs, API Products, and endpoints.
 
-## Core Capabilities
----
+The following are some of the main capabilities of the product.
 
-### Design & Create APIs {#design-create-apis}
+### Develop, Deploy and Manage APIs/API Products
 
-Create and manage diverse API types with comprehensive tooling and AI assistance:
+A well-designed API can make your APIs easy to use. WSO2 API Manager’s API Publisher guides you through API creation to API Publishing, while adhering to the respective API’s specification.
 
-- **Multiple API Types**: REST, GraphQL, WebSocket, WebSub/WebHook, Server-Sent Events (SSE), SOAP-to-REST, and AI APIs
-- **API Design Tools**: OpenAPI/Swagger import, AsyncAPI support, GraphQL SDL, and service catalog integration
-- **AI-Assisted Design**: Create APIs with AI, API Chat for testing, and Marketplace Assistant for discovery
-- **API Products**: Combine resources from multiple APIs into unified product offerings
-- **Prototype APIs**: Mock implementations and existing backend prototypes
-- **Versioning & Revisions**: Comprehensive API versioning with revision-based deployment
+- [Design API Overview](../guides/api-design-manage/design-apis/design-api-overview.mdx)
+- 
 
-> **[Learn more about API Design](../guides/api-design-manage/design-apis/design-api-overview.mdx)**
+![Develop, Deploy and Manage APIs/API Products](../../assets/img/get_started/overview/icons/design-and-runtime-governance.png)
 
----
+### Make your APIs Discoverable
 
-### AI Gateway Capabilities
+Making your APIs easy to find will help you grow your customer base. You can use the WSO2 API Manager API Publisher to create categories or use tags to categorize the APIs. The API Developer Portal includes a text-full search engine that helps your customers find APIs easily.
 
-Enterprise-grade AI infrastructure management with dual gateway modes:
+- [Search](../guides/api-developer-portal/discover-apis/search.mdx)
+- 
 
-- **LLM Gateway**: Direct AI model integration supporting OpenAI, Azure OpenAI, AWS Bedrock, Anthropic, Google Gemini, Mistral AI, and Azure AI Foundry
-- **MCP Gateway**: Transform APIs into AI-discoverable tools following the Model Context Protocol
-- **Multi-Model Routing**: Load balancing and failover across multiple AI providers
-- **AI Guardrails**: Content filtering, PII masking, semantic validation, JSON schema validation, and provider-native safety controls
-- **Semantic Caching**: Reduce latency and costs with meaning-based response caching
-- **Prompt Management**: Centralized prompt templates and decorators for consistent AI interactions
-- **Cost Control**: Smart routing, usage quotas, and spending limits to prevent runaway expenses
+![Make your APIs Discoverable](../../assets/img/get_started/overview/icons/service-discovery.png)
 
-> **[Explore AI Gateway](../guides/ai-gateway/ai-gateway-overview.mdx)**
+### Expose developer-friendly APIs
 
----
+A well-documented, easy-to-use API can help developers be more productive in building applications.
 
-### Classic & Federated Gateways {#classic-federated-gateways}
+- [API documentation](../guides/api-design-manage/design-apis/api-documentation/add-api-documentation.mdx)
+- 
 
-Deploy APIs across multiple gateway types with centralized management:
+![Expose developer-friendly APIs](../../assets/img/get_started/overview/icons/securely-expose-apis.png)
 
-- **Classic Gateway (Universal)**: Enterprise-grade API gateway with rate limiting, response caching, threat protection, policies, and scalability
-- **Kubernetes Gateway Integration**: API Manager as Control Plane for WSO2 Kubernetes Gateway deployments
-- **Federated Gateways**: Deploy and discover APIs on AWS API Gateway, Azure API Gateway, Kong Gateway, and Envoy Gateway
-- **Multiple Environments**: Production, sandbox, and custom gateway environments
-- **Gateway Policies**: Transformations, mediations, custom handlers, and policy enforcement
+### Secure your APIs
 
-> **[Learn about Classic API Gateway](../guides/api-gateway/classic-gateway-universal/overview-of-the-api-gateway.mdx)**
+You can secure your APIs fully by using visibility control, threat protection, API payload validation, adhering to well-defined protocols, applying rate limiting policies, and verifying APIs against specifications in addition to API authentication and authorization.
 
----
+- [API security](../guides/api-design-manage/design-apis/api-security/api-authentication/api-authentication-overview.mdx)
+- 
 
-### Comprehensive API Security
+![Secure your APIs](../../assets/img/get_started/overview/icons/api-security-and-policy-enforcement.png)
 
-Multi-layered security with flexible authentication and authorization:
+### Rate Limiting
 
-- **Authentication Methods**: OAuth 2.0, API Keys, Mutual SSL, Basic Authentication, and Certificate Bound Access Tokens
-- **Authorization**: Role-based access control (RBAC), OAuth scopes, XACML policies, and application scopes
-- **Key Manager Integration**: Built-in key manager plus third-party support for WSO2 Identity Server, Keycloak, Okta, Auth0, PingFederate, ForgeRock, and Azure AD
-- **Threat Protection**: Regular expression, JSON, and XML threat protectors, plus bot detection
-- **OPA Validation**: Open Policy Agent integration for policy-based validation
-- **Security Audit**: Design-time security audits and runtime validation
+Balancing the load of your system is critical to avoid system outages. WSO2 API Manager provides the capability to add rate limiting policies to your APIs. Furthermore, you can use these policies to monetize your APIs and bring revenue to your organization.
 
-> **[Explore Runtime API Security](../guides/api-security/runtime/api-authentication/api-authentication-overview.mdx)**
+- [Rate limiting usecases](../guides/api-design-manage/design-apis/rate-limiting/introducing-throttling-use-cases.mdx)
+- 
 
----
+![Balance your APIs demand](../../assets/img/get_started/overview/rate-limiting.png)
 
-### Developer Portal & Marketplace {#developer-portal-marketplace}
+### Get more insight on your APIs
 
-Rich developer experience with AI-powered discovery:
+WSO2 API Managers API Analytics Dashboard provides insights into your APIs. These insights can help you to understand your customers and make important strategic business decisions.
 
-- **Marketplace Assistant**: AI-powered API discovery and recommendations
-- **API Chat**: Natural language API testing interface
-- **Integrated API Console**: Interactive testing for REST, GraphQL, and SOAP APIs
-- **SDK Generation**: Auto-generate client SDKs in 13+ languages (Java, JavaScript, Python, C#, Swift, etc.)
-- **Application Management**: Create applications, manage subscriptions, and generate access tokens
-- **Collaboration**: Comments, ratings, forums, and social media integration
-- **Self-Service**: User registration, password recovery, and profile management
+- [Observability](../guides/monitoring/observability/observability-overview.mdx)
+- 
+- [API Manager Analytics](../guides/monitoring/api-analytics/choreo-analytics/getting-started-guide.mdx)
+- 
 
-> **[Visit Developer Portal](../guides/api-developer-portal/consume-api-overview.mdx)**
-
----
-
-### Advanced Rate Limiting
-
-Sophisticated traffic management:
-
-- **Multi-Level Policies**: Subscription (Business Plans), Application, Advanced, and Custom policies
-- **Streaming API Support**: Event-based rate limiting for WebSocket, WebSub, and SSE APIs
-- **AI API Limits**: Token-based and request-based rate limiting for AI workloads
-- **Burst Control**: Handle traffic spikes with configurable burst limits
-- **Conditional Policies**: IP-based, header-based, query parameter, and JWT claim-based rate limiting
-- **Deny Policies**: Block specific IPs, applications, or users
-
-> **[Understand Rate Limiting](../guides/api-gateway/classic-gateway-universal/rate-limiting/understand-rate-limit-enforcement.mdx)**
-
----
-
-### Analytics, Observability & Monetization {#analytics-observability-monetization}
-
-Comprehensive insights and revenue generation with multiple analytics solutions:
-
-- **Moesif Analytics**: Advanced API analytics with user behavior tracking
-- **Alternative Solutions**: ELK, Datadog, OpenSearch, and Choreo-based analytics
-- **Observability**: Correlation logs, HTTP access logs, audit logs, API logs, and WebSocket logs
-- **Tracing**: OpenTracing and OpenTelemetry integration
-- **Metrics**: JMX-based monitoring and custom metrics
-- **API Monetization**: Usage-based billing, subscription management, business plans (Free, Bronze, Silver, Gold, Unlimited), and Stripe integration for revenue generation
-
-> **[Explore Analytics](../guides/api-analytics-and-monetization/api-analytics/analytics-overview.mdx)**
-
----
-
-### API Lifecycle & Governance {#api-lifecycle-governance}
-
-Complete lifecycle management with compliance controls:
-
-- **Lifecycle States**: CREATED, PRE-RELEASED, PUBLISHED, BLOCKED, DEPRECATED, and RETIRED
-- **Custom Lifecycles**: Tailor lifecycle states to organizational needs
-- **Workflows**: Human approval processes for API state changes, subscriptions, and applications
-- **Governance Framework**: Rule-based validation with WSO2 API Management Guidelines, REST API Design Guidelines, and OWASP Top 10 compliance
-- **CI/CD Support**: APIOps with apictl for environment promotion and automation
-- **API Discovery**: Automatic API discovery from federated gateways
-
-> **[Learn about Governance Framework](../deploy-and-operate/administer/governance/overview.mdx)**
-
----
-
-### Deployment Flexibility
-
-Deploy anywhere with comprehensive infrastructure support:
-
-- **Deployment Options**: Single node, Active-Active, Distributed, and Multi-DC deployments
-- **Kubernetes**: Helm charts and operators for cloud-native deployments
-- **OpenShift**: Native OpenShift deployment support
-- **Multi-Tenancy**: Logical isolation for departments or organizational units
-
-> **[View Deployment Options](./deployment-options/deployment-platforms.mdx)**
-
----
+![Evolve with your customers](../../assets/img/get_started/overview/icons/business-insights.png)
 
 ## What's Next
 
-- Get started quickly with the [Quick Start Guide](./api-manager-quick-start-guide.mdx)
-- Understand the [architecture and key concepts](./apim-architecture.mdx)
-- Explore [what's new in this release](../release-notes/about-this-release.mdx)
-- Try scenario-based [tutorials](./tutorials/tutorials-overview.mdx) for hands-on learning
+- Try out WSO2 API Manager by following the [Quick Start Guide](./api-manager-quick-start-guide.mdx).
+- Understand the [basic architecture of the product](./apim-architecture.mdx).
+- Learn more [about this release](../release-notes/about-this-release.mdx).

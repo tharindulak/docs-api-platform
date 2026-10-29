@@ -59,19 +59,105 @@ WSO2 recommends that you use Failover configuration over Load Balanced configur
 
 1.  In the MySQL command prompt, create the database using a **case-sensitive collation**.
 
-    :::warning[Case-Sensitive Collation Requirement]
-    WSO2 API Manager **requires** a case-sensitive database collation. The default collation in MySQL 8.0+ is `utf8mb4_0900_ai_ci`, which is **case insensitive** and **must not** be used. Using a case-insensitive collation can lead to data integrity issues.
-    :::
-
-    For **fresh setups**, it is mandatory to use a **case-sensitive collation** such as `utf8mb4_bin` or `latin1_bin`:
-
     ```sql
-    CREATE DATABASE <DATABASE_NAME> CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
+    CREATE DATABASE <DATABASE_NAME> CHARACTER SET latin1 COLLATE latin1_bin;
     ```
 
-    :::tip[UTF-8 Support]
-    WSO2 API Manager supports UTF-8 with MySQL. If you require full Unicode support (e.g., for multilingual API names, descriptions, or user data), use the `utf8mb4` character set with a case-sensitive collation such as `utf8mb4_bin` as shown above.
+    :::warning
+    When creating the database related to apim_db with MySQL 8.0, add **character set latin1** to avoid the MySQL Linux ERROR 1071 (42000).
+    ```sql
+    CREATE DATABASE <APIM_DATABASE_NAME> CHARACTER SET latin1 COLLATE latin1_bin;
+    ```
     :::
+
+    :::info[Character Set in MySQL]
+    - For users of Microsoft Windows, when creating the database in MySQL, it is important to specify the character set as latin1. Failure to do this may result in an error (error code: 1709) when starting your cluster. This error occurs in certain versions of MySQL (5.6.x) and is related to the UTF-8 encoding. MySQL originally used the latin1 character set by default, which stored characters in a 2-byte sequence. However, in recent versions, MySQL defaults to UTF-8 to be friendlier to international users. Hence, you must use latin1 as the character set as indicated below in the database creation commands to avoid this problem. Note that this may result in issues with non-latin characters (like Hebrew, Japanese, etc.). The following is how your database creation command should look.
+      ```bash
+      CREATE DATABASE <DATABASE_NAME> CHARACTER SET latin1 COLLATE latin1_bin;
+      ```
+    :::
+
+    :::warning[Case-Sensitive Collation Requirement]
+    WSO2 API Manager **requires** a case-sensitive database collation. The default collation in MySQL is **case insensitive** and **must not** be used. Using a case-insensitive collation can lead to data integrity issues.
+    :::
+
+    For **fresh setups**, it is mandatory to use a **case-sensitive collation** such as `latin1_bin`.
+
+    ::::note[UTF8/UTF8MB4 charset support]
+    Due to product level limitations, WSO2 API Manager supports only latin1 as the compatible charset for MySQL by default. However, latin1 lacks support for Chinese characters and other non-ASCII characters.
+
+    If you require support for Chinese or other non-ASCII characters, you can use UTF8 or UTF8MB4 charsets. Note that using these charsets is **not officially supported** and should be done at your own risk.
+
+    **Option 1: Create database with UTF8/UTF8MB4 charset and adjust column lengths**
+
+    If you want to create the database directly with UTF8 or UTF8MB4 charset, first adjust the column lengths in the database scripts before running them:
+
+    1. **AM_API_ENDPOINTS table** - Reduce UUID columns to 64 characters:
+        ```sql
+        -- Modify these columns in your database script:
+        -- API_UUID VARCHAR(64) NOT NULL (instead of VARCHAR(256))
+        -- ENDPOINT_UUID VARCHAR(64) NOT NULL (instead of VARCHAR(256))
+        -- REVISION_UUID VARCHAR(64) NOT NULL (instead of VARCHAR(255))
+        ```
+
+    2. **IDN_SCIM_GROUP table** - Reduce ATTR_NAME column to 255 characters:
+        ```sql
+        -- Modify this column in your database script:
+        -- ATTR_NAME VARCHAR(255) NOT NULL (instead of VARCHAR(1024))
+        ```
+
+    3. **IDN_OAUTH2_TOKEN_BINDING table** - Reduce TOKEN_BINDING_VALUE column to 255 characters:
+        ```sql
+        -- Modify this column in your database script:
+        -- TOKEN_BINDING_VALUE VARCHAR(255) (instead of VARCHAR(1024))
+        ```
+
+    4. **IDN_INVALID_TOKENS table** - Reduce TOKEN_IDENTIFIER column to 512 characters:
+        ```sql
+        -- Modify this column in your database script:
+        -- TOKEN_IDENTIFIER VARCHAR(512) NOT NULL (instead of VARCHAR(2048))
+        ```
+
+    5. **IDN_SCIM_GROUP index** - Update index to use 255 characters for ATTR_NAME:
+        ```sql
+        -- Update the index creation command:
+        -- CREATE INDEX IDX_IDN_SCIM_GROUP_TI_RN_AN ON IDN_SCIM_GROUP (TENANT_ID, ROLE_NAME, ATTR_NAME(255));
+        ```
+
+    **Option 2: Create database with latin1 and convert to UTF8/UTF8MB4**
+
+    If you already have a database created with latin1 charset, you can convert it to UTF8 or UTF8MB4 by running the following ALTER commands:
+
+    ```sql
+    -- First, alter the column lengths
+    ALTER TABLE AM_API_ENDPOINTS
+    MODIFY COLUMN ENDPOINT_UUID VARCHAR(64) NOT NULL,
+    MODIFY COLUMN REVISION_UUID VARCHAR(64) NOT NULL;
+
+    ALTER TABLE IDN_SCIM_GROUP
+    MODIFY COLUMN ATTR_NAME VARCHAR(255) NOT NULL;
+
+    ALTER TABLE IDN_OAUTH2_TOKEN_BINDING
+    MODIFY COLUMN TOKEN_BINDING_VALUE VARCHAR(255);
+
+    ALTER TABLE IDN_INVALID_TOKENS
+    MODIFY COLUMN TOKEN_IDENTIFIER VARCHAR(512) NOT NULL;
+
+    -- Update the index
+    DROP INDEX IDX_IDN_SCIM_GROUP_TI_RN_AN ON IDN_SCIM_GROUP;
+    CREATE INDEX IDX_IDN_SCIM_GROUP_TI_RN_AN ON IDN_SCIM_GROUP (TENANT_ID, ROLE_NAME, ATTR_NAME(255));
+
+    -- Then convert the database charset (example for UTF8MB4)
+    ALTER DATABASE <your_database_name> CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+    ```
+
+    :::warning
+    - Using UTF8 or UTF8MB4 charsets with WSO2 API Manager is not officially supported and may cause unexpected issues.
+    - Always test thoroughly in a non-production environment before implementing in production.
+    - UUID columns are reduced to 64 characters as UUIDs typically contain only 64 bytes.
+    - These changes are required due to MySQL's key length limitations when using UTF8/UTF8MB4 charsets.
+    :::
+    ::::
 
 1.  Provide authorization to the user that you use to access the databases. 
 
@@ -252,9 +338,9 @@ CREATE TABLE IF NOT EXISTS UM_ORG_ROLE_USER (
 CREATE TABLE IF NOT EXISTS IDN_OAUTH2_TOKEN_BINDING (
         IDN_OAUTH2_TOKEN_BINDING_ID INTEGER NOT NULL AUTO_INCREMENT,
         TOKEN_ID VARCHAR (255),
-        TOKEN_BINDING_TYPE VARCHAR (32) CHARACTER SET latin1 COLLATE latin1_bin,
+        TOKEN_BINDING_TYPE VARCHAR (32),
         TOKEN_BINDING_REF VARCHAR (32),
-        TOKEN_BINDING_VALUE VARCHAR (1024) CHARACTER SET latin1 COLLATE latin1_bin,
+        TOKEN_BINDING_VALUE VARCHAR (1024),
         TENANT_ID INTEGER DEFAULT -1,
         UNIQUE (TOKEN_ID,TOKEN_BINDING_TYPE,TOKEN_BINDING_VALUE),
         FOREIGN KEY (TOKEN_ID) REFERENCES IDN_OAUTH2_ACCESS_TOKEN(TOKEN_ID) ON DELETE CASCADE,
@@ -512,7 +598,7 @@ Follow the  instructions below to change the type of the default datasources.
 1.  Restart the server.
 
     :::note
-    To give the Key Manager, Publisher, and Developer Portal components access to the user management data with shared permissions, JDBCUserStoreManager has been configured by default. For more information, see [Configuring Userstores](../../configure-userstores/configure-primary-user-store/configuring-a-jdbc-user-store.mdx).
+    To give the Key Manager, Publisher, and Developer Portal components access to the user management data with shared permissions, JDBCUserStoreManager has been configured by default. For more information, see Configuring Userstores.
     :::
 
     :::info

@@ -2,7 +2,7 @@
 title: Install and Setup Overview
 description: The installation and the setup of API Manager involve installing the product, deploying it in the method that is best suited for your requirements, and…  # generated from the first paragraph; a writer should improve it
 type: how-to
-sidebar_label: Overview
+sidebar_label: Install and setup overview
 sidebar_position: 1
 ---
 
@@ -68,7 +68,7 @@ To set up the API Manager component, see the following topics.
       <th>Setting up Proxy Server and the Load Balancer</th>
       <td>
 
-        A load balancer or reverse proxy is required to map external traffic with ports and URLs that the API Manager component uses internally. This section covers the following topics relating to the proxy server and the load balancer.
+        A load balancer or reverse proxy is required to map external traffic with ports and URLs that the APi Manager component uses internally. This section covers the following topics relating to the proxy server and the load balancer.
 
         - [Configuring the Proxy Server and the Load Balancer](./setup/set-up-api-manager/setting-up-proxy-server-and-the-load-balancer/configuring-the-proxy-server-and-the-load-balancer.mdx)
         - [Adding a Custom Proxy Path](./setup/set-up-api-manager/setting-up-proxy-server-and-the-load-balancer/adding-a-custom-proxy-path.mdx)
@@ -87,16 +87,14 @@ To set up the API Manager component, see the following topics.
         - [Customizing Secure Vault](./setup/set-up-api-manager/security/logins-and-passwords/secure-passwords/carbon-secure-vault-implementation.mdx)
         - [Set Passwords using Environment Variables/System Properties](./setup/set-up-api-manager/security/logins-and-passwords/secure-passwords/set-passwords-using-vars-and-sys-props.mdx)
         - [Working with Encrypted Passwords](./setup/set-up-api-manager/security/logins-and-passwords/secure-passwords/working-with-encrypted-passwords.mdx)
-        - Encryption
-        - [Symmetric Encryption](./setup/set-up-api-manager/security/encryption/symmetric-encryption.mdx)
-        - [Asymmetric Encryption](./setup/set-up-api-manager/security/encryption/asymmetric-encryption.mdx)
         - Configuring Keystores
         - [Configuring Keystores in API Manager](./setup/set-up-api-manager/security/configuring-keystores/configuring-keystores-in-wso2-api-manager.mdx)
         - Keystore Basics
-        - [About Keystores and Truststores](./setup/set-up-api-manager/security/configuring-keystores/keystore-basics/about-keystores-and-truststores.mdx)
         - [Creating a New Keystore](./setup/set-up-api-manager/security/configuring-keystores/keystore-basics/creating-new-keystores.mdx)
         - [Renewing a CA Signed Certificate](./setup/set-up-api-manager/security/configuring-keystores/keystore-basics/renewing-a-ca-signed-certificate-in-a-keystore.mdx)
+        - [About Asymetric Cryptography](./setup/set-up-api-manager/security/configuring-keystores/keystore-basics/about-asymetric-cryptography.mdx)
         - [Enabling HostName Verification](./setup/set-up-api-manager/security/enabling-hostname-verification.mdx)
+        - [Enabling Java Security Manager](./setup/set-up-api-manager/security/enabling-java-security-manager.mdx)
         - [General Data Protection Regulation (GDPR) for WSO2 API Manager](./setup/set-up-api-manager/security/general-data-protection-regulation-gdpr-for-wso2-api-manager.mdx)
         - [Configuring Transport Level Security](./setup/set-up-api-manager/security/configuring-transport-level-security.mdx)
         - [User Account Management](./setup/set-up-api-manager/security/user-account-management.mdx)
@@ -110,11 +108,11 @@ To set up the API Manager component, see the following topics.
         You can configure primary user stores as well as secondary user stores for the API Manager component. This section explains the concept of user stores and provides instructions to configure primary user stores. The topics covered are as follows:
 
         - [Introduction to User Stores](../administer/managing-user-stores/introduction-to-userstores.mdx)
-        - [Configuring Primary User Stores](./setup/set-up-api-manager/configure-userstores/configure-primary-user-store/configuring-the-primary-user-store.mdx)
-        - [Configuring a JDBC User Store](./setup/set-up-api-manager/configure-userstores/configure-primary-user-store/configuring-a-jdbc-user-store.mdx)
-        - [Configuring a Read-Write LDAP User Store](./setup/set-up-api-manager/configure-userstores/configure-primary-user-store/configuring-a-read-write-ldap-user-store.mdx)
-        - [Configuring a Read-Only LDAP User Store](./setup/set-up-api-manager/configure-userstores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.mdx)
-        - [Configuring a Read-Write Active Directory User Store](./setup/set-up-api-manager/configure-userstores/configure-primary-user-store/configuring-a-read-write-active-directory-user-store.mdx)
+        - [Configuring Primary User Stores](./setup/set-up-api-manager/managing-user-stores/configure-primary-user-store/configuring-the-primary-user-store.mdx)
+        - [Configuring a JDBC User Store](./setup/set-up-api-manager/managing-user-stores/configure-primary-user-store/configuring-a-jdbc-user-store.mdx)
+        - [Configuring a Read-Write LDAP User Store](./setup/set-up-api-manager/managing-user-stores/configure-primary-user-store/configuring-a-read-write-ldap-user-store.mdx)
+        - [Configuring a Read-Only LDAP User Store](./setup/set-up-api-manager/managing-user-stores/configure-primary-user-store/configuring-a-read-only-ldap-user-store.mdx)
+        - [Configuring a Read-Write Active Directory User Store](./setup/set-up-api-manager/managing-user-stores/configure-primary-user-store/configuring-a-read-write-active-directory-user-store.mdx)
 
       </td>
     </tr>
@@ -138,7 +136,7 @@ To set up the API Manager component, see the following topics.
       <th>Advanced Configurations</th>
       <td>
 
-        Covers some advanced configurations including how to change the transport used by the API Manager component from the default PassThrough transport to a different transport, how to configure caching, and how to change the user interfaces of the API Manager component.
+        Covers some advance configurations including how to change the transport used by the API Manager component from the default PassThrough transport to a different transport, how to configure caching, and how to change the user interfaces of the API Manager component.
 
         <li>[Changing the Default Transport](./setup/set-up-api-manager/advance-configurations/changing-the-default-transport.mdx)</li>
 
@@ -158,15 +156,15 @@ To deploy the API Manager runtime, see the topics given below.
 <table>
   <tbody>
     <tr>
-      <th>[Deployment Patterns](../../get-started/deployment-options/deployment-patterns.mdx)</th>
-      <td>This explains all the deployment patterns you can follow when you deploy WSO2 API Manager. These patterns involve deploying the API Manager component together with Micro Integrator and Streaming Integrator components in clustered setups.</td>
+      <th>[Deployment Patterns](./deploy/deployment-overview.mdx)</th>
+      <td>This explains all the deployment patterns you can follow when you deploy WSO2 API manager. These patterns involve deploying the API Manager component together with Micro Integrator and Streaming Integrator components in clustered setups.</td>
     </tr>
     <tr>
-      <th>[All-in-One Deployment](./deploy/deploy-on-vms/single-node/all-in-one-deployment-overview.mdx)</th>
+      <th>[All-in-One Deployment](./deploy/deploy-on-vm/single-node/all-in-one-deployment-overview.mdx)</th>
       <td>This describes the all-in-one deployment patterns where you can deploy all the sub components of the API Manager component in one instance.</td>
     </tr>
     <tr>
-      <th>Distributed Deployment</th>
+      <th>[Distributed Deployment](./deploy/deploy-on-vm/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m.mdx)</th>
       <td>This describes the distributed deployment patterns where you can deploy the sub-components of the API Manager component in a distributed manner in order to handle a high volume of requests in an efficient manner.</td>
     </tr>
     <tr>
@@ -183,15 +181,15 @@ To implement continuous integration and continuous deployment pipelines for APIs
 <table>
   <tbody>
     <tr>
-      <th>[CI/CD for APIs - Overview](../../guides/apiops/ci-cd/ci-cd-with-wso2-api-management.mdx)</th>
+      <th>[CI/CD for APIs - Overview](./api-controller/ci-cd-apis/ci-cd-with-wso2-api-management.mdx)</th>
       <td>Find out about the methods of implementing CI/CD for APIs using the API Controller (apictl).</td>
     </tr>
     <tr>
-      <th>[Building a CI/CD Pipeline for APIs using the CLI](../../guides/apiops/ci-cd/cicd-using-cli.mdx)</th>
+      <th>[Building a CI/CD Pipeline for APIs using the CLI](./api-controller/ci-cd-apis/cicd-using-cli.mdx)</th>
       <td>See the instructions on how to implement a CI/CD pipeline for APIs using the API Controller (apictl).</td>
     </tr>
     <tr>
-      <th>[Building a CI/CD Pipeline for APIs using Jenkins](../../guides/apiops/ci-cd/building-jenkins-ci-cd-pipeline.mdx)</th>
+      <th>Building a CI/CD Pipeline for APIs using Jenkins</th>
       <td>See the instructions on how to implement a CI/CD pipeline for APIs using Jenkins and the API Controller (apictl).</td>
     </tr>
   </tbody>
@@ -202,7 +200,7 @@ See the topics given below to manage APIs, API products, Apps, etc. in the API-M
 <table>
   <tbody>
     <tr>
-      <th>[Getting Started with WSO2 API Controller](../../guides/apiops/cli/getting-started-with-wso2-api-controller.mdx)</th>
+      <th>[Getting Started with WSO2 API Controller](./api-controller/manage-environments-using-the-cli/getting-started-with-wso2-api-controller.mdx)</th>
       <td>Explains how to set up the API Controller.</td>
     </tr>
     <tr>
@@ -211,13 +209,13 @@ See the topics given below to manage APIs, API products, Apps, etc. in the API-M
 
         This section covers the following topics.
 
-        <li>[Managing APIs and API Products](../../guides/apiops/cli/managing-apis-api-products/managing-apis-and-api-products.mdx)</li>
+        <li>[Managing APIs and API Products](./api-controller/manage-environments-using-the-cli/managing-apis-api-products/managing-apis-and-api-products.mdx)</li>
 
-        <li>[Importing APIs Via Dev First Approach](../../guides/apiops/cli/managing-apis-api-products/importing-apis-via-dev-first-approach.mdx)</li>
+        <li>[Importing APIs Via Dev First Approach](./api-controller/manage-environments-using-the-cli/managing-apis-api-products/importing-apis-via-dev-first-approach.mdx)</li>
 
-        <li>[Migrating APIs to Different Environments](../../guides/apiops/cli/managing-apis-api-products/migrating-apis-to-different-environments.mdx)</li>
+        <li>[Migrating APIs to Different Environments](./api-controller/manage-environments-using-the-cli/managing-apis-api-products/migrating-apis-to-different-environments.mdx)</li>
 
-        <li>[Migrating API Products (with or without dependent APIs) to Different Environments](../../guides/apiops/cli/managing-apis-api-products/migrating-api-products-to-different-environments.mdx)</li>
+        <li>[Migrating API Products (with or without dependent APIs) to Different Environments](./api-controller/manage-environments-using-the-cli/managing-apis-api-products/migrating-api-products-to-different-environments.mdx)</li>
 
       </td>
     </tr>
@@ -227,9 +225,9 @@ See the topics given below to manage APIs, API products, Apps, etc. in the API-M
 
         This section covers the following topics.
 
-        <li>[Managing Applications](../../guides/apiops/cli/managing-applications/managing-applications.mdx)</li>
+        <li>[Managing Applications](./api-controller/manage-environments-using-the-cli/managing-applications/managing-applications.mdx)</li>
 
-        <li>[Migrating Apps to Different Environments](../../guides/apiops/cli/managing-applications/migrating-applications-to-different-environments.mdx)</li>
+        <li>[Migrating Apps to Different Environments](./api-controller/manage-environments-using-the-cli/managing-applications/migrating-applications-to-different-environments.mdx)</li>
 
       </td>
     </tr>
@@ -239,15 +237,15 @@ See the topics given below to manage APIs, API products, Apps, etc. in the API-M
 
         This section covers the following topics.
 
-        <li>[Creating Custom Users to Perform API Controller Operations](../../guides/apiops/cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx)</li>
+        <li>[Creating Custom Users to Perform API Controller Operations](./api-controller/manage-environments-using-the-cli/advanced-topics/creating-custom-users-to-perform-api-controller-operations.mdx)</li>
 
-        <li>[Configuring Environment Specific Parameters](../../guides/apiops/cli/advanced-topics/configuring-environment-specific-parameters.mdx)</li>
+        <li>[Configuring Environment Specific Parameters](./api-controller/manage-environments-using-the-cli/advanced-topics/configuring-environment-specific-parameters.mdx)</li>
 
-        <li>[Using Dynamic Data in API Controller Projects](../../guides/apiops/cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx)</li>
+        <li>[Using Dynamic Data in API Controller Projects](./api-controller/manage-environments-using-the-cli/advanced-topics/using-dynamic-data-in-api-controller-projects.mdx)</li>
 
-        <li>[Configuring Different Endpoint Types](../../guides/apiops/cli/advanced-topics/configuring-different-endpoint-types.mdx)</li>
+        <li>[Configuring Different Endpoint Types](./api-controller/manage-environments-using-the-cli/advanced-topics/configuring-different-endpoint-types.mdx)</li>
 
-        <li>[Formatting the outputs of get commands](../../guides/apiops/cli/advanced-topics/formatting-the-output-of-get-command.mdx)</li>
+        <li>[Formatting the outputs of get commands](./api-controller/manage-environments-using-the-cli/advanced-topics/formatting-the-output-of-get-command.mdx)</li>
 
       </td>
     </tr>
@@ -263,19 +261,19 @@ To upgrade to the current API Manager component from a previous version refer [U
 <table>
   <tbody>
     <tr>
-      <th>[Common Runtime and Configuration Artifacts](../../reference/common-runtime-and-configuration-artifacts.mdx)</th>
+      <th>[Common Runtime and Configuration Artifacts](./reference/common-runtime-and-configuration-artifacts.mdx)</th>
       <td>Describes some artifacts that are commonly used with the API Manager component.</td>
     </tr>
     <tr>
-      <th>[Default Product Ports](../../reference/default-product-ports.mdx)</th>
-      <td>Explains the default ports used by the API Manager component.</td>
+      <th>[Default Product Ports](./reference/default-product-ports.mdx)</th>
+      <td>Explains the defauly ports used by the API Manager component.</td>
     </tr>
     <tr>
-      <th>[Product Compatibility](../../reference/product-compatibility.mdx)</th>
+      <th>[Product Compatibility](./reference/product-compatibility.mdx)</th>
       <td>Provides details relating to the compatibility of the API Manager component with different operating systems and JDKs, databases, key managers, web browsers, and other WSO2 products.</td>
     </tr>
     <tr>
-      <th>[Supported Cipher Suites](../../reference/supported-cipher-suites.mdx)</th>
+      <th>[Supported Cipher Suites](./reference/supported-cipher-suites.mdx)</th>
       <td>Provides details of the supported cipher suites.</td>
     </tr>
   </tbody>

@@ -34,101 +34,106 @@ Let's use the Star Wars sample backend server as the backend for the GraphQL API
 
     Let's use `admin` as the username and password to sign in.
 
-2. Click **Create API**, go to **GraphQL** and then click **Create a GraphQL API**.
+2. Click **Create API** and then click **Create GraphQL API**.
 
      ![Create GraphQL Schema Option](../../assets/img/learn/create-graphql-schema-option.png)
 
-3. Import the schema by dragging and dropping the file or by uploading the file, and click **Next**.
+3. Select one of the following options:
 
-       Let's use the [StarWarsAPI schema definition](../../assets/attachments/learn/schema_graphql.graphql) to create the schema file. 
+    * **GraphQL File/Archive** - If you select this option, drag and drop or click **Browse File to Upload** to upload the file.
+    * **GraphQL SDL URL** - If you select this option, you need to provide the URL of the schema definition.
 
-       :::note
-       - You need to define the SDL Schema based on the \[GraphQL schema design best practices\](https://graphql.org/learn/best-practices).
-       - The file extension can be either \`.graphql\`, \`.txt\`, or \`.json\`.
-       - The file name can be any name, which is based on your preference.
-       :::
+    Let's use the [StarWarsAPI schema definition](../../assets/attachments/learn/schema_graphql.graphql) to create the schema file. 
 
-      <img src={require("../../assets/img/learn/import-graphql-schema-via-file.png").default} alt="Import a GraphQL schema by adding a file" style={{width: "80%"}} />
+4. Select **GraphQL File/Archive** and import the schema by dragging and dropping the file or by uploading the file. Click **Next**.
 
-4. Enter the GraphQL API related details and click **Create**.
+    :::note
+    - You need to define the SDL Schema based on the \[GraphQL schema design best practices\](https://graphql.org/learn/best-practices).
+    - The file extension can be either \`.graphql\`, \`.txt\`, or \`.json\`.
+    - The file name can be any name, which is based on your preference.
+    :::
+
+    <img src={require("../../assets/img/learn/import-graphql-schema-via-file.png").default} alt="Import a GraphQL schema by adding a file" style={{width: "80%"}} />
+
+5. Enter the GraphQL API related details and click **Create**.
 
     Let's create an API named "StarWarsAPI" using the following sample data.
 
-      <table>
-        <thead>
-          <tr>
-            <th>
+    <table>
+      <thead>
+        <tr>
+          <th>
 
-              **Field**
+            **Field**
 
-            </th>
-            <th>
+          </th>
+          <th>
 
-              **Description**
+            **Description**
 
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
 
-              Name
+            Name
 
-            </td>
-            <td>
+          </td>
+          <td>
 
-              StarWarsAPI
+            StarWarsAPI
 
-            </td>
-          </tr>
-          <tr>
-            <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
 
-              Context
+            Context
 
-            </td>
-            <td>
+          </td>
+          <td>
 
-              `/swapi`
+            `/swapi`
 
-            </td>
-          </tr>
-          <tr>
-            <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
 
-              Version
+            Version
 
-            </td>
-            <td>
+          </td>
+          <td>
 
-              1.0.0
+            1.0.0
 
-            </td>
-          </tr>
-          <tr>
-            <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
 
-              Endpoint
+            Endpoint
 
-            </td>
-            <td>
+          </td>
+          <td>
 
-              [http://localhost:8080/graphql](http://localhost:8080/graphql)
+            [http://localhost:8080/graphql](http://localhost:8080/graphql)
 
-              :::note
-              - When you provide the HTTP URL as the backend endpoint, WSO2 API-M will internally derive the corresponding WebSocket URL `ws://localhost:8080/graphql`.
-              - Thereafter, the API Gateway will use this WebSocket URL as the backend subscription endpoint of the GraphQL API.
-              :::
+            :::note
+            - When you provide the HTTP URL as the backend endpoint, WSO2 API-M will internally derive the corresponding WebSocket URL `ws://localhost:8080/graphql`.
+            - Thereafter, the API Gateway will use this WebSocket URL as the backend subscription endpoint of the GraphQL API.
+            :::
 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <img src={require("../../assets/img/learn/create-graphql-api-details.png").default} alt="Add GraphQL API details" style={{width: "75%"}} />
 
-5. Optionally, modify the existing GraphQL schema definition.
+6. Optionally, modify the existing GraphQL schema definition.
 
     1. Navigate to **Develop**, **API Configurations**, and click **Schema Definition**.
 
@@ -142,7 +147,7 @@ Let's use the Star Wars sample backend server as the backend for the GraphQL API
 
     4. Click **Import Definition** to import the updated schema definition.
 
-6. Update the GraphQL API operations as required.
+7. Update the GraphQL API operations as required.
 
     Instead of resources, which get populated for REST APIs, operations get populated for GraphQL APIs.
 

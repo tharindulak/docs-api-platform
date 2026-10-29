@@ -21,7 +21,7 @@ The following are the methods that the `JWTValidator` interface uses to carry ou
 | **validateToken** | Validates the JWT token in self mode. |
 | **loadTokenIssuerConfiguration** | Loads the JWT related configurations. |
 
-You can implement the `JWTValidator` interface inside a custom Key Manager connector. For more information, see [writing a custom key manager connector](../../../../guides/api-security/key-management/third-party-key-managers/configure-custom-connector.mdx).
+You can implement the `JWTValidator` interface inside a custom Key Manager connector. For more information, see [writing a custom key manager connector](../../../../deploy-and-operate/administer/key-managers/configure-custom-connector.mdx).
 
 After you implement the `JWTValidator` interface the implementation class can be instantiated using the `KeyManagerConnectorConfiguration`interface.
 
@@ -73,7 +73,7 @@ A few examples are listed below.
         When creating a key via the API Developer Portal, the subscriber can specify which domains are allowed to make calls using a token granted against a particular consumer key. If this validation does not add any value, these trivial steps can be ignored and skipped by extending the `KeyValidationHandler`.
 
         :::info
-        For another example scenario, see [Skipping Role Validation for Scopes](./extending-scope-validation.mdx).
+        For another example scenario, see Skipping Role Validation for Scopes.
         :::
 
       </td>

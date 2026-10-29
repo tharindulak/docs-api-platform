@@ -6,7 +6,7 @@ sidebar_label: Customize API template
 sidebar_position: 1
 ---
 
-When an API is [published](../../../../guides/api-design-manage/deploy-and-publish/publish-on-dev-portal/publish-an-api.mdx) and [deployed](../../../../guides/api-design-manage/deploy-and-publish/deploy-api/deploy-api/deploy-an-api.mdx) in the Gateway, corresponding API is generated and deployed in the gateway in-memory. 
+When an API is [published](../../../../guides/api-design-manage/deploy-and-publish/publish-on-dev-portal/publish-an-api.mdx) and [deployed](../../../../guides/api-design-manage/deploy-and-publish/deploy-on-gateway/deploy-api/deploy-an-api.mdx) in the Gateway, corresponding API is generated and deployed in the gateway in-memory. 
 
 An API's gateway configuration file(Synapse configuration) content contains API metadata, API resource information, properties etc and it is generated based on the API template file which can be found in `<APIM_HOME>/repository/resources/api_templates/velocity_template.xml` location. You can modify the default API template definition in order to customize the synapse configurations of the API.
 
@@ -27,7 +27,7 @@ Following steps illustrate how you can enable a custom handler for a selected se
     ```text
     <handlers xmlns="http://ws.apache.org/ns/synapse">
 
-     ##Engage the Custom handler based on 'custom_authentication' property value
+     ##Engage the Custom handler based on 'custom_authentication' propert value
      #if($apiObj.additionalProperties.get('custom_authentication') == "true"))
        <handler class="org.wso2.apimgt.custom.CustomAPIAuthenticationHandler"/>
      #end
@@ -75,7 +75,7 @@ Following steps illustrate how you can enable a custom handler for a selected se
     Likewise, you can implement the logic to conditionally enable/disable custom or default handlers.
 
     :::info
-    If you are using a distributed API Manager deployment (i.e., Publisher, Devportal, Gateway and Key Manager components are running on separate JVMs), edit the template in the Publisher node. 
+    If you are using a [distributed API Manager deployment](../../../../deploy-and-operate/install-and-setup/deploy/deploy-on-vm/distributed-deployment/understanding-the-distributed-deployment-of-wso2-api-m.mdx) (i.e., Publisher, Devportal, Gateway and Key Manager components are running on separate JVMs), edit the template in the Publisher node. 
     :::
 
  3. Save the changes.

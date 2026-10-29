@@ -3,7 +3,7 @@ title: Quick Start Guide
 description: New to WSO2 API Manager?  # generated from the first paragraph; a writer should improve it
 type: quick-start
 sidebar_label: Quick start guide
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 import Tabs from '@theme/Tabs';
@@ -15,7 +15,7 @@ In this step-by-step guide, you’ll learn how to create, publish, and invoke an
 
 ### Before you begin...
 
-Choose a deployment option to start the WSO2 API Manager All-in-one package. The All-in-one package contains all core components in a single JVM for simplified deployment.
+Choose a deployment option to start WSO2 API Manager All-in-one package. The All-in-one package contains all core components in a single JVM for simplified deployment.
 
 <Tabs groupId="tabs">
 <TabItem value="run-on-vm" label="Run on VM">
@@ -29,7 +29,7 @@ Here's how you can download and run WSO2 API Manager All-in-one package locally 
     :::
 
 2. Download WSO2 API-Manager All-in-one package.
-- [Open Source Distribution](https://github.com/wso2/product-apim/releases/tag/v4.7.0)
+- [Open Source Distribution](https://github.com/wso2/product-apim/releases/tag/v4.5.0)
 - [WSO2 Official Distribution](https://wso2.com/api-manager/#)
 
 3. Extract the downloaded zip file.
@@ -58,7 +58,7 @@ Here's how you can download and run WSO2 API Manager All-in-one package locally 
 </TabItem>
 <TabItem value="run-on-kubernetes" label="Run on Kubernetes">
 
-To use Kubernetes (K8s) and Helm resources for container-based deployments of WSO2 API Manager (API-M), follow the steps in [Deploying API-M on Kubernetes using Helm Resources.](../deploy-and-operate/install-and-setup/deploy/kubernetes-deployment/kubernetes/all-in-one-deployment/am-pattern-0-all-in-one.mdx)
+To use Kubernetes (K8s) and Helm resources for container-based deployments of WSO2 API Manager (API-M), follow the steps in [Deploying API-M on Kubernetes using Helm Resources.](../deploy-and-operate/install-and-setup/install/deploying-api-manager-with-kubernetes-resources.mdx)
 
 </TabItem>
 </Tabs>
@@ -71,9 +71,12 @@ In this sample scenario, you'll implement the full lifecycle of an API using WSO
 
 Here are the steps that we are going to follow:
 
-- [Step 1: Create, Deploy and Publish an API](#step-1-create-deploy-and-publish-an-api)
-- [Step 2: Subscribe to the API](#step-2-subscribe-to-the-api)
-- [Step 3: Invoke the API](#step-3-invoke-the-api)
+- Quick Start Guide
+    - [Before you begin...](#before-you-begin)
+    - [What you'll build](#what-youll-build)
+    - [Step 1: Create, Deploy and Publish an API](#step-1-create-deploy-and-publish-an-api)
+    - [Step 2: Subscribe to the API](#step-2-subscribe-to-the-api)
+    - [Step 3: Invoke the API](#step-3-invoke-the-api)
 
 Let's get started...
 
@@ -116,7 +119,7 @@ Follow the instructions below to create, deploy and publish an API via the Publi
       </tbody>
     </table>
 
-5. Click **Create & Publish**.
+5. Select **Universal Gateway** as the Gateway type and click **Create & Publish**.
 
     <img src={require("../../assets/img/get_started/api-create.png").default} alt="Create an API" style={{width: "100%"}} />
 
@@ -160,10 +163,6 @@ Follow the instructions below to invoke the created API.
        When running in production, since a trusted certificate is used, you won't have to do this step.
 
     ![Test API](../../assets/img/get_started/test-api.png)
-
-    This will prompt you for the customer secret created at the startup to generate the access token.
-
-    ![Test API](../../assets/img/get_started/enter-customer-secret.png)
     :::
 
 2. Click on the `GET` resource of the API to expand the resource and Click **Try It Out**.
@@ -174,7 +173,7 @@ Follow the instructions below to invoke the created API.
 
      ![GET resource](../../assets/img/get_started/try-api.png)
 
-     You should see the `{"uuid": "<random-generated-uuid>"}` response from the API.
+     You should see the `{"uuid" : "<random-uuid-here>"}` response from the API. 
 
      ![Successful response](../../assets/img/get_started/try-it-success.png)
 

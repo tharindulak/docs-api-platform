@@ -2,14 +2,14 @@
 title: FAQ
 description: WSO2 API Manager is a complete solution for creating, publishing and managing all aspects of an API and its life cycle.  # generated from the first paragraph; a writer should improve it
 type: reference
-sidebar_position: 15
+sidebar_position: 10
 ---
 
 ## About WSO2 API Manager
 
 ### What is WSO2 API Manager?
 
-WSO2 API Manager is a complete solution for creating, publishing and managing all aspects of an API and its life cycle. For more information, see the [introduction](../get-started/overview.mdx).
+WSO2 API Manager is a complete solution for creating, publishing and managing all aspects of an API and its life cycle. For more information, see the introduction.
 
 ### What is the open source license of the API Manager?
 
@@ -21,11 +21,11 @@ It is completely supported from evaluation to production. For more details, see 
 
 ### What are the default ports opened in the API Manager?
 
-For a list of all default ports available, see [Default Ports of WSO2 Products](./default-product-ports.mdx).
+For a list of all default ports available, see [Default Ports of WSO2 Products](../deploy-and-operate/install-and-setup/reference/default-product-ports.mdx).
 
 ### What are the technologies used underneath WSO2 API Manager?
 
-The API Manager is built on top of [WSO2 Carbon](https://wso2.com/products/carbon/), an OSGi based components framework for SOA. For more details, see [API Manager components](../get-started/apim-architecture.mdx).
+The API Manager is built on top of [WSO2 Carbon](https://wso2.com/products/carbon/), an OSGi based components framework for SOA. For more details, see API Manager components.
 
 ### Can I get involved in API-M development activities?
 
@@ -73,7 +73,7 @@ The memory allocation settings are stored in the `<API-M_HOME>/bin/api-manager.s
 
 ### What are the different deployment patterns and clustering configurations of the API Manager?
 
-See [Deploying WSO2 API Manager](../get-started/deployment-options/deployment-patterns.mdx).
+See Deploying WSO2 API Manager.
 
 ### What are the container technologies that are supported in API Manager? {#what-are-the-container-technologies-that-are-supported-in-api-manager}
 
@@ -130,11 +130,11 @@ If you edited the **Response Content Type** using the UI, please open the API's 
 
 If you have enabled the pass-through transport, you can change its default configurations by adding the  following under the `[transport.passthru_https.listener.parameters]` element in the `<API-M_HOME>/repository/conf/deployment.toml` file. Be sure to **stop the server** before editing the file.
 
-Add the parameter given below:
+If you are using JDK 1.7.\* or 1.8.\*, add the parameter given below:
 
 ```text
 [transport.passthru_https.listener.parameters]
-HttpsProtocols = "TLSv1.2,TLSv1.3"
+HttpsProtocols = "TLSv1,TLSv1.1,TLSv1.2"
 ```
 
 ### How can I extend the default API Manager server by installing new features?
@@ -190,7 +190,7 @@ See [how to enable self signup](./customizations/customizations/customizing-the-
 
 ### How can I disable self signup to the Developer Portal ? I want to engage my own approval mechanism. {#how-can-i-disable-self-signup-to-the-developer-portal-i-want-to-engage-my-own-approval-mechanism}
 
-To disable the self signup capability, open the API-M management console and click the **Resources &gt; Browse** menu. The registry opens. Navigate to the `/_system/governance/apimgt/applicationdata/sign-up-config.xml` file and set the `<SelfSignUp><Enabled>` element to false. To engage your own signup process, see [Adding a User Signup Workflow](./customizations/customizations/adding-a-user-signup-workflow.mdx).
+To disable the self signup capability, open the API-M management console and click the **Resources &gt; Browse** menu. The registry opens. Navigate to the `/_system/governance/apimgt/applicationdata/sign-up-config.xml` file and set the `<SelfSignUp><Enabled>` element to false. To engage your own signup process, see Adding a User Signup Workflow.
 
 ### Is there a way to lock a user's account after a certain number of failed login attempts to the Developer Portal ? {#is-there-a-way-to-lock-a-users-account-after-a-certain-number-of-failed-login-attempts-to-the-developer-portal}
 
@@ -255,7 +255,7 @@ password = "<![CDATA[your-password]]>"
 
 ### How can I protect my product server from security attacks caused by weak ciphers?
 
-You can protect your server from attacks such as the Logjam attack (Man-in-the-Middle attack) by disabling weak ciphers. For more details, see [Disable weak ciphers](../deploy-and-operate/install-and-setup/setup/set-up-api-manager/security/configuring-transport-level-security.mdx#disabling-weak-ciphers) in the WSO2 Admin Guide.
+You can protect your server from attacks such as the Logjam attack (Man-in-the-Middle attack) by disabling weak ciphers. For more details, see Disable weak ciphers in the WSO2 Admin Guide.
 
 ### How can I distinguish between expired and invalid tokens in an authentication failure scenario?
 
@@ -271,6 +271,10 @@ The table below lists the properties that become available and what each one rep
 | ----------------------------- | ------------------------------------------------------------------------ |
 | `ACCESS_TOKEN`                | Raw access token extracted from the request.                             |
 | `ACCESS_TOKEN_INVALID_REASON` | Validation result: `"Access token expired"` or `"Access token invalid"`. |
+
+:::note
+This config is only available after U2 level 7 onwards.
+:::
 
 ## Troubleshooting
 
@@ -296,7 +300,7 @@ If you get the following error: `org.wso2.carbon.server.admin.module.handler.Aut
 
 **Reason for occurrence**
 
-The *`javax.net.ssl.SSLException: hostname in certificate didn't match: <ip address> != <localhost>         `* exception is a very common exception that occurs whenever the WSO2 product server is accessed using a different IP address (e.g., `https://10.100.0.77:9443/publisher`) except localhost (e.g., `https://localhost:9443/publisher`).
+The *`javax.net.ssl.SSLException: hostname in certificate didn't match: <ip addrees> != <localhost>         `* exception is a very common exception that occurs whenever the WSO2 product server is accessed using a different IP address (e.g., `https://10.100.0.77:9443/publisher`) except localhost (e.g., `https://localhost:9443/publisher`).
 
 The reason that the exception occurs is because the self-signed certificate that is shipped with WSO2 products is configured using the hostname as `localhost`, and as a result Apache Shindig does not allow any other HTTP requests that originate from other hostnames/IP addresses other than localhost.
 
@@ -431,12 +435,12 @@ There might be multiple configuration context objects created per API invocation
 The Gateway Failures UI error occurs when the `service_url`, `username`, `password` and/or `https_endpoint/http_endpoint` is incorrect. This can be rectified by checking and correcting the gateway configurations under `[[apim.gateway.environment]]` in the `<API-M_HOME>/repository/conf/deployment.toml` file.
 
 :::tip
-If you are using the API-M instance you used as the first instance in the [Publish through Multiple API Gateways](../guides/api-design-manage/deploy-and-publish/deploy-api/deploy-api/deploy-through-multiple-api-gateways.mdx) tutorial, you may receive the above error when trying out other tutorials. This is because you updated the environments configurations in that pack by adding two API Gateway environments under the `[[apim.gateway.environment]]` element,  and modifying the default configuration. To overcome this error, revert the default `[[apim.gateway.environment]]` configuration.
+If you are using the API-M instance you used as the first instance in the Publish through Multiple API Gateways tutorial, you may receive the above error when trying out other tutorials. This is because you updated the environments configurations in that pack by adding two API Gateway environments under the `[[apim.gateway.environment]]` element,  and modifying the default configuration. To overcome this error, revert the default `[[apim.gateway.environment]]` configuration.
 :::
 
 ### How can I capture the state of a system?
 
-At the time of an error, you can use a tool called Carbon Dump (`carbondump.sh`) to collect all the necessary data (i.e., heap and thread dumps) from a running WSO2 API Manager instance in order to carryout a head dump and thread stack analysis. For more information on using this tool, see [Capturing the state of the system](./troubleshooting/admin-troubleshooting-in-production-environments.mdx#capturing-the-state-of-the-system) in the Administration guide.
+At the time of an error, you can use a tool called Carbon Dump (`carbondump.sh`) to collect all the necessary data (i.e., heap and thread dumps) from a running WSO2 API Manager instance in order to carryout a head dump and thread stack analysis. For more information on using this tool, see [Capturing the state of the system](./troubleshooting/admin-troubleshooting-in-production-environments.mdx#capturing-the-state-of-the-system) in the Administration guide.
 
 ### How can I clean up the REG\_LOG table?
 

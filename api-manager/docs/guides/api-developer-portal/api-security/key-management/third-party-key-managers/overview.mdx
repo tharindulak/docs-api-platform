@@ -1,0 +1,33 @@
+---
+title: Third-Party Key Manager Integration
+description: WSO2 API Manager supports integration with external authorization servers as Key Managers, enabling organizations to leverage existing enterprise identity…  # generated from the first paragraph; a writer should improve it
+type: how-to
+unlisted: true
+---
+
+WSO2 API Manager supports integration with external authorization servers as Key Managers, enabling organizations to leverage existing enterprise identity providers alongside the built-in Key Manager.
+
+## Multiple Key Manager Support
+
+Organizations can configure multiple Key Managers within a single tenant, allowing different APIs and applications to use different authorization servers based on business requirements. Administrators configure these through the Admin Portal, making them available for developers and API creators.
+
+## Supported Third-Party Key Managers
+
+### Enterprise Identity Providers
+- **WSO2 Identity Server**: Full-featured identity and access management platform
+- **WSO2 Identity Server 7.x**: Latest identity server with enhanced capabilities  
+- **Keycloak**: Open-source identity and access management solution
+
+### Cloud Identity Services
+- **Okta**: Cloud-based identity service integration
+- **Auth0**: Developer-focused identity platform
+- **Azure AD**: Microsoft Azure Active Directory integration
+
+### Enterprise Platforms
+- **PingFederate**: Enterprise federation and single sign-on
+- **ForgeRock**: ForgeRock Identity Platform integration
+
+### Custom Integration
+- **Custom Key Manager**: Build connectors for proprietary authorization servers
+- **Custom Key Manager (Out-of-Band Provisioning)**: Integrate any external authorization server using Out-of-Band provisioning mode
+- **Global Key Manager**: Cross-tenant key manager configuration

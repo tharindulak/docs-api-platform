@@ -2,7 +2,7 @@
 title: Secure Endpoint with OAuth 2.0
 description: A secured endpoint is when you have access-protected resources.  # generated from the first paragraph; a writer should improve it
 type: how-to
-sidebar_label: OAuth 2.0
+sidebar_label: Secure endpoint with OAuth 2.0
 sidebar_position: 3
 ---
 
@@ -190,32 +190,3 @@ When `enable_retry_call_with_new_token` is set to `false`, the system proactivel
 
 - **Control Plane management (`enable_retry_call_with_new_token = false`)**: Employs a proactive approach where the system validates token expiry before invoking backend services. Token refresh is triggered based on the `expires_in` value prior to backend invocation. The `expires_in` configuration only applies when the OAuth authorization server does not provide an `expires_in` value in the token response.
 :::
-
-## Configuring a dedicated trust store for OAuth token endpoint connections
-
-By default, OAuth token endpoint connections use the existing SSL context in the system. If you want to configure a separate trust store for the OAuth token endpoint connection, you can use the following configuration.
-
-Add the following configuration to the `<API-M_HOME>/repository/conf/deployment.toml` file:
-
-<Tabs groupId="tabs">
-<TabItem value="format" label="Format">
-
-```toml
-[apim.mediator_config.oauth.trust_store]
-location = "<path to the trust store file>"
-type = "<trust store type, e.g., JKS>"
-password = "<trust store password>"
-```
-
-</TabItem>
-<TabItem value="example" label="Example">
-
-```toml
-[apim.mediator_config.oauth.trust_store]
-location = "repository/resources/security/client-truststore-oauth.jks"
-type = "JKS"
-password = "wso2carbon"
-```
-
-</TabItem>
-</Tabs>

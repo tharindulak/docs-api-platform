@@ -1,8 +1,9 @@
 ---
-title: response-caching
+title: Response Caching
 description: The API Manager uses WSO2 ESB's cache mediator to cache response messages for each API.  # generated from the first paragraph; a writer should improve it
 type: how-to
-unlisted: true
+sidebar_label: Response caching
+sidebar_position: 3
 ---
 
 import Tabs from '@theme/Tabs';
@@ -141,10 +142,10 @@ You can use the cache mediator to control the hash generation behavior without p
 This configuration allows you to control aspects of hash generation, such as excluding specific headers, without implementing a custom hash generator class.
 
 :::note
-When running a distributed deployment, you need to enable the JSON stream builders on the Classic Gateway and maintain the standard builders on the API Developer Portal node.
+When running a distributed deployment, you need to enable the JSON stream builders on the Universal Gateway and maintain the standard builders on the API Developer Portal node.
 :::
 
-Follow the instructions below to enable the stream builders in the Classic Gateway:
+Follow the instructions below to enable the stream builders in the Universal gateway:
 
 1.  Open the `<API-M_HOME>/repository/conf/deployment.toml` file.
 2.  Add following configuration.
@@ -158,4 +159,4 @@ Follow the instructions below to enable the stream builders in the Classic Gatew
 
 You can invalidate all cached response remotely by using any [JMX monitoring tool such as Jconsole](https://ei.docs.wso2.com/en/latest/micro-integrator/administer-and-observe/jmx_monitoring) using the exposed MBeans. You can use the `InvalidateMediatorCache()` operation of the `org.wso2.carbon.mediation` MBean for this as shown below.
 
-![JMX monitoring through JConsole](../../../../../../assets/img/learn/jmx-monitoring-through-jconsole.png)
+![JMX monitoring through JConsole](../../../../../../assets/img/learn/jmx-monitoring-through-jsoncole.png)
