@@ -11,7 +11,7 @@ editionNames:
 home: api-platform
 owners:
   team: api-platform-docs
-repo: tharindulak/docs-api-platform
+repo: wso2/docs-api-platform
 editLinks: false
 issues:
   repo: wso2/docs-api-platform
@@ -20,3 +20,5 @@ editions:
     parts:
       - ai-gateway
       - api-gateway
+      - ai-workspace
+      - api-portal

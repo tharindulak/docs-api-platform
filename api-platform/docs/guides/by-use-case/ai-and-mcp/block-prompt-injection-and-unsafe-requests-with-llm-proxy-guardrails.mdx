@@ -89,7 +89,7 @@ Organizations and projects are created in this main console, not in AI Workspace
 
 ## Step 2: Create and start an AI gateway
 
-The AI gateway is the runtime that hosts your proxy and enforces your guardrails. If you already have one running and shown as **Active**, skip to Step 3. Full reference, including Virtual Machine and Kubernetes install options and gateway management: [Setting up an AI Gateway](../../ai-workspace/ai-gateways/setting-up.mdx).
+The AI gateway is the runtime that hosts your proxy and enforces your guardrails. If you already have one running and shown as **Active**, skip to Step 3. Full reference, including Virtual Machine and Kubernetes install options and gateway management: [Setting up an AI Gateway](docs:ai-workspace/cloud/guides/ai-gateways/setting-up/).
 
 1. Click **AI Gateways** > **+ Add AI Gateway**, and enter:
 
@@ -119,7 +119,7 @@ The AI gateway is the runtime that hosts your proxy and enforces your guardrails
 ![AI Gateways list showing my-ai-gateway with an Active status badge](../../../../assets/img/guides/ai-and-mcp/llm-proxy-guardrails/ai-gateways-list-with-active-gateway.png)
 
 :::note
-If a default gateway port is already in use on your machine, edit the port mappings in the downloaded `docker-compose.yaml` before starting. Once the gateway is **Active**, its registration token becomes single-use — see [Setting up an AI Gateway](../../ai-workspace/ai-gateways/setting-up.mdx#gateway-registration-token) if you need to reconnect it later.
+If a default gateway port is already in use on your machine, edit the port mappings in the downloaded `docker-compose.yaml` before starting. Once the gateway is **Active**, its registration token becomes single-use — see [Setting up an AI Gateway](docs:ai-workspace/cloud/guides/ai-gateways/setting-up/#gateway-registration-token) if you need to reconnect it later.
 :::
 
 ## Step 3: Configure the embedding provider
@@ -135,7 +135,7 @@ embedding_provider_model = "mistral-embed"
 embedding_provider_api_key = "<YOUR-MISTRAL-API-KEY>"
 ```
 
-Using OpenAI or Azure OpenAI instead? See [Semantic Prompt Guard: Gateway Configuration](../../ai-workspace/policies/guardrails/semantic-prompt-guard.mdx#gateway-configuration) for the equivalent values.
+Using OpenAI or Azure OpenAI instead? See [Semantic Prompt Guard: Gateway Configuration](docs:ai-workspace/cloud/guides/policies/guardrails/semantic-prompt-guard/#gateway-configuration) for the equivalent values.
 
 Restart the gateway so it picks up the change:
 
@@ -155,7 +155,7 @@ Never commit a real API key to `config.toml` in version control. Use your deploy
 
 ## Step 4: Add Mistral as an LLM provider
 
-Registering the provider stores your Mistral API key in the platform, so the gateway can call Mistral on your behalf. Your application never handles this key. LLM providers are managed at the organization level, shared across every project, unlike the project-scoped resources in the other steps. Full reference: [Configure an LLM provider](../../ai-workspace/llm-providers/configure-provider.mdx).
+Registering the provider stores your Mistral API key in the platform, so the gateway can call Mistral on your behalf. Your application never handles this key. LLM providers are managed at the organization level, shared across every project, unlike the project-scoped resources in the other steps. Full reference: [Configure an LLM provider](docs:ai-workspace/cloud/guides/llm-providers/configure-provider/).
 
 1. From the project's **Overview** page, under **LLM Service Providers**, click **+ Add New**.
 2. Select **Mistral**, name it **Mistral Provider**, and paste your Mistral API key. Click **Add Provider**.
@@ -171,7 +171,7 @@ Creating the proxy in the next step also offers to generate or accept a Mistral 
 
 ## Step 5: Create the LLM proxy
 
-The LLM proxy is the endpoint your applications call, and where you attach the four guardrails. Full reference: [Configure an App LLM proxy](../../ai-workspace/llm-proxies/configure-proxy.mdx).
+The LLM proxy is the endpoint your applications call, and where you attach the four guardrails. Full reference: [Configure an App LLM proxy](docs:ai-workspace/cloud/guides/llm-proxies/configure-proxy/).
 
 1. Click **App LLM Proxies** > **+ Create App LLM Proxy**, and enter:
 
@@ -437,9 +437,9 @@ The commands below use `-k` to skip certificate validation, because the Docker C
 ## Next steps
 
 - [Content length guardrail reference](docs:ai-gateway/cloud/guides/llm/guardrails/content-length/)
-- [Word count guardrail reference](../../ai-workspace/policies/guardrails/word-count-guardrail.mdx)
+- [Word count guardrail reference](docs:ai-workspace/cloud/guides/policies/guardrails/word-count-guardrail/)
 - [Regex guardrail reference](docs:ai-gateway/cloud/guides/llm/guardrails/regex/) — including supported pattern syntax
-- [Semantic prompt guard reference](../../ai-workspace/policies/guardrails/semantic-prompt-guard.mdx) — including similarity threshold guidance
+- [Semantic prompt guard reference](docs:ai-workspace/cloud/guides/policies/guardrails/semantic-prompt-guard/) — including similarity threshold guidance
 - [Guardrail execution order](docs:ai-gateway/cloud/guides/guardrails/execution-order/)
 - [Enforce token-based rate limiting on an LLM proxy](./enforce-token-based-rate-limiting-on-an-llm-proxy.mdx) — cap token consumption on the same proxy
 

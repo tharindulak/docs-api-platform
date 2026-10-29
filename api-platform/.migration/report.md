@@ -4,47 +4,47 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 
 | Measure | Count |
 |---|---|
-| Pages written | 207 |
-| Pages in the legacy nav | 200 |
-| Unlisted pages (not in the legacy nav) | 7 |
+| Pages written | 157 |
+| Pages in the legacy nav | 154 |
+| Unlisted pages (not in the legacy nav) | 3 |
 | API reference pages | 0 |
 | Placeholder pages | 0 |
 | Partials | 0 |
-| Images copied | 392 |
+| Images copied | 336 |
 | Other files copied | 8 |
 | Missing images removed | 0 |
-| Links | 1217 |
-| Links fixed through a legacy redirect | 15 |
-| Broken links removed (text kept) | 7 |
-| Broken anchors removed | 2 |
-| Links to other legacy versions (kept) | 67 |
+| Links | 988 |
+| Links fixed through a legacy redirect | 9 |
+| Broken links removed (text kept) | 8 |
+| Broken anchors removed | 0 |
+| Links to other legacy versions (kept) | 39 |
 | Links to other WSO2 docs (kept as legacy URLs) | 6 |
-| Admonitions | 312 |
+| Admonitions | 234 |
 | Collapsibles | 1 |
-| Tab sets | 21 |
-| Code blocks | 418 |
+| Tab sets | 13 |
+| Code blocks | 338 |
 | Indented code blocks fenced | 0 |
-| Raw HTML blocks converted | 27 |
-| Explicit heading ids kept for old anchors | 56 |
+| Raw HTML blocks converted | 17 |
+| Explicit heading ids kept for old anchors | 54 |
 | Placeholders wrapped in backticks | 6 |
-| Generated descriptions to review | 16 |
-| sidebar_label set | 165 |
-| Legacy redirect entries written | 360 |
-| Legacy MkDocs redirects (source) | 166 |
+| Generated descriptions to review | 12 |
+| sidebar_label set | 123 |
+| Legacy redirect entries written | 266 |
+| Legacy MkDocs redirects (source) | 133 |
 | Legacy redirects with no target page (sent to an ancestor or home) | 0 |
 | Legacy redirects to other sites | 0 |
 | MDX compile failures | 0 |
 | Override patches applied (override list) | 2 of 2 |
-| Legacy-broken links and anchors accepted (override list) | 6 |
+| Legacy-broken links and anchors accepted (override list) | 5 |
 
 ## Items by kind
 
 | Kind | Count |
 |---|---|
-| not-in-nav | 7 |
 | html | 7 |
+| not-in-nav | 3 |
 | nav | 1 |
-| broken-anchor | 1 |
+| broken-link | 1 |
 | code-language | 1 |
 
 ## nav
@@ -54,10 +54,6 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 ## not-in-nav
 
 - `cloud/administer/inviting-members.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/ai-workspace/insights.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/ai-workspace/policies/other-policies/basic-rate-limit.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-- `cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/bijira-concepts/deployment-tracks.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/develop-api-proxy/authentication-and-authorization/pass-end-user-attributes-to-upstream-services.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 
@@ -71,9 +67,9 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 - `cloud/introduction/quick-start-guide-mcp.md`: unbalanced inline </iframe> removed
 - `cloud/introduction/quick-start-guide.md`: unbalanced inline </iframe> removed
 
-## broken-anchor
+## broken-link
 
-- `cloud/ai-workspace/llm-proxies/manage-proxy.md`: anchor #provider-settings does not exist on this page; anchor removed
+- `guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog.md`: link to ../../cloud/devportal/admin-settings/llm-instructions/ has no target in this version; link removed, text kept
 
 ## code-language
 
@@ -88,4 +84,3 @@ Broken on the legacy site too: the link is removed and its text kept. Not outsta
 - `guides/monetization/api-monetization.md`: link to ../../cloud/api-monetization/getting-started.md has no target in this version; link removed, text kept (the legacy site has no page there either)
 - `guides/monetization/mcp-tool-monetization.md`: link to ../../analytics-and-monetization/overview.md has no target in this version; link removed, text kept (the legacy site has no page there either)
 - `index.md`: link to analytics-and-monetization/overview.md has no target in this version; link removed, text kept (the legacy site has no page there either)
-- `cloud/ai-workspace/llm-proxies/manage-proxy.md`: anchor #get-started does not exist on this page; anchor removed (the anchor is not on the target page on the legacy site either)

@@ -35,7 +35,7 @@ Connect Amazon Bedrock and manage its models and credentials centrally.
 
 - [Create an AI API for Amazon Bedrock](../create-api-proxy/third-party-apis/ai-apis/providers/awsbedrock.mdx) Cloud console
 
-- [Configure an LLM provider](../ai-workspace/llm-providers/configure-provider.mdx) AI Workspace
+- [Configure an LLM provider](docs:ai-workspace/cloud/guides/llm-providers/configure-provider/) AI Workspace
 
 - [Use Amazon Bedrock and Bedrock Guardrails with WSO2 AI Gateway](https://wso2.com/api-platform/learn/aws-bedrock-llm-guardrails-wso2-ai-gateway/) Learn Hub tutorial
 - [Amazon Bedrock provider](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/gateway-artifacts/llm-provider/supported-providers/aws-bedrock/) AI Gateway
@@ -63,7 +63,7 @@ Enforce the content filters, denied topics, and sensitive-information policies t
 
 Token limits, semantic caching, and the other AI API policies work the same way for every provider. See [AI APIs](../create-api-proxy/third-party-apis/ai-apis/ai-apis.mdx).
 
-Routing, token limits, cost control, and the other AI Workspace policies work the same way for every provider. See the [AI Workspace overview](../ai-workspace/overview.mdx).
+Routing, token limits, cost control, and the other AI Workspace policies work the same way for every provider. See the [AI Workspace overview](docs:ai-workspace/cloud/).
 
 Routing, token limits, cost control, and the gateway's other policies work the same way for every provider. See the [AI Gateway documentation](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/overview/).
 
@@ -89,7 +89,7 @@ Import APIs that already run on Amazon API Gateway and check their compliance.
 Move a discovered API through its lifecycle and make it available in the Developer Portal.
 
 - [Manage the API lifecycle](../develop-api-proxy/lifecycle-management.mdx) Cloud console
-- [Discover APIs in the Developer Portal](../api-portal/discover-apis/api-search.mdx) Cloud console
+- [Discover APIs in the Developer Portal](docs:api-portal/cloud/guides/discover-apis/api-search/) Cloud console
 
 :::warning[Credentials]
 The gateway connection uses the access key of an AWS Identity and Access Management (IAM) user. The guide attaches the AWS managed `AmazonAPIGatewayAdministrator` policy, which grants more than read access to your APIs. Create a dedicated IAM user for this connection only, store its secret access key in a secrets manager, rotate the key regularly, and deactivate it when you remove the gateway. Never use root account credentials.
@@ -104,7 +104,7 @@ Run the gateway on your own AWS infrastructure, give it an AWS identity, and sen
 The Kubernetes deployment docs aren't specific to AWS, but they apply to Amazon Elastic Kubernetes Service (Amazon EKS).
 
 - [Set up a self-hosted gateway](docs:api-gateway/cloud/guides/self-hosted-gateway/setting-up/) Cloud console
-- [Set up an AI Gateway](../ai-workspace/ai-gateways/setting-up.mdx) AI Workspace
+- [Set up an AI Gateway](docs:ai-workspace/cloud/guides/ai-gateways/setting-up/) AI Workspace
 
 - [Kubernetes deployment modes](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/setup-and-deployment/kubernetes/) AI Gateway
 - [Kubernetes Operator](https://wso2.com/api-platform/docs/ai-gateway/2026.09.24/setup-and-deployment/kubernetes/gateway-operator/) AI Gateway

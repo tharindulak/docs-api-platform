@@ -3,42 +3,42 @@
     "source": "wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b",
     "edition": "cloud",
     "legacyBase": "https://wso2.com/api-platform/docs/",
-    "navPages": 200,
+    "navPages": 154,
     "sourceFiles": 1103,
     "stats": {
-      "pages": 207,
+      "pages": 157,
       "partials": 0,
       "apiPages": 0,
       "placeholders": 6,
-      "images": 392,
+      "images": 336,
       "attachments": 8,
       "missingImages": 0,
-      "links": 1217,
-      "externalLinks": 553,
+      "links": 988,
+      "externalLinks": 585,
       "legacyHostLinks": 22,
-      "otherVersionLinks": 67,
+      "otherVersionLinks": 39,
       "crossProductLinks": 6,
-      "linksViaRedirect": 15,
-      "droppedLinks": 7,
-      "droppedAnchors": 2,
+      "linksViaRedirect": 9,
+      "droppedLinks": 8,
+      "droppedAnchors": 0,
       "placeholdersWrapped": 6,
-      "admonitions": 312,
+      "admonitions": 234,
       "details": 1,
-      "tabSets": 21,
-      "codeBlocks": 418,
+      "tabSets": 13,
+      "codeBlocks": 338,
       "indentedCode": 0,
-      "htmlBlocks": 27,
-      "explicitIds": 56,
+      "htmlBlocks": 17,
+      "explicitIds": 54,
       "basePathInCode": 0,
       "basePathInText": 0,
       "unknownElements": 5,
       "unknownLanguages": [
         "ballerina"
       ],
-      "generatedDescriptions": 16,
-      "sidebarLabels": 165,
-      "relativeFallback": 393,
-      "unlisted": 7,
+      "generatedDescriptions": 12,
+      "sidebarLabels": 123,
+      "relativeFallback": 333,
+      "unlisted": 3,
       "placeholders_": 0,
       "sharedPages": 0,
       "cloudOnlyPages": 0,
@@ -59,26 +59,26 @@
       "cloudCounterparts": 0,
       "ambiguousCounterparts": 0,
       "legacySiteLinks": 130,
-      "keptDescriptions": 191,
-      "otherDocSpaceLinks": 35,
+      "keptDescriptions": 145,
+      "otherDocSpaceLinks": 118,
       "mdInHtmlBlocks": 138,
       "decorativeSvgsDropped": 11,
       "tabButtonLinesDropped": 2,
       "overviewPages": 10,
-      "cloudParts": 2,
+      "cloudParts": 4,
       "exportSingleFolders": 0,
-      "legacyRedirectsElsewhere": 14,
+      "legacyRedirectsElsewhere": 25,
       "legacyRedirectsExternal": 0,
       "legacyRedirectsUnresolved": 0,
-      "legacyRedirects": 360,
-      "legacyRedirectsSource": 166,
-      "acceptedByOverrides": 6
+      "legacyRedirects": 266,
+      "legacyRedirectsSource": 133,
+      "acceptedByOverrides": 5
     },
     "issues": {
       "nav": 1,
-      "not-in-nav": 7,
+      "not-in-nav": 3,
       "html": 7,
-      "broken-anchor": 1,
+      "broken-link": 1,
       "code-language": 1
     },
     "compileFailures": 0,
@@ -86,7 +86,7 @@
       "file": "api-platform.overrides.yaml",
       "patches": 2,
       "patchesApplied": 2,
-      "accepted": 6
+      "accepted": 5
     }
   },
   "items": [
@@ -127,26 +127,6 @@
     },
     {
       "kind": "not-in-nav",
-      "file": "cloud/ai-workspace/insights.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "not-in-nav",
-      "file": "cloud/ai-workspace/policies/guardrails/semantic-prompt-guard.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "not-in-nav",
-      "file": "cloud/ai-workspace/policies/other-policies/basic-rate-limit.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "not-in-nav",
-      "file": "cloud/ai-workspace/policies/other-policies/token-based-rate-limit.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "not-in-nav",
       "file": "cloud/bijira-concepts/deployment-tracks.md",
       "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
     },
@@ -173,6 +153,14 @@
         "href": "analytics-and-monetization/overview.md"
       },
       "accepted": "the legacy site has no page there either"
+    },
+    {
+      "kind": "broken-link",
+      "file": "guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog.md",
+      "message": "link to ../../cloud/devportal/admin-settings/llm-instructions/ has no target in this version; link removed, text kept",
+      "detail": {
+        "href": "../../cloud/devportal/admin-settings/llm-instructions/"
+      }
     },
     {
       "kind": "broken-link",
@@ -209,31 +197,6 @@
         "href": "analytics-and-monetization/overview.md"
       },
       "accepted": "the legacy site has no page there either"
-    },
-    {
-      "kind": "broken-anchor",
-      "file": "cloud/ai-workspace/llm-proxies/manage-proxy.md",
-      "message": "anchor #provider-settings does not exist on this page; anchor removed",
-      "detail": {
-        "href": "#provider-settings",
-        "anchor": "provider-settings",
-        "target": "docs/guides/ai-workspace/llm-proxies/manage-proxy.mdx",
-        "context": "main",
-        "suggest": null
-      }
-    },
-    {
-      "kind": "broken-anchor",
-      "file": "cloud/ai-workspace/llm-proxies/manage-proxy.md",
-      "message": "anchor #get-started does not exist on this page; anchor removed",
-      "detail": {
-        "href": "#get-started",
-        "anchor": "get-started",
-        "target": "docs/guides/ai-workspace/llm-proxies/manage-proxy.mdx",
-        "context": "main",
-        "suggest": null
-      },
-      "accepted": "the anchor is not on the target page on the legacy site either"
     },
     {
       "kind": "code-language",

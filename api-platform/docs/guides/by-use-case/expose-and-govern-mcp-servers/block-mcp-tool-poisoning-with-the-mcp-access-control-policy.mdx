@@ -59,7 +59,7 @@ Attaching the policy reduces your exposure to unreviewed capabilities; it doesn'
 - Read a tool's full description and annotations before adding it to the exceptions list. The policy enforces your review; it doesn't replace it.
 - Start every MCP Proxy in `deny` mode and grow the exceptions list deliberately, rather than starting from `allow` and trying to keep up with a blocklist.
 - Re-review your exceptions list when an upstream server changes. A new version or redeployment can ship a different description for a tool you already approved.
-- Use AI Workspace's [**Insights**](../../ai-workspace/insights.mdx) page to review request volume and errors for the proxy, including denied-capability errors surfaced by the gateway. This complements, but doesn't replace, reviewing tool metadata before allowlisting it.
+- Use AI Workspace's [**Insights**](docs:ai-workspace/cloud/guides/insights/) page to review request volume and errors for the proxy, including denied-capability errors surfaced by the gateway. This complements, but doesn't replace, reviewing tool metadata before allowlisting it.
 - Treat MCP Authentication and MCP Authorization as complementary controls on *who* can call the proxy and *which methods* they can use, on top of *which capabilities* MCP Access Control exposes.
 
 ## Set up the MCP Access Control policy
@@ -113,7 +113,7 @@ Then create a project. Once it exists, click **AI Workspace** in the top navigat
 
 ### Step 2: Create and start an AI gateway
 
-The AI gateway is the runtime that hosts your proxy and enforces the MCP Access Control policy. If you already have one running and shown as **Active**, skip to Step 3. Full reference, including Virtual Machine and Kubernetes install options: [Setting up an AI Gateway](../../ai-workspace/ai-gateways/setting-up.mdx).
+The AI gateway is the runtime that hosts your proxy and enforces the MCP Access Control policy. If you already have one running and shown as **Active**, skip to Step 3. Full reference, including Virtual Machine and Kubernetes install options: [Setting up an AI Gateway](docs:ai-workspace/cloud/guides/ai-gateways/setting-up/).
 
 1. Click **AI Gateways** > **+ Add AI Gateway**, and enter a name. Leave **URL** at its default, `https://localhost:8443`, and select an associated environment.
 2. Click **Add Gateway**. On the gateway detail page, open **Get Started**, select the **Docker** or **Quick Start** instructions, and follow the displayed commands to download the gateway and configure its registration credentials. The commands provide the registration token and other required values; do not commit them to source control.
@@ -296,9 +296,9 @@ The `-32000` code and message are this gateway's own choice within the JSON-RPC-
 ## Next steps
 
 - [MCP governance](docs:ai-gateway/cloud/guides/mcp-governance/), the full set of MCP policy categories this platform offers
-- [MCP Proxies overview](../../ai-workspace/mcp-proxies/overview.mdx)
-- [Configure an MCP Proxy](../../ai-workspace/mcp-proxies/configure-proxy.mdx)
-- [Apply policies to an MCP proxy](../../ai-workspace/mcp-proxies/apply-policies.mdx)
+- [MCP Proxies overview](docs:ai-workspace/cloud/guides/mcp-proxies/overview/)
+- [Configure an MCP Proxy](docs:ai-workspace/cloud/guides/mcp-proxies/configure-proxy/)
+- [Apply policies to an MCP proxy](docs:ai-workspace/cloud/guides/mcp-proxies/apply-policies/)
 - [MCP Access Control List policy reference](docs:ai-gateway/cloud/guides/mcp/policies/mcp-acl-list/)
 - [Block prompt injection and unsafe requests with LLM proxy guardrails](../ai-and-mcp/block-prompt-injection-and-unsafe-requests-with-llm-proxy-guardrails.mdx), the same defense-in-depth idea applied to LLM prompts instead of MCP tool metadata
 

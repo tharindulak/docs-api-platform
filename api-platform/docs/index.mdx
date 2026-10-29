@@ -137,8 +137,8 @@ The following is a complete view of all components and where to find their docum
 | Component | What it does | Docs |
 | :--- | :--- | :--- |
 | **API Control Plane** | Design, publish, version, and govern APIs through the web UI and configuration files. Enforce policies across all connected gateways. | Part of [Cloud](./get-started/what-is-api-platform-cloud.mdx) and [API Manager](./concepts/api-manager.mdx) |
-| **AI Workspace** | The enterprise control plane for AI. Manage LLM providers, MCP servers, and generative AI (GenAI) applications. Configure cost and token-based rate limits, enforce guardrails, and view AI consumption insights at the organizational level. Connected to one or more AI Gateways. Available in Cloud and as a self-hosted control plane. | <ul><li>[Cloud AI Workspace docs](./guides/ai-workspace/overview.mdx)</li><li>[Self-hosted AI Workspace docs](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/overview/)</li></ul> |
-| **API Portal and MCP Hub** | Developer-facing portal for API discovery, subscription management, software development kit (SDK) generation, and theming. Includes agentic consumption capabilities for AI agents, such as the `llms.txt` endpoint, MCP registry, and Arazzo workflow support. Available in Cloud and as a self-hosted portal. | <ul><li>[Cloud API Portal docs](./guides/api-portal/theming-developer-portal/theming-devportal-with-ai.mdx)</li><li>[Self-hosted API Portal docs](https://wso2.com/api-platform/docs/api-portal/1.0.0/overview/)</li></ul> |
+| **AI Workspace** | The enterprise control plane for AI. Manage LLM providers, MCP servers, and generative AI (GenAI) applications. Configure cost and token-based rate limits, enforce guardrails, and view AI consumption insights at the organizational level. Connected to one or more AI Gateways. Available in Cloud and as a self-hosted control plane. | <ul><li>[Cloud AI Workspace docs](docs:ai-workspace/cloud/)</li><li>[Self-hosted AI Workspace docs](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/overview/)</li></ul> |
+| **API Portal and MCP Hub** | Developer-facing portal for API discovery, subscription management, software development kit (SDK) generation, and theming. Includes agentic consumption capabilities for AI agents, such as the `llms.txt` endpoint, MCP registry, and Arazzo workflow support. Available in Cloud and as a self-hosted portal. | <ul><li>[Cloud API Portal docs](docs:api-portal/cloud/guides/theming/theming-devportal-with-ai/)</li><li>[Self-hosted API Portal docs](https://wso2.com/api-platform/docs/api-portal/1.0.0/overview/)</li></ul> |
 | **Analytics and Monetization** | Traffic monitoring, runtime and audit logs, usage tracking, and API monetization with usage-based billing. Powered by Moesif. | Analytics docs |
 
 ### Gateway components
@@ -160,9 +160,9 @@ The following is a complete view of all components and where to find their docum
 | Govern LLM traffic (rate limits, guardrails, cost control) | [AI Gateway LLM Proxy](https://wso2.com/api-platform/docs/ai-gateway/1.1.0/llm-proxy/quick-start-guide/) |
 | Expose my APIs as MCP tools for AI agents | [AI Gateway MCP Proxy](https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/quick-start-guide/) |
 | Govern MCP traffic (inbound + outbound) | [AI Gateway MCP Proxy](https://wso2.com/api-platform/docs/ai-gateway/1.1.0/mcp-proxy/quick-start-guide/) |
-| Manage LLM providers and AI policies at the organizational level | [AI Workspace](./guides/ai-workspace/overview.mdx) |
+| Manage LLM providers and AI policies at the organizational level | [AI Workspace](docs:ai-workspace/cloud/) |
 | Run a self-hosted control plane for AI gateways, LLM providers, and AI policies | [Self-hosted AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/overview/) |
-| Set up a developer portal for API discovery | [API Portal](./guides/api-portal/theming-developer-portal/theming-devportal-with-ai.mdx) |
+| Set up a developer portal for API discovery | [API Portal](docs:api-portal/cloud/guides/theming/theming-devportal-with-ai/) |
 | Run a self-hosted developer portal | [Self-hosted API Portal](https://wso2.com/api-platform/docs/api-portal/1.0.0/overview/) |
 | Monitor traffic and monetize my APIs | Analytics and Monetization |
 | Follow end-to-end scenario walkthroughs | [Guides](./guides/overview.mdx) |
@@ -196,3 +196,17 @@ Run a self-hosted gateway for your APIs, connected to the Cloud: policies, deplo
 
 - [API Gateway Cloud](docs:api-gateway/cloud/)
 - [API Gateway Self-hosted (newest release)](docs:api-gateway/latest/)
+
+### AI Workspace
+
+Manage AI gateways, LLM providers, LLM and MCP proxies, policies and secrets from one control plane.
+
+- [AI Workspace Cloud](docs:ai-workspace/cloud/)
+- [AI Workspace Self-hosted (newest release)](docs:ai-workspace/latest/)
+
+### API Portal & MCP Hub
+
+Publish APIs and MCP servers for developers to discover, subscribe to and consume.
+
+- [API Portal & MCP Hub Cloud](docs:api-portal/cloud/)
+- [API Portal & MCP Hub Self-hosted (newest release)](docs:api-portal/latest/)

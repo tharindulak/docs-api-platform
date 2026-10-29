@@ -28,76 +28,6 @@ legacy:
     to: guides/administer/configure-a-custom-domain-for-your-organization
   - from: https://wso2.com/api-platform/docs/cloud/administer/settings/create-api-subscription-plans/
     to: guides/administer/create-api-subscription-plans
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/ai-gateways/setting-up/
-    to: guides/ai-workspace/ai-gateways/setting-up
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/configure-inbound-auth/
-    to: guides/ai-workspace/configure-inbound-auth
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/genai-applications/
-    to: guides/ai-workspace/genai-applications
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/getting-started/
-    to: guides/ai-workspace/getting-started
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/insights/
-    to: guides/ai-workspace/insights
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/configure-provider/
-    to: guides/ai-workspace/llm-providers/configure-provider
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/manage-provider/
-    to: guides/ai-workspace/llm-providers/manage-provider
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-providers/overview/
-    to: guides/ai-workspace/llm-providers/overview
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/configure-proxy/
-    to: guides/ai-workspace/llm-proxies/configure-proxy
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/manage-proxy/
-    to: guides/ai-workspace/llm-proxies/manage-proxy
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/multi-provider/
-    to: guides/ai-workspace/llm-proxies/multi-provider
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/llm-proxies/overview/
-    to: guides/ai-workspace/llm-proxies/overview
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/apply-policies/
-    to: guides/ai-workspace/mcp-proxies/apply-policies
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/configure-proxy/
-    to: guides/ai-workspace/mcp-proxies/configure-proxy
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/mcp-proxies/overview/
-    to: guides/ai-workspace/mcp-proxies/overview
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/overview/
-    to: guides/ai-workspace/overview
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/azure-content-safety/
-    to: guides/ai-workspace/policies/guardrails/azure-content-safety
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/overview/
-    to: guides/ai-workspace/policies/guardrails/overview
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/regex-pii-masking/
-    to: guides/ai-workspace/policies/guardrails/regex-pii-masking
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/semantic-prompt-guard/
-    to: guides/ai-workspace/policies/guardrails/semantic-prompt-guard
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/sentence-count-guardrail/
-    to: guides/ai-workspace/policies/guardrails/sentence-count-guardrail
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/guardrails/word-count-guardrail/
-    to: guides/ai-workspace/policies/guardrails/word-count-guardrail
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/basic-rate-limit/
-    to: guides/ai-workspace/policies/other-policies/basic-rate-limit
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/model-round-robin/
-    to: guides/ai-workspace/policies/other-policies/model-round-robin
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/prompt-decorator/
-    to: guides/ai-workspace/policies/other-policies/prompt-decorator
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/prompt-template/
-    to: guides/ai-workspace/policies/other-policies/prompt-template
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/semantic-cache/
-    to: guides/ai-workspace/policies/other-policies/semantic-cache
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/other-policies/token-based-rate-limit/
-    to: guides/ai-workspace/policies/other-policies/token-based-rate-limit
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/overview/
-    to: guides/ai-workspace/policies/overview
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit/
-    to: guides/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/llm-cost/
-    to: guides/ai-workspace/policies/rate-limit/llm-cost
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/rate-limit/token-based-rate-limit/
-    to: guides/ai-workspace/policies/rate-limit/token-based-rate-limit
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/policies/writing-an-ai-policy/
-    to: guides/ai-workspace/policies/writing-an-ai-policy
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/quickstart/
-    to: guides/ai-workspace/quickstart
-  - from: https://wso2.com/api-platform/docs/cloud/ai-workspace/using-sdks/
-    to: guides/ai-workspace/using-sdks
   - from: https://wso2.com/api-platform/docs/cloud/bijira-concepts/data-planes/
     to: concepts/data-planes
   - from: https://wso2.com/api-platform/docs/cloud/bijira-concepts/deployment-tracks/
@@ -200,36 +130,6 @@ legacy:
     to: guides/develop-api-proxy/policy/policies
   - from: https://wso2.com/api-platform/docs/cloud/develop-api-proxy/subscription-plans/
     to: guides/develop-api-proxy/subscription-plans
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/admin-settings/llm-instructions/
-    to: guides/api-portal/admin-settings/llm-instructions
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/admin-settings/managing-api-workflows/
-    to: guides/api-portal/admin-settings/managing-api-workflows
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/api-workflows/consuming-api-workflows/
-    to: guides/api-portal/api-workflows/consuming-api-workflows
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-api-key/
-    to: guides/api-portal/consuming-services/consume-an-api-secured-with-api-key
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/consuming-services/consume-an-api-secured-with-oauth2/
-    to: guides/api-portal/consuming-services/consume-an-api-secured-with-oauth2
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/developer-portal-mode/
-    to: guides/api-portal/theming-developer-portal/developer-portal-mode
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/discover-apis/ai-agent-discovery/
-    to: guides/api-portal/ai-agent-discovery
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/discover-apis/api-documentations/
-    to: guides/api-portal/discover-apis/api-documentations
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/discover-apis/api-search/
-    to: guides/api-portal/discover-apis/api-search
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/manage-applications/create-an-application/
-    to: guides/api-portal/manage-applications/create-an-application
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/manage-subscriptions/subscribe-to-an-api/
-    to: guides/api-portal/manage-subscriptions/subscribe-to-an-api
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/sdk-generation/ai-assisted-sdk-generation/
-    to: guides/api-portal/sdk-generation/ai-assisted-sdk-generation
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/theming-devportal-api-level/
-    to: guides/api-portal/theming-developer-portal/theming-manually/theming-devportal-api-level
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/theming-devportal-org-level/
-    to: guides/api-portal/theming-developer-portal/theming-manually/theming-devportal-org-level
-  - from: https://wso2.com/api-platform/docs/cloud/devportal/theming-devportal-with-ai/
-    to: guides/api-portal/theming-developer-portal/theming-devportal-with-ai
   - from: https://wso2.com/api-platform/docs/cloud/event-gateway/getting-started/
     to: guides/event-gateway/getting-started
   - from: https://wso2.com/api-platform/docs/cloud/event-gateway/overview/
@@ -261,7 +161,7 @@ legacy:
   - from: https://wso2.com/api-platform/docs/cloud/introduction/what-is-bijira/
     to: get-started/what-is-api-platform-cloud
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/browse-mcp-hub/
-    to: guides/ai-workspace/mcp-servers/browse-mcp-hub
+    to: guides/mcp-registry/browse-mcp-hub
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/design-mcp-servers/
     to: guides/mcp-servers/design-mcp-servers
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/devportal-mcp-hub/
@@ -269,13 +169,13 @@ legacy:
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/get-started-with-mcp/
     to: guides/mcp-servers/get-started-with-mcp
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/mcp-registry-api/
-    to: guides/ai-workspace/mcp-servers/mcp-registry-api
+    to: guides/mcp-registry/mcp-registry-api
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/mcp-registry/
-    to: guides/ai-workspace/mcp-servers/mcp-registry
+    to: guides/mcp-registry
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/proxy-remote-servers/
     to: guides/mcp-servers/proxy-remote-servers
   - from: https://wso2.com/api-platform/docs/cloud/mcp-servers/publish-mcp-proxies/
-    to: guides/ai-workspace/mcp-servers/publish-mcp-proxies
+    to: guides/mcp-registry/publish-mcp-proxies
   - from: https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/compliance/
     to: guides/monitor-and-insights/compliance
   - from: https://wso2.com/api-platform/docs/cloud/monitoring-and-insights/insights/
@@ -442,72 +342,6 @@ legacy:
     to: guides/by-use-case/ai-coding-assistants/gemini-cli-configuration-with-ai-gateway
   - from: https://wso2.com/api-platform/docs/cloud/ai-gateway/llm/ai-tools/codex-configuration-with-ai-gateway/
     to: guides/by-use-case/ai-coding-assistants/codex-configuration-with-ai-gateway
-  - from: https://wso2.com/api-platform/docs/ai-workspace/ai-gateways/setting-up/
-    to: guides/ai-workspace/ai-gateways/setting-up
-  - from: https://wso2.com/api-platform/docs/ai-workspace/configure-inbound-auth/
-    to: guides/ai-workspace/configure-inbound-auth
-  - from: https://wso2.com/api-platform/docs/ai-workspace/genai-applications/
-    to: guides/ai-workspace/genai-applications
-  - from: https://wso2.com/api-platform/docs/ai-workspace/getting-started/
-    to: guides/ai-workspace/getting-started
-  - from: https://wso2.com/api-platform/docs/ai-workspace/insights/
-    to: guides/ai-workspace/insights
-  - from: https://wso2.com/api-platform/docs/ai-workspace/overview/
-    to: guides/ai-workspace/overview
-  - from: https://wso2.com/api-platform/docs/ai-workspace/using-sdks/
-    to: guides/ai-workspace/using-sdks
-  - from: https://wso2.com/api-platform/docs/ai-workspace/llm-providers/configure-provider/
-    to: guides/ai-workspace/llm-providers/configure-provider
-  - from: https://wso2.com/api-platform/docs/ai-workspace/llm-providers/manage-provider/
-    to: guides/ai-workspace/llm-providers/manage-provider
-  - from: https://wso2.com/api-platform/docs/ai-workspace/llm-providers/overview/
-    to: guides/ai-workspace/llm-providers/overview
-  - from: https://wso2.com/api-platform/docs/ai-workspace/llm-proxies/configure-proxy/
-    to: guides/ai-workspace/llm-proxies/configure-proxy
-  - from: https://wso2.com/api-platform/docs/ai-workspace/llm-proxies/manage-proxy/
-    to: guides/ai-workspace/llm-proxies/manage-proxy
-  - from: https://wso2.com/api-platform/docs/ai-workspace/llm-proxies/overview/
-    to: guides/ai-workspace/llm-proxies/overview
-  - from: https://wso2.com/api-platform/docs/ai-workspace/mcp-proxies/apply-policies/
-    to: guides/ai-workspace/mcp-proxies/apply-policies
-  - from: https://wso2.com/api-platform/docs/ai-workspace/mcp-proxies/configure-proxy/
-    to: guides/ai-workspace/mcp-proxies/configure-proxy
-  - from: https://wso2.com/api-platform/docs/ai-workspace/mcp-proxies/overview/
-    to: guides/ai-workspace/mcp-proxies/overview
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/guardrails/azure-content-safety/
-    to: guides/ai-workspace/policies/guardrails/azure-content-safety
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/guardrails/overview/
-    to: guides/ai-workspace/policies/guardrails/overview
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/guardrails/regex-pii-masking/
-    to: guides/ai-workspace/policies/guardrails/regex-pii-masking
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/guardrails/semantic-prompt-guard/
-    to: guides/ai-workspace/policies/guardrails/semantic-prompt-guard
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/guardrails/sentence-count-guardrail/
-    to: guides/ai-workspace/policies/guardrails/sentence-count-guardrail
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/guardrails/word-count-guardrail/
-    to: guides/ai-workspace/policies/guardrails/word-count-guardrail
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/other-policies/basic-rate-limit/
-    to: guides/ai-workspace/policies/other-policies/basic-rate-limit
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/other-policies/model-round-robin/
-    to: guides/ai-workspace/policies/other-policies/model-round-robin
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/other-policies/prompt-decorator/
-    to: guides/ai-workspace/policies/other-policies/prompt-decorator
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/other-policies/prompt-template/
-    to: guides/ai-workspace/policies/other-policies/prompt-template
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/other-policies/semantic-cache/
-    to: guides/ai-workspace/policies/other-policies/semantic-cache
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/other-policies/token-based-rate-limit/
-    to: guides/ai-workspace/policies/other-policies/token-based-rate-limit
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/overview/
-    to: guides/ai-workspace/policies/overview
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit/
-    to: guides/ai-workspace/policies/rate-limit/llm-cost-based-rate-limit
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/rate-limit/llm-cost/
-    to: guides/ai-workspace/policies/rate-limit/llm-cost
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/rate-limit/token-based-rate-limit/
-    to: guides/ai-workspace/policies/rate-limit/token-based-rate-limit
-  - from: https://wso2.com/api-platform/docs/ai-workspace/policies/writing-an-ai-policy/
-    to: guides/ai-workspace/policies/writing-an-ai-policy
   - from: https://wso2.com/api-platform/docs/api-monetization/getting-started/
     to: guides/monetization/monetizing-apis/getting-started
   - from: https://wso2.com/api-platform/docs/api-monetization/manage-paid-subscription-plans/
@@ -620,28 +454,6 @@ legacy:
     to: guides/develop-api-proxy/policy/overview
   - from: https://wso2.com/api-platform/docs/develop-api-proxy/policy/policies/
     to: guides/develop-api-proxy/policy/policies
-  - from: https://wso2.com/api-platform/docs/devportal/developer-portal-mode/
-    to: guides/api-portal/theming-developer-portal/developer-portal-mode
-  - from: https://wso2.com/api-platform/docs/devportal/admin-settings/llm-instructions/
-    to: guides/api-portal/admin-settings/llm-instructions
-  - from: https://wso2.com/api-platform/docs/devportal/admin-settings/manage-api-workflows/
-    to: guides/api-portal/admin-settings/managing-api-workflows
-  - from: https://wso2.com/api-platform/docs/devportal/api-workflows/consuming-api-workflows/
-    to: guides/api-portal/api-workflows/consuming-api-workflows
-  - from: https://wso2.com/api-platform/docs/devportal/consuming-services/consume-an-api-secured-with-api-key/
-    to: guides/api-portal/consuming-services/consume-an-api-secured-with-api-key
-  - from: https://wso2.com/api-platform/docs/devportal/consuming-services/consume-an-api-secured-with-oauth2/
-    to: guides/api-portal/consuming-services/consume-an-api-secured-with-oauth2
-  - from: https://wso2.com/api-platform/docs/devportal/discover-apis/ai-agent-discovery/
-    to: guides/api-portal/ai-agent-discovery
-  - from: https://wso2.com/api-platform/docs/devportal/discover-apis/api-documentations/
-    to: guides/api-portal/discover-apis/api-documentations
-  - from: https://wso2.com/api-platform/docs/devportal/discover-apis/browse-apis/
-    to: guides/api-portal/discover-apis/api-search
-  - from: https://wso2.com/api-platform/docs/devportal/manage-applications/create-an-application/
-    to: guides/api-portal/manage-applications/create-an-application
-  - from: https://wso2.com/api-platform/docs/devportal/manage-subscriptions/subscribe-to-an-api/
-    to: guides/api-portal/manage-subscriptions/subscribe-to-an-api
   - from: https://wso2.com/api-platform/docs/event-gateway/getting-started/
     to: guides/event-gateway/getting-started
   - from: https://wso2.com/api-platform/docs/event-gateway/overview/
@@ -673,7 +485,7 @@ legacy:
   - from: https://wso2.com/api-platform/docs/introduction/what-is-bijira/
     to: get-started/what-is-api-platform-cloud
   - from: https://wso2.com/api-platform/docs/mcp-servers/browse-mcp-hub/
-    to: guides/ai-workspace/mcp-servers/browse-mcp-hub
+    to: guides/mcp-registry/browse-mcp-hub
   - from: https://wso2.com/api-platform/docs/mcp-servers/design-mcp-servers/
     to: guides/mcp-servers/design-mcp-servers
   - from: https://wso2.com/api-platform/docs/mcp-servers/devportal-mcp-hub/
@@ -681,13 +493,13 @@ legacy:
   - from: https://wso2.com/api-platform/docs/mcp-servers/get-started-with-mcp/
     to: guides/mcp-servers/get-started-with-mcp
   - from: https://wso2.com/api-platform/docs/mcp-servers/mcp-registry-api/
-    to: guides/ai-workspace/mcp-servers/mcp-registry-api
+    to: guides/mcp-registry/mcp-registry-api
   - from: https://wso2.com/api-platform/docs/mcp-servers/mcp-registry/
-    to: guides/ai-workspace/mcp-servers/mcp-registry
+    to: guides/mcp-registry
   - from: https://wso2.com/api-platform/docs/mcp-servers/proxy-remote-servers/
     to: guides/mcp-servers/proxy-remote-servers
   - from: https://wso2.com/api-platform/docs/mcp-servers/publish-mcp-proxies/
-    to: guides/ai-workspace/mcp-servers/publish-mcp-proxies
+    to: guides/mcp-registry/publish-mcp-proxies
   - from: https://wso2.com/api-platform/docs/monitoring-and-insights/insights/
     to: guides/monitor-and-insights/insights
   - from: https://wso2.com/api-platform/docs/monitoring-and-insights/integrate-bijira-with-moesif/
