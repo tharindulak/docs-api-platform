@@ -34,7 +34,7 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 | Legacy redirects with no target page (sent to an ancestor or home) | 0 |
 | Legacy redirects to other sites | 38 |
 | MDX compile failures | 0 |
-| Override patches applied (override list) | 0 of 1 |
+| Override patches applied (override list) | 0 of 0 |
 | Legacy-broken links and anchors accepted (override list) | 5 |
 
 ## Items by kind
@@ -42,7 +42,6 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 | Kind | Count |
 |---|---|
 | not-in-nav | 5 |
-| override | 1 |
 | code-language | 1 |
 
 ## not-in-nav
@@ -52,10 +51,6 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 - `cloud/ai-gateway/llm/index.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/ai-gateway/mcp/index.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
 - `cloud/ai-gateway/observability/index.md`: not in the legacy nav; published unlisted (no sidebar entry, as before)
-
-## override
-
-- `docs/cloud/ai-gateway/llm/quick-start-guide.md`: override patch no longer applies ("](./llm/guardrails/aws-bedrock-guardrail/)" not found); remove it or limit it with editions:
 
 ## code-language
 

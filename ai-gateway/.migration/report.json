@@ -59,8 +59,8 @@
       "cloudCounterparts": 0,
       "ambiguousCounterparts": 0,
       "keptDescriptions": 109,
-      "legacySiteLinks": 38,
-      "otherDocSpaceLinks": 35,
+      "otherDocSpaceLinks": 59,
+      "legacySiteLinks": 14,
       "exportSingleFolders": 0,
       "legacyRedirectsElsewhere": 3,
       "legacyRedirectsExternal": 38,
@@ -71,13 +71,12 @@
     },
     "issues": {
       "not-in-nav": 5,
-      "override": 1,
       "code-language": 1
     },
     "compileFailures": 0,
     "overrides": {
       "file": "ai-gateway.overrides.yaml",
-      "patches": 1,
+      "patches": 0,
       "patchesApplied": 0,
       "accepted": 5
     },
@@ -160,11 +159,6 @@
       "kind": "not-in-nav",
       "file": "cloud/ai-gateway/observability/index.md",
       "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "override",
-      "file": "docs/cloud/ai-gateway/llm/quick-start-guide.md",
-      "message": "override patch no longer applies (\"](./llm/guardrails/aws-bedrock-guardrail/)\" not found); remove it or limit it with editions:"
     },
     {
       "kind": "code-language",
