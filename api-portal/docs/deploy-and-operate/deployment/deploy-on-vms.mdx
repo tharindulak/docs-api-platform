@@ -227,6 +227,20 @@ services:
       retries: 3
 ```
 
+:::note[Use curl with the public 1.0.0 image]
+API Portal images from update level 1.0.0.1 onward ship `wget` but not `curl`, so this health check uses `wget`. The public `1.0.0` image ships `curl` but not `wget`. If you run that image, use this test instead:
+
+```yaml
+services:
+  api-portal:
+    healthcheck:
+      test: ["CMD", "curl", "-fsk", "-o", "/dev/null", "https://localhost:9543/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+```
+:::
+
 ## Step 10: Deploy {#deploy}
 
 On each VM, from the distribution directory:

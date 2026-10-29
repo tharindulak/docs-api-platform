@@ -75,6 +75,12 @@ To try an API before wiring it into your code, use the **Try It** console on the
 
 Plans set how much of an API you can consume. The API publisher decides which plans an API offers, and each plan's rate limit appears on its card. For how admins define them, see [Subscription Plans](../admin-settings/organization/subscription-plans.mdx).
 
+## Subscription lifecycle events
+
+When you subscribe, switch plans, suspend or resume, regenerate the token, or unsubscribe, the portal publishes a webhook event to every subscriber configured for it. Delivery is attempted exactly once, so a timeout or a non-2xx response leaves the subscriber unaware of the change, and any queueing or processing on its side adds delay.
+
+The subscription token travels encrypted on `subscription.created` and `subscription.token_regenerated`. For the payload of each event, see the [Webhook Event Catalog](../../reference/webhook-event-catalog.mdx); to register a subscriber, see [Webhook Integration](../admin-settings/integrations/webhook-integration.mdx).
+
 ## Related
 
 - [Consume an API](./overview.mdx): which credentials an API expects, and how they combine

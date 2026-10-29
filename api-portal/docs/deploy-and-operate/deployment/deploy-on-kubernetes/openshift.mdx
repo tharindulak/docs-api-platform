@@ -13,12 +13,14 @@ This guide is for platform administrators who install the API Portal on Red Hat 
 
 API Portal artifacts can be deployed on OpenShift using the same Helm charts, Docker images, and configuration model as standard Kubernetes deployments. By default, OpenShift may assign a random UID to the container process within the project's permitted range. Containers typically run with GID 0 (the root group), allowing applications to access files and directories with appropriate group permissions without requiring root privileges. When deploying API Portal artifacts, ensure that the pod and container security contexts configured through the Helm chart values are compatible with the Security Context Constraints (SCCs) enforced by your OpenShift cluster. Review the [OpenShift security context](#section-1) section for configuration guidance.
 
-For more information about OpenShift container security and file permissions, see [Red Hat's guide to OpenShift and UIDs](https://www.redhat.com/en/blog/a-guide-to-openshift-and-uids) and [Group ownership and file permission](https://developers.redhat.com/blog/2020/10/26/adapting-docker-and-kubernetes-containers-to-run-on-red-hat-openshift-container-platform#group_ownership_and_file_permission). To deploy a gateway, see [Deploy the gateway on OpenShift](docs:api-gateway/cloud/deploy-and-operate/deployment/deployment-modes/openshift/openshift-standalone/).
+For more information about OpenShift container security and file permissions, see [Red Hat's guide to OpenShift and UIDs](https://www.redhat.com/en/blog/a-guide-to-openshift-and-uids) and [Group ownership and file permission](https://developers.redhat.com/blog/2020/10/26/adapting-docker-and-kubernetes-containers-to-run-on-red-hat-openshift-container-platform#group_ownership_and_file_permission). To deploy a gateway, see [Deploy the gateway on OpenShift](https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/openshift/openshift-standalone/).
 
 :::warning[Before you deploy on OpenShift, make sure you have the following:]
 1. **The Secrets that `generate-secrets.sh` creates**: the chart refuses to install without them.
 2. **cert-manager, or your own TLS Secrets**: by default, cert-manager issues the HTTPS certificates of both components. To use your own Secrets instead, set `tls.certificateProvider: secret` and `tls.secret.name` under both `platform-api` and `api-portal-ui`.
 3. **A StorageClass**: both components store their SQLite databases in PersistentVolumeClaims (PVCs). Either the cluster has a default StorageClass, or you set one explicitly.
+4. **Chart 1.0.1 or later**: earlier charts have no OpenShift values, so they create no Routes and report no error.
+5. **Images at update level 0.16.0.4 (Platform API) and 1.0.0.7 (API Portal) or later**: you set them in [Step 6](#step-6). The public `1.0.0` API Portal image can't write its log files under the default `restricted-v2` SCC, and it serves the portal without the `/api-portal` path that this guide uses. Update levels are available with a WSO2 subscription.
 :::
 
 ---
@@ -112,7 +114,7 @@ Download and extract the chart. It contains the `generate-secrets.sh` script tha
 
 ```bash
 helm pull oci://ghcr.io/wso2/api-platform/helm-charts/api-portal \
-  --version <CHART_VERSION> --untar
+  --version 1.0.1 --untar
 ```
 
 ### Step 5: Generate the Secrets {#step-5}
@@ -173,6 +175,27 @@ For optional inputs, such as database passwords and the OpenID Connect (OIDC) cl
         platformApi:
           insecure: true
     ```
+
+    **Images**: use the update-level images.
+
+    :::note[Use Platform API 0.16.0.4 and API Portal 1.0.0.7 or later]
+    These update levels are verified on OpenShift. With a WSO2 subscription, create the registry pull Secret in the project, as described in [WSO2 Subscription Users](https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/high-availability-production-deployment/#wso2-subscription-users), and set it in `global.wso2.subscription.imagePullSecret`. The chart then pulls from `registry.wso2.com/wso2-api-platform/`, but it keeps the default tags, so set the update-level tags too:
+
+    ```yaml
+    global:
+      wso2:
+        subscription:
+          imagePullSecret: wso2-subscription-creds
+    platform-api:
+      image:
+        tag: "0.16.0.4"
+    api-portal-ui:
+      image:
+        tag: "1.0.0.7"
+    ```
+
+    Use the latest update levels available to you.
+    :::
 
     **Storage class**: skip this setting if your cluster has a default StorageClass. Check with `oc get storageclass`.
 
@@ -283,7 +306,23 @@ api-portal-ui:
         scope: "openid profile email"
 ```
 
-The chart renders `auth.mode=idp` once `idp.clientId` is set; the client secret comes from the Secret. `generate-secrets.sh` provisions it and sets `secrets.hasIdpClientSecret` in the values file it writes.
+The chart renders `auth.mode=idp` once `idp.clientId` is set. The client secret comes from the portal's Secret, under the key `APIP_AP_AUTH_IDP_CLIENT_SECRET`, and the chart passes it to the portal only when `secrets.hasIdpClientSecret` is `true`. `generate-secrets.sh` writes that key only when it creates the Secret, and the Secret already exists from [Step 5](#step-5), so add the key to it. Read the client secret into a file only you can read, so it stays out of your shell history and the process list:
+
+```bash
+umask 077
+read -rsp 'IdP client secret: ' v && printf '%s' "$v" > idp_client_secret && unset v && echo
+oc -n <PROJECT-NAME> set data secret/api-portal-api-portal-ui-secrets \
+  --from-file=APIP_AP_AUTH_IDP_CLIENT_SECRET=idp_client_secret && \
+  shred -u idp_client_secret
+```
+
+Then turn the flag on in your `my_values.yaml` file:
+
+```yaml
+api-portal-ui:
+  secrets:
+    hasIdpClientSecret: true
+```
 
 `logoutUrl` is the identity provider's logout endpoint, and `logoutRedirectUri` is where the identity provider returns the user after logout. Both `callbackUrl` and `logoutRedirectUri` must sit under the portal's `/api-portal` mount and match what you registered in the identity provider. Use the portal's Route host, the same host as in `baseUrl`. See [Security Hardening → Authentication](../production-readiness/security-hardening.mdx#authentication).
 
@@ -317,6 +356,8 @@ api-portal-ui:
       user: api_portal
       sslmode: verify-full       # disable | verify-full
       sslRootCert: /etc/api-portal/db-ca/ca.pem
+  persistence:
+    enabled: false               # the database holds the data now
   deployment:
     # Mounts the database CA that sslRootCert names
     extraVolumes:
@@ -330,6 +371,8 @@ api-portal-ui:
 ```
 
 Two key names catch people out: the database name goes in `database`, not `name`, and `sslmode` is all lowercase.
+
+`persistence.enabled: false` removes the portal's SQLite volume, which an external database replaces. Leave it on and every replica mounts the same `ReadWriteOnce` claim, so a second replica on another node can't start.
 
 `sslRootCert` names the CA that signed your database server's certificate. The chart doesn't mount that file, so the values above mount it from a ConfigMap. Create the ConfigMap before you apply this configuration:
 
@@ -634,6 +677,8 @@ The portal calls the Platform API inside the cluster at `https://api-portal-plat
             readOnly: true
     ```
 
+    The Platform API's Route, which the chart creates by default, passes TLS through, so clients that reach the Platform API from outside the cluster get this certificate too. If they need to, add the Route's host to `dnsNames` and give those clients the CA. Otherwise, turn the Route off with `platform-api.openshift.routes.platformApi.enabled: false`.
+
     `extraVolumes` and `extraVolumeMounts` are lists, and Helm replaces a list instead of merging it. If you also mount the database CA, as described in [Configure the database](#configure-the-database), put both volumes in one `extraVolumes` list and both mounts in one `extraVolumeMounts` list.
 
 4. Apply the values with the same `helm upgrade --install` command as in [Step 6](#step-6), then restart the Platform API. It reads its certificate only at startup, so it keeps serving the previous one until it restarts:
@@ -771,6 +816,7 @@ The router forwards the TLS connection unchanged, and clients see the component'
           issuerRef:
             name: <ISSUER_NAME>
             kind: ClusterIssuer
+          commonName: portal.example.com
           dnsNames:
             - portal.example.com
     ```
@@ -851,7 +897,7 @@ Both components store SQLite databases in PVCs. Helm keeps the PVCs after `helm 
 
 ### Custom images {#section-4}
 
-The released API Portal image runs on OpenShift without changes, so you don't need to build one.
+The API Portal images from update level 1.0.0.7 run on OpenShift without changes, so you don't need to build one.
 
 :::note[Building your own portal image]
 If you build your own image, for example from a different base image, make every directory that the portal writes to inside the image writable by the root group. With file logging on (`api-portal-ui.config.logging.consoleOnly: false`), that includes `/app/logs`. Otherwise, the portal exits with `EACCES: permission denied` (see [Troubleshooting](#log-permission-denied)). Add these lines to the `Dockerfile` after the step that creates the directories:
@@ -982,5 +1028,5 @@ The API Portal chart doesn't restart the pod when only its configuration changes
 
 - [Security hardening](../production-readiness/security-hardening.mdx)
 - [Database configuration](../production-readiness/database-configuration.mdx)
-- [Deploy the AI Workspace on OpenShift](docs:ai-workspace/cloud/deploy-and-operate/deployment/deploy-on-kubernetes/openshift/)
-- [Deploy the gateway with the Gateway Operator on OpenShift](docs:api-gateway/cloud/deploy-and-operate/deployment/deployment-modes/openshift/gateway-operator/)
+- [Deploy the AI Workspace on OpenShift](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/production/openshift/)
+- [Deploy the gateway with the Gateway Operator on OpenShift](https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/openshift/gateway-operator/)
