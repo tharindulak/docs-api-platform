@@ -15,7 +15,7 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 | Missing images removed | 0 |
 | Links | 988 |
 | Links fixed through a legacy redirect | 9 |
-| Broken links removed (text kept) | 8 |
+| Broken links removed (text kept) | 7 |
 | Broken anchors removed | 0 |
 | Links to other legacy versions (kept) | 39 |
 | Links to other WSO2 docs (kept as legacy URLs) | 6 |
@@ -34,7 +34,7 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 | Legacy redirects with no target page (sent to an ancestor or home) | 0 |
 | Legacy redirects to other sites | 0 |
 | MDX compile failures | 0 |
-| Override patches applied (override list) | 2 of 2 |
+| Override patches applied (override list) | 3 of 3 |
 | Legacy-broken links and anchors accepted (override list) | 5 |
 
 ## Items by kind
@@ -44,7 +44,6 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 | html | 7 |
 | not-in-nav | 3 |
 | nav | 1 |
-| broken-link | 1 |
 | code-language | 1 |
 
 ## nav
@@ -66,10 +65,6 @@ Converted from wso2/docs-api-platform@e9987cde09f3f6859357429a051aa04ee461c13b. 
 - `cloud/administer/settings/configure-a-custom-domain-for-your-organization.md`: unknown element <root_or_bundle_cert> inside raw HTML kept as the text `<root_or_bundle_cert>`
 - `cloud/introduction/quick-start-guide-mcp.md`: unbalanced inline </iframe> removed
 - `cloud/introduction/quick-start-guide.md`: unbalanced inline </iframe> removed
-
-## broken-link
-
-- `guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog.md`: link to ../../cloud/devportal/admin-settings/llm-instructions/ has no target in this version; link removed, text kept
 
 ## code-language
 

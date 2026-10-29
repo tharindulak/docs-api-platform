@@ -14,12 +14,12 @@
       "attachments": 8,
       "missingImages": 0,
       "links": 988,
-      "externalLinks": 585,
+      "externalLinks": 586,
       "legacyHostLinks": 22,
       "otherVersionLinks": 39,
       "crossProductLinks": 6,
       "linksViaRedirect": 9,
-      "droppedLinks": 8,
+      "droppedLinks": 7,
       "droppedAnchors": 0,
       "placeholdersWrapped": 6,
       "admonitions": 234,
@@ -60,7 +60,7 @@
       "ambiguousCounterparts": 0,
       "legacySiteLinks": 130,
       "keptDescriptions": 145,
-      "otherDocSpaceLinks": 118,
+      "otherDocSpaceLinks": 119,
       "mdInHtmlBlocks": 138,
       "decorativeSvgsDropped": 11,
       "tabButtonLinesDropped": 2,
@@ -78,14 +78,13 @@
       "nav": 1,
       "not-in-nav": 3,
       "html": 7,
-      "broken-link": 1,
       "code-language": 1
     },
     "compileFailures": 0,
     "overrides": {
       "file": "api-platform.overrides.yaml",
-      "patches": 2,
-      "patchesApplied": 2,
+      "patches": 3,
+      "patchesApplied": 3,
       "accepted": 5
     }
   },
@@ -153,14 +152,6 @@
         "href": "analytics-and-monetization/overview.md"
       },
       "accepted": "the legacy site has no page there either"
-    },
-    {
-      "kind": "broken-link",
-      "file": "guides/ai-and-mcp/publish-mcp-servers-to-a-governed-catalog.md",
-      "message": "link to ../../cloud/devportal/admin-settings/llm-instructions/ has no target in this version; link removed, text kept",
-      "detail": {
-        "href": "../../cloud/devportal/admin-settings/llm-instructions/"
-      }
     },
     {
       "kind": "broken-link",
