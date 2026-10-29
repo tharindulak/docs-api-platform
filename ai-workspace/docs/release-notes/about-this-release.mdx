@@ -18,19 +18,6 @@ Download the AI Workspace distribution from the [WSO2 API Platform releases page
 ## New features
 
 <details>
-<summary>Multi-provider App LLM proxies</summary>
-
-An App LLM proxy can front several LLM providers. Applications send one request format to one endpoint and select a provider per request.
-
-- **Several providers per proxy**: Attach more than one provider, each with its own credential and transformer policy.
-- **Selectable inbound interface**: Choose the request format the proxy accepts from clients, independently of the primary provider's own format.
-- **Providers tab**: Add, edit and remove providers after creation from one list.
-
-Needs a gateway at 1.2.0 or later. A selectable inbound interface and a transformer on the primary provider need 2026.09.24 or later. See [Route to several providers](../guides/llm-proxies/multi-provider.mdx).
-
-</details>
-
-<details>
 <summary>AI Workspace control plane</summary>
 
 AI Workspace separates AI configuration from AI traffic. You manage artifacts and policies in the workspace, and the AI Gateway enforces them at request time.
@@ -65,7 +52,7 @@ An LLM provider holds the endpoint and authentication configuration for an upstr
 - **Centralized credentials**: Store upstream API keys as secrets rather than in artifact configuration.
 - **Reusable configuration**: Support multiple proxies with a single provider without duplicating credentials.
 - **Direct invocation**: If you don't need application-specific controls, call a provider endpoint directly.
-- **Inbound authentication with API keys**: The gateway checks an API key on every incoming client request to a deployed provider. The workspace generates each key, shows it once, and sets a 90-day validity period. By default, clients use the vendor's header, allowing the vendor's software development kit (SDK) to work unchanged. The [inbound authentication configuration](../guides/configure-inbound-auth.mdx) lets you change this header in the provider's **Security** tab. Inbound keys are separate from the upstream API key the gateway uses to call the AI service.
+- **Inbound authentication with API keys**: The gateway checks an API key on every incoming client request to a deployed provider. The workspace generates each key, shows it once, and sets a 90-day validity period. Send the key in `X-API-Key` by default, or in a header name that suits your software development kit (SDK). Inbound keys are separate from the upstream API key the gateway uses to call the AI service. See [Configure inbound authentication](../guides/configure-inbound-auth.mdx).
 - **SDK invocation**: Applications call a deployed provider through its Invoke URL using the OpenAI, Anthropic, Google Gemini, Mistral, Azure OpenAI, and LangChain SDKs. See [Invoke providers and proxies with AI SDKs](../guides/using-sdks.mdx).
 
 **[LLM providers overview](../guides/llm-providers/overview.mdx)**

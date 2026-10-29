@@ -1,6 +1,6 @@
 ---
 title: Connect a database to the Platform API
-description: The Platform API stores every artifact you create in AI Workspace — gateways, LLM providers, proxies, applications, and subscriptions.  # generated from the first paragraph; a writer should improve it
+description: 'Move the Platform API from SQLite onto PostgreSQL or SQL Server: create the database, configure the connection, secure it with TLS, and tune the pool.'
 type: how-to
 sidebar_label: Database
 sidebar_position: 4
@@ -19,7 +19,7 @@ Set the driver in `[platform_api.database]`. These values are accepted:
 
 | `driver` value | Database |
 |----------------|----------|
-| `sqlite3` | SQLite, the default — a single file, no server to run |
+| `sqlite3` | SQLite, the default—a single file, no server to run |
 | `postgres`, `postgresql`, `pgx` | PostgreSQL |
 | `sqlserver`, `mssql` | Microsoft SQL Server |
 
@@ -54,6 +54,13 @@ Run these statements on your PostgreSQL server:
 CREATE DATABASE platform_api;
 CREATE USER platform_api WITH PASSWORD '<your-password>';
 GRANT CONNECT ON DATABASE platform_api TO platform_api;
+```
+
+Then connect to the `platform_api` database as an administrator. Revoke the ability to create objects in the `public` schema. PostgreSQL grants that ability to every user before version 15:
+
+```sql
+REVOKE CREATE ON SCHEMA public FROM platform_api;
+REVOKE CREATE ON SCHEMA public FROM PUBLIC;
 ```
 
 </TabItem>

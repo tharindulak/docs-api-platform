@@ -449,7 +449,7 @@ Then confirm authorization works, not just authentication. Sign in as a user wit
 
 A single instance of each service serves users, but it makes every restart an outage. Add redundancy now that the deployment is verified.
 
-Raise both services to at least two instances. Signed-in users reach any replica, because the workspace carries the access token in the session cookie and forwards it without a server-side lookup. Two settings keep token renewal working across replicas: session affinity on the workspace pool, and non-rotating refresh tokens for this client in your identity provider, or a reuse grace window.
+Raise both services to at least two instances. The workspace keeps sessions in memory, so each signed-in user must keep reaching the same replica. Two settings keep sessions and token renewal working across replicas: session affinity on the workspace pool, and non-rotating refresh tokens for this client in your identity provider, or a reuse grace window.
 
 ### Add replicas {#ha-step-3-add-replicas}
 

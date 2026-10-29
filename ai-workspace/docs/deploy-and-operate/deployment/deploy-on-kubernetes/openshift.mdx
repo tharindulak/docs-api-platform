@@ -24,6 +24,8 @@ An OpenShift deployment needs the following:
 1. **The Secrets that `generate-secrets.sh` creates**: the chart refuses to install without them.
 2. **cert-manager or your own TLS Secrets**: they provide the HTTPS certificates of both components.
 3. **A StorageClass**: the Platform API stores its SQLite database in a PersistentVolumeClaim (PVC). The cluster needs a default StorageClass, or you set one explicitly.
+4. **Chart 1.0.1 or later**: earlier charts have no OpenShift values, so they create no Routes and report no error.
+5. **Images at update level 0.16.0.4 (Platform API) and 1.0.0.6 (AI Workspace) or later**: you set them in [Step 6](#step-6). Update levels are available with a WSO2 subscription.
 :::
 
 ## Step 1: Install the required tools {#step-1}
@@ -115,7 +117,7 @@ Download and extract the chart. It contains the `generate-secrets.sh` script tha
 
 ```bash
 helm pull oci://ghcr.io/wso2/api-platform/helm-charts/ai-workspace \
-  --version <CHART_VERSION> --untar
+  --version 1.0.1 --untar
 ```
 
 ## Step 5: Generate the secrets {#step-5}
@@ -185,6 +187,27 @@ The AI Workspace UI needs its own Secret only for OpenID Connect (OIDC) login. F
     - Redirect URL: `https://<ROUTE_HOST>/ai-workspace/api/auth/callback`
     - Post-logout redirect URL: `https://<ROUTE_HOST>/ai-workspace/login`
 
+    **Images**: use the update-level images.
+
+    :::note[Use Platform API 0.16.0.4 and AI Workspace 1.0.0.6 or later]
+    These update levels are verified on OpenShift. With a WSO2 subscription, create the registry pull Secret in the project, as described in [WSO2 Subscription Users](https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/high-availability-production-deployment/#wso2-subscription-users), and set it in `global.wso2.subscription.imagePullSecret`. The chart then pulls from `registry.wso2.com/wso2-api-platform/`, but it keeps the default tags, so set the update-level tags too:
+
+    ```yaml
+    global:
+      wso2:
+        subscription:
+          imagePullSecret: wso2-subscription-creds
+    platform-api:
+      image:
+        tag: "0.16.0.4"
+    ai-workspace-ui:
+      image:
+        tag: "1.0.0.6"
+    ```
+
+    Use the latest update levels available to you.
+    :::
+
     **Storage class**: if your cluster has no default StorageClass, set one. Check with `oc get storageclass`:
 
     ```yaml
@@ -240,7 +263,7 @@ The Service ports are named `http`, but they serve HTTPS. The Routes pass the TL
 
 2. Sign in as `admin` with the password that `generate-secrets.sh` printed.
 
-To connect AI gateways to the Platform API Route, see [Connect AI gateways](../production-readiness/connect-gateways.mdx). To deploy a gateway on the same cluster, see [Deploy the gateway on OpenShift](docs:api-gateway/cloud/deploy-and-operate/deployment/deployment-modes/openshift/openshift-standalone/).
+To connect AI gateways to the Platform API Route, see [Connect AI gateways](../production-readiness/connect-gateways.mdx). To deploy a gateway on the same cluster, see [Deploy the gateway on OpenShift](https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/openshift/openshift-standalone/).
 
 ## Production configuration
 
@@ -445,14 +468,20 @@ Neither chart accepts a self-signed provider. Rendering fails rather than starti
 
 #### Make the BFF verify the Platform API {#openshift-tls-step-3-make-the-bff-verify-the-platform-api}
 
-The BFF calls the Platform API inside the cluster and verifies its certificate. When that certificate comes from a private CA, mount the CA bundle and name it in the component config:
+The BFF calls the Platform API inside the cluster, at `https://ai-workspace-platform-api:9243`, and verifies its certificate, so that certificate must cover the Service name. Public CAs don't issue certificates for in-cluster names, so issue it from a private CA, as the values in Step 6 do. Put that CA's certificate in a ConfigMap:
+
+```bash
+oc -n <PROJECT-NAME> create configmap internal-ca --from-file=ca.pem=<path-to-private-ca.pem>
+```
+
+Then mount the ConfigMap and name the CA in the component config:
 
 ```yaml
 ai-workspace-ui:
   config:
     controlPlane:
       tlsSkipVerify: false
-      caFile: /etc/ai-workspace/tls/ca.pem
+      caFile: /etc/ai-workspace/ca/ca.pem
   deployment:
     extraVolumes:
       - name: control-plane-ca
@@ -460,10 +489,11 @@ ai-workspace-ui:
           name: internal-ca
     extraVolumeMounts:
       - name: control-plane-ca
-        mountPath: /etc/ai-workspace/tls/ca.pem
-        subPath: ca.pem
+        mountPath: /etc/ai-workspace/ca
         readOnly: true
 ```
+
+Mount the CA in its own directory. `/etc/ai-workspace/tls` already holds the workspace's own certificate, mounted read-only.
 
 Leave `config.controlPlane.url` empty to derive the in-cluster Service URL from `global.platformApi`. Set it only when the Platform API runs outside this release.
 
@@ -531,11 +561,12 @@ platform-api:
       create: true
       createIssuer: false
       issuerRef:
-        name: letsencrypt-production
+        name: <ISSUER_NAME>         # a CA that the BFF and your gateways trust
         kind: ClusterIssuer
       commonName: platform-api.example.com
       dnsNames:
         - platform-api.example.com
+        - ai-workspace-platform-api
   persistence:
     enabled: false          # the database server holds the data now
   deployment:
@@ -567,6 +598,7 @@ ai-workspace-ui:
       browserDebug: false
     controlPlane:
       tlsSkipVerify: false
+      caFile: /etc/ai-workspace/ca/ca.pem   # the private CA from Step 5
     gateway:
       controlplaneHost: platform-api.example.com:443
     auth:
@@ -580,6 +612,16 @@ ai-workspace-ui:
         postLogoutRedirectUrl: https://workspace.example.com/ai-workspace/login
   service:
     type: ClusterIP         # the Route is the entry point
+  deployment:
+    # Mounts the private CA that caFile names, see Step 5
+    extraVolumes:
+      - name: control-plane-ca
+        configMap:
+          name: internal-ca
+    extraVolumeMounts:
+      - name: control-plane-ca
+        mountPath: /etc/ai-workspace/ca
+        readOnly: true
   tls:
     certificateProvider: cert-manager
     certManager:
@@ -598,6 +640,7 @@ ai-workspace-ui:
 A few notes on that file:
 
 - The Routes publish AI Workspace and the Platform API on the hostnames you set, so you don't need an Ingress. Use the AI Workspace hostname in `domain` and the redirect URLs, and the Platform API hostname in `controlplaneHost`, and create DNS records that point them at the cluster's router.
+- The Platform API's Route passes TLS through, so one certificate serves both the BFF, which calls the Service name `ai-workspace-platform-api`, and the gateways, which call `platform-api.example.com`. The values list both names. A public CA can't issue for the Service name, so use a CA that the BFF and your gateways both trust, as in [Step 5](#openshift-tls-step-3-make-the-bff-verify-the-platform-api). To give gateways a publicly trusted certificate instead, switch the Platform API's Route to `reencrypt`, as described in [Route configuration](#routes).
 - The connection keys sit under `config.database.postgres` whatever driver you set, so use that same block for SQL Server.
 - `sslRootCert` names the CA that signed your database server's certificate, not the CA of the Platform API's own certificate. The chart doesn't mount that file, so `platform-api.deployment` mounts it from a ConfigMap. Create the ConfigMap before you install:
 
@@ -622,11 +665,39 @@ A few notes on that file:
 
 Commit `my_values.yaml` and `values-secrets.yaml`. Neither holds a secret value.
 
+#### Apply the configuration {#production-apply}
+
+Preview what will change, then apply it:
+
+```bash
+helm template ai-workspace ./ai-workspace -n <PROJECT-NAME> \
+  -f values-secrets.yaml -f my_values.yaml > /tmp/preview.yaml
+
+helm upgrade --install ai-workspace ./ai-workspace -n <PROJECT-NAME> \
+  -f values-secrets.yaml -f my_values.yaml \
+  --wait --timeout 10m
+```
+
+**Before you continue:** both services must be running and healthy. They fail closed, so a startup message naming a config key or a file path tells you exactly which value didn't resolve. For a file path, confirm three things: the file is mounted at that path, the path sits inside an allowed source directory, and the service account can read it.
+
+```bash
+oc -n <PROJECT-NAME> get pods
+oc -n <PROJECT-NAME> logs deploy/ai-workspace-platform-api | grep -i -E 'error|fail'
+```
+
+#### Sign in {#production-sign-in}
+
+Open `https://workspace.example.com/ai-workspace`, the AI Workspace Route's host, and sign in through your identity provider. This is the first end-to-end test, and it exercises the certificate, the Route, the identity provider registration, and the BFF's connection to the Platform API at once.
+
+Then confirm authorization works, not just authentication. Sign in as a user with a read-only role and check that management actions are unavailable. Login succeeding while every action returns `403` means the token carries no `ap:*` privileges, or the two services disagree on the authorization mode.
+
+**Before you continue:** one administrator and one read-only user can both sign in, and each sees what their role allows.
+
 ### Step 7: Run in high availability {#openshift-ha}
 
 A single instance of each service serves users, but it makes every restart an outage. Add redundancy now that the deployment is verified.
 
-Raise both services to at least two instances. Signed-in users reach any replica, because the workspace carries the access token in the session cookie and forwards it without a server-side lookup. Two settings keep token renewal working across replicas: session affinity on the workspace Route, and non-rotating refresh tokens for this client in your identity provider, or a reuse grace window.
+Raise both services to at least two instances. The workspace keeps sessions in memory, so each signed-in user must keep reaching the same replica. Two settings keep sessions and token renewal working across replicas: session affinity on the workspace Route, and non-rotating refresh tokens for this client in your identity provider, or a reuse grace window.
 
 #### Add replicas {#openshift-ha-step-3-add-replicas}
 
@@ -982,7 +1053,7 @@ helm install gateway oci://ghcr.io/wso2/api-platform/helm-charts/gateway \
 
 `controlPlane.host` is used as the HTTPS and WebSocket authority, so include a non-default port in the value. Port `443` is assumed when you leave it out.
 
-Use the chart version matching the gateway version the **Get Started** section offers. For the gateway's own security context and Routes on OpenShift, see [Deploy the gateway on OpenShift](docs:api-gateway/cloud/deploy-and-operate/deployment/deployment-modes/openshift/openshift-standalone/).
+Use the chart version matching the gateway version the **Get Started** section offers. On OpenShift, use gateway chart 1.2.4 or later with gateway images at update level 1.2.0.19 or later. For the gateway's own security context and Routes on OpenShift, see [Deploy the gateway on OpenShift](https://wso2.com/api-platform/docs/api-gateway/1.2.0/deployment/deployment-modes/openshift/openshift-standalone/).
 
 The gateway's status moves from **Not Active** to **Active** once it connects.
 
@@ -1321,4 +1392,4 @@ Set `platform-api.persistence.storageClass` to choose a StorageClass. The AI Wor
 - [Deploy on Kubernetes](./deploy-on-kubernetes.mdx) and [Deploy on VMs](../deploy-on-vms.mdx): the full production sequence on the other platforms
 - [Secure traffic with TLS](../production-readiness/tls.mdx): certificates for each hop
 - [Harden the deployment](../production-readiness/harden.mdx): container and network restrictions
-- [Deploy the API Portal on OpenShift](docs:api-portal/cloud/deploy-and-operate/deployment/deploy-on-kubernetes/openshift/): the portal with its own Platform API
+- [Deploy the API Portal on OpenShift](https://wso2.com/api-platform/docs/api-portal/1.0.0/deployment/openshift/): the portal with its own Platform API
