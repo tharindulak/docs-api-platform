@@ -4,8 +4,8 @@
 #   the main line (main, or the branch the Cloud Edition names in
 #   docspace.yaml)                -> Cloud: [<doc space>/]cloud-<YYYY.MM.DD>.<n>
 #   [<doc space>/]release/<version> -> that version: [<doc space>/]<version>-docs.<n>
-# It runs the Doc space's blocking checks, packs the Docs bundle, tags the
-# branch's commit, attaches the bundle to a GitHub Release, and starts the
+# It packs the Docs bundle, runs the blocking checks on it as Intake will
+# build it (unpacked alone), tags the branch's commit, attaches the bundle to a GitHub Release, and starts the
 # Platform's Intake (workflow_dispatch with repo and tag, a hint: Intake reads
 # the release itself).
 #
@@ -89,11 +89,6 @@ jobs:
             echo "tag=$tag"
           } >> "$GITHUB_OUTPUT"
           echo "Releasing $(jq -r .slug <<<"$plan") $(jq -r .edition <<<"$plan") from $BRANCH as $tag" >> "$GITHUB_STEP_SUMMARY"
-      - name: Check the Doc space (blocking checks)
-        env:
-          DIR: ${{ steps.plan.outputs.dir }}
-          EDITION: ${{ steps.plan.outputs.edition }}
-        run: node platform/bin/wso2-docs.mjs check "content/$DIR" --edition "$EDITION" --release --published local
       - id: bundle
         name: Pack the Docs bundle
         env:
@@ -104,6 +99,18 @@ jobs:
           node platform/bin/wso2-docs.mjs bundle "content/$DIR" --edition "$EDITION" --tag "$TAG" --out dist > bundle.json
           echo "file=$(jq -r .file bundle.json)" >> "$GITHUB_OUTPUT"
           echo "sha256=$(jq -r .sha256 bundle.json)" >> "$GITHUB_OUTPUT"
+      # The bundle as Intake builds it: unpacked alone, with no git and no main
+      # line, so only the Platform's navigation and this Doc space are known.
+      # A docs: link into a Doc space that is on main but not on the site fails
+      # here, before a release is made, not in Intake after.
+      - name: Check the bundle as Intake will build it (blocking checks)
+        env:
+          EDITION: ${{ steps.plan.outputs.edition }}
+          FILE: ${{ steps.bundle.outputs.file }}
+        run: |
+          mkdir checked
+          tar -xzf "$FILE" -C checked
+          node platform/bin/wso2-docs.mjs check "checked/$(jq -r .dir bundle.json)" --edition "$EDITION" --release --published local
       - name: Tag the commit and publish the GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
