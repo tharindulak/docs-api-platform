@@ -1,0 +1,30 @@
+---
+title: LLM providers overview
+description: Connect AI service platforms such as OpenAI, Anthropic, Azure OpenAI, Gemini, and Mistral AI as reusable LLM providers in AI Workspace.
+type: concept
+sidebar_label: Overview
+sidebar_position: 1
+---
+
+LLM Providers are integrations with AI service platforms that offer language models. By configuring providers in the AI Workspace, you can:
+
+- **Centralize credential management**: Store API keys and authentication details securely
+- **Connect multiple providers**: Integrate with leading LLM services
+- **Monitor provider status**: Track availability and health of connected services
+- **Simplify configuration**: Use providers across multiple proxies without duplicating credentials
+
+## Supported Providers
+
+API Platform AI Workspace supports the following LLM providers:
+
+| Provider | Description | Learn More |
+|----------|-------------|-----------|
+| <img src="https://raw.githubusercontent.com/nomadxd/openapi-connectors/main/openapi/openai/icon.png" alt="OpenAI" style={{width: "32px", verticalAlign: "middle"}} /> **OpenAI** | Access GPT-4, GPT-3.5, and other OpenAI models | [Documentation](https://developers.openai.com/api/docs) |
+| <img src="https://raw.githubusercontent.com/nomadxd/openapi-connectors/main/openapi/anthropic.claude/icon.png" alt="Anthropic" style={{width: "32px", verticalAlign: "middle"}} /> **Anthropic** | Integrate Claude models for advanced AI capabilities | [Documentation](https://docs.anthropic.com/) |
+| <img src="https://raw.githubusercontent.com/nomadxd/openapi-connectors/main/openapi/azure.openai/icon.png" alt="Azure OpenAI" style={{width: "32px", verticalAlign: "middle"}} /> **Azure OpenAI** | Use OpenAI models hosted on Microsoft Azure | [Documentation](https://azure.microsoft.com/products/ai-services/openai-service) |
+| <img src="https://raw.githubusercontent.com/wso2/api-platform/main/llm-provider-specs/azureai-foundry/icon.png" alt="Azure AI Foundry" style={{width: "32px", verticalAlign: "middle"}} /> **Azure AI Foundry** | Access models through Azure AI Foundry platform | [Documentation](https://azure.microsoft.com/products/ai-studio) |
+| <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini" style={{width: "32px", verticalAlign: "middle"}} /> **Gemini** | Integrate Google's Gemini language models | [Documentation](https://ai.google.dev/gemini-api) |
+| <img src="https://raw.githubusercontent.com/nomadxd/openapi-connectors/main/openapi/mistral/icon.png" alt="Mistral AI" style={{width: "32px", verticalAlign: "middle"}} /> **Mistral AI** | Access Mistral's open and commercial models | [Documentation](https://mistral.ai/) |
+| **AWS Bedrock (Coming Soon)** | Connect to Amazon Bedrock's managed AI service |  |
+
+**Next:** [Configure LLM Provider](./configure-provider.mdx) - Step-by-step guide to set up your first provider
