@@ -1,0 +1,400 @@
+---
+title: 'Management API: Agent Management'
+description: REST API reference for creating, listing, updating, and deleting A2A agent configurations and their API keys in API Platform Gateway.
+type: reference
+sidebar_label: Agent management
+sidebar_position: 6
+---
+
+CRUD operations and API key management for A2A Agents.
+
+## Create a new Agent
+
+<Anchor id="opIdcreateAgent" />
+
+`POST /agents`
+
+> Code samples
+
+```bash
+
+curl -X POST http://localhost:9090/api/management/v1/agents \
+  -u {username}:{password} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d @payload.json
+```
+
+Add a new A2A Agent to the Gateway.
+
+> Payload
+
+```json
+{
+  "apiVersion": "gateway.api-platform.wso2.com/v1",
+  "kind": "Agent",
+  "metadata": {
+    "name": "trip-planner-v1.0"
+  },
+  "spec": {
+    "displayName": "Trip Planner",
+    "version": "v1.0",
+    "context": "/trip-planner",
+    "upstream": {
+      "url": "http://host.docker.internal:9099"
+    },
+    "a2a": {
+      "protocolVersion": "1.0",
+      "operationConfigs": {
+        "transports": [
+          { "protocolBinding": "JSONRPC", "pathPrefix": "/" },
+          { "protocolBinding": "HTTP+JSON", "pathPrefix": "/v1" }
+        ]
+      }
+    }
+  }
+}
+```
+
+### Authentication
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
+
+### Parameters {#create-a-new-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|AgentConfigurationRequest|true|none|
+
+### Responses {#create-a-new-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|201|Created|Agent created successfully|
+|400|Bad Request|Invalid configuration (validation failed)|
+|409|Conflict|An Agent with the same name and version already exists|
+|500|Internal Server Error|Internal server error|
+
+The response body is the stored `AgentConfiguration`, which is the request plus a read-only `status` object.
+
+## List all Agents
+
+<Anchor id="opIdlistAgents" />
+
+`GET /agents`
+
+> Code samples
+
+```bash
+
+curl -X GET http://localhost:9090/api/management/v1/agents \
+  -u {username}:{password} \
+  -H 'Accept: application/json'
+```
+
+List Agents registered in the Gateway, optionally filtered by name, version, context, or status.
+
+### Authentication {#authentication_1}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
+
+### Parameters {#list-all-agents-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|displayName|query|string|false|Filter by agent display name|
+|version|query|string|false|Filter by agent version|
+|context|query|string|false|Filter by agent context path|
+|status|query|string|false|Filter by deployment status: `deployed` or `undeployed`|
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "status": "success",
+  "count": 1,
+  "agents": [
+    {
+      "apiVersion": "gateway.api-platform.wso2.com/v1",
+      "kind": "Agent",
+      "metadata": { "name": "trip-planner-v1.0" },
+      "spec": { "displayName": "Trip Planner", "version": "v1.0" }
+    }
+  ]
+}
+```
+
+### Responses {#list-all-agents-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|List of Agents|
+|500|Internal Server Error|Internal server error|
+
+## Get Agent by id
+
+<Anchor id="opIdgetAgentById" />
+
+`GET /agents/{id}`
+
+> Code samples
+
+```bash
+
+curl -X GET http://localhost:9090/api/management/v1/agents/trip-planner-v1.0 \
+  -u {username}:{password} \
+  -H 'Accept: application/json'
+```
+
+Get an Agent by its ID.
+
+### Authentication {#authentication_2}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
+
+### Parameters {#get-agent-by-id-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent|
+
+### Responses {#get-agent-by-id-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|Agent details|
+|404|Not Found|Agent not found|
+|500|Internal Server Error|Internal server error|
+
+## Update an existing Agent
+
+<Anchor id="opIdupdateAgent" />
+
+`PUT /agents/{id}`
+
+> Code samples
+
+```bash
+
+curl -X PUT http://localhost:9090/api/management/v1/agents/trip-planner-v1.0 \
+  -u {username}:{password} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d @payload.json
+```
+
+Update an existing Agent in the Gateway. The request body carries the complete configuration, as the create operation does.
+
+### Authentication {#authentication_3}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
+
+### Parameters {#update-an-existing-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent to update|
+|body|body|AgentConfigurationRequest|true|none|
+
+### Responses {#update-an-existing-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|Agent updated successfully|
+|400|Bad Request|Invalid configuration (validation failed)|
+|404|Not Found|Agent not found|
+|500|Internal Server Error|Internal server error|
+
+## Delete an Agent
+
+<Anchor id="opIddeleteAgent" />
+
+`DELETE /agents/{id}`
+
+> Code samples
+
+```bash
+
+curl -X DELETE http://localhost:9090/api/management/v1/agents/trip-planner-v1.0 \
+  -u {username}:{password} \
+  -H 'Accept: application/json'
+```
+
+Delete an Agent from the Gateway.
+
+### Authentication {#authentication_4}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
+
+### Parameters {#delete-an-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent to delete|
+
+### Responses {#delete-an-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|Agent deleted successfully|
+|404|Not Found|Agent not found|
+|500|Internal Server Error|Internal server error|
+
+To take an Agent out of router traffic while keeping its configuration, policies, and API keys, set `spec.deploymentState` to `undeployed` instead of deleting it.
+
+## Create a new API key for an Agent
+
+<Anchor id="opIdcreateAgentAPIKey" />
+
+`POST /agents/{id}/api-keys`
+
+> Code samples
+
+```bash
+
+curl -X POST http://localhost:9090/api/management/v1/agents/trip-planner-v1.0/api-keys \
+  -u {username}:{password} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d '{"name":"trip-planner-client"}'
+```
+
+Generate a new API key for an Agent in the Gateway. The key is a 32-byte random value encoded in hexadecimal, prefixed with `apip_`. Use the API Key Auth policy on the Agent to validate incoming requests with this key.
+
+### Authentication {#authentication_5}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`consumer\`
+
+### Parameters {#create-a-new-api-key-for-an-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent to generate the key for|
+|body|body|APIKeyCreationRequest|true|none|
+
+### Responses {#create-a-new-api-key-for-an-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|201|Created|API key created successfully|
+|400|Bad Request|Invalid configuration (validation failed)|
+|404|Not Found|Agent not found|
+|409|Conflict|Duplicate key or conflicting update|
+|500|Internal Server Error|Internal server error|
+
+The key value appears in the response only on creation and regeneration. Store it securely; a lost key is regenerated rather than recovered.
+
+## Get the list of API keys for an Agent
+
+<Anchor id="opIdlistAgentAPIKeys" />
+
+`GET /agents/{id}/api-keys`
+
+List all API keys for an Agent in the Gateway. Key values aren't included.
+
+### Authentication {#authentication_6}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`consumer\`
+
+### Parameters {#get-the-list-of-api-keys-for-an-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent to retrieve the keys for|
+
+### Responses {#get-the-list-of-api-keys-for-an-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|List of API keys|
+|404|Not Found|Agent not found|
+|500|Internal Server Error|Internal server error|
+
+## Regenerate API key for an Agent
+
+<Anchor id="opIdregenerateAgentAPIKey" />
+
+`POST /agents/{id}/api-keys/{apiKeyName}/regenerate`
+
+Regenerate an existing API key for an Agent in the Gateway. The previous key is revoked and replaced with a new 32-byte random value encoded in hexadecimal, prefixed with `apip_`.
+
+### Authentication {#authentication_7}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`consumer\`
+
+### Parameters {#regenerate-api-key-for-an-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent|
+|apiKeyName|path|string|true|Name of the API key to regenerate|
+
+### Responses {#regenerate-api-key-for-an-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|API key regenerated successfully|
+|404|Not Found|Agent or API key not found|
+|500|Internal Server Error|Internal server error|
+
+## Update an API key for an Agent
+
+<Anchor id="opIdupdateAgentAPIKey" />
+
+`PUT /agents/{id}/api-keys/{apiKeyName}`
+
+Set a custom value on an existing API key instead of generating one, for injecting an externally issued key.
+
+### Authentication {#authentication_8}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`consumer\`
+
+### Parameters {#update-an-api-key-for-an-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent|
+|apiKeyName|path|string|true|Name of the API key to update|
+
+### Responses {#update-an-api-key-for-an-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|API key updated successfully|
+|404|Not Found|Agent or API key not found|
+|500|Internal Server Error|Internal server error|
+
+## Revoke an API key for an Agent
+
+<Anchor id="opIdrevokeAgentAPIKey" />
+
+`DELETE /agents/{id}/api-keys/{apiKeyName}`
+
+Revoke an API key. Once revoked, it can no longer authenticate requests.
+
+### Authentication {#authentication_9}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`consumer\`
+
+### Parameters {#revoke-an-api-key-for-an-agent-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|Unique public identifier of the Agent|
+|apiKeyName|path|string|true|Name of the API key to revoke|
+
+### Responses {#revoke-an-api-key-for-an-agent-responses}
+
+|Status|Meaning|Description|
+|---|---|---|
+|200|OK|API key revoked successfully|
+|404|Not Found|Agent or API key not found|
+|500|Internal Server Error|Internal server error|
+
+## Related topics
+
+- [Agent configuration reference](../agent-configuration.mdx) — every field in the `spec` these operations accept.
+- [Expose an agent](../../guides/agent-governance/expose-an-agent.mdx) — the configuration these operations deploy.
+- [Authenticate agent clients](../../guides/agent-governance/authenticate-clients.mdx) — the policy that validates the keys created here.

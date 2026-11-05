@@ -1,0 +1,232 @@
+---
+title: 'Management API: Certificate Management'
+description: 'REST API reference for managing custom TLS certificates in API Platform Gateway: list, upload, delete, and reload certificates dynamically.'
+type: reference
+sidebar_label: Certificate management
+sidebar_position: 7
+---
+
+Manage custom TLS certificates for HTTPS upstream verification
+
+## List all custom certificates
+
+<Anchor id="opIdlistCertificates" />
+
+`GET /certificates`
+
+> Code samples
+
+```bash
+
+curl -X GET http://localhost:9090/api/management/v1/certificates \
+  -u {username}:{password} \
+  -H 'Accept: application/json'
+```
+
+Retrieve all custom TLS certificates currently loaded in the certificate store.
+These certificates are used for verifying HTTPS upstream connections.
+
+### Authentication
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`, \`developer\`
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "certificates": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "name": "my-custom-ca",
+      "subject": "CN=My CA,O=My Organization,C=US",
+      "issuer": "CN=My CA,O=My Organization,C=US",
+      "notAfter": "2026-11-26 06:07:26",
+      "count": 1,
+      "message": "Certificate uploaded and SDS updated successfully",
+      "status": "success"
+    }
+  ],
+  "totalCount": 3,
+  "totalBytes": 221599,
+  "status": "success"
+}
+```
+
+### Responses {#list-all-custom-certificates-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of certificates|[CertificateListResponse](./schemas.mdx#schemacertificatelistresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+## Upload a new certificate
+
+<Anchor id="opIduploadCertificate" />
+
+`POST /certificates`
+
+> Code samples
+
+```bash
+
+curl -X POST http://localhost:9090/api/management/v1/certificates \
+  -u {username}:{password} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d @payload.json
+```
+
+Upload a new TLS certificate (PEM format) to the Gateway. The certificate is loaded dynamically without restarting the Gateway.
+
+> Payload
+
+```json
+{
+  "name": "my-custom-ca",
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIJAKL0UG+mRKtjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\n...\n-----END CERTIFICATE-----\n"
+}
+```
+
+### Authentication {#authentication_1}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+
+### Parameters {#upload-a-new-certificate-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CertificateUploadRequest](./schemas.mdx#schemacertificateuploadrequest)|true|none|
+
+> Example responses
+>
+> 201 Response
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "my-custom-ca",
+  "subject": "CN=My CA,O=My Organization,C=US",
+  "issuer": "CN=My CA,O=My Organization,C=US",
+  "notAfter": "2026-11-26 06:07:26",
+  "count": 1,
+  "message": "Certificate uploaded and SDS updated successfully",
+  "status": "success"
+}
+```
+
+### Responses {#upload-a-new-certificate-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Certificate uploaded successfully|[CertificateResponse](./schemas.mdx#schemacertificateresponse)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Invalid certificate format|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+## Delete a certificate
+
+<Anchor id="opIddeleteCertificate" />
+
+`DELETE /certificates/{id}`
+
+> Code samples
+
+```bash
+
+curl -X DELETE http://localhost:9090/api/management/v1/certificates/{id} \
+  -u {username}:{password} \
+  -H 'Accept: application/json'
+```
+
+Delete a certificate from the Gateway. The change is applied dynamically without restarting the Gateway.
+
+### Authentication {#authentication_2}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+
+### Parameters {#delete-a-certificate-parameters}
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|id|path|string|true|ID of the certificate to delete|
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "status": "success",
+  "message": "Certificate deleted and SDS updated successfully",
+  "id": "550e8400-e29b-41d4-a716-446655440000"
+}
+```
+
+### Responses {#delete-a-certificate-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Certificate deleted successfully|Inline|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Certificate not found|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response Schema {#delete-a-certificate-responseschema}
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|string|false|none|none|
+|message|string|false|none|none|
+|id|string|false|none|none|
+
+## Manually reload certificates
+
+<Anchor id="opIdreloadCertificates" />
+
+`POST /certificates/reload`
+
+> Code samples
+
+```bash
+
+curl -X POST http://localhost:9090/api/management/v1/certificates/reload \
+  -u {username}:{password} \
+  -H 'Accept: application/json'
+```
+
+Manually trigger a reload of all certificates from the filesystem into the Gateway.
+
+### Authentication {#authentication_3}
+
+This operation requires **Basic Auth** authentication. Required roles: \`admin\`
+
+> Example responses
+>
+> 200 Response
+
+```json
+{
+  "status": "success",
+  "message": "Certificates reloaded and SDS updated successfully",
+  "totalBytes": 221599
+}
+```
+
+### Responses {#manually-reload-certificates-responses}
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Certificates reloaded successfully|Inline|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|Internal server error|[ErrorResponse](./schemas.mdx#schemaerrorresponse)|
+
+### Response Schema {#manually-reload-certificates-responseschema}
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|string|false|none|none|
+|message|string|false|none|none|
+|totalBytes|integer|false|none|Total bytes of all loaded certificates|

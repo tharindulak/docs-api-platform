@@ -1,0 +1,128 @@
+# Release docs as a Docs bundle: copied from the Platform's
+# templates/content-repo/ (spec/releases-and-deployments.md, Docs bundles
+# (the Agent Manager POC)). Run it by hand and choose the branch to release:
+#   the main line (main, or the branch the Cloud Edition names in
+#   docspace.yaml)                -> Cloud: [<doc space>/]cloud-<YYYY.MM.DD>.<n>
+#   [<doc space>/]release/<version> -> that version: [<doc space>/]<version>-docs.<n>
+# It runs the Doc space's blocking checks, packs the Docs bundle, tags the
+# branch's commit, attaches the bundle to a GitHub Release, and starts the
+# Platform's Intake (workflow_dispatch with repo and tag, a hint: Intake reads
+# the release itself).
+#
+# Needs: immutable releases on (Settings > General > Releases); the WSO2 Docs
+# Release App, installed only on the Platform repo with Contents: read and
+# Actions: read and write (it can start Intake, never push code), its ID in
+# the variable DOCS_RELEASE_APP_ID and its private key in the secret
+# DOCS_RELEASE_APP_KEY. Its one-hour token checks the Platform out (the repo
+# may be private) and starts Intake. The variables
+# DOCS_PLATFORM_REPO (owner/name, default wso2/docs-platform) and
+# DOCS_PLATFORM_REF (default the pinned major, v1) point at the Platform.
+name: Release a Docs bundle
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: The branch to release, e.g. wso2-docs (Cloud) or release/1.0.0
+        type: string
+        required: true
+      doc-space:
+        description: The Doc space, only if several release from this branch
+        type: string
+        required: false
+permissions:
+  contents: write
+concurrency:
+  group: docs-bundle-release-${{ inputs.branch }}
+  cancel-in-progress: false
+env:
+  # The Platform major this repo pins (as in docs.yml). The POC overrides both
+  # with the repo variables DOCS_PLATFORM_REPO (tharindulak/docs-platform) and
+  # DOCS_PLATFORM_REF (poc/fresh-main).
+  PLATFORM_REF: v1
+  PLATFORM_REPO: ${{ vars.DOCS_PLATFORM_REPO || 'wso2/docs-platform' }}
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+          path: content
+      - id: platform
+        name: Name the Platform repo for the App token
+        run: |
+          echo "owner=${PLATFORM_REPO%%/*}" >> "$GITHUB_OUTPUT"
+          echo "name=${PLATFORM_REPO#*/}" >> "$GITHUB_OUTPUT"
+      - id: app
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.DOCS_RELEASE_APP_ID }}
+          private-key: ${{ secrets.DOCS_RELEASE_APP_KEY }}
+          owner: ${{ steps.platform.outputs.owner }}
+          repositories: ${{ steps.platform.outputs.name }}
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PLATFORM_REPO }}
+          ref: ${{ vars.DOCS_PLATFORM_REF || env.PLATFORM_REF }}
+          token: ${{ steps.app.outputs.token }}
+          path: platform
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+        working-directory: platform
+      - id: plan
+        name: Work out the Docs release this branch makes
+        env:
+          BRANCH: ${{ inputs.branch }}
+          DOC_SPACE: ${{ inputs.doc-space }}
+        run: |
+          plan=$(node platform/bin/wso2-docs.mjs release-for --repo content --branch "$BRANCH" --doc-space "$DOC_SPACE")
+          base=$(jq -r .tagBase <<<"$plan")
+          n=$(git -C content tag --list "${base}*" | sed "s|^${base//./\\.}||" | grep -E '^[0-9]+$' | sort -n | tail -1 || true)
+          tag="${base}$(( ${n:-0} + 1 ))"
+          {
+            echo "slug=$(jq -r .slug <<<"$plan")"
+            echo "dir=$(jq -r .dir <<<"$plan")"
+            echo "edition=$(jq -r .edition <<<"$plan")"
+            echo "tag=$tag"
+          } >> "$GITHUB_OUTPUT"
+          echo "Releasing $(jq -r .slug <<<"$plan") $(jq -r .edition <<<"$plan") from $BRANCH as $tag" >> "$GITHUB_STEP_SUMMARY"
+      - name: Check the Doc space (blocking checks)
+        env:
+          DIR: ${{ steps.plan.outputs.dir }}
+          EDITION: ${{ steps.plan.outputs.edition }}
+        run: node platform/bin/wso2-docs.mjs check "content/$DIR" --edition "$EDITION" --release --published local
+      - id: bundle
+        name: Pack the Docs bundle
+        env:
+          DIR: ${{ steps.plan.outputs.dir }}
+          EDITION: ${{ steps.plan.outputs.edition }}
+          TAG: ${{ steps.plan.outputs.tag }}
+        run: |
+          node platform/bin/wso2-docs.mjs bundle "content/$DIR" --edition "$EDITION" --tag "$TAG" --out dist > bundle.json
+          echo "file=$(jq -r .file bundle.json)" >> "$GITHUB_OUTPUT"
+          echo "sha256=$(jq -r .sha256 bundle.json)" >> "$GITHUB_OUTPUT"
+      - name: Tag the commit and publish the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SLUG: ${{ steps.plan.outputs.slug }}
+          EDITION: ${{ steps.plan.outputs.edition }}
+          TAG: ${{ steps.plan.outputs.tag }}
+          FILE: ${{ steps.bundle.outputs.file }}
+          SHA256: ${{ steps.bundle.outputs.sha256 }}
+        run: |
+          git -C content tag "$TAG" HEAD
+          git -C content push origin "refs/tags/$TAG"
+          gh release create "$TAG" "$FILE" --repo "$GITHUB_REPOSITORY" --verify-tag --latest=false \
+            --title "$SLUG $EDITION ($TAG)" \
+            --notes "Docs bundle for $SLUG, Edition $EDITION. sha256 $SHA256."
+          echo "Published $TAG with $(basename "$FILE") (sha256 $SHA256)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Start the Platform's Intake (workflow_dispatch)
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          TAG: ${{ steps.plan.outputs.tag }}
+        run: |
+          gh workflow run intake.yml --repo "$PLATFORM_REPO" -f "repo=$GITHUB_REPOSITORY" -f "tag=$TAG"
+          echo "Started Intake on $PLATFORM_REPO for $TAG" >> "$GITHUB_STEP_SUMMARY"
