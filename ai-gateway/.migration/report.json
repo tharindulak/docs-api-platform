@@ -1,47 +1,47 @@
 {
   "summary": {
     "source": "wso2/docs-api-platform@3ce995aa09dc5dfad9a366550361cf55a9504869",
-    "edition": "cloud",
+    "edition": "1.2.0",
     "legacyBase": "https://wso2.com/api-platform/docs/",
-    "navPages": 109,
+    "navPages": 77,
     "sourceFiles": 1268,
     "stats": {
-      "pages": 114,
+      "pages": 78,
       "partials": 0,
       "apiPages": 0,
       "placeholders": 3,
       "images": 15,
       "attachments": 0,
       "missingImages": 0,
-      "links": 1336,
-      "externalLinks": 475,
+      "links": 1198,
+      "externalLinks": 444,
       "legacyHostLinks": 3,
-      "otherVersionLinks": 100,
+      "otherVersionLinks": 88,
       "crossProductLinks": 2,
-      "linksViaRedirect": 6,
+      "linksViaRedirect": 0,
       "droppedLinks": 6,
       "droppedAnchors": 0,
       "placeholdersWrapped": 3,
-      "admonitions": 89,
+      "admonitions": 86,
       "details": 5,
-      "tabSets": 28,
-      "codeBlocks": 828,
+      "tabSets": 27,
+      "codeBlocks": 651,
       "indentedCode": 0,
-      "htmlBlocks": 154,
-      "explicitIds": 200,
+      "htmlBlocks": 124,
+      "explicitIds": 186,
       "basePathInCode": 0,
       "basePathInText": 0,
       "unknownElements": 0,
       "unknownLanguages": [
         "promql"
       ],
-      "generatedDescriptions": 5,
-      "sidebarLabels": 41,
+      "generatedDescriptions": 1,
+      "sidebarLabels": 30,
       "relativeFallback": 12,
-      "unlisted": 5,
+      "unlisted": 1,
       "placeholders_": 0,
       "sharedPages": 0,
-      "cloudOnlyPages": 26,
+      "cloudOnlyPages": 0,
       "selfHostedOnlyPages": 0,
       "markedPages": 0,
       "markers": 0,
@@ -55,40 +55,32 @@
       "specsFixed": 0,
       "titlesVarying": 0,
       "navIcons": 0,
-      "keptDescriptions": 109,
-      "legacySiteLinks": 73,
+      "legacySiteLinks": 41,
+      "keptDescriptions": 77,
+      "otherDocSpaceLinks": 29,
       "exportSingleFolders": 0,
-      "legacyRedirectsExternal": 41,
+      "legacyRedirectsExternal": 19,
       "legacyRedirectsUnresolved": 0,
-      "legacyRedirects": 314,
-      "legacyRedirectsSource": 200,
+      "legacyRedirects": 139,
+      "legacyRedirectsSource": 61,
       "acceptedByOverrides": 5
     },
     "issues": {
-      "not-in-nav": 5,
-      "override": 1,
+      "not-in-nav": 1,
       "code-language": 1
     },
     "compileFailures": 0,
     "overrides": {
       "file": "ai-gateway.overrides.yaml",
-      "patches": 1,
+      "patches": 0,
       "patchesApplied": 0,
       "accepted": 5
-    },
-    "cloudDiff": {
-      "source": "wso2/docs-api-platform@3ce995aa09dc5dfad9a366550361cf55a9504869",
-      "matched": 7,
-      "identical": 0,
-      "differ": 7,
-      "cloudOnly": 26,
-      "possibleCounterparts": 2
     }
   },
   "items": [
     {
       "kind": "broken-link",
-      "file": "ai-gateway/next/README.md",
+      "file": "ai-gateway/1.2.0/README.md",
       "message": "link to llm/ has no target in this version; link removed, text kept",
       "detail": {
         "href": "llm/"
@@ -97,7 +89,7 @@
     },
     {
       "kind": "broken-link",
-      "file": "ai-gateway/next/README.md",
+      "file": "ai-gateway/1.2.0/README.md",
       "message": "link to mcp/ has no target in this version; link removed, text kept",
       "detail": {
         "href": "mcp/"
@@ -106,7 +98,7 @@
     },
     {
       "kind": "broken-link",
-      "file": "ai-gateway/next/README.md",
+      "file": "ai-gateway/1.2.0/README.md",
       "message": "link to observability/ has no target in this version; link removed, text kept",
       "detail": {
         "href": "observability/"
@@ -115,7 +107,7 @@
     },
     {
       "kind": "broken-link",
-      "file": "ai-gateway/next/README.md",
+      "file": "ai-gateway/1.2.0/README.md",
       "message": "link to gateway-controller-management-api/ has no target in this version; link removed, text kept",
       "detail": {
         "href": "gateway-controller-management-api/"
@@ -124,42 +116,17 @@
     },
     {
       "kind": "not-in-nav",
-      "file": "ai-gateway/next/README.md",
+      "file": "ai-gateway/1.2.0/README.md",
       "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
     },
     {
       "kind": "broken-link",
-      "file": "ai-gateway/next/setup-and-deployment/configuration.md",
+      "file": "ai-gateway/1.2.0/setup-and-deployment/configuration.md",
       "message": "link to ./artifact-templating.md has no target in this version; link removed, text kept",
       "detail": {
         "href": "./artifact-templating.md"
       },
       "accepted": "the legacy site has no page there either"
-    },
-    {
-      "kind": "not-in-nav",
-      "file": "cloud/ai-gateway/gateway-controller-api.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "not-in-nav",
-      "file": "cloud/ai-gateway/llm/index.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "not-in-nav",
-      "file": "cloud/ai-gateway/mcp/index.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "not-in-nav",
-      "file": "cloud/ai-gateway/observability/index.md",
-      "message": "not in the legacy nav; published unlisted (no sidebar entry, as before)"
-    },
-    {
-      "kind": "override",
-      "file": "docs/cloud/ai-gateway/llm/quick-start-guide.md",
-      "message": "override patch no longer applies (\"](./llm/guardrails/aws-bedrock-guardrail/)\" not found); remove it or limit it with editions:"
     },
     {
       "kind": "code-language",

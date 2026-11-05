@@ -28,7 +28,7 @@ A production AI Gateway deployment has three parts.
 | Gateway Runtime | Envoy plus the policy engine in one container. Routes traffic to LLM providers and MCP servers, and enforces guardrails, rate limits, and other policies. | Your cluster |
 | Database | The shared source of truth for artifacts, deployment state, and encrypted secrets across all controller replicas. | Managed service or your cluster |
 
-The gateway serves traffic on its own. Connecting it to [AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/next/overview/) adds central governance across every gateway you run, and is covered in [Connect to AI Workspace](./control-plane-connection.mdx).
+The gateway serves traffic on its own. Connecting it to [AI Workspace](https://wso2.com/api-platform/docs/ai-workspace/1.0.0/overview/) adds central governance across every gateway you run, and is covered in [Connect to AI Workspace](./control-plane-connection.mdx).
 
 ## Cluster topology
 
