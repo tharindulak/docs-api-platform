@@ -1,0 +1,75 @@
+# Release docs (POC): tags the branch you choose and starts the Platform's
+# release.yml, which builds the Docs deployment, publishes it to the
+# environment's R2 bucket and flips it live; every Docs VM mirrors the bucket
+# (ADR-0019). Run it by hand and choose the branch:
+#   wso2-docs (the main line)  -> Cloud:        cloud-<YYYY.MM.DD>.<n>
+#   release/<version>          -> that version: <version>-docs.<n>
+# One Doc space per branch in this repo, so tags carry no Doc space prefix.
+#
+# Needs: the WSO2 Docs Release App (Actions: read and write on the Platform
+# repo, nothing else), its ID in the variable DOCS_RELEASE_APP_ID and its key in
+# the secret DOCS_RELEASE_APP_KEY; DOCS_PLATFORM_REPO names the Platform repo.
+name: Release docs
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: The branch to release, e.g. wso2-docs (Cloud) or release/1.0.0
+        type: string
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: docs-release-${{ inputs.branch }}
+  cancel-in-progress: false
+env:
+  PLATFORM_REPO: ${{ vars.DOCS_PLATFORM_REPO }}
+  # The POC's Platform branch (tharindulak/choreolabs-docs).
+  PLATFORM_REF: poc/r2
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+      - id: plan
+        name: The tag this release makes
+        env:
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          case "$BRANCH" in
+            wso2-docs) base="cloud-$(date -u +%Y.%m.%d)." ;;
+            release/*) v="${BRANCH#release/}"; [[ "$v" =~ ^[0-9][0-9A-Za-z.]*$ ]] || { echo "::error::$BRANCH is not release/<version>"; exit 1; }; base="${v}-docs." ;;
+            *) echo "::error::$BRANCH releases nothing: use wso2-docs or release/<version>"; exit 1 ;;
+          esac
+          n=$(git tag --list "${base}*" | sed "s|^${base//./\\.}||" | grep -E '^[0-9]+$' | sort -n | tail -1 || true)
+          tag="${base}$(( ${n:-0} + 1 ))"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Releasing $BRANCH as $tag" >> "$GITHUB_STEP_SUMMARY"
+      - name: Tag the branch's commit
+        env:
+          TAG: ${{ steps.plan.outputs.tag }}
+        run: |
+          git tag "$TAG" HEAD
+          git push origin "refs/tags/$TAG"
+      - id: platform
+        name: Name the Platform repo for the App token
+        run: |
+          echo "owner=${PLATFORM_REPO%%/*}" >> "$GITHUB_OUTPUT"
+          echo "name=${PLATFORM_REPO#*/}" >> "$GITHUB_OUTPUT"
+      - id: app
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.DOCS_RELEASE_APP_ID }}
+          private-key: ${{ secrets.DOCS_RELEASE_APP_KEY }}
+          owner: ${{ steps.platform.outputs.owner }}
+          repositories: ${{ steps.platform.outputs.name }}
+      - name: Start the Platform's release.yml
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          TAG: ${{ steps.plan.outputs.tag }}
+        run: |
+          gh workflow run release.yml --repo "$PLATFORM_REPO" --ref "$PLATFORM_REF" -f "repo=$GITHUB_REPOSITORY" -f "tag=$TAG" -f scope=tag
+          echo "Started release.yml on $PLATFORM_REPO@$PLATFORM_REF for $TAG" >> "$GITHUB_STEP_SUMMARY"
