@@ -1,4 +1,5 @@
 label: AI Gateway
 position: 8
 customProps:
+  icon: octicons/sparkle-fill-16
   editions: cloud
